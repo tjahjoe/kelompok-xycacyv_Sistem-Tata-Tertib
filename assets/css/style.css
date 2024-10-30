@@ -1,0 +1,229 @@
+/* css reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #001c93;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.container {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* LOGIN PAGE */
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  height: 95%;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.bg-img {
+  /* background-color: #fff; */
+  /* max-width:50%; */
+  background: linear-gradient(rgba(0, 28, 147, 0.7), rgba(0, 28, 147, 0.1)), url("https://ppid.polinema.ac.id/wp-content/uploads/2024/02/GRAHA-POLINEMA1-slider-01.webp");
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+}
+
+.box-contain {
+  flex: 1;
+  padding: 1rem 2.5rem;
+}
+
+.form-contain {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-contain > h2 {
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.info-box {
+  background-color: #e6f9ec;
+  color: #2a7f4f;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.info-box p {
+  font-weight: 700;
+}
+
+.info-box ul {
+  padding-left: 15px;
+}
+
+.info-box ul li {
+  margin: 5px 10px;
+}
+
+.login-form label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  background-color: #f1f1f1;
+  color: #666;
+}
+
+.login-form input:focus{
+  outline: none;
+  border: 2px solid var(--primary-color);
+}
+
+.login-form input#password {
+  margin-bottom: 0;
+}
+
+.login-form input[type="text"]::placeholder,
+.login-form input[type="password"]::placeholder {
+  color: #b3b3b3;
+}
+
+.password-wrapper {
+  position: relative;
+  margin-bottom: 1.5rem!important;
+}
+
+.password-wrapper .toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.back-home {
+  text-align: right;
+}
+
+.back-home a {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 30px;
+  margin-right: 10px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .bg-img {
+    display: none;
+  }
+
+  .box-contain{
+    padding: 1rem 1.5rem;
+  }
+
+  .box {
+    height:100%;
+    max-width: max-content;
+  }
+
+  .navbar .menu {
+    display: none; /*Hide menu on small screens*/
+    opacity: 0;
+    transform: translateY(-10px);
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 1rem;
+    transition: all 0.5s;
+    z-index: 90;
+  }
+
+  .profile span.profile-text {
+    display: none;
+  }
+
+  .navbar .menu.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .profile .dropdown-active.arrow {
+    transform: rotate(-135deg);
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
