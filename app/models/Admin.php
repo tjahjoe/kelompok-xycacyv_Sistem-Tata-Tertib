@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "/../../config/database.php";
-class Mahasiswa{
+class Admin{
     private $conn;
     private $table = "";
     public function __construct(){

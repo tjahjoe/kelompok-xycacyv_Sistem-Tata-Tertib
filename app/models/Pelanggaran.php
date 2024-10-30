@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . "/../../config/database.php";
-class Mahasiswa{
+class Pelanggaran{
     private $conn;
-    private $table = "";
+    private $table;
     public function __construct(){
         $database = new Database();
         $this->conn = $database->getConneection();
