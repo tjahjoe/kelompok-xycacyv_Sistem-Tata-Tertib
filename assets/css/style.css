@@ -8,9 +8,9 @@
 :root {
   --primary-color: #001c93;
   --dark-color: #202224;
-  --orange-color: #FB923C;
-  --red-color: #EA0234;
-  --green-color: #00B69B;
+  --orange-color: #fb923c;
+  --red-color: #ea0234;
+  --green-color: #00b69b;
   --gray-color: #979797;
 }
 
@@ -21,10 +21,12 @@ body {
 }
 
 .container {
-  display: grid;
-  place-items: center;
   min-height: 100vh;
   padding: 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
 }
 
 /* LOGIN PAGE */
@@ -44,7 +46,8 @@ body {
 .bg-img {
   /* background-color: #fff; */
   /* max-width:50%; */
-  background: linear-gradient(rgba(0, 28, 147, 0.7), rgba(0, 28, 147, 0.1)), url("https://ppid.polinema.ac.id/wp-content/uploads/2024/02/GRAHA-POLINEMA1-slider-01.webp");
+  background: linear-gradient(rgba(0, 28, 147, 0.7), rgba(0, 28, 147, 0.1)),
+    url("https://ppid.polinema.ac.id/wp-content/uploads/2024/02/GRAHA-POLINEMA1-slider-01.webp");
   width: 100%;
   height: 100%;
   flex: 1;
@@ -128,7 +131,7 @@ body {
   color: #666;
 }
 
-.login-form input:focus{
+.login-form input:focus {
   outline: none;
   border: 2px solid var(--primary-color);
 }
@@ -144,7 +147,7 @@ body {
 
 .password-wrapper {
   position: relative;
-  margin-bottom: 1.5rem!important;
+  margin-bottom: 1.5rem !important;
 }
 
 .password-wrapper .toggle-password {
@@ -202,61 +205,62 @@ body {
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0);
 }
 
-.navbar.scrolled{
+.navbar.scrolled {
   background-color: #fff;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.5s ease-in-out;
 }
 
-.navbar.scrolled .menu a, .navbar.scrolled .logo{
+.navbar.scrolled .menu a,
+.navbar.scrolled .logo {
   color: var(--primary-color);
 }
 
-.navbar.scrolled .hamburger div{ 
+.navbar.scrolled .hamburger div {
   background-color: var(--primary-color);
 }
 
-.navbar.scrolled .profile span.profile-text{
+.navbar.scrolled .profile span.profile-text {
   color: var(--dark-color);
 }
 
-.navbar .logo{
+.navbar .logo {
   color: #fff;
   font-size: 1.5rem;
   font-weight: bold;
   display: flex;
-  align-items:center;
+  align-items: center;
   gap: 10px;
 }
 
 /* profile menu */
-.profile{
-display: flex;
-align-items:center;
-justify-content: center;
-gap: 10px;
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.profile span.profile-text{
-text-decoration: none;
-color: #fff;
-display: flex;
-flex-direction: column;
+.profile span.profile-text {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
-.profile span p.profile-username{
-font-size: 1.1rem;
-font-weight: 600;
+.profile span p.profile-username {
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.profile span p.role-user{
-font-size: 0.9rem;
+.profile span p.role-user {
+  font-size: 0.9rem;
 }
 
-.navbar .profile .img-profile{
-border-radius: 50%;
-width: 50px;
-height: 50px;
+.navbar .profile .img-profile {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
 
 .navbar .menu {
@@ -275,9 +279,9 @@ height: 50px;
   cursor: pointer;
 }
 
-.hidden{
-transform: translateY(-100%);
-transition: transform 0.4s ease-in-out;
+.hidden {
+  transform: translateY(-100%);
+  transition: transform 0.4s ease-in-out;
 }
 
 /* span.arrow {
@@ -293,32 +297,33 @@ transition: all 0.3s;
 
 /* Hamburger menu icon */
 .hamburger {
-display: none;
-flex-direction: column;
-cursor: pointer;
-gap: 5px;
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
 }
 
 .hamburger div {
-width: 25px;
-height: 3px;
-background-color: #fff;
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
 }
 
 /* STYLE HEADER */
 /* Section Header */
-section#header{
+section#header {
   padding-top: 80px;
   min-height: 500px;
-  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url('https://seru.co.id/wp-content/uploads/2021/02/Teknik-Polinema.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
+    url("https://seru.co.id/wp-content/uploads/2021/02/Teknik-Polinema.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
-#header .box-header{
+#header .box-header {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   gap: 10px;
   justify-content: start;
   padding: 4rem;
@@ -328,20 +333,20 @@ section#header{
   max-width: 900px;
 }
 
-#header p{
+#header p {
   max-width: 600px;
 }
 
 /* for all header */
-.main-title{
+.main-header {
   font-size: 3rem;
 }
 
-.main-title span{
+.main-header span {
   color: var(--orange-color);
 }
 
-.btn{
+.btn {
   width: max-content;
   padding: 10px 20px;
   border-radius: 7px;
@@ -352,12 +357,66 @@ section#header{
   cursor: pointer;
 }
 
-.btn-tatib{
+.btn-tatib {
   margin-top: 30px;
 }
 
-.btn-orange{
+.btn-orange {
   background-color: var(--orange-color);
+}
+
+/* SECTION TATATERTIB */
+section#tataTertib {
+  padding: 1.5em;
+}
+
+/* table style */
+.table-container {
+  width: 100%;
+  overflow: auto;
+}
+
+table#tataTertib {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+  min-width:600px;
+}
+
+table#tataTertib th,
+table#tataTertib td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+table#tataTertib th {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+}
+table#tataTertib td {
+  text-align: center;
+}
+
+table#tataTertib td:nth-of-type(2) {
+  text-align: left;
+}
+
+/* scrollbar table */
+.table-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }
 
 /* Responsive styles */
@@ -367,12 +426,12 @@ section#header{
     display: none;
   }
 
-  .box-contain{
+  .box-contain {
     padding: 1rem 1.5rem;
   }
 
   .box {
-    height:100%;
+    height: 100%;
     max-width: max-content;
   }
 
@@ -409,20 +468,30 @@ section#header{
     display: flex;
   }
 
-  .main-title{
+  .main-header {
     font-size: 3rem;
   }
 
-  #header .box-header{
+  #header .box-header {
     min-height: 90vh;
     padding: 2rem;
     justify-content: center;
   }
+
+  section#tataTertib {
+    padding: 0.5em;
+  }
+  .title {
+    font-size: 2rem;
+  }
 }
 
 /* MOBILE */
-@media (max-width: 500px){
-  .main-title{
+@media (max-width: 500px) {
+  .main-header {
     font-size: 2.5rem;
+  }
+  .title {
+    font-size: 1.5rem;
   }
 }
