@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -25,6 +26,7 @@
             <p>SiTatib</p>
           </div>
           <h2>Login Anggota</h2>
+          <div id="hasil" style="color: red;"></div>
           <div class="info-box">
             <p>Informasi</p>
             <ul>
@@ -32,19 +34,21 @@
               <li>Bagi DPA/Admin: Gunakan akun portal polinema</li>
             </ul>
           </div>
-          <form action="" method="post" class="login-form">
+          <form action="../app/controllers/AuthLogin.php" method="post" class="login-form" id="formLogin">
             <label for="idAnggota">ID Anggota</label>
             <input
               type="text"
               id="idAnggota"
-              placeholder="Isikan NIM atau akun Portal Polinema" />
+              name="idAnggota"
+              placeholder="Isikan NIM atau akun Portal Polinema" required/>
 
             <label for="password">Password</label>
             <div class="password-wrapper">
               <input
                 type="password"
+                name="password"
                 id="password"
-                placeholder="Isikan password" />
+                placeholder="Isikan password" required/>
               <span class="toggle-password"><i class="toggle-password-icon fa-solid fa-eye fa-lg"></i></span>
             </div>
 
@@ -59,6 +63,31 @@
   </div>
   <script src="../assets/js/script.js"></script>
   <script src="https://kit.fontawesome.com/6a1f5752a8.js" crossorigin="anonymous"></script>
+  <script>
+        $(document).ready(function() {
+            $("#formLogin").submit(function(e) {
+                e.preventDefault();
+
+                // Mendapatkan data form
+                var formData = $(this).serialize();
+
+                // Kirim data ke server PHP
+                $.ajax({
+                    url: "../app/controllers/AuthLogin.php",
+                    type: "POST",
+                    data: formData,
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            window.location.href = './'; // Redirect ke halaman utama
+                        } else {
+                            $("#hasil").html(response.message);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

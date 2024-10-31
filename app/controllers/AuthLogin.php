@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $userModel->login($id, $password);
 
     if ($user) {
+        $_SESSION['user'] = $user;
         $response['status'] = 'success';
         $response['message'] = 'Login successful';
-        $_SESSION['user'] = $user;
     }
 
     echo json_encode($response);
