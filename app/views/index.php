@@ -17,13 +17,7 @@
   <?php include 'components/headerSection.php'; ?>
   <div class="container">
     <?php include 'components/tataTertibSection.php'; ?>
-    <section id="footerLapor"></section>
-  </div>
-  <div
-    style="height: 200vh; padding-top: 60px; display: flex; align-items: end">
-    <p style="height: max-content">
-      test.
-    </p>
+    <?php include 'components/footerLaporSection.php'; ?>
   </div>
   <script src="../assets/js/script.js"></script>
 </body>

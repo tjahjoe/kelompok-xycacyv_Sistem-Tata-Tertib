@@ -348,13 +348,14 @@ section#header {
 
 .btn {
   width: max-content;
-  padding: 10px 20px;
+  padding: 15px 25px;
   border-radius: 7px;
   outline: none;
   border: 0;
   font-weight: 600;
   font-family: "Inter", sans-serif;
   cursor: pointer;
+  font-size: 1em;
 }
 
 .btn-tatib {
@@ -363,6 +364,11 @@ section#header {
 
 .btn-orange {
   background-color: var(--orange-color);
+}
+
+.btn-red {
+  color: #fff;
+  background-color: var(--red-color);
 }
 
 /* SECTION TATATERTIB */
@@ -417,6 +423,31 @@ table#tataTertib td:nth-of-type(2) {
 
 .table-container::-webkit-scrollbar-thumb:hover {
   background-color: #555;
+}
+
+/* SECTION FOOTER LAPOR */
+section#footerLapor span.text-red{
+  color: var(--red-color);
+}
+
+section#footerLapor{
+  margin-top: 30px;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  /* background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center; */
+}
+
+#footerLapor .box-footer{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: start;
+  padding: 4rem;
+  color: #fff;
+  width: 100%;
+  max-width: 900px;
 }
 
 /* Responsive styles */
@@ -484,6 +515,14 @@ table#tataTertib td:nth-of-type(2) {
   .title {
     font-size: 2rem;
   }
+
+  #footerLapor .box-footer {
+    padding: 1.7rem;
+  }
+
+  #footerLapor .box-footer h1{
+    font-size: 2.5rem;
+  }
 }
 
 /* MOBILE */
@@ -493,5 +532,12 @@ table#tataTertib td:nth-of-type(2) {
   }
   .title {
     font-size: 1.5rem;
+  }
+  #footerLapor .box-footer h1{
+    font-size: 1.5rem;
+  }
+  .btn{
+    padding: 12px 22px;
+    font-size: 0.9em;
   }
 }
