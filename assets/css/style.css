@@ -7,6 +7,11 @@
 
 :root {
   --primary-color: #001c93;
+  --dark-color: #202224;
+  --orange-color: #FB923C;
+  --red-color: #EA0234;
+  --green-color: #00B69B;
+  --gray-color: #979797;
 }
 
 body {
@@ -179,7 +184,184 @@ body {
   margin-right: 10px;
 }
 
+/* HOME PAGE */
+/* Navbar styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+  z-index: 99;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0);
+}
+
+.navbar.scrolled{
+  background-color: #fff;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease-in-out;
+}
+
+.navbar.scrolled .menu a, .navbar.scrolled .logo{
+  color: var(--primary-color);
+}
+
+.navbar.scrolled .hamburger div{ 
+  background-color: var(--primary-color);
+}
+
+.navbar.scrolled .profile span.profile-text{
+  color: var(--dark-color);
+}
+
+.navbar .logo{
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items:center;
+  gap: 10px;
+}
+
+/* profile menu */
+.profile{
+display: flex;
+align-items:center;
+justify-content: center;
+gap: 10px;
+}
+
+.profile span.profile-text{
+text-decoration: none;
+color: #fff;
+display: flex;
+flex-direction: column;
+}
+
+.profile span p.profile-username{
+font-size: 1.1rem;
+font-weight: 600;
+}
+
+.profile span p.role-user{
+font-size: 0.9rem;
+}
+
+.navbar .profile .img-profile{
+border-radius: 50%;
+width: 50px;
+height: 50px;
+}
+
+.navbar .menu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar .menu a,
+.navbar .profile {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.navbar .profile {
+  cursor: pointer;
+}
+
+.hidden{
+transform: translateY(-100%);
+transition: transform 0.4s ease-in-out;
+}
+
+/* span.arrow {
+display:none!important;
+margin-left: 8px;
+border: solid white;
+border-width: 0 3px 3px 0;
+display: inline-block;
+padding: 4px;
+transform: rotate(45deg);
+transition: all 0.3s;
+} */
+
+/* Hamburger menu icon */
+.hamburger {
+display: none;
+flex-direction: column;
+cursor: pointer;
+gap: 5px;
+}
+
+.hamburger div {
+width: 25px;
+height: 3px;
+background-color: #fff;
+}
+
+/* STYLE HEADER */
+/* Section Header */
+section#header{
+  padding-top: 80px;
+  min-height: 500px;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url('https://seru.co.id/wp-content/uploads/2021/02/Teknik-Polinema.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#header .box-header{
+  display: flex;
+  flex-direction:column;
+  gap: 10px;
+  justify-content: start;
+  padding: 4rem;
+  border-radius: 20px;
+  color: #fff;
+  width: 100%;
+  max-width: 900px;
+}
+
+#header p{
+  max-width: 600px;
+}
+
+/* for all header */
+.main-title{
+  font-size: 3rem;
+}
+
+.main-title span{
+  color: var(--orange-color);
+}
+
+.btn{
+  width: max-content;
+  padding: 10px 20px;
+  border-radius: 7px;
+  outline: none;
+  border: 0;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+
+.btn-tatib{
+  margin-top: 30px;
+}
+
+.btn-orange{
+  background-color: var(--orange-color);
+}
+
 /* Responsive styles */
+/* TABLET */
 @media (max-width: 768px) {
   .bg-img {
     display: none;
@@ -205,7 +387,7 @@ body {
     width: 100%;
     background-color: #333;
     padding: 1rem;
-    transition: all 0.5s;
+    transition: all 0.2s;
     z-index: 90;
   }
 
@@ -225,5 +407,22 @@ body {
 
   .hamburger {
     display: flex;
+  }
+
+  .main-title{
+    font-size: 3rem;
+  }
+
+  #header .box-header{
+    min-height: 90vh;
+    padding: 2rem;
+    justify-content: center;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 500px){
+  .main-title{
+    font-size: 2.5rem;
   }
 }

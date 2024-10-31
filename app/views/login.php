@@ -34,7 +34,7 @@
               <li>Bagi DPA/Admin: Gunakan akun portal polinema</li>
             </ul>
           </div>
-          <form action="../app/controllers/AuthLogin.php" method="post" class="login-form" id="formLogin">
+          <form method="post" class="login-form" id="formLogin">
             <label for="idAnggota">ID Anggota</label>
             <input
               type="text"
@@ -62,32 +62,8 @@
     </div>
   </div>
   <script src="../assets/js/script.js"></script>
+  <script src="../assets/js/handleAuth.js"></script>
   <script src="https://kit.fontawesome.com/6a1f5752a8.js" crossorigin="anonymous"></script>
-  <script>
-        $(document).ready(function() {
-            $("#formLogin").submit(function(e) {
-                e.preventDefault();
-
-                // Mendapatkan data form
-                var formData = $(this).serialize();
-
-                // Kirim data ke server PHP
-                $.ajax({
-                    url: "../app/controllers/AuthLogin.php",
-                    type: "POST",
-                    data: formData,
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            window.location.href = './'; // Redirect ke halaman utama
-                        } else {
-                            $("#hasil").html(response.message);
-                        }
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 
 </html>
