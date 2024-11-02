@@ -5,13 +5,19 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --primary-color: #001c93;
+  --primary-color-rgb: 18, 52, 86;
   --dark-color: #202224;
   --orange-color: #fb923c;
   --red-color: #ea0234;
   --green-color: #00b69b;
   --gray-color: #979797;
+  --lightgray-color: #f2f2f2;
 }
 
 body {
@@ -25,8 +31,17 @@ body {
   padding: 1rem;
 }
 
+.pt-5 {
+  padding-top: 5rem;
+}
+
+.bg-gray {
+  background-color: var(--lightgray-color);
+}
+
 .title {
   font-size: 2.5rem;
+  margin: 1.5rem 0;
 }
 
 /* LOGIN PAGE */
@@ -203,6 +218,24 @@ body {
   transition: all 0.5s ease-in-out;
   z-index: 99;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0);
+}
+
+.navbar.navbar-other {
+  background-color: #fff;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease-in-out;
+}
+
+.navbar.navbar-other .logo {
+  color: var(--primary-color);
+}
+
+.navbar.navbar-other .hamburger div {
+  background-color: var(--primary-color);
+}
+
+.navbar.navbar-other .profile span.profile-text {
+  color: var(--dark-color);
 }
 
 .navbar.scrolled {
@@ -386,7 +419,7 @@ table#tataTertib {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1em;
-  min-width:600px;
+  min-width: 600px;
 }
 
 table#tataTertib th,
@@ -426,11 +459,11 @@ table#tataTertib td:nth-of-type(2) {
 }
 
 /* SECTION FOOTER LAPOR */
-section#footerLapor span.text-red{
+section#footerLapor span.text-red {
   color: var(--red-color);
 }
 
-section#footerLapor{
+section#footerLapor {
   margin-top: 30px;
   background-color: var(--primary-color);
   border-radius: 20px;
@@ -439,7 +472,7 @@ section#footerLapor{
   background-position: center; */
 }
 
-#footerLapor .box-footer{
+#footerLapor .box-footer {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -448,6 +481,95 @@ section#footerLapor{
   color: #fff;
   width: 100%;
   max-width: 900px;
+}
+
+/* PROFILE PAGE */
+.box-content {
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.box-profile {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 20px;
+  overflow: hidden;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-user {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  width: max-content;
+}
+
+.info-user span p, .head-profile p{
+  color: var(--gray-color);
+}
+
+.sidebar {
+  width: max-content;
+  background-color: #fff;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-link {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.tab-link.active {
+  background-color: rgba(var(--primary-color-rgb), 0.2);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.tab-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  padding: 25px;
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.info-personal{
+  width: 100%;
+}
+
+.info-grid {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 300px));
+  gap: 20px;
+}
+
+.info-grid span p:first-of-type{
+  color: var(--gray-color);
 }
 
 /* Responsive styles */
@@ -510,7 +632,7 @@ section#footerLapor{
   }
 
   section#tataTertib {
-    padding: 0.5em;
+    padding: 1em;
   }
   .title {
     font-size: 2rem;
@@ -520,8 +642,21 @@ section#footerLapor{
     padding: 1.7rem;
   }
 
-  #footerLapor .box-footer h1{
+  #footerLapor .box-footer h1 {
     font-size: 2.5rem;
+  }
+
+  .sidebar{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-right: 0px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    gap: 5px;
+  }
+
+  .sidebar .tab-link{
+    border: 1px solid #ddd;
   }
 }
 
@@ -533,11 +668,16 @@ section#footerLapor{
   .title {
     font-size: 1.5rem;
   }
-  #footerLapor .box-footer h1{
+  #footerLapor .box-footer h1 {
     font-size: 1.5rem;
   }
-  .btn{
+  .btn {
     padding: 12px 22px;
     font-size: 0.9em;
+  }
+  .info-user {
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
   }
 }

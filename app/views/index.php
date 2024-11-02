@@ -14,6 +14,7 @@
 
 <body>
   <?php include 'components/navbar.php'; ?>
+  <?php Navbar(false); ?>
   <?php include 'components/headerSection.php'; ?>
   <div class="container">
     <?php include 'components/tataTertibSection.php'; ?>
