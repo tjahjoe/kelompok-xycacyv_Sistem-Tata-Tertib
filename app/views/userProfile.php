@@ -47,8 +47,8 @@
         <div class="head-tab-content">
           <h2>Riwayat Pelaporan</h2>
         </div>
-        <?php EmptyState('EmptyStatePelaporan.png', 'Tidak ada riwayat pelaporan'); ?>
-        <?php //include 'components/tableRiwayatPelaporan.php'; 
+        <?php //EmptyState('EmptyStatePelaporan.png', 'Tidak ada riwayat pelaporan'); ?>
+        <?php include 'components/tableRiwayatPelaporan.php'; 
         ?>
       </div>
     </div>
