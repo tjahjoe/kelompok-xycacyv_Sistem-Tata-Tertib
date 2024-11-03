@@ -56,7 +56,29 @@ const eventNavbarScroll = () => {
   }
 }
 
+const switchTab = () => {
+  const tabLink = document.querySelectorAll('.tab-link');
+  const tabContent = document.querySelectorAll('.tab-content');
+
+  if (tabLink && tabContent) {
+    tabLink.forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        // delete semua class active pada class tab-link
+        tabLink.forEach(tab => tab.classList.remove('active'));
+        // delete semua class active pada class tab-content
+        tabContent.forEach(content => content.classList.remove('active'));
+        // menambahkan class active pada elemen yang di klik
+        this.classList.add('active');
+        // menemukan bagian konten tab yang sesuai dengan atribut href dari link yang diklik dan menambahkan kelas active
+        document.querySelector(this.getAttribute('href')).classList.add('active');
+      });
+    });
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   eventTogglePassword();
   eventNavbarScroll();
+  switchTab();
 });

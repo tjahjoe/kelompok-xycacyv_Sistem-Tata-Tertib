@@ -24,13 +24,13 @@
       <?php include 'components/sidebar.php'; ?>
 
       <!-- PROFILE USER -->
-      <!-- <div id="profile-user" class="tab-content">
+      <div id="profile-user" class="tab-content active">
         <div class="head-tab-content">
           <h2>Profil Saya</h2>
           <p>Anda tidak dapat mengubah informasi pribadi di sini. Untuk mengubah informasi, silakan hubungi admin.</p>
         </div>
-        <?php //include 'components/infoProfile.php'; ?>
-      </div> -->
+        <?php include 'components/infoProfile.php'; ?>
+      </div>
 
       <!-- RIWAYAT PELANGGARAN -->
       <div class="tab-content" id="histori-pelanggaran">

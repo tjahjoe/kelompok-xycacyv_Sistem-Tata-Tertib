@@ -542,7 +542,7 @@ section#footerLapor {
   font-weight: 600;
 }
 
-.tab-content {
+.tab-content.active{
   width: 100%;
   flex: 1;
   display: flex;
@@ -550,6 +550,10 @@ section#footerLapor {
   gap: 1.5em;
   padding: 25px;
   min-height: 100vh;
+}
+
+.tab-content{
+  display:none;
 }
 
 .profile-image {
@@ -584,7 +588,6 @@ section#footerLapor {
 
 .table-content {
   width: 100%;
-  min-width: 850px;
   border-collapse: collapse;
   text-align: left;
 }
@@ -709,6 +712,10 @@ section#footerLapor {
 
   .sidebar .tab-link{
     border: 1px solid #ddd;
+  }
+
+  .table-content{
+    min-width: 850px;
   }
 }
 
