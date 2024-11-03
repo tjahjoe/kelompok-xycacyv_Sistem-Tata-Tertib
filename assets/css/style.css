@@ -514,7 +514,7 @@ section#footerLapor {
   width: max-content;
 }
 
-.info-user span p, .head-profile p{
+.info-user span p, .head-tab-content p{
   color: var(--gray-color);
 }
 
@@ -543,11 +543,13 @@ section#footerLapor {
 }
 
 .tab-content {
+  width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 1.5em;
   padding: 25px;
+  min-height: 100vh;
 }
 
 .profile-image {
@@ -571,6 +573,56 @@ section#footerLapor {
 .info-grid span p:first-of-type{
   color: var(--gray-color);
 }
+
+/* HISTORY PELANGGARAN */
+.empty-state{
+  display: grid;
+  place-items: center;
+  width: 100%;
+  margin:auto;
+}
+
+.table-content {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table-content th, .table-content td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-content th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+  text-align: center;
+}
+
+.table-content tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+.badge.badge-green{
+  background-color: #e0f7fa;
+  color: var(--green-color);
+}
+
+.badge.badge-red {
+  background-color: #ffebee;
+  color: var(--red-color);
+}
+
+/* BADGES */
+
 
 /* Responsive styles */
 /* TABLET */
@@ -679,5 +731,6 @@ section#footerLapor {
     flex-direction: column;
     text-align: center;
     margin: auto;
+    width: 100%;
   }
 }
