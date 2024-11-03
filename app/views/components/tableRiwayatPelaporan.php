@@ -8,6 +8,7 @@
         <th>Catatan</th>
         <th>Tingkat</th>
         <th>Status</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
         <td>Lorem ipsum. Terdapat...</td>
         <td>I</td>
         <td><span class="badge badge-green">Completed</span></td>
+        <td><a href="detail-pelaporan.php" class="link-detail">Detail</a></td>
       </tr>
       <tr>
         <td>2</td>
@@ -26,6 +28,7 @@
         <td>-</td>
         <td>IV</td>
         <td><span class="badge badge-red">Waiting</span></td>
+        <td><a href="detail-pelaporan.php" class="link-detail">Detail</a></td>
       </tr>
       <tr>
         <td>2</td>
@@ -34,6 +37,7 @@
         <td>-</td>
         <td>IV</td>
         <td><span class="badge badge-red">Waiting</span></td>
+        <td><a href="detail-pelaporan.php" class="link-detail">Detail</a></td>
       </tr>
     </tbody>
   </table>

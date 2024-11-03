@@ -1,0 +1,1 @@
+<?php include '../app/views/detailPelanggaran.php';

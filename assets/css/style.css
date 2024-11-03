@@ -28,7 +28,7 @@ body {
 
 .container {
   min-height: 100vh;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 .pt-5 {
@@ -226,6 +226,10 @@ body {
   transition: all 0.5s ease-in-out;
 }
 
+.navbar.navbar-other .menu a{
+  color: var(--primary-color);
+}
+
 .navbar.navbar-other .logo {
   color: var(--primary-color);
 }
@@ -380,6 +384,7 @@ section#header {
 }
 
 .btn {
+  display: block;
   width: max-content;
   padding: 15px 25px;
   border-radius: 7px;
@@ -389,6 +394,7 @@ section#header {
   font-family: "Inter", sans-serif;
   cursor: pointer;
   font-size: 1em;
+  text-decoration: none;
 }
 
 .btn-tatib {
@@ -402,6 +408,11 @@ section#header {
 .btn-red {
   color: #fff;
   background-color: var(--red-color);
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: var(--primary-color);
 }
 
 /* SECTION TATATERTIB */
@@ -607,6 +618,11 @@ section#footerLapor {
   border-bottom: 1px solid #ddd;
 }
 
+a.link-detail{
+  color: var(--primary-color);
+}
+
+/* BADGES */
 .badge {
   display: inline-block;
   padding: 5px 10px;
@@ -624,8 +640,32 @@ section#footerLapor {
   color: var(--red-color);
 }
 
-/* BADGES */
+/* DETAIL SECTION */
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  margin:2rem 0;
+}
 
+.detail-item {
+  flex: 1; 
+  background-color: #fff;
+}
+
+.detail-item h4, .detail-item p{
+  padding: 13px;
+}
+
+.detail-item h4{
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+.detail-item span{
+  margin: 13px;
+}
 
 /* Responsive styles */
 /* TABLET */
