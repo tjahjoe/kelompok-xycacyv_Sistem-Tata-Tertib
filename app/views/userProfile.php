@@ -33,13 +33,24 @@
       </div>
 
       <!-- RIWAYAT PELANGGARAN -->
-      <div class="tab-content" id="histori-pelanggaran">
+      <div class="tab-content" id="riwayat-pelanggaran">
         <div class="head-tab-content">
           <h2>Riwayat Pelanggaran</h2>
         </div>
-        <?php //EmptyState('EmptyState.png', 'Tidak ada riwayat pelanggaran'); ?>
-        <?php include 'components/tableContent.php'; ?>
-    </div> 
+        <?php EmptyState('EmptyState.png', 'Tidak ada riwayat pelanggaran'); ?>
+        <?php //include 'components/tableRiwayatPelanggaran.php'; 
+        ?>
+      </div>
+
+      <!-- RIWAYAT PELAPORAN -->
+      <div class="tab-content" id="riwayat-pelaporan">
+        <div class="head-tab-content">
+          <h2>Riwayat Pelaporan</h2>
+        </div>
+        <?php EmptyState('EmptyStatePelaporan.png', 'Tidak ada riwayat pelaporan'); ?>
+        <?php //include 'components/tableRiwayatPelaporan.php'; 
+        ?>
+      </div>
     </div>
   </div>
   </div>
