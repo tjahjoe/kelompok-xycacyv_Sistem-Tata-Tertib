@@ -8,8 +8,7 @@ class PelanggaranMahasiswa{
         $this->conn = $database->getConneection();
     }
 
-    public function getPelanggaran($nim){
-        $query = "SELECT * FROM " . $this->table . " WHERE nim = ? ORDER BY status, tanggal_pelanggaran, tingkat_pelanggaran, nama_jenis_pelanggaran";
+    private function getPelanggaran($query, $nim){
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $nim);
         $stmt->execute();
@@ -19,6 +18,29 @@ class PelanggaranMahasiswa{
         } else {
             return false;
         }
+    }
+
+    // public function getPelanggaran($nim){
+    //     $query = "SELECT * FROM " . $this->table . " WHERE nim = ? ORDER BY status, tanggal_pelanggaran, tingkat_pelanggaran, nama_jenis_pelanggaran";
+    //     $stmt = $this->conn->prepare($query);
+    //     $stmt->bindParam(1, $nim);
+    //     $stmt->execute();
+    //     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     if ($results) {
+    //         return $results;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    public function pelapor($nim){
+        $query = "SELECT * FROM " . $this->table . " WHERE nim = ? ORDER BY status, tanggal_pelanggaran, tingkat_pelanggaran, nama_jenis_pelanggaran";
+        return $this->getPelanggaran($query, $nim);
+    } 
+
+    public function pelanggar($nim){
+        $query = "SELECT * FROM " . $this->table . " WHERE pelapor = ? ORDER BY status, tanggal_pelanggaran, tingkat_pelanggaran, nama_jenis_pelanggaran";
+        return $this->getPelanggaran($query, $nim);
     }
 }
 ?>

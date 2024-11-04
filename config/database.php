@@ -1,6 +1,6 @@
 <?php
 class Database{
-    private $dsn;
+    private $dsn = "sqlsrv:server=CHLZ\SQLEXPRESS;database=sitatib";
     public $conn;
 
     public function getConneection(){
