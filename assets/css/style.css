@@ -31,6 +31,10 @@ body {
   padding: 1.5rem;
 }
 
+a{
+  text-decoration: none;
+}
+
 .pt-5 {
   padding-top: 5rem;
 }
@@ -372,6 +376,8 @@ section#header {
 
 #header p {
   max-width: 600px;
+  font-size: 1rem;
+  font-weight: normal;
 }
 
 /* for all header */
@@ -393,8 +399,13 @@ section#header {
   font-weight: 600;
   font-family: "Inter", sans-serif;
   cursor: pointer;
-  font-size: 1em;
-  text-decoration: none;
+  font-size: 1rem;
+}
+
+.btn-full{
+  width: 100%;
+  max-width:500px;
+  border-radius:30px;
 }
 
 .btn-tatib {
@@ -667,6 +678,77 @@ a.link-detail{
   margin: 13px;
 }
 
+/* MODAL BOX */
+.modal-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 800px;
+  width: 90%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  margin: auto;
+  margin-top: -7rem;
+  margin-bottom: 3rem;
+}
+
+.modal-box h2{
+  margin-bottom: 10px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: var(--lightgray-color);
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+}
+
+.date-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.calendar-icon {
+  font-size: 20px;
+}
+
+.upload-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.footer-modal{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+
+/* LOGIN REQUIRED */
+.login-required{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center;
+  margin: auto;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
 /* Responsive styles */
 /* TABLET */
 @media (max-width: 768px) {
@@ -772,7 +854,6 @@ a.link-detail{
   }
   .btn {
     padding: 12px 22px;
-    font-size: 0.9em;
   }
   .info-user {
     flex-direction: column;

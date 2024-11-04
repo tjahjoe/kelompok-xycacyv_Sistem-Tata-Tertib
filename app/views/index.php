@@ -1,3 +1,6 @@
+<?php include 'components/navbar.php'; ?>
+<?php include 'components/headerSection.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,9 +16,9 @@
 </head>
 
 <body>
-  <?php include 'components/navbar.php'; ?>
   <?php Navbar(false); ?>
-  <?php include 'components/headerSection.php'; ?>
+  <?php HeaderSection("Bersama dan Bersatu Mewujudkan POLINEMA MAJU", "Lorem ipsum odor amet, consectetuer adipiscing elit. Habitasse mattis
+      scelerisque nunc fermentum ornare viverra cras.", true); ?>
   <div class="container">
     <?php include 'components/tataTertibSection.php'; ?>
     <?php include 'components/footerLaporSection.php'; ?>
