@@ -34,12 +34,40 @@ class PelanggaranMahasiswa{
     // }
 
     public function pelapor($nim){
-        $query = "SELECT * FROM " . $this->table . " WHERE nim = ? ORDER BY status, tanggal_pelanggaran, tingkat_pelanggaran, nama_jenis_pelanggaran";
+        $query = "SELECT 
+        tingkat_pelanggaran, 
+        tanggal_pelanggaran, 
+        nim, 
+        akumulasi_pelanggaran, 
+        nama_jenis_pelanggaran, 
+        catatan, 
+        sanksi, 
+        status
+        FROM " . $this->table . 
+        " WHERE nim = ? 
+        ORDER BY status, 
+        tanggal_pelanggaran, 
+        tingkat_pelanggaran, 
+        nama_jenis_pelanggaran";
         return $this->getPelanggaran($query, $nim);
     } 
 
     public function pelanggar($nim){
-        $query = "SELECT * FROM " . $this->table . " WHERE pelapor = ? ORDER BY status, tanggal_pelanggaran, tingkat_pelanggaran, nama_jenis_pelanggaran";
+        $query = "SELECT 
+        tingkat_pelanggaran, 
+        tanggal_pelanggaran, 
+        nim, 
+        akumulasi_pelanggaran, 
+        nama_jenis_pelanggaran, 
+        catatan, 
+        sanksi, 
+        status
+        FROM " . $this->table . 
+        " WHERE pelapor = ? 
+        ORDER BY status, 
+        tanggal_pelanggaran, 
+        tingkat_pelanggaran, 
+        nama_jenis_pelanggaran";
         return $this->getPelanggaran($query, $nim);
     }
 }

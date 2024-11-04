@@ -21,5 +21,18 @@ class ListPelanggaran{
         }
 
     }
+
+    public function getListPelanggaranByTingkat($tingkat){
+        $query = "SELECT * FROM " . $this->table . " WHERE tingkat_pelanggaran = ? ORDER BY tingkat_pelanggaran, nama_jenis_pelanggaran";
+        $stmt = $this->conn->query($query);
+        $stmt->bindParam(1, $tingkat);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($results) {
+            return $results;
+        } else {
+            return false;
+        }
+    }
 }
 ?>
