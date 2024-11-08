@@ -18,31 +18,80 @@
   <?php include 'components/navbar.php'; ?>
   <?php Navbar(true); ?>
   <div class="container bg-gray pt-5">
-    <h1 class="title">Pengaturan Akun</h1>
-    <div class="box-content">
-      <!-- RIWAYAT PELANGGARAN -->
-      <div class="tab-content active" id="riwayat-pelanggaran">
-        <div class="head-tab-content">
-          <h2>Daftar Pelaporan</h2>
+    <h1 class="title">Daftar Pelaporan</h1>
+    <!-- FILTER TAB -->
+    <div class="filter-tab">
+      <div class="filter-container">
+        <div class="filter-item">
+          <img src="../assets/images/filter.svg" alt="Filter Icon">
         </div>
-        <?php //EmptyState('EmptyState.png', 'Tidak ada riwayat pelanggaran'); ?>
-        <?php include 'components/tableRiwayatPelanggaran.php'; 
+        <div class="filter-item search">
+          <span>Search</span>
+        </div>
+        <div class="filter-item filter-checkbox">
+          <input type="checkbox" id="showAll" />
+          <label for="showAll">Perlihatkan Semua</label>
+        </div>
+        <div class="filter-item filter-select">
+          <div class="dropdown">
+            <select id="tanggal">
+              <option>Tanggal</option>
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+        </div>
+        <div class="filter-item filter-select">
+          <div class="dropdown">
+            <select id="tingkat">
+              <option>Tingkat</option>
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+        </div>
+        <div class="filter-item filter-select">
+          <div class="dropdown">
+            <select id="status">
+              <option>Status</option>
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
+          </div>
+        </div>
+        <div class="filter-item reset-button" onclick="resetFilters()">
+          Reset Filter
+        </div>
+      </div>
+    </div>
+    <div class="search-input-container">
+      <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari...">
+    </div>
+    <div class="box-content">
+      <!-- RIWAYAT PELAPORAN -->
+      <div class="tab-content active" id="riwayat-pelaporan">
+        <?php include 'components/tableRiwayatPelaporan.php';
         ?>
       </div>
-
-      <!-- RIWAYAT PELAPORAN -->
-      <div class="tab-content" id="riwayat-pelaporan">
-        <div class="head-tab-content">
-          <h2>Riwayat Pelaporan</h2>
-        </div>
-        <?php //EmptyState('EmptyStatePelaporan.png', 'Tidak ada riwayat pelaporan'); ?>
-        <?php include 'components/tableRiwayatPelaporan.php'; 
-        ?>
+    </div>
+    <div class="flex-between">
+      <p>Showing 1-09 of 78</p>
+      <div class="arrow-container">
+        <button class="arrow left-arrow" disabled>&lt;</button>
+        <button class="arrow right-arrow">&gt;</button>
       </div>
     </div>
   </div>
   </div>
   <script src="../assets/js/script.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".search-input-container").hide();
+      $(".filter-item.search").click(function() {
+        $(".search-input-container").slideToggle("500");
+      })
+    })
+  </script>
 </body>
 
 </html>
