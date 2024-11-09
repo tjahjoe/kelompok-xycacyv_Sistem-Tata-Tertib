@@ -4,7 +4,7 @@
     <p>
       Data kalian aman dan pelanggar akan ditindak lanjuti dengan cepat
     </p>
-    <a href="#pelaporan">
+    <a href="./pelaporan.php">
       <button class="btn btn-red btn-tatib">Laporkan!</button>
     </a>
   </div>

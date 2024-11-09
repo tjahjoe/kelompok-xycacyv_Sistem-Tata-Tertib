@@ -20,13 +20,13 @@
         <div class="form-contain">
           <div class="logo">
             <img
-              src="https://static.wikia.nocookie.net/logopedia/images/8/8a/Politeknik_Negeri_Malang.png"
+              src="../assets/images/Logo_Politeknik_Negeri_Malang.png"
               width="50px"
-              alt="" />
+              alt="logo polinema" />
             <p>SiTatib</p>
           </div>
           <h2>Login Anggota</h2>
-          <div id="hasil" style="color: red;"></div>
+          <div id="hasil" style="color: red; display:none"></div>
           <div class="info-box">
             <h4>Informasi</h3>
             <ul>
