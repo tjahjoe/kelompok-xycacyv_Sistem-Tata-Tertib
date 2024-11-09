@@ -28,7 +28,7 @@
           <h2>Login Anggota</h2>
           <div id="hasil" style="color: red;"></div>
           <div class="info-box">
-            <p>Informasi</p>
+            <h4>Informasi</h3>
             <ul>
               <li>Bagi Mahasiswa: Gunakan akun siakad</li>
               <li>Bagi DPA/Admin: Gunakan akun portal polinema</li>

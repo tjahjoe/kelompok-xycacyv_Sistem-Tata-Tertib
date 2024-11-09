@@ -24,7 +24,7 @@
 Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Teknik Informatika dengan cepat dan aman", false); ?>
 
   <!-- FORM -->
-  <!-- <div class="modal-box">
+  <div class="modal-box">
     <h2>Laporan anda:</h2>
     <form class="form-container">
       <input type="text" placeholder="Ketik Judul Laporan *" class="input-field">
@@ -40,10 +40,10 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
       <button type="submit" class="btn btn-red">Laporkan!</button>
       </div>
     </form>
-  </div> -->
+  </div>
 
   <!-- Login Modal -->
-  <div class="modal-box">
+  <!-- <div class="modal-box">
     <div class="login-required">
       <img src="../assets/images/Lock.png" alt="">
       <span>
@@ -54,7 +54,7 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
         Login
       </a>
     </div>
-  </div>
+  </div> -->
 
   <script src="../assets/js/script.js"></script>
 </body>
