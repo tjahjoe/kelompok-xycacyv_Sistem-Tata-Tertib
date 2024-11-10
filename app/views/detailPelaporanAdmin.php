@@ -24,55 +24,57 @@
       <p><strong>Nama Pelapor:</strong> Sopo ae ws</p>
       <p><strong>ID pelapor:</strong> 23199122332</p>
     </div>
-    <div class="flex-between">
-      <div class="info-box">
-        <h4>Informasi</h4>
-        <p>Untuk menebus sanksi atas pelanggaran, silakan hubungi admin untuk informasi lebih lanjut.</p>
+    <form id="updatePelaporan" method="post">
+      <div class="flex-between">
+        <div class="info-box">
+          <label for="">Informasi</label>
+          <p>Untuk menebus sanksi atas pelanggaran, silakan hubungi admin untuk informasi lebih lanjut.</p>
+        </div>
+        <button class="btn btn-primary" type="submit">Simpan</button>
       </div>
-      <button class="btn btn-primary" type="submit">Simpan</button>
-    </div>
-    <div class="detail-container">
-      <div class="detail-item">
-        <h4>Tingkat Pelanggaran</h4>
-        <p>I</p>
-      </div>
-      <div class="detail-item">
-        <h4>Tanggal Pelanggaran</h4>
-        <p>21/05/2024</p>
-      </div>
-      <div class="detail-item">
-        <h4>NIM Pelanggar</h4>
-        <p>2341598644789</p>
-      </div>
-      <div class="detail-item">
-        <h4>Akumulasi Pelanggaran</h4>
-        <p>5</p>
-      </div>
-      <div class="detail-item">
-        <h4>Nama Pelanggaran</h4>
-        <p>Lorem ipsum Judul Masalah berada disini. Lorem ipsum lorem ipsum</p>
-      </div>
-      <div class="detail-item">
-        <h4>Catatan</h4>
-        <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit curae penatibus taciti efficitur consectetur pulvinar, diam purus. Consequat nascetur maximus augue odio lobortis tristique nam. Eget ultricies lacinia nunc scelerisque venenatis. Facilisi ad diam lobortis iaculis convallis phasellus; faucibus sem. </p>
-      </div>
-      <div class="detail-item">
-        <h4>Sanksi</h4>
-        <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit.</p>
-      </div>
-      <div class="detail-item">
-        <h4>Status</h4>
-        <div class="badge-contain">
-          <span class="badge badge-green">Completed</span>
-          <span class="badge badge-gray">Pending</span>
-          <span class="badge badge-gray">Rejected</span>
+      <div class="detail-container">
+        <div class="detail-item">
+          <label for="">Tingkat Pelanggaran</label>
+          <p>I</p>
+        </div>
+        <div class="detail-item">
+          <label for="">Tanggal Pelanggaran</label>
+          <p>21/05/2024</p>
+        </div>
+        <div class="detail-item">
+          <label for="">NIM Pelanggar</label>
+          <p>2341598644789</p>
+        </div>
+        <div class="detail-item">
+          <label for="">Akumulasi Pelanggaran</label>
+          <p>5</p>
+        </div>
+        <div class="detail-item">
+          <label for="">Nama Pelanggaran</label>
+          <p>Lorem ipsum Judul Masalah berada disini. Lorem ipsum lorem ipsum</p>
+        </div>
+        <div class="detail-item">
+          <label for="">Catatan</label>
+          <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit curae penatibus taciti efficitur consectetur pulvinar, diam purus. Consequat nascetur maximus augue odio lobortis tristique nam. Eget ultricies lacinia nunc scelerisque venenatis. Facilisi ad diam lobortis iaculis convallis phasellus; faucibus sem. </p>
+        </div>
+        <div class="detail-item">
+          <label for="">Sanksi</label>
+          <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit.</p>
+        </div>
+        <div class="detail-item">
+          <label for="">Status</label>
+          <div class="badge-contain">
+            <span class="badge badge-green">Completed</span>
+            <span class="badge badge-gray">Pending</span>
+            <span class="badge badge-gray">Rejected</span>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
     <div class="danger-box">
-        <h4>Lampiran</h4>
-        <p>Untuk pelanggaran tingkat III hingga V, Anda dapat mengunduh <a href="#" style="text-decoration: underline; color:var(--red-color);">file template di sini.</a></p>
-      </div>
+      <label for="">Lampiran</label>
+      <p>Untuk pelanggaran tingkat III hingga V, Anda dapat mengunduh <a href="#" style="text-decoration: underline; color:var(--red-color);">file template di sini.</a></p>
+    </div>
   </div>
   <script src="../assets/js/script.js"></script>
 </body>

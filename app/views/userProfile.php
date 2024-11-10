@@ -1,4 +1,5 @@
 <?php include 'components/emptyState.php'; ?>
+<?php include 'components/navbar.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,6 @@
 </head>
 
 <body>
-  <?php include 'components/navbar.php'; ?>
   <?php Navbar(true); ?>
   <div class="container bg-gray pt-5">
     <h1 class="title">Pengaturan Akun</h1>

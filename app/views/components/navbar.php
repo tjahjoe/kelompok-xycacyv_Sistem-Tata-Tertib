@@ -11,7 +11,7 @@ function Navbar($isOtherPage) {
             </div>
             <div class="logo">
                 <img
-                    src="https://static.wikia.nocookie.net/logopedia/images/8/8a/Politeknik_Negeri_Malang.png"
+                    src="../assets/images/Logo_Politeknik_Negeri_Malang.png"
                     width="50px"
                     alt=""
                 />
@@ -29,7 +29,7 @@ function Navbar($isOtherPage) {
                     alt=""
                     width="50px"
                 />
-                <span href="#profile" class="profile-text">
+                <span class="profile-text">
                     <p class="profile-username">Ndak tau sopo</p>
                     <p class="role-user">Mahasiswa</p>
                 </span>

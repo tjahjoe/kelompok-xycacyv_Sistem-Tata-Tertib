@@ -18,6 +18,7 @@ html {
   --green-color: #00b69b;
   --gray-color: #979797;
   --lightgray-color: #f2f2f2;
+  --purple-color: #6226EF;
 }
 
 body {
@@ -66,9 +67,9 @@ a{
   /* background-color: #fff; */
   /* max-width:50%; */
   background: linear-gradient(rgba(0, 28, 147, 0.7), rgba(0, 28, 147, 0.1)),
-    url("https://ppid.polinema.ac.id/wp-content/uploads/2024/02/GRAHA-POLINEMA1-slider-01.webp");
+    url("../images/bg-grapol.webp");
   width: 100%;
-  height: 100%;
+  height: 600px;
   flex: 1;
   background-size: cover;
   background-position: center;
@@ -313,6 +314,7 @@ a{
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  object-fit: cover;
 }
 
 .navbar .menu {
@@ -367,7 +369,7 @@ section#header {
   padding-top: 80px;
   min-height: 500px;
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
-    url("https://seru.co.id/wp-content/uploads/2021/02/Teknik-Polinema.jpg");
+    url("../images/Gedung-TI.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -534,7 +536,6 @@ section#footerLapor {
   display: flex;
   align-items: center;
   width: 100%;
-  margin: auto;
   border-radius: 10px;
   padding: 20px;
   overflow: hidden;
@@ -670,6 +671,15 @@ a.link-detail{
   color: var(--red-color);
 }
 
+.badge.badge-purple {
+  background-color: #E0D4FC;
+  color: var(--purple-color);
+}
+.badge.badge-orange {
+  background-color: #fee9d8;
+  color: var(--orange-color);
+}
+
 .badge.badge-gray {
   background-color: var(--lightgray-color);
   color: var(--gray-color);
@@ -790,7 +800,7 @@ a.link-detail{
 /* filter tab */
 .filter-tab{
   overflow: auto;
-  max-width:1198px;
+  max-width:1085px;
   border: 1px solid #ddd;
   border-radius: 8px 8px 0 0;
 }
@@ -862,7 +872,7 @@ a.link-detail{
 
 /* Container to center the input */
 .search-input-container {
-  max-width: 1198px;
+    max-width:1085px;
 }
 
 .arrow-container {
@@ -933,6 +943,11 @@ a.link-detail{
 
 .dropdown select:focus {
   outline: none;
+}
+
+/* STYLE TEXT CAPITAL */
+.capitalize-text {
+  text-transform: capitalize;
 }
 
 /* Responsive styles */
