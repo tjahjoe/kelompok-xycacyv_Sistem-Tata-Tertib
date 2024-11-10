@@ -34,41 +34,56 @@
       </div>
       <div class="detail-container">
         <div class="detail-item">
-          <label for="">Tingkat Pelanggaran</label>
-          <p>I</p>
+          <label for="tingkatPelanggaran">Tingkat Pelanggaran</label>
+          <select id="tingkatPelanggaran" name="tingkatPelanggaran">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
         </div>
         <div class="detail-item">
-          <label for="">Tanggal Pelanggaran</label>
-          <p>21/05/2024</p>
+          <label for="tanggalPelanggaran">Tanggal Pelanggaran</label>
+          <input type="date" value="" id="tanggalPelanggaran"></input>
         </div>
         <div class="detail-item">
-          <label for="">NIM Pelanggar</label>
-          <p>2341598644789</p>
+          <label for="nimPelanggaran">NIM Pelanggar</label>
+          <input type="text" value="2341598644789" id="nimPelanggaran" disabled></input>
+        </div>
+        <!-- <div class="detail-item">
+          <label for="akumulasiPelanggaran">Akumulasi Pelanggaran</label>
+          <input type="text" value="5" id="akumulasiPelanggaran"></input>
+        </div> -->
+        <div class="detail-item">
+          <label for="namaPelanggaran">Nama Pelanggaran</label>
+          <input type="text" value="Lorem ipsum Judul Masalah berada disini. Lorem ipsum lorem ipsum" id="namaPelanggaran"></input>
         </div>
         <div class="detail-item">
-          <label for="">Akumulasi Pelanggaran</label>
-          <p>5</p>
+          <label for="catatan">Catatan</label>
+          <textarea rows="10" id="catatan">Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit curae penatibus taciti efficitur consectetur pulvinar, diam purus. Consequat nascetur maximus augue odio lobortis tristique nam. Eget ultricies lacinia nunc scelerisque venenatis. Facilisi ad diam lobortis iaculis convallis phasellus; faucibus sem. </textarea>
         </div>
         <div class="detail-item">
-          <label for="">Nama Pelanggaran</label>
-          <p>Lorem ipsum Judul Masalah berada disini. Lorem ipsum lorem ipsum</p>
-        </div>
-        <div class="detail-item">
-          <label for="">Catatan</label>
-          <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit curae penatibus taciti efficitur consectetur pulvinar, diam purus. Consequat nascetur maximus augue odio lobortis tristique nam. Eget ultricies lacinia nunc scelerisque venenatis. Facilisi ad diam lobortis iaculis convallis phasellus; faucibus sem. </p>
-        </div>
-        <div class="detail-item">
-          <label for="">Sanksi</label>
-          <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit.</p>
+          <label for="sanksi">Sanksi</label>
+          <input type="text" value="Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit." id="sanksi"></input>
         </div>
         <div class="detail-item">
           <label for="">Status</label>
           <div class="badge-contain">
-            <span class="badge badge-green">Completed</span>
-            <span class="badge badge-gray">Pending</span>
-            <span class="badge badge-gray">Rejected</span>
+            <input type="radio" name="status" id="status-pending" value="baru">
+            <label class="badge badge-gray" for="status-pending">Pending</label>
+
+            <input type="radio" name="status" id="status-completed" value="nonaktif" checked>
+            <label class="badge badge-green" for="status-completed">Completed</label>
+
+            <input type="radio" name="status" id="status-processing" value="aktif">
+            <label class="badge badge-gray" for="status-processing">Processing</label>
+
+            <input type="radio" name="status" id="status-rejected" value="reject">
+            <label class="badge badge-gray" for="status-rejected">Rejected</label>
           </div>
         </div>
+
       </div>
     </form>
     <div class="danger-box">

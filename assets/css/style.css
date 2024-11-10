@@ -696,21 +696,34 @@ a.link-detail{
 .detail-item {
   flex: 1; 
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
 .detail-item .badge-contain{
   display: flex;
   align-items: center;
+  gap: 10px;
+  padding: 1rem;
 }
 
-.detail-item h4, .detail-item p{
+.badge-contain input[type="radio"] {
+  display: none;
+}
+
+.detail-item h4, .detail-item p, .detail-item label:not([class]), .detail-item input, .detail-item select, .detail-item textarea{
+  font-family: "Inter", sans-serif;
   padding: 13px;
 }
 
-.detail-item h4{
+.detail-item h4, .detail-item label:not([class]){
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   background-color: #f9f9f9;
+}
+
+.detail-item input, .detail-item select{
+  border: 1px solid transparent;
 }
 
 .detail-item span{

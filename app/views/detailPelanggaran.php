@@ -33,10 +33,10 @@
         <h4>NIM Pelanggar</h4>
         <p>2341598644789</p>
       </div>
-      <div class="detail-item">
+      <!-- <div class="detail-item">
         <h4>Akumulasi Pelanggaran</h4>
         <p>5</p>
-      </div>
+      </div> -->
       <div class="detail-item">
         <h4>Nama Pelanggaran</h4>
         <p>Lorem ipsum Judul Masalah berada disini. Lorem ipsum lorem ipsum</p>
