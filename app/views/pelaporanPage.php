@@ -1,5 +1,6 @@
 <?php include 'components/navbar.php'; ?>
 <?php include 'components/headerSection.php'; ?>
+<?php include 'components/alert.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,21 +27,29 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
   <!-- FORM -->
   <div class="modal-box">
     <h2>Laporan anda:</h2>
-    <form class="form-container">
+    <form class="form-container" id="form-pelaporan">
       <input type="text" placeholder="Ketik Judul Laporan *" class="input-field">
       <input type="text" placeholder="Ketik Tingkat Pelanggaran *" class="input-field">
       <textarea placeholder="Ketik Laporan Anda *" class="input-field" rows="10"></textarea>
       <input type="date" class="input-field" placeholder="Pilih Tanggal Kejadian *" class="input-field">
       <div class="footer-modal">
-      <label class="upload-section" for="lampiran">
-        <span class="upload-icon"><img src="../assets/images/upload-image-icon.svg" width="30px" alt=""></span>
-        <p>Upload Lampiran</p>
-      </label>
-      <input type="file" name="lampiran" id="lampiran" hidden>
-      <button type="submit" class="btn btn-red">Laporkan!</button>
+        <label class="upload-section" for="lampiran">
+          <span class="upload-icon"><img src="../assets/images/upload-image-icon.svg" width="30px" alt=""></span>
+          <p>Upload Lampiran</p>
+        </label>
+        <input type="file" name="lampiran" id="lampiran" hidden multiple>
+        <button type="submit" class="btn btn-red">Laporkan!</button>
+      </div>
+      <div class="list-file-uploaded">
+        <h4 id="file-count">0 file uploaded</h4>
+        <ul id="file-list">
+        </ul>
       </div>
     </form>
   </div>
+
+  <!-- ALERT -->
+  <?php Alert(); ?>
 
   <!-- Login Modal -->
   <!-- <div class="modal-box">

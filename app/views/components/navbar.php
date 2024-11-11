@@ -20,7 +20,7 @@ function Navbar($isOtherPage) {
             <div class="menu" id="menu">
                 <a href="./">Beranda</a>
                 <a href="./pelaporan.php">Pelaporan</a>
-                <a href="#riwayat">Riwayat</a>
+                <a href="./daftar-pelaporan.php">Daftar Pelaporan</a>
             </div>
             <a href="profile-user.php" class="profile" id="profile">
                 <img
