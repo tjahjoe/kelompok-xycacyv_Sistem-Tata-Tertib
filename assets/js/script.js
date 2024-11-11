@@ -96,9 +96,52 @@ const updateBadge = () => {
   });
 }
 
+const showAlert = () => {
+  const alertOverlay = document.querySelector('.overlay');
+
+  alertOverlay.classList.add('alert-active');
+}
+
+const closeAlert = () => {
+  const alertOverlay = document.querySelector('.overlay');
+
+  alertOverlay.classList.remove('alert-active');
+}
+
+document.getElementById('form-pelaporan').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  showAlert();
+});
+
+document.querySelector('.overlay').addEventListener('click', closeAlert);
+document.querySelector('.alert-close-button').addEventListener('click', closeAlert);
+
+const uploadFile = () => {
+  const fileInput = document.getElementById('lampiran');
+  const fileCountDisplay = document.getElementById('file-count');
+  const fileListDisplay = document.getElementById('file-list');
+
+  fileInput.addEventListener('change', () => {
+    const files = fileInput.files;
+    fileCountDisplay.textContent = `${files.length} file(s) uploaded`;
+
+    // Clear the existing list
+    fileListDisplay.innerHTML = '';
+
+    // Loop through each file and add it to the list
+    for (let i = 0; i < files.length; i++) {
+      const listItem = document.createElement('li');
+      listItem.textContent = files[i].name;
+      fileListDisplay.appendChild(listItem);
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   eventTogglePassword();
   eventNavbarScroll();
   switchTab();
   updateBadge();
+  uploadFile()
 });

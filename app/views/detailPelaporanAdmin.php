@@ -26,10 +26,12 @@
     </div>
     <form id="updatePelaporan" method="post">
       <div class="flex-between">
+      <?php if(!empty($data['tingkat_pelanggaran'])){ ?>
         <div class="info-box">
           <label for="">Informasi</label>
           <p>Untuk menebus sanksi atas pelanggaran, silakan hubungi admin untuk informasi lebih lanjut.</p>
         </div>
+        <?php }?>
         <button class="btn btn-primary" type="submit">Simpan</button>
       </div>
       <div class="detail-container">
@@ -86,10 +88,12 @@
 
       </div>
     </form>
+    <?php if(!empty($data['tingkat_pelanggaran']) && $data['tingkat_pelanggaran'] >= 3){ ?>
     <div class="danger-box">
       <label for="">Lampiran</label>
       <p>Untuk pelanggaran tingkat III hingga V, Anda dapat mengunduh <a href="#" style="text-decoration: underline; color:var(--red-color);">file template di sini.</a></p>
     </div>
+    <?php }?>
   </div>
   <script src="../assets/js/script.js"></script>
 </body>
