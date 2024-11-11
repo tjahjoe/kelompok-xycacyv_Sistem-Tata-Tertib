@@ -1,3 +1,4 @@
+// filter list pelanggaran(daftar tatib) by tingkat
 $(document).ready(function() {
   $("#tingkatPelanggaran").on('change', function() {
       var tingkatPelanggaran = $(this).val();

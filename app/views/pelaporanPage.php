@@ -28,10 +28,27 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
   <div class="modal-box">
     <h2>Laporan anda:</h2>
     <form class="form-container" id="form-pelaporan">
-      <input type="text" placeholder="Ketik Judul Laporan *" class="input-field">
-      <input type="text" placeholder="Ketik Tingkat Pelanggaran *" class="input-field">
+      <!-- <input type="text" placeholder="Ketik Judul Laporan *" class="input-field"> -->
+      <!-- <input type="text" placeholder="PIlih Tingkat Pelanggaran *" class="input-field"> -->
+      <select id="tingkatPelanggaran" class="tingkatPelanggaran input-field" name="tingkatPelanggaran">
+        <option disabled selected hidden>PIlih Tingkat Pelanggaran *</option>
+        <option value="">All</option>
+        <option value="I">I</option>
+        <option value="I/II">I/II</option>
+        <option value="II">II</option>
+        <option value="III">III</option>
+        <option value="IV">IV</option>
+        <option value="V">V</option>
+      </select>
+      <select id="jenisPelanggaran" class="jenisPelanggaran input-field" name="jenisPelanggaran">
+        <option disabled selected hidden>PIlih Jenis Pelanggaran *</option>
+        <option value="">Blablabla</option>
+        <option value="">jjjjjjjj</option>
+        <option value="">blbablabla</option>
+        <option value="">gggggggg</option>
+      </select>
       <textarea placeholder="Ketik Laporan Anda *" class="input-field" rows="10"></textarea>
-      <input type="date" class="input-field" placeholder="Pilih Tanggal Kejadian *" class="input-field">
+      <input type="date" class="input-field" placeholder="Pilih Tanggal Kejadian *" class="input-field custom-date">
       <div class="footer-modal">
         <label class="upload-section" for="lampiran">
           <span class="upload-icon"><img src="../assets/images/upload-image-icon.svg" width="30px" alt=""></span>

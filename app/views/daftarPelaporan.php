@@ -33,39 +33,45 @@
           <label for="showAll">Perlihatkan Semua</label>
         </div>
         <div class="filter-item filter-select">
+          <input type="date" name="tanggalPelaporan" id="tanggalPelaporan" class="custom-date">
+        </div>
+        <div class="filter-item filter-select">
           <div class="dropdown">
-            <select id="tanggal">
-              <option>Tanggal</option>
-              <option>Option 1</option>
-              <option>Option 2</option>
+            <select id="tingkatPelaporan" class="tingkatPelaporan" name="tingkatPelaporan">
+              <option disabled selected hidden>Tingkat</option>
+              <option value="">All</option>
+              <option value="I">I</option>
+              <option value="I/II">I/II</option>
+              <option value="II">II</option>
+              <option value="III">III</option>
+              <option value="IV">IV</option>
+              <option value="V">V</option>
             </select>
           </div>
         </div>
         <div class="filter-item filter-select">
           <div class="dropdown">
-            <select id="tingkat">
-              <option>Tingkat</option>
-              <option>Option 1</option>
-              <option>Option 2</option>
+            <select id="statusPelaporan" class="statusPelaporan" name="statusPelaporan">
+              <option disabled selected hidden>Status</option>
+              <option value="">All</option>
+              <option value="baru">Pending</option>
+              <option value="aktif">Processing</option>
+              <option value="nonaktif">Completed</option>
+              <option value="reject">Rejected</option>
             </select>
           </div>
         </div>
-        <div class="filter-item filter-select">
-          <div class="dropdown">
-            <select id="status">
-              <option>Status</option>
-              <option>Option 1</option>
-              <option>Option 2</option>
-            </select>
-          </div>
-        </div>
-        <div class="filter-item reset-button" onclick="resetFilters()">
+        <div class="filter-item reset-button flex-row" onclick="resetFilters()">
+          <img src="../assets/images/reset.svg" width="20px" alt="">
           Reset Filter
         </div>
       </div>
     </div>
     <div class="search-input-container">
-      <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari...">
+      <form id="searchByNIM" action="" method="post">
+        <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari...">
+        <button class="btn btn-gray" type="submit">Cari</button>
+      </form>
     </div>
     <div class="box-content">
       <!-- RIWAYAT PELAPORAN -->
