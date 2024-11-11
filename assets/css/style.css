@@ -655,6 +655,8 @@ a.link-detail{
 
 /* BADGES */
 .badge {
+  width:100%;
+  text-align: center;
   display: inline-block;
   padding: 5px 10px;
   border-radius: 5px;
@@ -728,6 +730,7 @@ a.link-detail{
 
 .detail-item span{
   margin: 13px;
+  width:max-content;
 }
 
 /* MODAL BOX */
@@ -1015,6 +1018,18 @@ a.link-detail{
   background-color: #143075;
 }
 
+/* filter input */
+.tingkatPelanggaran{
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.filter-tingkat-pelanggaran{
+  display: flex;
+  align-items:center;
+  gap: 10px
+}
+
 /* Responsive styles */
 /* TABLET */
 @media (max-width: 768px) {
@@ -1040,6 +1055,7 @@ a.link-detail{
     top: 100%;
     left: 0;
     width: 100%;
+    color: #fff;
     background-color: #333;
     padding: 1rem;
     transition: all 0.2s;
@@ -1054,6 +1070,10 @@ a.link-detail{
     display: flex;
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .navbar .menu.active a{
+    color: #fff;
   }
 
   .profile .dropdown-active.arrow {
