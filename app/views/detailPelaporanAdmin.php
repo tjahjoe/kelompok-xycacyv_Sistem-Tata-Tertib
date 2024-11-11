@@ -47,7 +47,7 @@
         </div>
         <div class="detail-item">
           <label for="tanggalPelanggaran">Tanggal Pelanggaran</label>
-          <input type="date" value="" id="tanggalPelanggaran"></input>
+          <input type="date" value="" id="tanggalPelanggaran" class="custom-date"></input>
         </div>
         <div class="detail-item">
           <label for="nimPelanggaran">NIM Pelanggar</label>

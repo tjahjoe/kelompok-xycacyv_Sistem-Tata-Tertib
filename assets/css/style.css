@@ -439,6 +439,12 @@ section#header {
   background-color: var(--primary-color);
 }
 
+.btn-gray{
+  background-color: var(--lightgray-color);
+  border-radius: 0;
+  border: 1px solid #ddd;
+}
+
 /* SECTION TATATERTIB */
 section#tataTertib {
   padding: 1.5em;
@@ -767,6 +773,17 @@ a.link-detail{
   font-size: 1em;
 }
 
+select.input-field::after{
+  content: "▼"; /* You can replace this with any arrow symbol or icon */
+  font-size: 16px;
+  color: #333;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Ensures the arrow is not clickable */
+}
+
 .date-container {
   display: flex;
   align-items: center;
@@ -785,6 +802,24 @@ a.link-detail{
   font-size: 14px;
   cursor: pointer;
 }
+
+.list-file-uploaded ul{
+  padding: 10px;
+}
+.list-file-uploaded ul li{
+  margin-left: 10px;
+}
+
+form#searchByNIM{
+  overflow:hidden;
+  display:flex;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid #ddd;
+}
+
+/* select.input-field{
+  color: #777
+} */
 
 .footer-modal{
   display: flex;
@@ -813,10 +848,23 @@ a.link-detail{
   margin-top: 1rem;
 }
 
+.flex-col{
+  display:flex;
+  gap:10px;
+  /* align-items:center; */
+  flex-direction: column;
+}
+
+.flex-row{
+  display: flex;
+  gap:10px;
+  align-items:center;
+}
+
 /* filter tab */
 .filter-tab{
   overflow: auto;
-  max-width:1085px;
+  max-width:1178px;
   border: 1px solid #ddd;
   border-radius: 8px 8px 0 0;
 }
@@ -843,7 +891,6 @@ a.link-detail{
 .filter-item.filter-checkbox input{
   width: 20px;
   height: 20px;
-  border-radius: 5px;
   border: 1px solid #ddd;
   background-color: var(--lightgray-color);
 }
@@ -856,6 +903,11 @@ a.link-detail{
   width: 24px;
   height: 24px;
 }
+
+.filter-item.reset-button{
+  
+}
+
 .filter-search input {
   border: none;
   outline: none;
@@ -875,7 +927,6 @@ a.link-detail{
   border: 1px solid #ddd;
   border-left: none;
   border-right: none;
-  border-radius: 0 0 8px 8px;
   font-size: 16px;
   color: #666;
   outline: none;
@@ -888,7 +939,7 @@ a.link-detail{
 
 /* Container to center the input */
 .search-input-container {
-    max-width:1085px;
+    max-width:1178px;
 }
 
 .arrow-container {
@@ -947,14 +998,17 @@ a.link-detail{
 
 /* Custom arrow */
 .dropdown::after {
-  content: '▼';
+  content: "";
   position: absolute;
   right: 10px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-35%) translateX(20px);
   pointer-events: none;
-  color: #333;
-  font-size: 12px;
+  width: 15px; 
+  height: 15px; 
+  background-image: url('../images/arrow.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .dropdown select:focus {
@@ -1028,6 +1082,38 @@ a.link-detail{
   display: flex;
   align-items:center;
   gap: 10px
+}
+
+/* custom input date */
+/* Base styling for date input */
+.custom-date {
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  color: #333;
+  padding: 8px 12px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.custom-date:hover {
+  border-color: #888;
+}
+
+/* Focus effect */
+.custom-date:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+}
+
+/* Placeholder styling for browsers that support it */
+.custom-date::-webkit-datetime-edit-text,
+.custom-date::-webkit-datetime-edit-month-field,
+.custom-date::-webkit-datetime-edit-day-field,
+.custom-date::-webkit-datetime-edit-year-field {
+  color: #555;
 }
 
 /* Responsive styles */
