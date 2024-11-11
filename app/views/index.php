@@ -1,5 +1,6 @@
 <?php include 'components/navbar.php'; ?>
 <?php include 'components/headerSection.php'; ?>
+<?php include 'components/tataTertibSection.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +21,57 @@
   <?php HeaderSection("Bersama dan Bersatu Mewujudkan POLINEMA MAJU", "Lorem ipsum odor amet, consectetuer adipiscing elit. Habitasse mattis
       scelerisque nunc fermentum ornare viverra cras.", true); ?>
   <div class="container">
-    <?php include 'components/tataTertibSection.php'; ?>
+    <?php 
+      $data = [
+        [
+            'id_list_pelanggaran' => 1,
+            'nama_jenis_pelanggaran' => 'Tidak melakukan tindakan kriminal dan asusila termasuk membawa senjata tajam dan senapan, membawa atau menggunakan NAPZA, dan membawa barang-barang porno',
+            'tingkat_pelanggaran' => 'IV'
+        ],
+        [
+            'id_list_pelanggaran' => 2,
+            'nama_jenis_pelanggaran' => 'Memakai pakaian yang rapi, bersepatu, atau bersepatu sandal',
+            'tingkat_pelanggaran' => 'IV'
+        ],
+        [
+            'id_list_pelanggaran' => 3,
+            'nama_jenis_pelanggaran' => 'Setiap orang dalam melakukan aktivitas membutuhkan kenyamanan dan ketertiban. Begitu pula dengan aktivitas perkuliahan. Perkuliahan dapat berjalan dengan aman, tertib, dan lancar bila semua',
+            'tingkat_pelanggaran' => 'IV'
+        ],
+        [
+            'id_list_pelanggaran' => 4,
+            'nama_jenis_pelanggaran' => 'Memakai pakaian yang rapi, bersepatu, atau bersepatu sandal',
+            'tingkat_pelanggaran' => 'IV'
+        ],
+        [
+            'id_list_pelanggaran' => 5,
+            'nama_jenis_pelanggaran' => 'Memakai pakaian yang rapi, bersepatu, atau bersepatu sandal',
+            'tingkat_pelanggaran' => 'IV'
+        ],
+        [
+            'id_list_pelanggaran' => 6,
+            'nama_jenis_pelanggaran' => 'Setiap orang dalam melakukan aktivitas membutuhkan kenyamanan dan ketertiban. Begitu pula dengan aktivitas perkuliahan. Perkuliahan dapat berjalan dengan aman, tertib, dan lancar bila semua',
+            'tingkat_pelanggaran' => 'IV'
+        ],
+        [
+            'id_list_pelanggaran' => 7,
+            'nama_jenis_pelanggaran' => 'Tidak melakukan tindakan kriminal...',
+            'tingkat_pelanggaran' => 'IV'
+        ],
+        [
+            'id_list_pelanggaran' => 8,
+            'nama_jenis_pelanggaran' => 'Setiap orang dalam melakukan aktivitas membutuhkan kenyamanan dan ketertiban. Begitu pula dengan aktivitas perkuliahan. Perkuliahan dapat berjalan dengan aman, tertib, dan lancar bila semua',
+            'tingkat_pelanggaran' => 'IV'
+        ],
+        [
+            'id_list_pelanggaran' => 9,
+            'nama_jenis_pelanggaran' => 'Tidak melakukan tindakan kriminal...',
+            'tingkat_pelanggaran' => 'IV'
+        ],
+    ];
+    
+    ?>
+    <?php TataTertibSection($data)?>
     <?php include 'components/footerLaporSection.php'; ?>
   </div>
   <script src="../assets/js/script.js"></script>

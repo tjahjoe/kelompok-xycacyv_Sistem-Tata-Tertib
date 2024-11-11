@@ -1,3 +1,6 @@
+<?php
+  function TataTertibSection($data){
+?>
 <section id="tataTertib">
   <h1 class="title">Tata Tertib Mahasiswa<br> Jurusan Teknik Informatika</h1>
   <div class="table-container">
@@ -10,12 +13,20 @@
         </tr>
       </thead>
       <tbody>
+        <?php if(!empty($data)){?>
+        <?php foreach($data as $record){?>
         <tr>
+          <td><?php echo$record['id_list_pelanggaran']?></td>
+          <td><?php echo$record['nama_jenis_pelanggaran']?></td>
+          <td><?php echo$record['tingkat_pelanggaran']?></td>
+        </tr>
+        <?php } }?>
+        <!-- <tr>
           <td>1</td>
           <td>Tidak melakukan tindakan kriminal dan asusila termasuk membawa senjata tajam dan senapan, membawa atau menggunakan NAPZA, dan membawa barang-barang porno</td>
           <td>IV</td>
-        </tr>
-        <tr>
+        </tr> -->
+        <!-- <tr>
           <td>2</td>
           <td>Memakai pakaian yang rapi, bersepatu, atau bersepatu sandal</td>
           <td>IV</td>
@@ -54,8 +65,9 @@
           <td>9</td>
           <td>Tidak melakukan tindakan kriminal...</td>
           <td>IV</td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </div>
 </section>
+<?php }?>
