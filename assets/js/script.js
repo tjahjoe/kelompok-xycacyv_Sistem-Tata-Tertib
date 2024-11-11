@@ -108,20 +108,25 @@ const closeAlert = () => {
   alertOverlay.classList.remove('alert-active');
 }
 
-document.getElementById('form-pelaporan').addEventListener('submit', (e) => {
-  e.preventDefault();
+if(document.getElementById('form-pelaporan')){
+  document.getElementById('form-pelaporan').addEventListener('submit', (e) => {
+    e.preventDefault();
+  
+    showAlert();
+  });
+}
 
-  showAlert();
-});
-
-document.querySelector('.overlay').addEventListener('click', closeAlert);
-document.querySelector('.alert-close-button').addEventListener('click', closeAlert);
+if(document.querySelector('.overlay')&&document.querySelector('.alert-close-button')){
+  document.querySelector('.overlay').addEventListener('click', closeAlert);
+  document.querySelector('.alert-close-button').addEventListener('click', closeAlert);
+}
 
 const uploadFile = () => {
   const fileInput = document.getElementById('lampiran');
   const fileCountDisplay = document.getElementById('file-count');
   const fileListDisplay = document.getElementById('file-list');
 
+  if(fileInput && fileCountDisplay && fileListDisplay){
   fileInput.addEventListener('change', () => {
     const files = fileInput.files;
     fileCountDisplay.textContent = `${files.length} file(s) uploaded`;
@@ -136,6 +141,7 @@ const uploadFile = () => {
       fileListDisplay.appendChild(listItem);
     }
   });
+}
 }
 
 document.addEventListener("DOMContentLoaded", () => {

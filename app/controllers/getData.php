@@ -55,9 +55,9 @@ function dataPelanggaran(){
     }
 }
 
-$_SESSION['user']['id_users'] = '2341721001';
-$_SESSION['user']['role'] = 'mahasiswa';
+// $_SESSION['user']['id_users'] = '2341721001';
+// $_SESSION['user']['role'] = 'mahasiswa';
 
 // var_dump(dataPelanggaran());
-var_dump(dataUser());
+// var_dump(dataUser());
 ?>
