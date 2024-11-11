@@ -77,8 +77,28 @@ const switchTab = () => {
   }
 }
 
+const updateBadge = () => {
+  const badges = document.querySelectorAll('.badge-contain .badge');
+
+  badges.forEach(badge => {
+
+    badge.addEventListener("click", () => {
+       // Reset semua badge ke badge-gray terlebih dahulu
+       badges.forEach(b => {
+        b.classList.remove("badge-green");
+        b.classList.add("badge-gray");
+      });
+
+      // Hanya tambahkan badge-green ke badge yang diklik
+      badge.classList.remove("badge-gray");
+      badge.classList.add("badge-green");
+    })
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   eventTogglePassword();
   eventNavbarScroll();
   switchTab();
+  updateBadge();
 });
