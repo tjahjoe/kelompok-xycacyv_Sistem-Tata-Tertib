@@ -16,7 +16,7 @@ $(document).ready(function() {
               if (response.status === 'success') {
                   window.location.href = './'; // Redirect ke halaman utama
               } else {
-                $("#hasil").style.display = 'block';
+                $("#hasil").css("display", "block");
                   $("#hasil").html(response.message);
               }
           }
