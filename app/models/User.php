@@ -18,11 +18,25 @@ class User{
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if($result){
-            return $result;
-        } else {
+        if (empty($result)) {
             return false;
         }
+
+        if ($result['role'] == 'mahasiswa') {
+            $query = "SELECT * FROM Mahasiswa WHERE nim = ?";
+        } else if (in_array($result['role'], ['dosen', 'dpa', 'kps', 'sekjur'])) {
+            $query = "SELECT * FROM Dosen WHERE nip = ?";
+        } else if ($result['role'] == 'admin') {
+            $query = "SELECT * FROM Admin WHERE nip = ?";
+        }
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $result['id_users']);
+        $stmt->execute();
+
+        $isValue = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $isValue ? $result : false;
     }
 }
 ?>
