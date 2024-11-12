@@ -14,11 +14,8 @@ class Admin{
         $stmt->bindParam(1, $nip);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result) {
-            return $result;
-        } else {
-            return false;
-        }
+        
+        return $result ? $result : false;
     }
 }
 ?>

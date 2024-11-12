@@ -16,25 +16,10 @@ class Mahasiswa
         $stmt->bindParam(1, $id);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($result) {
-            return $result;
-        } else {
-            return false;
-        }
+
+        return $result ? $result : false;
     }
 
-    // public function getDataMahasiswa($nim){
-    //     $query = "SELECT * FROM " . $this->table . " WHERE nim = ?";
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->bindParam(1, $nim);
-    //     $stmt->execute();
-    //     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    //     if ($result) {
-    //         return $result;
-    //     } else {
-    //         return false;
-    //     }
-    // }
     private function setFirstnameAndLastname($datas)
     {
         for ($i = 0; $i < count($datas); $i++) {
@@ -84,11 +69,8 @@ class Mahasiswa
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($result) {
-            return $result;
-        } else {
-            return false;
-        }
+        
+        return $result ? $result : false;
     }
 }
 ?>

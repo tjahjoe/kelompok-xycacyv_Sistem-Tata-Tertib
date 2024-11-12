@@ -14,11 +14,8 @@ class ListPelanggaran{
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($results) {
-            return $results;
-        } else {
-            false;
-        }
+        
+        return $results ? $results : false;
 
     }
 
@@ -28,11 +25,8 @@ class ListPelanggaran{
         $stmt->bindParam(1, $tingkat);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($results) {
-            return $results;
-        } else {
-            return false;
-        }
+        
+        return $results ? $results : false;
     }
 }
 ?>
