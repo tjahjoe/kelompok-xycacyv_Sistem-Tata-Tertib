@@ -19,59 +19,75 @@
   <?php Navbar(true); ?>
   <div class="container bg-gray pt-5">
     <h1 class="title">Daftar Pelaporan</h1>
-    <!-- FILTER TAB -->
-    <div class="filter-tab">
-      <div class="filter-container">
-        <div class="filter-item">
-          <img src="../assets/images/filter.svg" alt="Filter Icon">
-        </div>
-        <div class="filter-item search">
-          <span>Search</span>
-        </div>
-        <div class="filter-item filter-checkbox">
-          <input type="checkbox" id="showAll" />
-          <label for="showAll">Perlihatkan Semua</label>
-        </div>
-        <div class="filter-item filter-select">
-          <input type="date" name="tanggalPelaporan" id="tanggalPelaporan" class="custom-date">
-        </div>
-        <div class="filter-item filter-select">
-          <div class="dropdown">
-            <select id="tingkatPelaporan" class="tingkatPelaporan" name="tingkatPelaporan">
-              <option disabled selected hidden>Tingkat</option>
-              <option value="">All</option>
-              <option value="I">I</option>
-              <option value="I/II">I/II</option>
-              <option value="II">II</option>
-              <option value="III">III</option>
-              <option value="IV">IV</option>
-              <option value="V">V</option>
-            </select>
+    <div class="feature-tab">
+      <!-- FILTER TAB -->
+      <div class="filter-tab">
+        <form id="filterTab">
+          <div class="filter-container">
+            <div class="filter-item">
+              <img src="../assets/images/filter.svg" alt="Filter Icon">
+            </div>
+            <div class="filter-item search">
+              <span>Search</span>
+            </div>
+            <div class="filter-item filter-checkbox">
+              <input type="checkbox" id="showAll" />
+              <label for="showAll">Perlihatkan Semua</label>
+            </div>
+            <div class="filter-item filter-select">
+              <div class="dropdown date-range-input">
+                Date Range
+              </div>
+            </div>
+            <div class="filter-item filter-select">
+              <div class="dropdown">
+                <select id="tingkatPelaporan" class="tingkatPelaporan" name="tingkatPelaporan">
+                  <option disabled selected hidden>Tingkat</option>
+                  <option value="">All</option>
+                  <option value="I">I</option>
+                  <option value="I/II">I/II</option>
+                  <option value="II">II</option>
+                  <option value="III">III</option>
+                  <option value="IV">IV</option>
+                  <option value="V">V</option>
+                </select>
+              </div>
+            </div>
+            <div class="filter-item filter-select">
+              <div class="dropdown">
+                <select id="statusPelaporan" class="statusPelaporan" name="statusPelaporan">
+                  <option disabled selected hidden>Status</option>
+                  <option value="">All</option>
+                  <option value="baru">Pending</option>
+                  <option value="aktif">Processing</option>
+                  <option value="nonaktif">Completed</option>
+                  <option value="reject">Rejected</option>
+                </select>
+              </div>
+            </div>
+            <div class="filter-item reset-button flex-row">
+              <img src="../assets/images/reset.svg" width="20px" alt="">
+              Reset Filter
+            </div>
           </div>
-        </div>
-        <div class="filter-item filter-select">
-          <div class="dropdown">
-            <select id="statusPelaporan" class="statusPelaporan" name="statusPelaporan">
-              <option disabled selected hidden>Status</option>
-              <option value="">All</option>
-              <option value="baru">Pending</option>
-              <option value="aktif">Processing</option>
-              <option value="nonaktif">Completed</option>
-              <option value="reject">Rejected</option>
-            </select>
-          </div>
-        </div>
-        <div class="filter-item reset-button flex-row" onclick="resetFilters()">
-          <img src="../assets/images/reset.svg" width="20px" alt="">
-          Reset Filter
-        </div>
       </div>
-    </div>
-    <div class="search-input-container">
-      <form id="searchByNIM" action="" method="post">
-        <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari...">
-        <button class="btn btn-gray" type="submit">Cari</button>
+      <div class="date-input">
+        <span class="flex-col">
+          <label for="">Start Date</label>
+          <input type="date" name="startTanggalPelaporan" id="startTanggalPelaporan" class="custom-date">
+        </span>
+        <span class="flex-col">
+          <label for="">End Date</label>
+          <input type="date" name="endTanggalPelaporan" id="endTanggalPelaporan" class="custom-date">
+        </span>
+      </div>
       </form>
+      <div class="search-input-container">
+        <form id="searchByNIM" action="" method="post">
+          <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari...">
+          <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button>
+        </form>
+      </div>
     </div>
     <div class="box-content">
       <!-- RIWAYAT PELAPORAN -->
@@ -93,10 +109,24 @@
   <script>
     $(document).ready(function() {
       $(".search-input-container").hide();
+
+      // event search dropdown
       $(".filter-item.search").click(function() {
-        $(".search-input-container").slideToggle("500");
-      })
-    })
+        $(".search-input-container").slideToggle(500);
+        $(".date-input").removeClass("date-input-active");
+      });
+
+      // event date range dropdown
+      $(".date-range-input").click(function() {
+        $(".search-input-container").slideUp(500);
+        $(".date-input").toggleClass("date-input-active");
+      });
+
+      // event reset filter
+      $('.filter-item.reset-button').click(function() {
+        $('#filterTab')[0].reset();
+      });
+    });
   </script>
 </body>
 

@@ -861,9 +861,20 @@ form#searchByNIM{
   align-items:center;
 }
 
+/* feature tab */
+.feature-tab{
+  position:relative;
+  display:flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  width:100%;
+  max-width:max-content;
+}
+
 /* filter tab */
 .filter-tab{
-  overflow: auto;
+  overflow-x: auto;
   max-width:1178px;
   border: 1px solid #ddd;
   border-radius: 8px 8px 0 0;
@@ -902,10 +913,6 @@ form#searchByNIM{
 .filter-item img {
   width: 24px;
   height: 24px;
-}
-
-.filter-item.reset-button{
-  
 }
 
 .filter-search input {
@@ -1013,6 +1020,30 @@ form#searchByNIM{
 
 .dropdown select:focus {
   outline: none;
+}
+
+.dropdown.date-range-input{
+  width: 100px;
+  cursor:pointer;
+}
+
+.date-input{
+  display:none;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  width: max-content;
+  position:relative;
+}
+
+.date-input-active{
+  position:absolute;
+  top: 70%;
+  left:50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap:10px;
+  align-items:center;
 }
 
 /* STYLE TEXT CAPITAL */
