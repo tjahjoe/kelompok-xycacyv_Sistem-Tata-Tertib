@@ -30,7 +30,7 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
     <form class="form-container" id="form-pelaporan">
       <!-- <input type="text" placeholder="Ketik Judul Laporan *" class="input-field"> -->
       <!-- <input type="text" placeholder="PIlih Tingkat Pelanggaran *" class="input-field"> -->
-      <input type="text" placeholder="Masukkan NIM Pelanggar *" class="input-field" required>
+      <input type="text" placeholder="Masukkan NIM Pelanggar *" nama="nim" class="input-field" required>
       <select id="tingkatPelanggaran" class="tingkatPelanggaran input-field" name="tingkatPelanggaran" required>
         <option disabled selected hidden>PIlih Tingkat Pelanggaran *</option>
         <option value="">All</option>
@@ -48,14 +48,14 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
         <option value="">blbablabla</option>
         <option value="">gggggggg</option>
       </select>
-      <textarea placeholder="Ketik Laporan Anda *" class="input-field" rows="10" required></textarea>
-      <input type="date" class="input-field" placeholder="Pilih Tanggal Kejadian *" class="input-field custom-date" required>
+      <textarea placeholder="Ketik Laporan Anda *" class="input-field" rows="10" name="deskripsiLaporan" required></textarea>
+      <input type="date" class="input-field" placeholder="Pilih Tanggal Kejadian *" class="input-field custom-date" name="tanggalKejadian" required>
       <div class="footer-modal">
         <label class="upload-section" for="lampiran">
           <span class="upload-icon"><img src="../assets/images/upload-image-icon.svg" width="30px" alt=""></span>
           <p>Upload Lampiran</p>
         </label>
-        <input type="file" name="lampiran" id="lampiran" hidden multiple required>
+        <input type="file" name="lampiran" id="lampiran" accept="image/*" hidden multiple required>
         <button type="submit" class="btn btn-red">Laporkan!</button>
       </div>
       <div class="list-file-uploaded">
