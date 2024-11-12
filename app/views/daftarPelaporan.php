@@ -31,7 +31,7 @@
               <span>Search</span>
             </div>
             <div class="filter-item filter-checkbox">
-              <input type="checkbox" id="showAll" />
+              <input type="checkbox" id="showAll" name="showAll"/>
               <label for="showAll">Perlihatkan Semua</label>
             </div>
             <div class="filter-item filter-select">
@@ -84,7 +84,7 @@
       </form>
       <div class="search-input-container">
         <form id="searchByNIM" action="" method="post">
-          <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari...">
+          <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari..." name="searchNim">
           <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button>
         </form>
       </div>
