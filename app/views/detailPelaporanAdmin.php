@@ -47,27 +47,23 @@
         </div>
         <div class="detail-item">
           <label for="tanggalPelanggaran">Tanggal Pelanggaran</label>
-          <input type="date" value="" id="tanggalPelanggaran" class="custom-date"></input>
+          <input type="date" name="tanggalPelanggaran" id="tanggalPelanggaran" class="custom-date">
         </div>
         <div class="detail-item">
           <label for="nimPelanggaran">NIM Pelanggar</label>
-          <input type="text" value="2341598644789" id="nimPelanggaran" disabled></input>
+          <input type="text" name="nimPelanggaran" value="2341598644789" id="nimPelanggaran" disabled>
         </div>
-        <!-- <div class="detail-item">
-          <label for="akumulasiPelanggaran">Akumulasi Pelanggaran</label>
-          <input type="text" value="5" id="akumulasiPelanggaran"></input>
-        </div> -->
         <div class="detail-item">
           <label for="namaPelanggaran">Nama Pelanggaran</label>
-          <input type="text" value="Lorem ipsum Judul Masalah berada disini. Lorem ipsum lorem ipsum" id="namaPelanggaran"></input>
+          <input type="text" name="namaPelanggaran" value="Lorem ipsum Judul Masalah berada disini. Lorem ipsum lorem ipsum" id="namaPelanggaran">
         </div>
         <div class="detail-item">
           <label for="catatan">Catatan</label>
-          <textarea rows="10" id="catatan">Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit curae penatibus taciti efficitur consectetur pulvinar, diam purus. Consequat nascetur maximus augue odio lobortis tristique nam. Eget ultricies lacinia nunc scelerisque venenatis. Facilisi ad diam lobortis iaculis convallis phasellus; faucibus sem. </textarea>
+          <textarea name="catatan" rows="10" id="catatan">Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit curae penatibus taciti efficitur consectetur pulvinar, diam purus. Consequat nascetur maximus augue odio lobortis tristique nam. Eget ultricies lacinia nunc scelerisque venenatis. Facilisi ad diam lobortis iaculis convallis phasellus; faucibus sem.</textarea>
         </div>
         <div class="detail-item">
           <label for="sanksi">Sanksi</label>
-          <input type="text" value="Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit." id="sanksi"></input>
+          <input type="text" name="sanksi" value="Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit." id="sanksi">
         </div>
         <div class="detail-item">
           <label for="">Status</label>
@@ -85,7 +81,6 @@
             <label class="badge badge-gray" for="status-rejected">Rejected</label>
           </div>
         </div>
-
       </div>
     </form>
     <?php if(!empty($data['tingkat_pelanggaran']) && $data['tingkat_pelanggaran'] >= 3){ ?>

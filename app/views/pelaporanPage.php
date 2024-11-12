@@ -27,7 +27,7 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
   <!-- FORM -->
   <div class="modal-box">
     <h2>Laporan anda:</h2>
-    <form class="form-container" id="form-pelaporan">
+    <form class="form-container" id="form-pelaporan" enctype="multipart/form-data">
       <!-- <input type="text" placeholder="Ketik Judul Laporan *" class="input-field"> -->
       <!-- <input type="text" placeholder="PIlih Tingkat Pelanggaran *" class="input-field"> -->
       <input type="text" placeholder="Masukkan NIM Pelanggar *" nama="nim" class="input-field" required>
@@ -55,7 +55,7 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
           <span class="upload-icon"><img src="../assets/images/upload-image-icon.svg" width="30px" alt=""></span>
           <p>Upload Lampiran</p>
         </label>
-        <input type="file" name="lampiran" id="lampiran" accept="image/*" hidden multiple required>
+        <input type="file" name="lampiran[]" id="lampiran" accept="image/*" hidden multiple required>
         <button type="submit" class="btn btn-red">Laporkan!</button>
       </div>
       <div class="list-file-uploaded">
