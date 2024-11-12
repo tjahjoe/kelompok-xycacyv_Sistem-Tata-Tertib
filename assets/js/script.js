@@ -149,5 +149,5 @@ document.addEventListener("DOMContentLoaded", () => {
   eventNavbarScroll();
   switchTab();
   updateBadge();
-  uploadFile()
+  uploadFile();
 });
