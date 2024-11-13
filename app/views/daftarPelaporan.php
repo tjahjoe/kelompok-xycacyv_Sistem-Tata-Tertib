@@ -1,5 +1,5 @@
+<?php include 'components/table.php';?>
 <?php include 'components/emptyState.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,9 +90,12 @@
       </div>
     </div>
     <div class="box-content">
-      <!-- RIWAYAT PELAPORAN -->
-      <div class="tab-content active" id="riwayat-pelaporan">
-        <?php include 'components/tableRiwayatPelaporan.php';
+      <!-- daftar PELAPORAN -->
+      <div class="tab-content active" id="daftar-pelaporan">
+        <?php 
+          require_once __DIR__ . "../../controllers/getData.php";
+          $data = dataPelanggaran();
+          TableContent($data); 
         ?>
       </div>
     </div>

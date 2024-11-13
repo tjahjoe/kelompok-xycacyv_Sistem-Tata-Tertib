@@ -10,11 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         'message' => 'No data found for the selected tingkat pelanggaran.',
     ];
 
-    $nim = $_POST[''];
-    $tanggalAwal = $_POST[''];
-    $tanggalAkhir = $_POST[''];
-    $tingkat = $_POST[''];
-    $status = $_POST[''];
+    $nim = $_POST['searchNim'];
+    $tanggalAwal = $_POST['startTanggalPelaporan'];
+    $tanggalAkhir = $_POST['endTanggalPelaporan'];
+    $tingkat = $_POST['tingkatPelaporan'];
+    $status = $_POST['statusPelaporan'];
 
     $results = $pelanggaranMahasiswaModel->getDaftarPelaporan(
         $nim,

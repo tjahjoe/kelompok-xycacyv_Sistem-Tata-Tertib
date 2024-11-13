@@ -1,5 +1,9 @@
 <?php
+require_once __DIR__ . "../../../controllers/getData.php";
+
 function Navbar($isOtherPage) {
+    $data = dataUser();
+    // var_dump($data);
 ?>
     <header>
         <nav class="navbar <?php echo $isOtherPage ? "navbar-other": "" ?>" id="navbar">
@@ -30,8 +34,8 @@ function Navbar($isOtherPage) {
                     width="50px"
                 />
                 <span class="profile-text">
-                    <p class="profile-username">Ndak tau sopo</p>
-                    <p class="role-user">Mahasiswa</p>
+                    <p class="profile-username"><?php echo $data['nama_admin']?></p>
+                    <p class="role-user capitalize-text"><?php echo $data['role']?></p>
                 </span>
             </a>
         </nav>

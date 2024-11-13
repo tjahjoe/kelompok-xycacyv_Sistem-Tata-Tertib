@@ -1,36 +1,36 @@
 <?php
-// columnsToShow = menyimpan nama kolom yang ingin ditampilkan
-function TableContent($data, $columnsToShow = [])
+// Fungsi ini menampilkan semua kolom yang ada dalam data secara otomatis.
+function TableContent($data)
 {
-?>
-  <?php if (!empty($data)) { ?>
+  if (!empty($data)) {
+    // Ambil nama kolom dari elemen pertama data
+    $columns = array_keys($data[0]);
+    ?>
     <div class="table-container">
       <table class="table-content">
         <thead>
           <tr>
             <th>No</th>
-            <?php
-            foreach ($columnsToShow as $kolom) { ?>
+            <?php foreach ($columns as $kolom) { ?>
               <th class="capitalize-text"><?php echo $kolom; ?></th>
             <?php } ?>
           </tr>
-          </tr>
         </thead>
         <tbody>
-        <?php foreach ($data as $index => $record) { ?>
-          <tr>
-            <td><?php echo $index + 1; ?></td>
-            <?php
-            // Tampilkan data hanya pada kolom yang dipilih di $columnsToShow
-            foreach ($columnsToShow as $kolom) { ?>
-              <td><?php echo isset($record[$kolom]) ? $record[$kolom] : '-'; ?></td>
-            <?php } ?>
-          </tr>
+          <?php foreach ($data as $index => $record) { ?>
+            <tr>
+              <td><?php echo $index + 1; ?></td>
+              <?php foreach ($columns as $kolom) { ?>
+                <td><?php echo isset($record[$kolom]) ? $record[$kolom] : '-'; ?></td>
+              <?php } ?>
+            </tr>
           <?php } ?>
         </tbody>
       </table>
     </div>
-<?php
+    <?php
+  } else {
+    echo "<p>No data available.</p>";
   }
 }
 ?>
