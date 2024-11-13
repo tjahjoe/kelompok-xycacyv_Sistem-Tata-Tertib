@@ -1,5 +1,4 @@
 <?php
-if (isset($_SESSION['user'])) {
-    session_destroy();
-}
+require_once __DIR__ . "/check.php";
+logout();
 ?>

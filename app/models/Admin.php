@@ -10,7 +10,7 @@ class Admin{
 
     private function setFirstnameAndLastname($data)
     {
-        $nama = $data["nama_admin"];
+        $nama = $data["nama"];
         $pos = strrpos($nama, ' ');
 
         if ($pos) {
@@ -32,7 +32,7 @@ class Admin{
         $query = "SELECT 
         a.nip, 
         a.notelp, 
-        a.nama_admin, 
+        a.nama_admin as nama, 
         a.email, 
         u.role, 
         u.foto_diri 

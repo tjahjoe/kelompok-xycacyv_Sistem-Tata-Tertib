@@ -10,7 +10,7 @@ class Dosen{
 
     private function setFirstnameAndLastname($data)
     {
-        $nama = $data["nama_dosen"];
+        $nama = $data["nama"];
         $pos = strrpos($nama, ' ');
 
         if ($pos) {
@@ -32,7 +32,7 @@ class Dosen{
         $query = "SELECT 
         d.nip, 
         d.notelp, 
-        d.nama_dosen, 
+        d.nama_dosen as nama, 
         d.email, 
         u.role, 
         u.foto_diri 

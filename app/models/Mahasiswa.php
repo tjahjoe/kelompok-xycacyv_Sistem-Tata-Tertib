@@ -22,7 +22,7 @@ class Mahasiswa
 
     private function setFirstnameAndLastname($data)
     {
-        $nama = $data["nama_mahasiswa"];
+        $nama = $data["nama"];
         $pos = strrpos($nama, ' ');
 
         if ($pos) {
@@ -43,12 +43,12 @@ class Mahasiswa
     public function getDataMahasiswa($nim)
     {
         $query = "SELECT 
-        nim, 
-        notelp, 
-        nama_mahasiswa ,
-        email,
-        role,
-        foto_diri
+        m.nim, 
+        m.notelp, 
+        m.nama_mahasiswa as nama,
+        m.email,
+        u.role,
+        u.foto_diri
         FROM " . $this->table . " m
         JOIN Users u ON 
         m.nim = u.id_users WHERE nim = ?";
