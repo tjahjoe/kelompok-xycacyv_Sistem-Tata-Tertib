@@ -58,11 +58,16 @@ const eventNavbarScroll = () => {
 
 const switchTab = () => {
   const tabLink = document.querySelectorAll('.tab-link');
+  const logoutBtn = document.querySelectorAll('.logout-btn');
   const tabContent = document.querySelectorAll('.tab-content');
 
-  if (tabLink && tabContent) {
+  if (tabLink && tabContent && logoutBtn) {
     tabLink.forEach(link => {
       link.addEventListener('click', function(event) {
+        if (Array.from(logoutBtn).includes(event.target)) {
+          return; // Jika yang diklik adalah logout button, jangan jalankan event
+        }
+
         event.preventDefault();
         // delete semua class active pada class tab-link
         tabLink.forEach(tab => tab.classList.remove('active'));

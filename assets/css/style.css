@@ -405,7 +405,7 @@ section#header {
 .btn {
   display: block;
   width: max-content;
-  padding: 15px 25px;
+  padding: 10px 25px;
   border-radius: 7px;
   outline: none;
   border: 0;
@@ -437,6 +437,11 @@ section#header {
 .btn-primary {
   color: #fff;
   background-color: var(--primary-color);
+}
+
+.btn-white{
+  color: var(--primary-color);
+  background-color: #fff;
 }
 
 .btn-gray{
