@@ -72,11 +72,19 @@ class PelanggaranMahasiswa
         l.nama_jenis_pelanggaran 'JUDUL MASALAH', 
         l.tingkat_pelanggaran 'TINGKAT', 
         p.status 'STATUS'
+        p.id_pelanggaran_mhs,
+        p.tgl_pelanggaran, 
+        l.nama_jenis_pelanggaran, 
+        p.catatan, 
+        l.tingkat_pelanggaran, 
+        p.status
         From " . $this->table . " p
         JOIN ListPelanggaran l
         ON p.id_list_pelanggaran = l.id_list_pelanggaran
 		JOIN Mahasiswa m
-		ON m.nim = p.nim";
+        ON m.nim = p.nim
+        ORDER BY 
+        tgl_pelanggaran";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

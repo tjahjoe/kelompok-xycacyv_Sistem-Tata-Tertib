@@ -1,6 +1,6 @@
 <?php
 class Database{
-    private $dsn = "sqlsrv:server=CHLZ\SQLEXPRESS;database=tatibjtiv4";
+    private $dsn = "sqlsrv:server=DESKTOP-OF0MEVA\SQLEXPRESS;database=tatibv3";
     public $conn;
 
     public function getConneection(){
@@ -13,5 +13,4 @@ class Database{
         return $this->conn;
     }
 }
-// 
 ?>
