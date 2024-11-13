@@ -10,67 +10,69 @@ class Mahasiswa
         $this->conn = $database->getConneection();
     }
 
-    private function getDataMahasiswa($query, $id)
+    // private function getDataMahasiswa($query, $id)
+    // {
+    //     $stmt = $this->conn->prepare($query);
+    //     $stmt->bindParam(1, $id);
+    //     $stmt->execute();
+    //     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    //     return $result ? $result : false;
+    // }
+
+    private function setFirstnameAndLastname($data)
     {
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $id);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $nama = $data["nama_mahasiswa"];
+        $pos = strrpos($nama, ' ');
 
-        return $result ? $result : false;
-    }
-
-    private function setFirstnameAndLastname($datas)
-    {
-        for ($i = 0; $i < count($datas); $i++) {
-            $nama = $datas[$i]['nama_mahasiswa'];
-            $pos = strrpos($nama, ' ');
-
-            if ($pos) {
-                $pos = $pos + 1;
-            } else {
-                $pos = 0;
-            }
-
-            $lastname = substr($nama, $pos + 1);
-            $firstname = substr($nama, 0, strlen($nama) - strlen($lastname) - 1);
-
-            $datas[$i]['nama_awal'] = $firstname;
-            $datas[$i]['nama_akhir'] = $lastname;
+        if ($pos) {
+            $pos = $pos + 1;
+        } else {
+            $pos = 0;
         }
 
-        return $datas;
+        $lastname = substr($nama, $pos + 1);
+        $firstname = substr($nama, 0, strlen($nama) - strlen($lastname) - 1);
+
+        $data['nama_awal'] = $firstname;
+        $data['nama_akhir'] = $lastname;
+
+        return $data;
     }
 
-    public function getDataMahasiswaByMahasiswa($nim)
+    public function getDataMahasiswa($nim)
     {
         $query = "SELECT 
         nim, 
         notelp, 
         nama_mahasiswa ,
         email,
-        role
+        role,
+        foto_diri
         FROM " . $this->table . " m
         JOIN Users u ON 
         m.nim = u.id_users WHERE nim = ?";
-        $datas = $this->getDataMahasiswa($query, $nim);
-        return $this->setFirstnameAndLastname($datas);
-    }
-
-    public function getDataMahasiswaByDpa($nip)
-    {
-        $query = "SELECT * FROM " . $this->table . " WHERE nip = ?";
-        return $this->getDataMahasiswa($query, $nip);
-    }
-
-    public function getAllDataMahasiswa()
-    {
-        $query = "SELECT * FROM " . $this->table;
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $nim);
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        return $result ? $result : false;
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $this->setFirstnameAndLastname($result) : false;
     }
+
+    // public function getDataMahasiswaByDpa($nip)
+    // {
+    //     $query = "SELECT * FROM " . $this->table . " WHERE nip = ?";
+    //     return $this->getDataMahasiswa($query, $nip);
+    // }
+
+    // public function getAllDataMahasiswa()
+    // {
+    //     $query = "SELECT * FROM " . $this->table;
+    //     $stmt = $this->conn->prepare($query);
+    //     $stmt->execute();
+    //     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    //     return $result ? $result : false;
+    // }
 }
 ?>

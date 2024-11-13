@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . "/../models/PelanggaranMahasiswa.php";
+require_once __DIR__ . "/check.php";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
     $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
 
     $response = [

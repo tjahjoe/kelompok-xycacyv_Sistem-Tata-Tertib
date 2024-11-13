@@ -12,6 +12,7 @@ class User{
     public function login($username, $password){
         
         $query = "SELECT * FROM " . $this->table . " WHERE id_users = ? AND password = ?";
+        $this -> conn -> beginTransaction();
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $username);
         $stmt->bindParam(2, $password);
@@ -35,7 +36,7 @@ class User{
         $stmt->execute();
 
         $isValue = $stmt->fetch(PDO::FETCH_ASSOC);
-
+        $this -> conn ->commit();
         return $isValue ? $result : false;
     }
 }

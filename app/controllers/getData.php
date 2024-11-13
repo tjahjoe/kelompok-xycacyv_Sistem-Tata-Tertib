@@ -4,6 +4,7 @@ require_once __DIR__ . "/../models/Mahasiswa.php";
 require_once __DIR__ . "/../models/Dosen.php";
 require_once __DIR__ . "/../models/Admin.php";
 require_once __DIR__ . "/../models/PelanggaranMahasiswa.php";
+require_once __DIR__ . "/check.php";
 
 function ListPelanggaran(){
     $listPelanggaranModel = new ListPelanggaran();
@@ -12,12 +13,12 @@ function ListPelanggaran(){
 }
 
 function dataUser(){
-    if(isset($_SESSION['user'])){
+    if(isLogin()){
         $id = $_SESSION['user']['id_users'];
         $role = $_SESSION['user']['role'];
         if ($role == 'mahasiswa') {
             $mahasiswaModel = new Mahasiswa();
-            $dataMahasiwa = $mahasiswaModel->getDataMahasiswaByMahasiswa($id);
+            $dataMahasiwa = $mahasiswaModel->getDataMahasiswa($id);
             return $dataMahasiwa;
         } else if (in_array($role, ['dpa', 'sekjur', 'dosen', 'kps'] )) {
             $dosenModel = new Dosen();
@@ -27,14 +28,16 @@ function dataUser(){
             $adminModel = new Admin();
             $dataAdmin = $adminModel->getDataAdmin($id);
             return $dataAdmin;
+        } else {
+            return false;
         }
     } else {
-        // arah login
+        return false;
     }
 }
 
 function dataPelanggaran(){
-    if (isset($_SESSION['user'])) {
+    if (isLogin()) {
         $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
 
         $id = $_SESSION['user']['id_users'];
@@ -49,13 +52,34 @@ function dataPelanggaran(){
         } else if (in_array($role, ['sekjur', 'kps', 'admin'])){
             $dataPelanggaran = $pelanggaranMahasiswaModel->getAllDataPelanggaran();
             return $dataPelanggaran;
+        } else {
+            return false;
         }
     }  else{
-        
+        return false;
     }
 }
 
-// $_SESSION['user']['id_users'] = '2341721001';
+function detaPelapor(){
+    if (isLogin()) {
+        $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
+
+        $id = $_SESSION['user']['id_users'];
+        $role = $_SESSION['user']['role'];
+
+        if (in_array($role, ['dpa', 'sekjur', 'kps', 'admin'])){
+            $dataLaporan = $pelanggaranMahasiswaModel->getDataPelanggaranByPelapor($id);
+            return $dataLaporan;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}   
+
+
+// var_dump(detaPelapor());
 // $_SESSION['user']['role'] = 'mahasiswa';
 
 // var_dump(dataPelanggaran());
