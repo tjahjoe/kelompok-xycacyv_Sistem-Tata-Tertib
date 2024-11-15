@@ -4,7 +4,8 @@ function HeaderSection($title, $paragraph, $showButton) {
 <section id="header">
   <div class="box-header">
     <h1 class="main-header">
-    <?php echo $title?>
+      <?php echo $title?>
+    </h1>
     <p>
       <?php echo $paragraph?>
     </p>

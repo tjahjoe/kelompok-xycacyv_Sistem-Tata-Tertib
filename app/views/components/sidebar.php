@@ -1,6 +1,16 @@
+<?php
+require_once __DIR__ . "../../../controllers/getData.php";
+
+$data = dataUser();
+?>
 <div class="sidebar">
   <a href="#profile-user" class="tab-link active">Profil Saya</a>
-  <a href="#riwayat-pelanggaran" class="tab-link">Riwayat Pelanggaran</a>
-  <a href="#riwayat-pelaporan" class="tab-link">Riwayat Pelaporan</a>
+  <?php
+  if ($data && in_array($data['role'], ['dosen', 'dpa', 'kps', 'sekjur', 'admin'])) {
+  ?>
+    <a href="#riwayat-pelaporan" class="tab-link">Riwayat Pelaporan</a>
+  <?php } else { ?>
+    <a href="#riwayat-pelanggaran" class="tab-link">Riwayat Pelanggaran</a>
+  <?php } ?>
   <a href="./../app/controllers/Logout.php" class="tab-link logout-btn">Keluar Akun</a>
 </div>

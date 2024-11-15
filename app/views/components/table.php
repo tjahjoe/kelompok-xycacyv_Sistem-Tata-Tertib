@@ -10,7 +10,6 @@ function TableContent($data)
       <table class="table-content">
         <thead>
           <tr>
-            <th>No</th>
             <?php foreach ($columns as $kolom) { ?>
               <th class="capitalize-text"><?php echo $kolom; ?></th>
             <?php } ?>

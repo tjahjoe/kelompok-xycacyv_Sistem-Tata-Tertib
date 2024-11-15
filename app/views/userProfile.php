@@ -1,5 +1,6 @@
 <?php include 'components/emptyState.php'; ?>
 <?php include 'components/navbar.php'; ?>
+<?php require_once '../app/controllers/getData.php' ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +30,11 @@
           <h2>Profil Saya</h2>
           <p>Anda tidak dapat mengubah informasi pribadi di sini. Untuk mengubah informasi, silakan hubungi admin.</p>
         </div>
-        <?php include 'components/infoProfile.php'; ?>
+        <?php include 'components/infoProfile.php'; 
+
+        $data = dataUser();
+        InfoProfile($data);
+        ?>
       </div>
 
       <!-- RIWAYAT PELANGGARAN -->
