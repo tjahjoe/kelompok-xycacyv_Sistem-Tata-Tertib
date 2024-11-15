@@ -1,4 +1,6 @@
 <?php
+require_once 'badge.php';
+
 // Fungsi ini menampilkan semua kolom yang ada dalam data secara otomatis.
 function TableContent($data)
 {
@@ -10,18 +12,32 @@ function TableContent($data)
       <table class="table-content">
         <thead>
           <tr>
-            <?php foreach ($columns as $kolom) { ?>
+            <?php 
+            foreach ($columns as $kolom) { 
+              if($kolom == 'id') continue;
+            ?>
               <th class="capitalize-text"><?php echo $kolom; ?></th>
             <?php } ?>
+            <th>ACTION</th>
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($data as $index => $record) { ?>
+          <?php foreach ($data as $record) { ?>
             <tr>
-              <td><?php echo $index + 1; ?></td>
-              <?php foreach ($columns as $kolom) { ?>
-                <td><?php echo isset($record[$kolom]) ? $record[$kolom] : '-'; ?></td>
+              <?php foreach ($columns as $kolom) { 
+              // jika kolom = id maka hidden
+              if($kolom == 'id') continue;
+
+              // jika kolom = judulmasalah/nama tambah class text-left & truncate
+              $addedClass = ($kolom == 'JUDUL MASALAH' || $kolom == 'NAMA') ? 'class="text-left truncate"' : '';
+                ?>
+                <td 
+                <?php 
+                echo $addedClass;?> >
+                  <?php echo isset($record[$kolom]) && $kolom != 'STATUS' ? $record[$kolom] : Badge(strtolower($record[$kolom])); ?>
+                </td>
               <?php } ?>
+              <td><a href="detail-pelaporan-admin.php?id=<?php echo $record['id'] ?>">Detail</a></td>
             </tr>
           <?php } ?>
         </tbody>

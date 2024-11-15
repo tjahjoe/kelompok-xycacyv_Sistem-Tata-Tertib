@@ -640,14 +640,27 @@ section#footerLapor {
 }
 
 .table-content th, .table-content td {
+  text-align:center;
   padding: 12px 15px;
   border-bottom: 1px solid #ddd;
+  white-space: nowrap;
 }
 
 .table-content th {
   background-color: #f9f9f9;
   font-weight: bold;
   text-align: center;
+}
+
+.table-content .truncate{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;  
+  max-width: 250px;
+}
+
+.table-content td.text-left{
+  text-align:left;
 }
 
 .table-content tr {
