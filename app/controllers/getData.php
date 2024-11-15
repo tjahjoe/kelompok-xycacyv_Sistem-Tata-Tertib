@@ -12,6 +12,8 @@ function ListPelanggaran(){
     return $listPelanggaran;
 }
 
+
+//pengaturan akun
 function dataUser(){
     if(isLogin()){
         $id = $_SESSION['user']['id_users'];
@@ -36,6 +38,9 @@ function dataUser(){
     }
 }
 
+
+//riwayat pelanggaran
+//daftar pelaporan
 function dataPelanggaran(){
     if (isLogin()) {
         $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
@@ -60,7 +65,8 @@ function dataPelanggaran(){
     }
 }
 
-function detaPelapor(){
+//riwayat pelaporan
+function dataPelapor(){
     if (isLogin()) {
         $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
 
@@ -78,6 +84,27 @@ function detaPelapor(){
     }
 }   
 
+function detailPelaporan($id){
+    if (isLogin()) {
+        $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
+
+        $detail = $pelanggaranMahasiswaModel->getDetailDaftarPelanggaran($id);
+        return $detail;
+    } else {
+        return false;
+    }
+}
+
+function detailPelanggaran($id){
+    if (isLogin()) {
+        $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
+
+        $detail = $pelanggaranMahasiswaModel->getDetailDataPelanggaran($id);
+        return $detail;
+    } else {
+        return false;
+    }
+}
 
 // var_dump(detaPelapor());
 // $_SESSION['user']['role'] = 'mahasiswa';

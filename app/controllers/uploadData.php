@@ -50,8 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         $result = $pelanggaranMahasiswaModel->uploadImages($files, $idPelanggaranMhs['id_pelanggaran_mhs']);
 
         echo $result ? json_encode(['status' => 'success', 'message' => 'upload success']) : json_encode($response);
+        exit;
     } else {
         echo  json_encode(['status' => 'success', 'message' => 'upload success']);
+        exit;
     }
 }
 ?>

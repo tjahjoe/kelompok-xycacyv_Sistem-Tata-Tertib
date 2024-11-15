@@ -121,7 +121,8 @@ class PelanggaranMahasiswa
         p.catatan,
         t.sanksi,
         p.status
-        FROM " . $this->conn . " p
+        FROM " . $this->table
+         . " p
         JOIN ListPelanggaran l
         ON l.id_list_pelanggaran = p.id_list_pelanggaran
         JOIN TingkatPelanggaran t 
@@ -132,6 +133,60 @@ class PelanggaranMahasiswa
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        return $result ? $result : false;
+    }
+
+    public function getDetailDaftarPelanggaran($id)
+    {
+        $query = "SELECT 
+        role
+        from " . $this->table . " p
+        JOIN Users u
+        ON u.id_users = p.pelapor
+        WHERE p.id_pelanggaran_mhs = ?";
+        $this->conn->beginTransaction();
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+        $role = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (empty($role)) {
+            $this->conn->commit();
+            return false;
+        }
+        $nama = "";
+        $tableJoin = "";
+
+        if (in_array($role['role'], ['dosen', 'dpa', 'kps', 'sekjur'])) {
+            $nama = "d.nama_dosen";
+            $tableJoin = "JOIN Dosen d ON d.nip = p.pelapor";
+        } else if ($role['role'] == 'admin') {
+            $nama = "a.nama_admin";
+            $tableJoin = "JOIN Admin a ON a.nip = p.pelapor";
+        }
+
+        $query = "SELECT 
+        p.id_pelanggaran_mhs,
+		$nama,
+		p.pelapor,
+        l.tingkat_pelanggaran,
+        p.tgl_pelanggaran,
+        p.nim,
+        l.nama_jenis_pelanggaran,
+        p.catatan,
+        t.sanksi,
+        p.status
+        FROM " . $this->table . " p
+        JOIN ListPelanggaran l
+        ON l.id_list_pelanggaran = p.id_list_pelanggaran
+        JOIN TingkatPelanggaran t 
+        ON t.id_tingkat_pelanggaran = p.id_tingkat_pelanggaran  $tableJoin WHERE id_pelanggaran_mhs = ?";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $this->conn->commit();
         return $result ? $result : false;
     }
 
@@ -239,7 +294,7 @@ class PelanggaranMahasiswa
         * 
         FROM " . $this->table . " 
         WHERE id_pelanggaran_mhs = ?";
-        
+
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $id);
         $stmt->execute();
