@@ -84,6 +84,7 @@ function dataPelapor(){
     }
 }   
 
+//detail pelaporan
 function detailPelaporan($id){
     if (isLogin()) {
         $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
@@ -95,6 +96,8 @@ function detailPelaporan($id){
     }
 }
 
+
+//detail pelanggaran
 function detailPelanggaran($id){
     if (isLogin()) {
         $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
@@ -105,10 +108,4 @@ function detailPelanggaran($id){
         return false;
     }
 }
-
-// var_dump(detaPelapor());
-// $_SESSION['user']['role'] = 'mahasiswa';
-
-// var_dump(dataPelanggaran());
-// var_dump(dataUser());
 ?>
