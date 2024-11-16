@@ -84,7 +84,6 @@ class PelanggaranMahasiswa
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $results ? $results : false;
-
     }
 
     public function getDataPelanggaranByPelapor($nip)
@@ -117,7 +116,7 @@ class PelanggaranMahasiswa
         t.sanksi 'Sanksi',
         p.status 'Status'
         FROM " . $this->table
-         . " p
+            . " p
         JOIN ListPelanggaran l
         ON l.id_list_pelanggaran = p.id_list_pelanggaran
         JOIN TingkatPelanggaran t 
@@ -160,23 +159,29 @@ class PelanggaranMahasiswa
             $tableJoin = "JOIN Admin a ON a.nip = p.pelapor";
         }
 
+        $selectedColumns = "";
+
+        if ($_SESSION['user']['role'] !== 'dosen') {
+            $selectedColumns = "$nama 'Nama Pelapor',
+		    p.pelapor 'NIP Pelapor',";
+        }
+
         $query = "SELECT 
-        p.id_pelanggaran_mhs,
-		$nama,
-		p.pelapor,
-        l.tingkat_pelanggaran,
-        p.tgl_pelanggaran,
-        p.nim,
-        l.nama_jenis_pelanggaran,
-        p.catatan,
-        t.sanksi,
-        p.status
+        p.id_pelanggaran_mhs 'id',
+		$selectedColumns
+        l.tingkat_pelanggaran 'Tingkat Pelanggaran',
+        p.tgl_pelanggaran 'Tanggal Pelanggaran',
+        p.nim 'NIM Pelanggar',
+        l.nama_jenis_pelanggaran 'Nama Pelanggaran',
+        p.catatan 'Catatan',
+        t.sanksi 'Sanksi',
+        p.status 'Status'
         FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON l.id_list_pelanggaran = p.id_list_pelanggaran
         JOIN TingkatPelanggaran t 
         ON t.id_tingkat_pelanggaran = p.id_tingkat_pelanggaran  $tableJoin WHERE id_pelanggaran_mhs = ?";
-        
+
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $id);
         $stmt->execute();
@@ -299,4 +304,3 @@ class PelanggaranMahasiswa
         return $result ? $result : false;
     }
 }
-?>

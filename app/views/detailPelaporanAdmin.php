@@ -1,5 +1,8 @@
 <?php include 'components/emptyState.php'; ?>
-<?php include 'components/navbar.php'; ?>
+<?php
+include 'components/navbar.php';
+require_once '../app/controllers/getData.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,64 +20,73 @@
 
 <body>
   <?php Navbar(true); ?>
+  <?php
+  $data = detailPelaporan($_GET['id']);
+  $tingkatPelanggaran = $data['Tingkat Pelanggaran'];
+  $status = $data['Status'];
+  ?>
   <div class="container pt-5">
     <h1 class="title">Detail Pelaporan</h1>
     <div class="info-laporan">
-      <p><strong>ID Laporan:</strong> 23199122</p>
-      <p><strong>Nama Pelapor:</strong> Sopo ae ws</p>
-      <p><strong>ID pelapor:</strong> 23199122332</p>
+      <p><strong>ID Laporan:</strong><?php
+                                      echo $data['id']; ?></p>
+      <p><strong>Nama Pelapor:</strong> <?php echo $data['Nama Pelapor']; ?></p>
+      <p><strong>ID pelapor:</strong> <?php echo $data['NIP Pelapor']; ?></p>
     </div>
     <form id="updatePelaporan" method="post">
-        <button class="btn btn-primary" type="submit">Simpan</button>
+      <button class="btn btn-primary" type="submit">Simpan</button>
       <div class="detail-container">
         <div class="detail-item">
           <label for="tingkatPelanggaran">Tingkat Pelanggaran</label>
-          <select id="tingkatPelanggaran" name="tingkatPelanggaran">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+          <select id="tingkatPelanggaran" name="tingkatPelanggaran" required>
+            <option value="I" <?php echo $tingkatPelanggaran == 'I' ? 'selected' : ''; ?>>I</option>
+            <option value="II" <?php echo $tingkatPelanggaran == 'II' ? 'selected' : ''; ?>>II</option>
+            <option value="III" <?php echo $tingkatPelanggaran == 'III' ? 'selected' : ''; ?>>III</option>
+            <option value="IV" <?php echo $tingkatPelanggaran == 'IV' ? 'selected' : ''; ?>>IV</option>
+            <option value="V" <?php echo $tingkatPelanggaran == 'V' ? 'selected' : ''; ?>>V</option>
           </select>
         </div>
         <div class="detail-item">
           <label for="tanggalPelanggaran">Tanggal Pelanggaran</label>
-          <input type="date" name="tanggalPelanggaran" id="tanggalPelanggaran" class="custom-date">
+          <input type="date" name="tanggalPelanggaran" id="tanggalPelanggaran" class="custom-date"
+            value="<?php echo $data['Tanggal Pelanggaran']; ?>">
         </div>
         <div class="detail-item">
-          <label for="nimPelanggaran">NIM Pelanggar</label>
-          <input type="text" name="nimPelanggaran" value="2341598644789" id="nimPelanggaran" disabled>
+          <label for="nimPelanggar">NIM Pelanggar</label>
+          <input type="text" name="nimPelanggar" value="<?php echo $data['NIM Pelanggar']; ?>" id="nimPelanggar" disabled>
         </div>
         <div class="detail-item">
           <label for="namaPelanggaran">Nama Pelanggaran</label>
-          <input type="text" name="namaPelanggaran" value="Lorem ipsum Judul Masalah berada disini. Lorem ipsum lorem ipsum" id="namaPelanggaran">
+          <input type="text" name="namaPelanggaran" value="<?php echo $data['Nama Pelanggaran']; ?>" id="namaPelanggaran">
         </div>
         <div class="detail-item">
           <label for="catatan">Catatan</label>
-          <textarea name="catatan" rows="10" id="catatan">Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit curae penatibus taciti efficitur consectetur pulvinar, diam purus. Consequat nascetur maximus augue odio lobortis tristique nam. Eget ultricies lacinia nunc scelerisque venenatis. Facilisi ad diam lobortis iaculis convallis phasellus; faucibus sem.</textarea>
+          <textarea name="catatan" rows="10" id="catatan"><?php echo $data['Catatan']; ?></textarea>
         </div>
         <div class="detail-item">
           <label for="sanksi">Sanksi</label>
-          <input type="text" name="sanksi" value="Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit." id="sanksi">
+          <input type="text" name="sanksi" value="<?php echo $data['Sanksi']; ?>" id="sanksi">
         </div>
         <div class="detail-item">
           <label for="">Status</label>
           <div class="badge-contain">
-            <input type="radio" name="status" id="status-pending" value="baru">
+            <input type="radio" name="status" id="status-pending" value="baru" <?php echo $status == 'baru' ? 'checked' : ''; ?>>
             <label class="badge badge-gray" for="status-pending">Pending</label>
 
-            <input type="radio" name="status" id="status-completed" value="nonaktif" checked>
-            <label class="badge badge-green" for="status-completed">Completed</label>
+            <input type="radio" name="status" id="status-completed" value="nonaktif" <?php echo $status == 'nonaktif' ? 'checked' : ''; ?>>
+            <label class="badge badge-gray" for="status-completed">Completed</label>
 
-            <input type="radio" name="status" id="status-processing" value="aktif">
+            <input type="radio" name="status" id="status-processing" value="aktif" <?php echo $status == 'aktif' ? 'checked' : ''; ?>>
             <label class="badge badge-gray" for="status-processing">Processing</label>
 
-            <input type="radio" name="status" id="status-rejected" value="reject">
+            <input type="radio" name="status" id="status-rejected" value="reject" <?php echo $status == 'reject' ? 'checked' : ''; ?>>
             <label class="badge badge-gray" for="status-rejected">Rejected</label>
           </div>
         </div>
       </div>
     </form>
+
+    <a href="daftar-pelaporan.php" class="btn btn-primary">Kembali</a>
   </div>
   <script src="../assets/js/script.js"></script>
 </body>

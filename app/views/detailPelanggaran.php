@@ -1,6 +1,6 @@
 <?php include 'components/emptyState.php'; ?>
-<?php include 'components/detailSection.php'; ?>
-<?php
+<?php 
+include 'components/detailSection.php'; 
 require_once '../app/controllers/getData.php';
 ?>
 

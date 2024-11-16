@@ -82,21 +82,47 @@ const switchTab = () => {
   }
 }
 
+const getBadgeClass = (forValue) => {
+  switch (forValue) {
+    case 'status-pending':
+      return 'badge-orange';
+    case 'status-completed':
+      return 'badge-green';
+    case 'status-processing':
+      return 'badge-purple';
+    case 'status-rejected':
+      return 'badge-red';
+    default:
+      return 'badge-gray';
+}
+}
+
 const updateBadge = () => {
   const badges = document.querySelectorAll('.badge-contain .badge');
+  const radios = document.querySelectorAll('.badge-contain input[type="radio"]');
+
+  radios.forEach((radio, index) => {
+    if (radio.checked) {
+      const forValue = badges[index].getAttribute('for');
+      badges[index].classList.add(getBadgeClass(forValue));
+      badges[index].classList.remove("badge-gray");
+    }
+  });
 
   badges.forEach(badge => {
-
     badge.addEventListener("click", () => {
-       // Reset semua badge ke badge-gray terlebih dahulu
-       badges.forEach(b => {
-        b.classList.remove("badge-green");
-        b.classList.add("badge-gray");
+      // Reset semua badge ke badge-gray terlebih dahulu
+      badges.forEach(b => {
+        b.className = 'badge badge-gray'; // Reset semua kelas kecuali default
       });
 
-      // Hanya tambahkan badge-green ke badge yang diklik
-      badge.classList.remove("badge-gray");
-      badge.classList.add("badge-green");
+      // Dapatkan nilai `for` dari badge yang diklik
+      const forValue = badge.getAttribute('for');
+
+      // Tambahkan kelas warna spesifik ke badge yang diklik
+      badge.classList.remove('badge-gray');
+      badge.classList.add(getBadgeClass(forValue));
+      radios[index].checked = true; 
     })
   });
 }

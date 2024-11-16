@@ -67,7 +67,7 @@ require_once '../app/controllers/getData.php' ;
         <?php 
         $dataPelaporan = dataPelapor();
         if($dataPelaporan){
-          TableContent($dataPelaporan, 'detail-pelaporan-admin'); 
+          TableContent($dataPelaporan, 'detail-pelaporan'); 
         }else{
           EmptyState('EmptyStatePelaporan.png', 'Tidak ada riwayat pelaporan');
         }

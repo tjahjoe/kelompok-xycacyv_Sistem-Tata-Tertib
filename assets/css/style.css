@@ -737,6 +737,10 @@ a.link-detail{
   padding: 1rem;
 }
 
+.badge-contain label{
+  cursor: pointer;
+}
+
 .badge-contain input[type="radio"] {
   display: none;
 }
