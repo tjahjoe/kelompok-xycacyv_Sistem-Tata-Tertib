@@ -90,12 +90,12 @@ class PelanggaranMahasiswa
     public function getDataPelanggaranByPelapor($nip)
     {
         $query = "SELECT
-        p.id_pelanggaran_mhs,
-        p.tgl_pelanggaran, 
-        l.nama_jenis_pelanggaran, 
-        p.catatan, 
-        l.tingkat_pelanggaran, 
-        p.status
+        p.id_pelanggaran_mhs 'id',
+        p.nim 'NIM',
+        p.tgl_pelanggaran 'TANGGAL', 
+        l.nama_jenis_pelanggaran 'JUDUL MASALAH', 
+        l.tingkat_pelanggaran 'TINGKAT', 
+        p.status 'STATUS'
         From " . $this->table . " p
         JOIN ListPelanggaran l
         ON p.id_list_pelanggaran = l.id_list_pelanggaran

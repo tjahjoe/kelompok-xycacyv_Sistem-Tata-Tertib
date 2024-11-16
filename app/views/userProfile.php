@@ -66,7 +66,6 @@ require_once '../app/controllers/getData.php' ;
         </div>
         <?php 
         $dataPelaporan = dataPelapor();
-        var_dump($dataPelaporan);
         if($dataPelaporan){
           TableContent($dataPelaporan, 'detail-pelaporan-admin'); 
         }else{

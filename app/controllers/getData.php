@@ -73,7 +73,7 @@ function dataPelapor(){
         $id = $_SESSION['user']['id_users'];
         $role = $_SESSION['user']['role'];
 
-        if (in_array($role, ['dpa', 'sekjur', 'kps', 'admin'])){
+        if (in_array($role, ['dpa', 'sekjur', 'kps', 'admin', 'dosen'])){
             $dataLaporan = $pelanggaranMahasiswaModel->getDataPelanggaranByPelapor($id);
             return $dataLaporan;
         } else {
