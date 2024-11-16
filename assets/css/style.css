@@ -1173,6 +1173,10 @@ form#searchByNIM{
 /* Responsive styles */
 /* TABLET */
 @media (max-width: 768px) {
+  .info-grid{
+    grid-template-columns: repeat(auto-fit, minmax(150px, 300px));
+  }
+
   .bg-img {
     display: none;
   }

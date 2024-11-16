@@ -95,7 +95,7 @@
         <?php 
           require_once __DIR__ . "../../controllers/getData.php";
           $data = dataPelanggaran();
-          TableContent($data); 
+          TableContent($data, 'detail-pelaporan-admin'); 
         ?>
       </div>
     </div>

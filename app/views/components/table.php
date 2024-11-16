@@ -2,7 +2,7 @@
 require_once 'badge.php';
 
 // Fungsi ini menampilkan semua kolom yang ada dalam data secara otomatis.
-function TableContent($data)
+function TableContent($data, $linkDetail)
 {
   if (!empty($data)) {
     // Ambil nama kolom dari elemen pertama data
@@ -37,7 +37,7 @@ function TableContent($data)
                   <?php echo isset($record[$kolom]) && $kolom != 'STATUS' ? $record[$kolom] : Badge(strtolower($record[$kolom])); ?>
                 </td>
               <?php } ?>
-              <td><a href="detail-pelaporan-admin.php?id=<?php echo $record['id'] ?>">Detail</a></td>
+              <td><a href="<?php echo $linkDetail . '.php?id=' . $record['id']; ?>">Detail</a></td>
             </tr>
           <?php } ?>
         </tbody>

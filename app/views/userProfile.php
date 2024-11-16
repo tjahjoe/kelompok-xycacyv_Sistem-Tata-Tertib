@@ -1,6 +1,11 @@
-<?php include 'components/emptyState.php'; ?>
-<?php include 'components/navbar.php'; ?>
-<?php require_once '../app/controllers/getData.php' ?>
+<?php 
+include 'components/emptyState.php'; 
+include 'components/navbar.php'; 
+include 'components/table.php'; 
+?>
+<?php
+require_once '../app/controllers/getData.php' ;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,8 +37,8 @@
         </div>
         <?php include 'components/infoProfile.php'; 
 
-        $data = dataUser();
-        InfoProfile($data);
+        $user_data = dataUser();
+        InfoProfile($user_data);
         ?>
       </div>
 
@@ -42,9 +47,16 @@
         <div class="head-tab-content">
           <h2>Riwayat Pelanggaran</h2>
         </div>
-        <?php //EmptyState('EmptyState.png', 'Tidak ada riwayat pelanggaran'); ?>
-        <?php include 'components/tableRiwayatPelanggaran.php'; 
+        <?php 
+        $dataPelanggaran = dataPelanggaran();
+
+        if($dataPelanggaran){
+          TableContent($dataPelanggaran, 'detail-pelanggaran'); 
+        }else{
+          EmptyState('EmptyState.png', 'Tidak ada riwayat pelanggaran');
+        }
         ?>
+        
       </div>
 
       <!-- RIWAYAT PELAPORAN -->
@@ -52,9 +64,16 @@
         <div class="head-tab-content">
           <h2>Riwayat Pelaporan</h2>
         </div>
-        <?php //EmptyState('EmptyStatePelaporan.png', 'Tidak ada riwayat pelaporan'); ?>
-        <?php include 'components/tableRiwayatPelaporan.php'; 
+        <?php 
+        $dataPelaporan = dataPelapor();
+        var_dump($dataPelaporan);
+        if($dataPelaporan){
+          TableContent($dataPelaporan, 'detail-pelaporan-admin'); 
+        }else{
+          EmptyState('EmptyStatePelaporan.png', 'Tidak ada riwayat pelaporan');
+        }
         ?>
+        
       </div>
     </div>
   </div>
