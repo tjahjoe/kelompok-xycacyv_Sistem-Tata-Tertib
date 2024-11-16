@@ -108,14 +108,14 @@ class PelanggaranMahasiswa
     public function getDetailDataPelanggaran($id)
     {
         $query = "SELECT 
-        p.id_pelanggaran_mhs,
-        l.tingkat_pelanggaran,
-        p.tgl_pelanggaran,
-        p.nim,
-        l.nama_jenis_pelanggaran,
-        p.catatan,
-        t.sanksi,
-        p.status
+        p.id_pelanggaran_mhs 'id',
+        l.tingkat_pelanggaran 'Tingkat Pelanggaran',
+        p.tgl_pelanggaran 'Tanggal Pelanggaran',
+        p.nim 'NIM Pelanggar',
+        l.nama_jenis_pelanggaran 'Nama Pelanggaran',
+        p.catatan 'Catatan',
+        t.sanksi 'Sanksi',
+        p.status 'Status'
         FROM " . $this->table
          . " p
         JOIN ListPelanggaran l

@@ -117,6 +117,7 @@ a{
   padding: 1rem;
   border-radius: 10px;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .info-box {
@@ -128,6 +129,7 @@ a{
   padding: 1rem;
   border-radius: 10px;
   width: 100%;
+  margin-top: 20px;
 }
 
 .info-box h4 {
@@ -728,6 +730,7 @@ a.link-detail{
 }
 
 .detail-item .badge-contain{
+  width:max-content;
   display: flex;
   align-items: center;
   gap: 10px;

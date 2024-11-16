@@ -1,4 +1,8 @@
 <?php include 'components/emptyState.php'; ?>
+<?php include 'components/detailSection.php'; ?>
+<?php
+require_once '../app/controllers/getData.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,46 +21,33 @@
 <body>
   <?php include 'components/navbar.php'; ?>
   <?php Navbar(true); ?>
+
+  <?php
+  $data = detailPelanggaran($_GET['id']);
+  ?>
+
   <div class="container pt-5">
     <h1 class="title">Detail Pelanggaran</h1>
-    <p><strong>ID Pelanggaran:</strong> 23199122</p>
-    <div class="detail-container">
-      <div class="detail-item">
-        <h4>Tingkat Pelanggaran</h4>
-        <p>I</p>
+    <p><strong>ID Pelanggaran:</strong> <?php echo $data['id'] ?></p>
+    <?php
+    if (!empty($data)) {
+    ?>
+      <div class="info-box">
+        <span>Informasi</label>
+          <p>Untuk menebus sanksi atas pelanggaran, silakan hubungi admin untuk informasi lebih lanjut.</p>
       </div>
-      <div class="detail-item">
-        <h4>Tanggal Pelanggaran</h4>
-        <p>21/05/2024</p>
-      </div>
-      <div class="detail-item">
-        <h4>NIM Pelanggar</h4>
-        <p>2341598644789</p>
-      </div>
-      <!-- <div class="detail-item">
-        <h4>Akumulasi Pelanggaran</h4>
-        <p>5</p>
-      </div> -->
-      <div class="detail-item">
-        <h4>Nama Pelanggaran</h4>
-        <p>Lorem ipsum Judul Masalah berada disini. Lorem ipsum lorem ipsum</p>
-      </div>
-      <div class="detail-item">
-        <h4>Catatan</h4>
-        <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit curae penatibus taciti efficitur consectetur pulvinar, diam purus. Consequat nascetur maximus augue odio lobortis tristique nam. Eget ultricies lacinia nunc scelerisque venenatis. Facilisi ad diam lobortis iaculis convallis phasellus; faucibus sem. </p>
-      </div>
-      <div class="detail-item">
-        <h4>Sanksi</h4>
-        <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Varius suscipit.</p>
-      </div>
-      <div class="detail-item">
-        <h4>Status</h4>
-        <span class="badge badge-green">Completed</span>
-      </div>
+    <?php
+    } 
+    DetailSection($data);
+   ?>
+   <?php if(!empty($data['Tingkat Pelanggaran']) &&  in_array($data['Tingkat Pelanggaran'], ['III', 'IV', 'V'])){ ?>
+    <div class="danger-box">
+      <label for="">Lampiran</label>
+      <p>Untuk pelanggaran tingkat III hingga V, Anda dapat mengunduh <a href="#" style="text-decoration: underline; color:var(--red-color);">file template di sini.</a></p>
     </div>
-
+    <?php }?>
+    
     <a href="profile-user.php" class="btn btn-primary">Kembali</a>
-
   </div>
   <script src="../assets/js/script.js"></script>
 </body>
