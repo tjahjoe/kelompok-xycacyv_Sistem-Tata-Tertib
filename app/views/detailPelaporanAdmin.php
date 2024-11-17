@@ -27,7 +27,10 @@ require_once '../app/controllers/getData.php';
     <h1 class="title">Detail Pelaporan</h1>
     <?php
     if (!empty($data)) {
-      $tingkatPelanggaran = $data['Tingkat Pelanggaran'];
+      $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']);
+      foreach($dataTingkatPelanggaran as $tingkat){
+        $tingkatPelanggaran = $tingkat['tingkat_pelanggaran'];
+      }
       $status = $data['Status'];
     ?>
     <div class="info-laporan">
@@ -43,6 +46,7 @@ require_once '../app/controllers/getData.php';
           <label for="tingkatPelanggaran">Tingkat Pelanggaran</label>
           <select id="tingkatPelanggaran" name="tingkatPelanggaran" required>
             <option value="I" <?php echo $tingkatPelanggaran == 'I' ? 'selected' : ''; ?>>I</option>
+            <option value="I/II" <?php echo $tingkatPelanggaran == 'I/II' ? 'selected' : ''; ?>>I/II</option>
             <option value="II" <?php echo $tingkatPelanggaran == 'II' ? 'selected' : ''; ?>>II</option>
             <option value="III" <?php echo $tingkatPelanggaran == 'III' ? 'selected' : ''; ?>>III</option>
             <option value="IV" <?php echo $tingkatPelanggaran == 'IV' ? 'selected' : ''; ?>>IV</option>
