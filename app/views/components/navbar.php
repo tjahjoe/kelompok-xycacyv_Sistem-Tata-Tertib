@@ -16,14 +16,14 @@ function Navbar($isOtherPage) {
                 <div></div>
             </div>
             <?php }?>
-            <div class="logo">
-                <img
+                <a href="./" class="logo">
+                    <img
                     src="../assets/images/Logo_Politeknik_Negeri_Malang.png"
                     width="50px"
                     alt=""
                 />
                 <p>SiTatib</p>
-            </div>
+            </a>
             
             <div class="menu" id="menu">
             <?php if($data && in_array(trim($data['role']), ['dosen', 'dpa', 'kps', 'sekjur', 'admin'])){?>

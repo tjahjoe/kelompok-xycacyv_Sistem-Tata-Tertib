@@ -22,14 +22,17 @@ require_once '../app/controllers/getData.php';
   <?php Navbar(true); ?>
   <?php
   $data = detailPelaporan($_GET['id']);
-  $tingkatPelanggaran = $data['Tingkat Pelanggaran'];
-  $status = $data['Status'];
   ?>
   <div class="container pt-5">
     <h1 class="title">Detail Pelaporan</h1>
+    <?php
+    if (!empty($data)) {
+      $tingkatPelanggaran = $data['Tingkat Pelanggaran'];
+      $status = $data['Status'];
+    ?>
     <div class="info-laporan">
-      <p><strong>ID Laporan:</strong><?php
-                                      echo $data['id']; ?></p>
+      <p><strong>ID Laporan:</strong>
+      <?php echo $data['id']; ?></p>
       <p><strong>Nama Pelapor:</strong> <?php echo $data['Nama Pelapor']; ?></p>
       <p><strong>ID pelapor:</strong> <?php echo $data['NIP Pelapor']; ?></p>
     </div>
@@ -85,6 +88,11 @@ require_once '../app/controllers/getData.php';
         </div>
       </div>
     </form>
+    <?php 
+    }else{
+      echo "<p style='margin:20px auto;'>Data is not available</p>";
+    }
+    ?>
 
     <a href="daftar-pelaporan.php" class="btn btn-primary">Kembali</a>
   </div>

@@ -20,7 +20,7 @@ function DetailSection($data)
         </div>
     <?php 
     } else { 
-        echo "<p>Data tidak tersedia.</p>";
+        echo "<p style='margin:20px auto;'>Data is not available</p>";
     }
 }
 ?>

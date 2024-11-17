@@ -28,10 +28,10 @@ require_once '../app/controllers/getData.php';
 
   <div class="container pt-5">
     <h1 class="title">Detail Pelanggaran</h1>
-    <p><strong>ID Pelanggaran:</strong> <?php echo $data['id'] ?></p>
     <?php
     if (!empty($data)) {
     ?>
+    <p><strong>ID Pelanggaran:</strong> <?php echo $data['id'] ?></p>
       <div class="info-box">
         <span>Informasi</label>
           <p>Untuk menebus sanksi atas pelanggaran, silakan hubungi admin untuk informasi lebih lanjut.</p>

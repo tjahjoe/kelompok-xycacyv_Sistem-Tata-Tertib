@@ -20,14 +20,18 @@ require_once '../app/controllers/getData.php';
 
 <body>
   <?php Navbar(true); ?>
-  <?php
-  $data = detailPelaporan($_GET['id']);
-  ?>
   <div class="container pt-5">
     <h1 class="title">Detail Pelaporan</h1>
+    <?php
+    $data = detailPelaporan($_GET['id']);
+    if (!empty($data)) {
+    ?>
     <p><strong>ID Laporan:</strong> <?php echo $data['id'] ?></p>
     <?php 
       DetailSection($data);
+    }else{
+      echo "<p style='margin:20px auto;'>Data is not available</p>";
+    }
     ?>
 
     <a href="profile-user.php" class="btn btn-primary">Kembali</a>
