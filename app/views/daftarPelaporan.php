@@ -124,10 +124,6 @@
         $(".date-input").toggleClass("date-input-active");
       });
 
-      // event reset filter
-      $('.filter-item.reset-button').click(function() {
-        $('#filterTab')[0].reset();
-      });
     });
   </script>
 </body>
