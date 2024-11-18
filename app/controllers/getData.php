@@ -89,7 +89,7 @@ function dataPelapor()
 }
 
 //detail pelaporan
-function detailPelaporan($id)
+function detailPelaporan($id, $condition = false)
 {
     if (isLogin()) {
         $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
@@ -98,11 +98,11 @@ function detailPelaporan($id)
         $role = $_SESSION['user']['role'];
 
         if ($role == 'dpa') {
-            $detail = $pelanggaranMahasiswaModel->getDetailDaftarPelanggaran($id, $idUser, true);
+            $detail = $pelanggaranMahasiswaModel->getDetailDaftarPelanggaran($id, idUser: $idUser, isDpa: true, condition: $condition);
             // var_dump($detail);
             return $detail;
         } else if (in_array($role, ['sekjur', 'kps', 'admin', 'dosen'])) {
-            $detail = $pelanggaranMahasiswaModel->getDetailDaftarPelanggaran($id);
+            $detail = $pelanggaranMahasiswaModel->getDetailDaftarPelanggaran($id, idUser: $idUser, condition:$condition);
             return $detail;
         } else {
             return false;

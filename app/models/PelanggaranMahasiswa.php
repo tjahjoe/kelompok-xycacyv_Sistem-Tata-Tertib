@@ -132,7 +132,7 @@ class PelanggaranMahasiswa
         return $result ? $result : false;
     }
 
-    public function getDetailDaftarPelanggaran($id, $idUser = '0', $isDpa = false)
+    public function getDetailDaftarPelanggaran($id, $condition, $idUser, $isDpa = false)
     {
         $query = "SELECT 
         role
@@ -154,51 +154,51 @@ class PelanggaranMahasiswa
         $tableJoin = "";
 
         if (in_array($role['role'], ['dosen', 'dpa', 'kps', 'sekjur'])) {
-            $nama = "d.nama_dosen 'Nama Pelapor'";
+            $nama = "d.nama_dosen";
             $tableJoin = "JOIN Dosen d ON d.nip = p.pelapor";
         } else if ($role['role'] == 'admin') {
-            $nama = "a.nama_admin 'Nama Pelapor'";
+            $nama = "a.nama_admin";
             $tableJoin = "JOIN Admin a ON a.nip = p.pelapor";
         }
 
-        // $selectedColumns = "";   
+        $selectedColumns = "";   
+        $addPelapor = "";   
+        if ($condition) {
+            $selectedColumns = "$nama 'Nama Pelapor',
+            p.pelapor 'NIP Pelapor',";
+        } else {
+            $addPelapor = "AND p.pelapor = ?";
+        }
 
-        // if ($_SESSION['user']['role'] !== 'dosen') {
-        //     $selectedColumns = "$nama 'Nama Pelapor',
-        //     p.pelapor 'NIP Pelapor',";
-        // }
         $tableJoinMahasiswa = "";
         $addNip = "";
-
-        if ($isDpa) {
+        if ($isDpa and $condition) {
             $tableJoinMahasiswa = "JOIN Mahasiswa m ON m.nim = p.nim";
             $addNip = "AND m.nip = ?";
         }
 
         $query = "SELECT 
         p.id_pelanggaran_mhs 'id',
-        $nama,
-        p.pelapor 'NIP Pelapor',
+        $selectedColumns
         l.tingkat_pelanggaran 'Tingkat Pelanggaran', --dihapus di ganti dengan query select untuk tingkat pelanggaran
         p.tgl_pelanggaran 'Tanggal Pelanggaran',
         p.nim 'NIM Pelanggar',
         l.nama_jenis_pelanggaran 'Nama Pelanggaran',
         p.catatan 'Catatan',
-        t.sanksi 'Sanksi',
         p.status 'Status'
         FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON l.id_list_pelanggaran = p.id_list_pelanggaran
-        JOIN TingkatPelanggaran t 
-        ON t.id_tingkat_pelanggaran = p.id_tingkat_pelanggaran  
         $tableJoin 
         $tableJoinMahasiswa
         WHERE p.id_pelanggaran_mhs = ?
-        $addNip";
+        $addNip
+        $addPelapor";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $id);
         $isDpa ? $stmt->bindParam(2, $idUser) : "";
+        $condition ? "" : $stmt->bindParam(2, $idUser);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $this->conn->commit();
