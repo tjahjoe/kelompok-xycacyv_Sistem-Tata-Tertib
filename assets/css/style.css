@@ -973,6 +973,7 @@ form#searchByNIM{
 /* Container to center the input */
 .search-input-container {
     max-width:1178px;
+    display:flex;
 }
 
 .arrow-container {

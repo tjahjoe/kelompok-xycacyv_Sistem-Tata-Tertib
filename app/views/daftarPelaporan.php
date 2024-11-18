@@ -81,13 +81,11 @@
           <input type="date" name="endTanggalPelaporan" id="endTanggalPelaporan" class="custom-date">
         </span>
       </div>
-      </form>
       <div class="search-input-container">
-        <form id="searchByNIM" action="" method="post">
-          <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari..." name="searchNim">
+          <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari..." name="searchNim" id="searchNim">
           <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button>
-        </form>
       </div>
+      </form>
     </div>
     <div class="box-content">
       <!-- daftar PELAPORAN -->
@@ -109,6 +107,7 @@
   </div>
   </div>
   <script src="../assets/js/script.js"></script>
+  <script src="../assets/js/handleFilter.js"></script>
   <script>
     $(document).ready(function() {
       $(".search-input-container").hide();
