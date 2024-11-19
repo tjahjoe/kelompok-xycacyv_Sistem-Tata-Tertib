@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../models/PelanggaranMahasiswa.php";
+require_once __DIR__ . "/../views/components/badge.php";
 require_once __DIR__ . "/check.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
@@ -24,7 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         $status
     );
 
-    echo $results ? json_encode(['status' => 'success', 'data' => $results]) : json_encode($response);
+    if($results){
+        foreach ($results as &$item) {
+            $item['badge'] = Badge($item['status']);
+        }       
+        
+        echo json_encode(['status' => 'success', 'data' => $results]);
+    }else{
+        echo json_encode($response);
+    }
+
+    // echo $results ? json_encode(['status' => 'success', 'data' => $results]) : json_encode($response);
     exit;
 
 }

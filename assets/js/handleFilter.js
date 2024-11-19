@@ -51,16 +51,18 @@ $(document).ready(function () {
                     $(".table-content tbody").empty();
                     $.each(response.data, function (index, record) {
                         var row = "<tr>" +
-                            "<td>" + record.tgl_pelanggaran + "</td>" +
-                            "<td>" + record.nama_jenis_pelanggaran + "</td>" +
-                            "<td>" + record.catatan + "</td>" +
-                            "<td>" + record.tingkat_pelanggaran + "</td>" +
-                            "<td>" + record.status + "</td>" +
+                            "<td>" + record.nim + "</td>" +
+                            "<td class='text-left truncate'>" + record.nama + "</td>" +
+                            "<td>" + record.tanggal + "</td>" +
+                            "<td class='text-left truncate'>" + record.judulmasalah + "</td>" +
+                            "<td>" + record.tingkat + "</td>" +
+                            "<td>" + record.badge + "</td>" +
+                            "<td><a href='detail-pelaporan-admin.php?id=" + record.id + "'>Detail</a></td>" +
                             "</tr>";
                         $(".table-content tbody").append(row);
                     });
                 } else {
-                    $(".table-content tbody").html("<tr><td colspan='5'>" + response.message + "</td></tr>");
+                    $(".table-content tbody").html("<tr><td colspan='7'>" + response.message + "</td></tr>");
                 }
             },
             error: function (xhr, status, error) {

@@ -20,6 +20,6 @@ function Badge($status)
       $status = 'Rejected';
       break;
   }
+ return "<span class='badge badge-" . $badgeColor . '\'>' . $status . "</span>";
 ?>
-  <span class="badge badge-<?php echo $badgeColor ?>"><?php echo $status ?></span>
 <?php } ?>
