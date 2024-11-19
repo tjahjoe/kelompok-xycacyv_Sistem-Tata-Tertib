@@ -62,8 +62,9 @@ $(document).ready(function () {
                         $(".table-content tbody").append(row);
                     });
                 } else {
-                    $(".table-content tbody").html("<tr><td colspan='7'>" + response.message + "</td></tr>");
+                    $(".table-content tbody").html("<tr><td colspan='7'>Data Not Found</td></tr>");
                 }
+
             },
             error: function (xhr, status, error) {
                 console.error("Error:", error);

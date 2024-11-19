@@ -30,12 +30,12 @@ class PelanggaranMahasiswa
         l.nama_jenis_pelanggaran 'JUDUL MASALAH', 
         l.tingkat_pelanggaran 'TINGKAT', 
         p.status 'STATUS'
-        From " . $this->table . " p
+        FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON p.id_list_pelanggaran = l.id_list_pelanggaran
 		JOIN Mahasiswa m
 		ON m.nim = p.nim
-        WHERE m.nim = ? 
+        WHERE m.nim = ?
         ORDER BY 
         tgl_pelanggaran DESC";
         return $this->getPelanggaran($query, $nim);
@@ -51,7 +51,7 @@ class PelanggaranMahasiswa
         l.nama_jenis_pelanggaran 'JUDUL MASALAH', 
         l.tingkat_pelanggaran 'TINGKAT', 
         p.status 'STATUS'
-        From " . $this->table . " p
+        FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON p.id_list_pelanggaran = l.id_list_pelanggaran
 		JOIN Mahasiswa m
@@ -72,7 +72,7 @@ class PelanggaranMahasiswa
         l.nama_jenis_pelanggaran 'JUDUL MASALAH', 
         l.tingkat_pelanggaran 'TINGKAT', 
         p.status 'STATUS'
-        From " . $this->table . " p
+        FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON p.id_list_pelanggaran = l.id_list_pelanggaran
 		JOIN Mahasiswa m
@@ -95,7 +95,7 @@ class PelanggaranMahasiswa
         l.nama_jenis_pelanggaran 'JUDUL MASALAH', 
         l.tingkat_pelanggaran 'TINGKAT', 
         p.status 'STATUS'
-        From " . $this->table . " p
+        FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON p.id_list_pelanggaran = l.id_list_pelanggaran
         WHERE pelapor = ? 
@@ -136,7 +136,7 @@ class PelanggaranMahasiswa
     {
         $query = "SELECT 
         role
-        from " . $this->table . " p
+        FROM " . $this->table . " p
         JOIN Users u
         ON u.id_users = p.pelapor
         WHERE p.id_pelanggaran_mhs = ?";
@@ -172,7 +172,7 @@ class PelanggaranMahasiswa
 
         $tableJoinMahasiswa = "";
         $addNip = "";
-        if ($isDpa and $condition) {
+        if ($isDpa && $condition) {
             $tableJoinMahasiswa = "JOIN Mahasiswa m ON m.nim = p.nim";
             $addNip = "AND m.nip = ?";
         }
@@ -226,18 +226,26 @@ class PelanggaranMahasiswa
         return false;
     }
 
-    public function getDaftarPelaporan($nim, $tanggalAwal, $tanggalAkhir, $tingkat, $status)
+    public function getDaftarPelaporan($nim, $tanggalAwal, $tanggalAkhir, $tingkat, $status, $id = '', $isDpa = false )
     {
         $conditions = [];
         $params = [];
 
         if ($nim) {
-            $conditions[] = "p.nim = ?";
-            $params[] = $nim;
+            $conditions[] = "p.nim LIKE ?";
+            $params[] = "%" . $nim . "%";
         }
-        if ($tanggalAwal && $tanggalAkhir) {
-            $conditions[] = "p.tgl_pelanggaran BETWEEN ? AND ?";
+        // if ($tanggalAwal && $tanggalAkhir) {
+        //     $conditions[] = "p.tgl_pelanggaran BETWEEN ? AND ?";
+        //     $params[] = $tanggalAwal;
+        //     $params[] = $tanggalAkhir;
+        // }
+        if ($tanggalAwal) {
+            $conditions[] = "p.tgl_pelanggaran >= ?";
             $params[] = $tanggalAwal;
+        }
+        if ($tanggalAkhir) {
+            $conditions[] = "p.tgl_pelanggaran <= ?";
             $params[] = $tanggalAkhir;
         }
         if ($tingkat) {
@@ -248,19 +256,30 @@ class PelanggaranMahasiswa
             $conditions[] = "p.status = ?";
             $params[] = $status;
         }
+        if ($isDpa) {
+            $conditions[] = "m.nip = ?";
+            $params[] = $id;
+        }
 
         $whereClause = $conditions ? implode(" AND ", $conditions) : "1 = 1";
 
-        $query = "SELECT 
-        p.tgl_pelanggaran,
-        l.nama_jenis_pelanggaran,
-        p.catatan,
-        l.tingkat_pelanggaran,
-        p.status
+        $query = "SELECT
+        p.id_pelanggaran_mhs 'id',
+		p.nim 'nim',
+		m.nama_mahasiswa 'nama',
+        p.tgl_pelanggaran 'tanggal', 
+        l.nama_jenis_pelanggaran 'judulmasalah', 
+        l.tingkat_pelanggaran 'tingkat', 
+        p.status 'status'
         FROM " . $this->table . " p
-        JOIN ListPelanggaran l 
-        ON l.id_list_pelanggaran = p.id_list_pelanggaran
-        WHERE $whereClause";
+        JOIN ListPelanggaran l
+        ON p.id_list_pelanggaran = l.id_list_pelanggaran
+		JOIN Mahasiswa m
+		ON m.nim = p.nim
+        WHERE 
+        $whereClause
+        ORDER BY 
+        tgl_pelanggaran DESC";
 
         $stmt = $this->conn->prepare($query);
 

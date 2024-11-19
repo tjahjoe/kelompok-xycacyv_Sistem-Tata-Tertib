@@ -21,7 +21,7 @@ require_once '../app/controllers/getData.php';
 <body>
   <?php Navbar(true); ?>
   <?php
-  $data = detailPelaporan($_GET['id']);
+  $data = detailPelaporan($_GET['id'], true);
   ?>
   <div class="container pt-5">
     <h1 class="title">Detail Pelaporan</h1>
