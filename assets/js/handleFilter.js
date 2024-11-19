@@ -51,10 +51,11 @@ $(document).ready(function () {
                     $(".table-content tbody").empty();
                     $.each(response.data, function (index, record) {
                         var row = "<tr>" +
-                            "<td>" + record.tgl_pelanggaran + "</td>" +
-                            "<td>" + record.nama_jenis_pelanggaran + "</td>" +
-                            "<td>" + record.catatan + "</td>" +
-                            "<td>" + record.tingkat_pelanggaran + "</td>" +
+                            "<td>" + record.nim + "</td>" +
+                            "<td>" + record.nama + "</td>" +
+                            "<td>" + record.tanggal + "</td>" +
+                            "<td>" + record.judulmasalah + "</td>" +
+                            "<td>" + record.tingkat + "</td>" +
                             "<td>" + record.status + "</td>" +
                             "</tr>";
                         $(".table-content tbody").append(row);

@@ -16,13 +16,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
     $tingkat = $_POST['tingkatPelaporan'];
     $status = $_POST['statusPelaporan'];
 
-    $results = $pelanggaranMahasiswaModel->getDaftarPelaporan(
+    $id = $_SESSION['user']['id_users'];
+    $role = $_SESSION['user']['role'];
+
+    $results = $role == 'dpa' ? $pelanggaranMahasiswaModel->getDaftarPelaporan(
         $nim,
         $tanggalAwal,
         $tanggalAkhir,
         $tingkat,
-        $status
-    );
+        $status,
+        $id,
+        true
+    ) : $pelanggaranMahasiswaModel->getDaftarPelaporan(
+        $nim,
+        $tanggalAwal,
+        $tanggalAkhir,
+        $tingkat,
+        $status,
+    ) ;
 
     echo $results ? json_encode(['status' => 'success', 'data' => $results]) : json_encode($response);
     exit;
