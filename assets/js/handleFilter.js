@@ -1,18 +1,4 @@
 $(document).ready(function () {
-  // event untuk filter tab
-  $(".search-input-container").hide();
-
-  // event search dropdown
-  $(".filter-item.search").click(function () {
-    $(".search-input-container").slideToggle(500);
-    $(".date-input").removeClass("date-input-active");
-  });
-
-  // event date range dropdown
-  $(".date-range-input").click(function () {
-    $(".search-input-container").slideUp(500);
-    $(".date-input").toggleClass("date-input-active");
-  });
 
   // filter tatatertib by tingkat
   $("#tingkatPelanggaran").on("change", function () {

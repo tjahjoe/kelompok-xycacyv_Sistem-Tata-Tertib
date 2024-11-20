@@ -1,4 +1,4 @@
-<?php include 'components/table.php';?>
+<?php include 'components/table.php'; ?>
 <?php include 'components/emptyState.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +31,7 @@
               <span>Search</span>
             </div>
             <div class="filter-item filter-checkbox">
-              <input type="checkbox" id="showAll" name="showAll"/>
+              <input type="checkbox" id="showAll" name="showAll" />
               <label for="showAll">Perlihatkan Semua</label>
             </div>
             <div class="filter-item filter-select">
@@ -82,18 +82,18 @@
         </span>
       </div>
       <div class="search-input-container">
-          <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari..." name="searchNim" id="searchNim">
-          <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button>
+        <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari..." name="searchNim" id="searchNim">
+        <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button>
       </div>
       </form>
     </div>
     <div class="box-content">
       <!-- daftar PELAPORAN -->
       <div class="tab-content active" id="daftar-pelaporan">
-        <?php 
-          require_once __DIR__ . "../../controllers/getData.php";
-          $data = dataPelanggaran();
-          TableContent($data, 'detail-pelaporan-admin'); 
+        <?php
+        require_once __DIR__ . "../../controllers/getData.php";
+        $data = dataPelanggaran();
+        TableContent($data, 'detail-pelaporan-admin');
         ?>
       </div>
     </div>
@@ -108,6 +108,22 @@
   </div>
   <script src="../assets/js/script.js"></script>
   <script src="../assets/js/handleFilter.js"></script>
+  <script>
+    // event untuk filter tab
+    $(".search-input-container").hide();
+
+    // event search dropdown
+    $(".filter-item.search").click(function() {
+      $(".search-input-container").slideToggle(500);
+      $(".date-input").removeClass("date-input-active");
+    });
+
+    // event date range dropdown
+    $(".date-range-input").click(function() {
+      $(".search-input-container").slideUp(500);
+      $(".date-input").toggleClass("date-input-active");
+    });
+  </script>
 </body>
 
 </html>
