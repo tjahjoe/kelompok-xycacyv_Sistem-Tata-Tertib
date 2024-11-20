@@ -28,9 +28,6 @@ require_once '../app/controllers/getData.php';
     <?php
     if (!empty($data)) {
       $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']);
-      foreach($dataTingkatPelanggaran as $tingkat){
-        $tingkatPelanggaran = $tingkat['tingkat_pelanggaran'];
-      }
       $status = $data['Status'];
     ?>
     <div class="info-laporan">
@@ -42,15 +39,17 @@ require_once '../app/controllers/getData.php';
     <form id="updatePelaporan" method="post">
       <button class="btn btn-primary" type="submit">Simpan</button>
       <div class="detail-container">
+        <!-- id pelanggaran mhs -->
+        <input type="hidden" name="idPelanggaranMhs" value="<?php echo $data['id']; ?>" id="idPelanggaranMhs">
         <div class="detail-item">
           <label for="tingkatPelanggaran">Tingkat Pelanggaran</label>
           <select id="tingkatPelanggaran" name="tingkatPelanggaran" required>
-            <option value="I" <?php echo $tingkatPelanggaran == 'I' ? 'selected' : ''; ?>>I</option>
-            <option value="I/II" <?php echo $tingkatPelanggaran == 'I/II' ? 'selected' : ''; ?>>I/II</option>
-            <option value="II" <?php echo $tingkatPelanggaran == 'II' ? 'selected' : ''; ?>>II</option>
-            <option value="III" <?php echo $tingkatPelanggaran == 'III' ? 'selected' : ''; ?>>III</option>
-            <option value="IV" <?php echo $tingkatPelanggaran == 'IV' ? 'selected' : ''; ?>>IV</option>
-            <option value="V" <?php echo $tingkatPelanggaran == 'V' ? 'selected' : ''; ?>>V</option>
+            <?php 
+              foreach($dataTingkatPelanggaran as $tingkat){
+                $tingkatPelanggaran = $tingkat['tingkat_pelanggaran'];
+                echo "<option value='$tingkatPelanggaran' >$tingkatPelanggaran</option>";
+              }
+            ?>
           </select>
         </div>
         <div class="detail-item">

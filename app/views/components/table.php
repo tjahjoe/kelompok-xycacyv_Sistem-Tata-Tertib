@@ -1,7 +1,6 @@
 <?php
 require_once 'badge.php';
 
-// Fungsi ini menampilkan semua kolom yang ada dalam data secara otomatis.
 function TableContent($data, $linkDetail)
 {
   if (!empty($data)) {

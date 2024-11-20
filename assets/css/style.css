@@ -524,12 +524,13 @@ section#footerLapor {
 #footerLapor .box-footer {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  justify-content: start;
-  padding: 4rem;
+  gap: 25px;
+  align-items:center;
+  text-align:center;
+  justify-content: center;
+  padding: 2rem;
   color: #fff;
   width: 100%;
-  max-width: 900px;
 }
 
 /* PROFILE PAGE */

@@ -42,6 +42,8 @@ function TataTertibSection($data)
                 <td><?php echo $record['tingkat_pelanggaran'] ?></td>
               </tr>
           <?php }
+          } else {
+            echo "<tr><td colspan='3'>No data available</td></tr>";
           } ?>
         </tbody>
       </table>

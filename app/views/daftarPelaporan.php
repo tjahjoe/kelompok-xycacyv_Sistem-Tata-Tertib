@@ -108,24 +108,6 @@
   </div>
   <script src="../assets/js/script.js"></script>
   <script src="../assets/js/handleFilter.js"></script>
-  <script>
-    $(document).ready(function() {
-      $(".search-input-container").hide();
-
-      // event search dropdown
-      $(".filter-item.search").click(function() {
-        $(".search-input-container").slideToggle(500);
-        $(".date-input").removeClass("date-input-active");
-      });
-
-      // event date range dropdown
-      $(".date-range-input").click(function() {
-        $(".search-input-container").slideUp(500);
-        $(".date-input").toggleClass("date-input-active");
-      });
-
-    });
-  </script>
 </body>
 
 </html>

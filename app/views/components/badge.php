@@ -19,6 +19,9 @@ function Badge($status)
       $badgeColor = 'red';
       $status = 'Rejected';
       break;
+    default:
+      $status = 'Undefined';
+      break;
   }
  return "<span class='badge badge-" . $badgeColor . '\'>' . $status . "</span>";
 ?>

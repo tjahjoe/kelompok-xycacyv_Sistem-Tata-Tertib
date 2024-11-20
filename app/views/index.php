@@ -1,11 +1,10 @@
+<!DOCTYPE html>
 <?php include 'components/navbar.php'; ?>
 <?php include 'components/headerSection.php'; ?>
 <?php include 'components/tataTertibSection.php'; ?>
 <?php require_once '../app/controllers/getData.php' ?>
 
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,7 +23,7 @@
   <div class="container">
     <?php $data = ListPelanggaran()?>
     <?php TataTertibSection($data)?>
-    <?php include 'components/footerLaporSection.php'; ?>
+    <?php include 'components/footerSection.php'; ?>
   </div>
   <script src="../assets/js/script.js"></script>
   <script src="../assets/js/handleFilter.js"></script>

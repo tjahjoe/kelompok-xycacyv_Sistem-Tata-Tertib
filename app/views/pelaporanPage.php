@@ -49,7 +49,7 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
         <option value="">gggggggg</option>
       </select>
       <textarea placeholder="Ketik Laporan Anda *" class="input-field" rows="10" name="deskripsiLaporan" required></textarea>
-      <input type="date" class="input-field" placeholder="Pilih Tanggal Kejadian *" class="input-field custom-date" name="tanggalKejadian" required>
+      <!-- <input type="date" class="input-field" placeholder="Pilih Tanggal Kejadian *" class="input-field custom-date" name="tanggalKejadian" required> -->
       <div class="footer-modal">
         <label class="upload-section" for="lampiran">
           <span class="upload-icon"><img src="../assets/images/upload-image-icon.svg" width="30px" alt=""></span>
@@ -67,7 +67,7 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
   </div>
 
   <!-- ALERT -->
-  <?php Alert(); ?>
+  <?php Alert('alert-success-icon.svg','Berhasil', 'Laporan berhasil terkirim.', 'Kami akan berusaha untuk menyelesaikan kasus ini.'); ?>
 
   <!-- Login Modal -->
   <!-- <div class="modal-box">

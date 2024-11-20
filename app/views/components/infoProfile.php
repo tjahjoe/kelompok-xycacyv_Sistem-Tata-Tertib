@@ -2,7 +2,7 @@
 function InfoProfile($data)
 {
 ?>
-  <?php if (isset($data)) { ?>
+  <?php if (!empty($data)) { ?>
     <div class="box-profile">
       <div class="info-user">
         <img src="../assets/images/<?php echo $data['foto_diri'] ?>" alt="Profile Picture" class="profile-image" />
@@ -50,6 +50,9 @@ function InfoProfile($data)
       </div>
     </div>
 <?php
+  }
+  else{
+    echo "<p style='margin:20px auto; '>Data is not available</p>";
   }
 }
 ?>
