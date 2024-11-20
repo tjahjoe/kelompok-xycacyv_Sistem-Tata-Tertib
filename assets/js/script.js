@@ -52,11 +52,16 @@ const eventNavbarScroll = () => {
 
 const switchTab = () => {
   const tabLink = document.querySelectorAll(".tab-link");
+  const logoutBtn = document.querySelector(".logout-btn");
   const tabContent = document.querySelectorAll(".tab-content");
 
-  if (tabLink && tabContent) {
+  if (tabLink && tabContent && logoutBtn) {
     tabLink.forEach((link) => {
       link.addEventListener("click", function (event) {
+        if (this === logoutBtn) {
+          return;
+        }
+
         event.preventDefault();
         tabLink.forEach((tab) => tab.classList.remove("active"));
         tabContent.forEach((content) => content.classList.remove("active"));
