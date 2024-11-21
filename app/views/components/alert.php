@@ -1,4 +1,4 @@
-<?php function Alert($icon, $information, $title, $content)
+<?php function Alert($icon, $information, $title, $content, $isAlertConfirmation)
 { ?>
   <div class="overlay">
     <div class="alert-box">
@@ -9,9 +9,17 @@
         <?php echo $title; ?><br>
         <?php echo $content; ?><br>
         </strong>
-        Anda akan diarahkan ke beranda
       </div>
-      <button class="btn btn-primary alert-close-button">Kembali</button>
+      <?php if(!$isAlertConfirmation){?>
+
+        <button class="btn btn-primary alert-close-button" style="margin: 10px auto;">Kembali</button>
+
+      <?php }else{?>
+      <div class="flex-row">
+        <button class="btn btn-red alert-logout-button">Konfirmasi</button>
+        <button class="btn btn-white alert-close-button">Kembali</button>
+      </div>
+      <?php }?>
     </div>
   </div>
 <?php } ?>

@@ -67,7 +67,7 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
   </div>
 
   <!-- ALERT -->
-  <?php Alert('alert-success-icon.svg','Berhasil', 'Laporan berhasil terkirim.', 'Kami akan berusaha untuk menyelesaikan kasus ini.'); ?>
+  <?php Alert('alert-success-icon.svg','Berhasil', 'Laporan berhasil terkirim.', 'Kami akan berusaha untuk menyelesaikan kasus ini.', false); ?>
 
   <!-- Login Modal -->
   <!-- <div class="modal-box">

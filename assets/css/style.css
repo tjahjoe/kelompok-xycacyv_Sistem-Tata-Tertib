@@ -18,7 +18,7 @@ html {
   --green-color: #00b69b;
   --gray-color: #979797;
   --lightgray-color: #f2f2f2;
-  --purple-color: #6226EF;
+  --blue-color: #007BFF;
 }
 
 body {
@@ -369,8 +369,8 @@ transition: all 0.3s;
 /* Section Header */
 section#header {
   padding-top: 80px;
-  min-height: 500px;
-  background: linear-gradient(rgba(0, 28, 147, 0.7), rgba(0, 28, 147, 0.3)),
+  min-height: 400px;
+  background: linear-gradient(-140deg ,rgba(0, 28, 147, 0.7) 30%, rgba(0, 28, 147, 0)) 30%,
     url("../images/Gedung-TI.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -383,6 +383,7 @@ section#header {
   gap: 10px;
   justify-content: start;
   padding: 4rem;
+  padding-top: 20px;
   border-radius: 20px;
   color: #fff;
   width: 100%;
@@ -424,6 +425,7 @@ section#header {
 }
 
 .btn-tatib {
+  padding: 15px 25px;
   margin-top: 30px;
 }
 
@@ -514,7 +516,7 @@ section#footerLapor span.text-red {
 
 section#footerLapor {
   margin-top: 30px;
-  background-color: var(--primary-color);
+  background: linear-gradient(-140deg ,rgba(0, 28, 147, 1) 80%, rgba(0, 28, 147, 0)) 10%;
   border-radius: 20px;
   /* background-repeat: no-repeat;
   background-size: cover;
@@ -701,9 +703,9 @@ a.link-detail{
   color: var(--red-color);
 }
 
-.badge.badge-purple {
+.badge.badge-blue {
   background-color: #E0D4FC;
-  color: var(--purple-color);
+  color: var(--blue-color);
 }
 .badge.badge-orange {
   background-color: #fee9d8;
@@ -886,6 +888,8 @@ form#searchByNIM{
   display: flex;
   gap:10px;
   align-items:center;
+  width: max-content;
+  margin: auto;
 }
 
 /* feature tab */
@@ -1128,7 +1132,7 @@ form#searchByNIM{
 }
 
 .alert-close-button{
-  margin: 10px auto;
+
 }
 
 .alert-button:hover {

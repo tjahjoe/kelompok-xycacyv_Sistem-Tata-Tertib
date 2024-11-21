@@ -2,7 +2,9 @@
 include 'components/emptyState.php'; 
 include 'components/navbar.php'; 
 include 'components/table.php'; 
+include 'components/alert.php';
 ?>
+
 <?php
 require_once '../app/controllers/getData.php' ;
 ?>
@@ -74,6 +76,8 @@ require_once '../app/controllers/getData.php' ;
         ?>
         
       </div>
+      <!-- ALERT -->
+    <?php Alert('alert-success-icon.svg','Logout', 'Are you sure want to logout?', '', true); ?>
     </div>
   </div>
   </div>

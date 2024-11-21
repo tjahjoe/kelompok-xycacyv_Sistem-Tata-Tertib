@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
 
     if($results){
         foreach ($results as &$item) {
-            $item['badge'] = Badge($item['status']);
+            $item['badge'] = Badge(strtolower($item['status']));
         }       
         
         echo json_encode(['status' => 'success', 'data' => $results]);

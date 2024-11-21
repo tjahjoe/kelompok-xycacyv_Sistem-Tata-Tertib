@@ -83,7 +83,7 @@ const updateBadge = () => {
       case "status-completed":
         return "badge-green";
       case "status-processing":
-        return "badge-purple";
+        return "badge-blue";
       case "status-rejected":
         return "badge-red";
       default:
@@ -136,6 +136,18 @@ if(document.getElementById('form-pelaporan')){
     e.preventDefault();
 
     showAlert();
+  });
+}
+
+if(document.querySelector('.logout-btn')){
+  document.querySelector('.logout-btn').addEventListener('click', (e) => {
+  showAlert();
+  });
+  
+  document.querySelector('.alert-logout-button').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    window.location.href = './../app/controllers/Logout.php';
   });
 }
 

@@ -44,6 +44,7 @@ require_once '../app/controllers/getData.php';
         <div class="detail-item">
           <label for="tingkatPelanggaran">Tingkat Pelanggaran</label>
           <select id="tingkatPelanggaran" name="tingkatPelanggaran" required>
+            <option disabled selected hidden>Pilih Tingkat</option>
             <?php 
               foreach($dataTingkatPelanggaran as $tingkat){
                 $tingkatPelanggaran = $tingkat['tingkat_pelanggaran'];
@@ -71,7 +72,9 @@ require_once '../app/controllers/getData.php';
         </div>
         <div class="detail-item">
           <label for="sanksi">Sanksi</label>
-          <input type="text" name="sanksi" value="<?php echo $data['Sanksi']; ?>" id="sanksi">
+          <select id="sanksi" name="sanksi" required>
+            <option name="sanksi" value="<?php echo $data['Sanksi'] ?? null; ?>"></option>
+          </select>
         </div>
         <div class="detail-item">
           <label for="">Status</label>

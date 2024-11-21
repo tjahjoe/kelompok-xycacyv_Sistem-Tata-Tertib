@@ -8,7 +8,7 @@ function Badge($status)
       $status = 'Pending';
       break;
     case 'aktif':
-      $badgeColor = 'purple';
+      $badgeColor = 'blue';
       $status = 'Processing';
       break;
     case 'nonaktif':

@@ -29,7 +29,9 @@ function Navbar($isOtherPage) {
             <?php if($data && in_array(trim($data['role']), ['dosen', 'dpa', 'kps', 'sekjur', 'admin'])){?>
                 <a href="./">Beranda</a>
                 <a href="./pelaporan.php">Pelaporan</a>
+                <?php if($data['role'] !== 'dosen'){ ?>
                 <a href="./daftar-pelaporan.php">Daftar Pelaporan</a>
+                <?php }?>
             <?php }?>
             </div>
             

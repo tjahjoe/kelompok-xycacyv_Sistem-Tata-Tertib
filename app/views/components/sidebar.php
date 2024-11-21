@@ -12,5 +12,5 @@ $data = dataUser();
   <?php } else { ?>
     <a href="#riwayat-pelanggaran" class="tab-link">Riwayat Pelanggaran</a>
   <?php } ?>
-  <a href="./../app/controllers/Logout.php" class="tab-link logout-btn">Keluar Akun</a>
+  <a href="#" class="tab-link logout-btn">Keluar Akun</a>
 </div>

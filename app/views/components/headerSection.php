@@ -12,7 +12,7 @@ function HeaderSection($title, $paragraph, $showButton) {
 
     <?php echo $showButton ? " 
     <a href='#tataTertib'>
-      <button class='btn btn-orange btn-tatib'>Baca Tata Tertib!</button>
+      <button class='btn btn-primary btn-tatib'>Baca Tata Tertib</button>
     </a>
     " : ""?>
   </div>
