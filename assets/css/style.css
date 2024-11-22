@@ -37,7 +37,7 @@ a{
 }
 
 .pt-5 {
-  padding-top: 5rem;
+  padding-top: 6rem;
 }
 
 .bg-gray {
@@ -46,7 +46,6 @@ a{
 
 .title {
   font-size: 2.5rem;
-  margin: 1.5rem 0;
 }
 
 /* LOGIN PAGE */
@@ -240,7 +239,7 @@ a{
 
 .navbar.navbar-other {
   background-color: #fff;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.5s ease-in-out;
 }
 
@@ -451,7 +450,8 @@ section#header {
 
 .btn-gray{
   background-color: var(--lightgray-color);
-  border-radius: 0;
+  color: var(--dark-color);
+  border-radius: 6px;
   border: 1px solid #ddd;
 }
 
@@ -680,7 +680,6 @@ a.link-detail{
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-bottom:20px;
 }
 
 /* BADGES */
@@ -877,11 +876,19 @@ form#searchByNIM{
   margin-top: 1rem;
 }
 
+.items-end{
+  align-items:end;
+}
+
 .flex-col{
   display:flex;
   gap:10px;
   /* align-items:center; */
   flex-direction: column;
+}
+
+.m-0{
+  margin: 0!important;
 }
 
 .flex-row{
@@ -894,6 +901,7 @@ form#searchByNIM{
 
 /* feature tab */
 .feature-tab{
+  margin-top: 1rem;
   position:relative;
   display:flex;
   flex-direction: column;

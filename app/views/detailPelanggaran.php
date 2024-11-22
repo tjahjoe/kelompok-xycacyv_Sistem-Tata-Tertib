@@ -1,6 +1,6 @@
 <?php include 'components/emptyState.php'; ?>
-<?php 
-include 'components/detailSection.php'; 
+<?php
+include 'components/detailSection.php';
 require_once '../app/controllers/getData.php';
 ?>
 
@@ -22,32 +22,34 @@ require_once '../app/controllers/getData.php';
   <?php include 'components/navbar.php'; ?>
   <?php Navbar(true); ?>
 
-  <?php
-  $data = detailPelanggaran($_GET['id']);
-  ?>
-
   <div class="container pt-5">
-    <h1 class="title">Detail Pelanggaran</h1>
-    <?php
-    if (!empty($data)) {
-    ?>
-    <p><strong>ID Pelanggaran:</strong> <?php echo $data['id'] ?></p>
-      <div class="info-box">
-        <span>Informasi</label>
-          <p>Untuk menebus sanksi atas pelanggaran, silakan hubungi admin untuk informasi lebih lanjut.</p>
-      </div>
-    <?php
-    } 
-    DetailSection($data);
-   ?>
-   <?php if(!empty($data['Tingkat Pelanggaran']) &&  in_array($data['Tingkat Pelanggaran'], ['III', 'IV', 'V'])){ ?>
+    <div class="flex-between">
+      <div class="flex-col">
+        <h1 class="title">Detail Pelanggaran</h1>
+        <?php
+        $data = detailPelanggaran($_GET['id']);
+        if (!empty($data)) {
+        ?>
+          <p><strong>ID Pelanggaran:</strong> <?php echo $data['id'] ?></p>
+        </div>
+        <a href="profile-user.php" class="btn btn-gray">Kembali</a>
+
+    </div>
+    <div class="info-box">
+      <span>Informasi</label>
+        <p>Untuk menebus sanksi atas pelanggaran, silakan hubungi admin untuk informasi lebih lanjut.</p>
+    </div>
+  <?php
+        }
+        DetailSection($data);
+  ?>
+  <?php if (!empty($data['Tingkat Pelanggaran']) &&  in_array($data['Tingkat Pelanggaran'], ['III', 'IV', 'V'])) { ?>
     <div class="danger-box">
       <label for="">Lampiran</label>
       <p>Untuk pelanggaran tingkat III hingga V, Anda dapat mengunduh <a href="#" style="text-decoration: underline; color:var(--red-color);">file template di sini.</a></p>
     </div>
-    <?php }?>
-    
-    <a href="profile-user.php" class="btn btn-primary">Kembali</a>
+  <?php } ?>
+
   </div>
   <script src="../assets/js/script.js"></script>
 </body>

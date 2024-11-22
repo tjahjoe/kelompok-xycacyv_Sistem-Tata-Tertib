@@ -28,16 +28,21 @@ require_once '../app/controllers/getData.php';
     <?php
     if (!empty($data)) {
       $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']);
-      $status = $data['Status'];
+      $status = strtolower($data['Status']);
     ?>
-    <div class="info-laporan">
-      <p><strong>ID Laporan:</strong>
-      <?php echo $data['id']; ?></p>
-      <p><strong>Nama Pelapor:</strong> <?php echo $data['Nama Pelapor']; ?></p>
-      <p><strong>ID pelapor:</strong> <?php echo $data['NIP Pelapor']; ?></p>
-    </div>
     <form id="updatePelaporan" method="post">
-      <button class="btn btn-primary" type="submit">Simpan</button>
+      <div class="flex-between items-end">
+        <div class="info-laporan">
+          <p><strong>ID Laporan:</strong>
+          <?php echo $data['id']; ?></p>
+          <p><strong>Nama Pelapor:</strong> <?php echo $data['Nama Pelapor']; ?></p>
+          <p><strong>ID pelapor:</strong> <?php echo $data['NIP Pelapor']; ?></p>
+        </div>
+        <div class="flex-row m-0">
+          <button class="btn btn-primary" type="submit">Simpan</button>
+          <a href="daftar-pelaporan.php" class="btn btn-gray">Kembali</a>
+        </div>
+      </div>
       <div class="detail-container">
         <!-- id pelanggaran mhs -->
         <input type="hidden" name="idPelanggaranMhs" value="<?php echo $data['id']; ?>" id="idPelanggaranMhs">
@@ -56,7 +61,7 @@ require_once '../app/controllers/getData.php';
         <div class="detail-item">
           <label for="tanggalPelanggaran">Tanggal Pelanggaran</label>
           <input type="date" name="tanggalPelanggaran" id="tanggalPelanggaran" class="custom-date"
-            value="<?php echo $data['Tanggal Pelanggaran']; ?>">
+            value="<?php echo $data['Tanggal Pelanggaran']; ?>" disabled>
         </div>
         <div class="detail-item">
           <label for="nimPelanggar">NIM Pelanggar</label>
@@ -64,7 +69,7 @@ require_once '../app/controllers/getData.php';
         </div>
         <div class="detail-item">
           <label for="namaPelanggaran">Nama Pelanggaran</label>
-          <input type="text" name="namaPelanggaran" value="<?php echo $data['Nama Pelanggaran']; ?>" id="namaPelanggaran">
+          <input type="text" name="namaPelanggaran" value="<?php echo $data['Nama Pelanggaran']; ?>" id="namaPelanggaran" disabled>
         </div>
         <div class="detail-item">
           <label for="catatan">Catatan</label>
@@ -72,9 +77,7 @@ require_once '../app/controllers/getData.php';
         </div>
         <div class="detail-item">
           <label for="sanksi">Sanksi</label>
-          <select id="sanksi" name="sanksi" required>
-            <option name="sanksi" value="<?php echo $data['Sanksi'] ?? null; ?>"></option>
-          </select>
+          <input type="text" name="sanksi" value="<?php echo $data['Sanksi'] ?? null; ?>" id="sanksi" disabled>
         </div>
         <div class="detail-item">
           <label for="">Status</label>
@@ -100,7 +103,6 @@ require_once '../app/controllers/getData.php';
     }
     ?>
 
-    <a href="daftar-pelaporan.php" class="btn btn-primary">Kembali</a>
   </div>
   <script src="../assets/js/script.js"></script>
 </body>

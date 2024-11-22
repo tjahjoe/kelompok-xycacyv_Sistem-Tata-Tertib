@@ -1,6 +1,6 @@
 <?php include 'components/navbar.php'; ?>
-<?php 
-include 'components/detailSection.php'; 
+<?php
+include 'components/detailSection.php';
 require_once '../app/controllers/getData.php';
 ?>
 
@@ -21,20 +21,23 @@ require_once '../app/controllers/getData.php';
 <body>
   <?php Navbar(true); ?>
   <div class="container pt-5">
-    <h1 class="title">Detail Pelaporan</h1>
-    <?php
-    $data = detailPelaporan($_GET['id']);
-    if (!empty($data)) {
-    ?>
-    <p><strong>ID Laporan:</strong> <?php echo $data['id'] ?></p>
-    <?php 
-      DetailSection($data);
-    }else{
-      echo "<p style='margin:20px auto;'>Data is not available</p>";
-    }
-    ?>
-
-    <a href="profile-user.php" class="btn btn-primary">Kembali</a>
+    <div class="flex-between">
+      <div class="flex-col">
+        <h1 class="title">Detail Pelaporan</h1>
+        <?php
+        $data = detailPelaporan($_GET['id']);
+        if (!empty($data)) {
+        ?>
+          <p><strong>ID Laporan:</strong> <?php echo $data['id'] ?></p>
+      </div>
+      <a href="profile-user.php" class="btn btn-gray">Kembali</a>
+    </div>
+  <?php
+          DetailSection($data);
+        } else {
+          echo "<p style='margin:20px auto;'>Data is not available</p>";
+        }
+  ?>
 
   </div>
   <script src="../assets/js/script.js"></script>
