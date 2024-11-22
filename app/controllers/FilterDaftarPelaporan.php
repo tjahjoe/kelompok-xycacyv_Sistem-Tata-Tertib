@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
     $id = $_SESSION['user']['id_users'];
     $role = $_SESSION['user']['role'];
 
-    $results = $role == 'dpa' ? $pelanggaranMahasiswaModel->getDaftarPelaporan(
+    $results = $role == 'dpa' ? $pelanggaranMahasiswaModel->getDaftarPelaporanByFilter(
         $nim,
         $tanggalAwal,
         $tanggalAkhir,
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         $status,
         $id,
         true
-    ) : $pelanggaranMahasiswaModel->getDaftarPelaporan(
+    ) : $pelanggaranMahasiswaModel->getDaftarPelaporanByFilter(
         $nim,
         $tanggalAwal,
         $tanggalAkhir,
@@ -42,12 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         }       
         
         echo json_encode(['status' => 'success', 'data' => $results]);
+        exit;
     }else{
         echo json_encode($response);
+        exit;
     }
 
     // echo $results ? json_encode(['status' => 'success', 'data' => $results]) : json_encode($response);
-    exit;
 
 }
 ?>

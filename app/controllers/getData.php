@@ -98,11 +98,10 @@ function detailPelaporan($id, $condition = false)
         $role = $_SESSION['user']['role'];
 
         if ($role == 'dpa') {
-            $detail = $pelanggaranMahasiswaModel->getDetailDaftarPelanggaran($id, idUser: $idUser, isDpa: true, condition: $condition);
-            // var_dump($detail);
+            $detail = $pelanggaranMahasiswaModel->getDetailDaftarPelanggaran($id, idUser: $idUser, isDpa: true, condition: $condition, role:$role); 
             return $detail;
         } else if (in_array($role, ['sekjur', 'kps', 'admin', 'dosen'])) {
-            $detail = $pelanggaranMahasiswaModel->getDetailDaftarPelanggaran($id, idUser: $idUser, condition:$condition);
+            $detail = $pelanggaranMahasiswaModel->getDetailDaftarPelanggaran($id, idUser: $idUser, condition:$condition, role:$role);
             return $detail;
         } else {
             return false;
