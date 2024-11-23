@@ -131,14 +131,6 @@ const closeAlert = () => {
   alertOverlay.classList.remove("alert-active");
 };
 
-if(document.getElementById('form-pelaporan')){
-  document.getElementById('form-pelaporan').addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    showAlert();
-  });
-}
-
 if(document.querySelector('.logout-btn')){
   document.querySelector('.logout-btn').addEventListener('click', (e) => {
   showAlert();

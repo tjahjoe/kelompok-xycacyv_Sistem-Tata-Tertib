@@ -50,13 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
             $isEmptyImg
         );
 
-        echo json_encode($idPelanggaranMhs);
+        // echo json_encode($idPelanggaranMhs);
         if ($idPelanggaranMhs) {
 
             $files = uploadImage($idPelanggaranMhs);
             $result = $pelanggaranMahasiswaModel->uploadImages($files, $idPelanggaranMhs['id_pelanggaran_mhs']);
 
-            echo json_encode($result);
+            // echo json_encode($result);
             echo $result ? json_encode(['status' => 'success', 'message' => 'upload success']) : json_encode($response);
             exit;
         } else {

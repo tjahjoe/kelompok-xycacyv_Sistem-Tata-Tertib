@@ -31,6 +31,7 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
   <!-- FORM -->
   <div class="modal-box">
     <h2>Laporan anda:</h2>
+    <div id="hasil" style="color: red; display:none; margin-bottom: 10px;"></div>
     <form class="form-container" id="form-pelaporan" enctype="multipart/form-data">
       <!-- <input type="text" placeholder="Ketik Judul Laporan *" class="input-field"> -->
       <!-- <input type="text" placeholder="PIlih Tingkat Pelanggaran *" class="input-field"> -->

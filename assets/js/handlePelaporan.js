@@ -1,28 +1,41 @@
 // handle submit form pelaporan
-$(document).ready(function() {
-  $("#form-pelaporan").submit(function(e) {
-      e.preventDefault();
+$(document).ready(function () {
+  const showAlert = () => {
+    $(".overlay").addClass("alert-active");
+  };
 
-      // Mendapatkan data form
-      var formData = new FormData(this)
+  const closeAlert = () => {
+    $(".overlay").removeClass("alert-active");
+    window.location.reload();
+  };
 
-      // Kirim data ke server PHP
-      $.ajax({
-          url: "../app/controllers/uploadData.php",
-          type: "POST",
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function(response) {
-              if (response.status === 'success') {
-                  // window.location.href = './'; // Redirect ke halaman utama
-                  console.log(response.message)
-              } else {
-                $("#hasil").css("display", "block");
-                  $("#hasil").html(response.message);
-              }
+  $("#form-pelaporan").submit(function (e) {
+    e.preventDefault();
+
+    // Mendapatkan data form
+    var formData = new FormData(this);
+
+    // Kirim data ke server PHP
+    $.ajax({
+      url: "../app/controllers/uploadData.php",
+      type: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          showAlert();
+          if ($(".overlay").length && $(".alert-close-button").length) {
+            $(".overlay").on("click", closeAlert);
+            $(".alert-close-button").on("click", closeAlert);
           }
-      });
+        } else {
+          $("#hasil").css("display", "block");
+          $("#hasil").html(response.message);
+        }
+      },
+    });
   });
 
   // filter jenis pelanggaran by tingkat
@@ -36,7 +49,6 @@ $(document).ready(function() {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          
           $("#jenisPelanggaran").empty();
           $.each(response.data, function (index, record) {
             const row = `
@@ -44,7 +56,6 @@ $(document).ready(function() {
         `;
             $("#jenisPelanggaran").append(row);
           });
-
         } else {
           $("#jenisPelanggaran").html(
             `<option>Data is not ${response.message}</option>`
