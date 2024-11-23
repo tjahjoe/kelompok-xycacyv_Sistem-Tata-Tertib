@@ -4,14 +4,15 @@ $(document).ready(function() {
       e.preventDefault();
 
       // Mendapatkan data form
-      var formData = $(this).serialize();
+      var formData = new FormData(this)
 
       // Kirim data ke server PHP
       $.ajax({
           url: "../app/controllers/uploadData.php",
           type: "POST",
           data: formData,
-          dataType: "json",
+          processData: false,
+          contentType: false,
           success: function(response) {
               if (response.status === 'success') {
                   // window.location.href = './'; // Redirect ke halaman utama
