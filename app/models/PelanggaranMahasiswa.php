@@ -37,7 +37,7 @@ class PelanggaranMahasiswa
 		ON m.nim = p.nim
         WHERE m.nim = ?
         ORDER BY 
-        tgl_pelanggaran DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
+        tgl_pelanggaran DESC, id_pelanggaran_mhs DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
         return $this->getPelanggaran($query, $nim);
     }
 
@@ -58,7 +58,7 @@ class PelanggaranMahasiswa
 		ON m.nim = p.nim
         WHERE m.nip = ? 
         ORDER BY 
-        tgl_pelanggaran DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
+        tgl_pelanggaran DESC, id_pelanggaran_mhs DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
         return $this->getPelanggaran($query, $nip);
     }
 
@@ -78,7 +78,7 @@ class PelanggaranMahasiswa
 		JOIN Mahasiswa m
         ON m.nim = p.nim
         ORDER BY 
-        tgl_pelanggaran DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
+        tgl_pelanggaran DESC, id_pelanggaran_mhs DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -100,7 +100,7 @@ class PelanggaranMahasiswa
         ON p.id_list_pelanggaran = l.id_list_pelanggaran
         WHERE pelapor = ? 
         ORDER BY
-        tgl_pelanggaran DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
+        tgl_pelanggaran DESC, id_pelanggaran_mhs DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
         return $this->getPelanggaran($query, $nip);
     }
 
@@ -144,7 +144,8 @@ class PelanggaranMahasiswa
         l.nama_jenis_pelanggaran 'Nama Pelanggaran',
         p.catatan 'Catatan',
         $sanksi
-        p.status 'Status'
+        p.status 'Status',
+        p.bukti_laporan 'Bukti'
         FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON l.id_list_pelanggaran = p.id_list_pelanggaran
@@ -252,13 +253,14 @@ class PelanggaranMahasiswa
         return "SELECT 
         p.id_pelanggaran_mhs 'id',
         $selectedColumns
-        l.tingkat_pelanggaran 'Tingkat Pelanggaran', --dihapus di ganti dengan query select untuk tingkat pelanggaran
+        l.tingkat_pelanggaran 'Tingkat Pelanggaran',
         p.tgl_pelanggaran 'Tanggal Pelanggaran',
         p.nim 'NIM Pelanggar',
         l.nama_jenis_pelanggaran 'Nama Pelanggaran',
         p.catatan 'Catatan',
         $sanksi
-        p.status 'Status'
+        p.status 'Status',
+        p.bukti_laporan 'Bukti'
         FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON l.id_list_pelanggaran = p.id_list_pelanggaran
@@ -291,7 +293,7 @@ class PelanggaranMahasiswa
         return false;
     }
 
-    public function getDaftarPelaporanByFilter($nim, $tanggalAwal, $tanggalAkhir, $tingkat, $status, $id = '', $isDpa = false)
+    public function getDaftarPelaporanByFilter($nim, $tanggalAwal, $tanggalAkhir, $tingkat, $status, $num, $id = '', $isDpa = false)
     {
         $conditions = [];
         $params = [];
@@ -300,11 +302,6 @@ class PelanggaranMahasiswa
             $conditions[] = "p.nim LIKE ?";
             $params[] = "%" . $nim . "%";
         }
-        // if ($tanggalAwal && $tanggalAkhir) {
-        //     $conditions[] = "p.tgl_pelanggaran BETWEEN ? AND ?";
-        //     $params[] = $tanggalAwal;
-        //     $params[] = $tanggalAkhir;
-        // }
         if ($tanggalAwal) {
             $conditions[] = "p.tgl_pelanggaran >= ?";
             $params[] = $tanggalAwal;
@@ -344,14 +341,15 @@ class PelanggaranMahasiswa
         WHERE 
         $whereClause
         ORDER BY 
-        tgl_pelanggaran DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
+        tgl_pelanggaran DESC
+        OFFSET ? ROWS FETCH NEXT 10 ROWS ONLY"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
 
         $stmt = $this->conn->prepare($query);
 
         foreach ($params as $index => $param) {
             $stmt->bindValue($index + 1, $param);
         }
-
+        $stmt->bindValue(count($params) + 1, $num, PDO::PARAM_INT);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -426,6 +424,7 @@ class PelanggaranMahasiswa
 
     public function uploadStatusAndTingkat($idPelanggaran, $status, $idTingkat, $nip)
     {
+        $status = $status == 'reject' ? null : $status;
 
         $query = "UPDATE " . $this->table . " SET 
         status = ?,
@@ -440,7 +439,7 @@ class PelanggaranMahasiswa
 
         $result = $this->checkAmount($idPelanggaran);
 
-        if ($result) {
+        if ($result && !is_null($status)) {
             if ($result['jumlah'] % 3 == 0) {
                 $this->updateStatusMultipleOfThree($idPelanggaran);
                 $this->uploadPelanggaranMultipleOfThree($idPelanggaran, $idTingkat, $nip, $result);

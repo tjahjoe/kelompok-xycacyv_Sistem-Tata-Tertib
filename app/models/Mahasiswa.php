@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/../../config/database.php";
-require_once __DIR__ . "/../../assets/utils/setNewData.php";
 class Mahasiswa
 {
     private $conn;
@@ -27,7 +26,8 @@ class Mahasiswa
         $stmt->bindParam(1, $nim);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result ? setFirstnameAndLastname($result) : false;
+        return $result ? $result : false;
+        // return $result ? setFirstnameAndLastname($result) : false;
     }
 
     // public function getDataMahasiswaByDpa($nip)

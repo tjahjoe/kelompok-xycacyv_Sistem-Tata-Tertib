@@ -11,11 +11,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         'message' => 'No data found for the selected tingkat pelanggaran.',
     ];
 
-    $nim = $_POST['searchNim'];
-    $tanggalAwal = $_POST['startTanggalPelaporan'];
-    $tanggalAkhir = $_POST['endTanggalPelaporan'];
-    $tingkat = $_POST['tingkatPelaporan'];
-    $status = $_POST['statusPelaporan'];
+    $nim = $_SESSION['filter']['nim'] =  $_POST['searchNim'];
+    $tanggalAwal = $_SESSION['filter']['tanggalAwal'] = $_POST['startTanggalPelaporan'];
+    $tanggalAkhir = $_SESSION['filter']['tanggalAkhir'] = $_POST['endTanggalPelaporan'];
+    $tingkat = $_SESSION['filter']['tingkat'] = $_POST['tingkatPelaporan'];
+    $status = $_SESSION['filter']['status'] = $_POST['statusPelaporan'];
+
+    // $_SESSION['filter']['nim'] = $nim;
+    // $_SESSION['filter']['tanggalAwal'] = $tanggalAwal;
+    // $_SESSION['filter']['tanggalAkhir'] = $tanggalAkhir;
+    // $_SESSION['filter']['tingkat'] = $tingkat;
+    // $_SESSION['filter']['status'] = $status;
 
     $id = $_SESSION['user']['id_users'];
     $role = $_SESSION['user']['role'];
@@ -26,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         $tanggalAkhir,
         $tingkat,
         $status,
+        0,
         $id,
         true
     ) : $pelanggaranMahasiswaModel->getDaftarPelaporanByFilter(
@@ -34,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         $tanggalAkhir,
         $tingkat,
         $status,
+        0
     ) ;
 
     if($results){
