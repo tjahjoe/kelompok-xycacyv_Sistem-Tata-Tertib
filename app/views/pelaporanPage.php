@@ -1,6 +1,7 @@
 <?php include 'components/navbar.php'; ?>
 <?php include 'components/headerSection.php'; ?>
 <?php include 'components/alert.php'; ?>
+<?php require_once '../app/controllers/getData.php' ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,13 +25,16 @@
   <?php HeaderSection("Pengaduan Online Mahasiswa
 Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Teknik Informatika dengan cepat dan aman", false); ?>
 
+  <!--  Data  Pelanggaran -->
+  <?php $data = ListPelanggaran() ?>
+
   <!-- FORM -->
   <div class="modal-box">
     <h2>Laporan anda:</h2>
     <form class="form-container" id="form-pelaporan" enctype="multipart/form-data">
       <!-- <input type="text" placeholder="Ketik Judul Laporan *" class="input-field"> -->
       <!-- <input type="text" placeholder="PIlih Tingkat Pelanggaran *" class="input-field"> -->
-      <input type="text" placeholder="Masukkan NIM Pelanggar *" nama="nim" class="input-field" required>
+      <input type="text" placeholder="Masukkan NIM Pelanggar *" name="nim" class="input-field" required>
       <select id="tingkatPelanggaran" class="tingkatPelanggaran input-field" name="tingkatPelanggaran" required>
         <option disabled selected hidden>PIlih Tingkat Pelanggaran *</option>
         <option value="">All</option>
@@ -43,10 +47,14 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
       </select>
       <select id="jenisPelanggaran" class="jenisPelanggaran input-field" name="jenisPelanggaran" required>
         <option disabled selected hidden>PIlih Jenis Pelanggaran *</option>
-        <option value="">Blablabla</option>
-        <option value="">jjjjjjjj</option>
-        <option value="">blbablabla</option>
-        <option value="">gggggggg</option>
+        <?php if (!empty($data)) {
+          foreach ($data as $record) {
+        ?>
+            <option value="<?php echo $record['nama_jenis_pelanggaran'] ?>"><?php echo $record['nama_jenis_pelanggaran'] ?></option>
+        <?php }
+        } else {
+          echo "<option>Data is not availabel</option>";
+        } ?>
       </select>
       <textarea placeholder="Ketik Laporan Anda *" class="input-field" rows="10" name="deskripsiLaporan" required></textarea>
       <!-- <input type="date" class="input-field" placeholder="Pilih Tanggal Kejadian *" class="input-field custom-date" name="tanggalKejadian" required> -->
@@ -67,7 +75,7 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
   </div>
 
   <!-- ALERT -->
-  <?php Alert('alert-success-icon.svg','Berhasil', 'Laporan berhasil terkirim.', 'Kami akan berusaha untuk menyelesaikan kasus ini.', false); ?>
+  <?php Alert('alert-success-icon.svg', 'Berhasil', 'Laporan berhasil terkirim.', 'Kami akan berusaha untuk menyelesaikan kasus ini.', false); ?>
 
   <!-- Login Modal -->
   <!-- <div class="modal-box">
@@ -83,6 +91,7 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
     </div>
   </div> -->
 
+  <script src="../assets/js/handlePelaporan.js"></script>
   <script src="../assets/js/script.js"></script>
 </body>
 

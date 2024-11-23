@@ -801,17 +801,6 @@ a.link-detail{
   font-size: 1em;
 }
 
-select.input-field::after{
-  content: "▼"; /* You can replace this with any arrow symbol or icon */
-  font-size: 16px;
-  color: #333;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none; /* Ensures the arrow is not clickable */
-}
-
 .date-container {
   display: flex;
   align-items: center;
@@ -993,14 +982,14 @@ form#searchByNIM{
   display: flex;
   align-items: center;
   border: 1px solid #ddd;
-  border-radius: 15px;
+  border-radius: 10px;
   overflow: hidden;
   background-color: #f9f9f9;
 }
 
 .arrow {
   width: 50px;
-  height: 50px;
+  height: 30px;
   border: none;
   background: none;
   color: #333;

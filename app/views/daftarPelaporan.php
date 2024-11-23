@@ -100,8 +100,8 @@
     <div class="flex-between">
       <p>Showing 1 of 4 Pages</p>
       <div class="arrow-container">
-        <button class="arrow left-arrow" disabled>&lt;</button>
-        <button class="arrow right-arrow">&gt;</button>
+        <button class="left-arrow" disabled><img src="../assets/images/arrow.svg" style="transform: rotate(90deg);" alt=""></button>
+        <button class="right-arrow"><img src="../assets/images/arrow.svg" style="transform: rotate(-90deg);" alt=""></button>
       </div>
     </div>
   </div>
