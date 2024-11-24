@@ -10,9 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         'message' => 'Email or Password is incorrect!',
     ];
 
-    $idPelanggaran = $_POST[''];
+    $idPelanggaran = $_POST['idPelanggaranMhs'];
     $status = $_POST['status'];
-    $idTigkat = $_POST['tingkatPelanggaran'];
+    $idTigkat = isset($_POST['tingkatPelanggaran']) ? $_POST['tingkatPelanggaran'] : null;
     $nip = $id = $_SESSION['user']['id_users'];
 
 

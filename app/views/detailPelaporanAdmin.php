@@ -30,7 +30,7 @@ require_once '../app/controllers/getData.php';
       $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']);
       $status = strtolower($data['Status']);
     ?>
-    <form id="updatePelaporan" method="post">
+    <form id="updatePelaporan" action="../app/controllers/uploadTingkat.php" method="post">
       <div class="flex-between items-end">
         <div class="info-laporan">
           <p><strong>ID Laporan:</strong>
@@ -53,7 +53,8 @@ require_once '../app/controllers/getData.php';
             <?php 
               foreach($dataTingkatPelanggaran as $tingkat){
                 $tingkatPelanggaran = $tingkat['tingkat_pelanggaran'];
-                echo "<option value='$tingkatPelanggaran' >$tingkatPelanggaran</option>";
+                $tingkatSanksi = $tingkat['id_sanksi'];
+                echo "<option value='$tingkatSanksi' >$tingkatPelanggaran</option>";
               }
             ?>
           </select>

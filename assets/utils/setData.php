@@ -40,9 +40,35 @@ function changeNameValue($datas)
     return $datas;
 }
 
-function setArrayForImageName($data){
-    $data['Bukti'] = explode(",", $data['Bukti']);
+function setArrayForImageName($data)
+{
+    $data['Bukti'] = isset($data['Bukti']) ? explode(",", $data['Bukti']) : $data;
     return $data;
+}
+
+function setTingkatPelanggaranToSanksi($datas): mixed
+{
+    foreach ($datas as &$data) {
+        $data['id_sanksi'] = $data['tingkat_pelanggaran'];
+        switch ($data['id_sanksi']) {
+            case 'I':
+                $data['id_sanksi'] = 1;
+                break;
+            case 'II':
+                $data['id_sanksi'] = 2;
+                break;
+            case 'III':
+                $data['id_sanksi'] = 3;
+                break;
+            case 'IV':
+                $data['id_sanksi'] = 4;
+                break;
+            case 'V':
+                $data['id_sanksi'] = 5;
+                break;
+        }
+    }
+    return $datas;
 }
 
 function uploadImage($idPelanggaranMhs)

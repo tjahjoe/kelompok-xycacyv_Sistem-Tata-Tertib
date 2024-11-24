@@ -1,44 +1,38 @@
 <?php
 require_once __DIR__ . "/../../vendor/autoload.php";
-require_once __DIR__ . "/../../vendor/tecnickcom/tcpdf/tcpdf.php";
 
 use PhpOffice\PhpWord\TemplateProcessor;
-use PhpOffice\PhpWord\IOFactory;
-function pdfGenerator (){
-    $templateFilePath = __DIR__ . "/../word/tamplate.docx";
 
+// function generateWordFromTemplate()
+// {
+// Define file paths
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $templateFilePath = __DIR__ . "/../word/surat_peringatan.docx"; // Path to your Word template
+    $tempDocxFile = __DIR__ . "/temp.docx"; // Temporary edited Word file
+
+    // Step 1: Load and Replace Word Template Placeholders
     $templateProcessor = new TemplateProcessor($templateFilePath);
-    
-    $templateProcessor->setValue('nama', 'Welcome to PHPWord');
-    $templateProcessor->setValue('content', 'This document will be displayed as a PDF in the browser.');
-    
-    $tempDocxFile = __DIR__ . "/temp.docx";
+
+    // Replace placeholders with actual values
+    $templateProcessor->setValue('nama', $_POST['nama']);
+    $templateProcessor->setValue('nim', $_POST['nim']);
+    $templateProcessor->setValue('jurusan', 'Teknik Informatika');
+    $templateProcessor->setValue('alamat', 'Jl. Contoh No. 123');
+    $templateProcessor->setValue('tanggal', '23 November 2024');
+    $templateProcessor->setValue('perguruan', 'Politeknik Negeri Malang');
+
+    // Save the edited Word document to a temporary file
     $templateProcessor->saveAs($tempDocxFile);
-    
-    $phpWord = IOFactory::load($tempDocxFile);
-    $tempHtmlFile = __DIR__ . "/temp.html";
-    $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
-    $htmlWriter->save($tempHtmlFile);
-    
-    $htmlContent = file_get_contents($tempHtmlFile);
-    
-    ob_clean();
-    
-    $pdf = new TCPDF();
-    $pdf->SetCreator(PDF_CREATOR);
-    $pdf->SetAuthor('Custom Author');
-    $pdf->SetTitle('Custom PDF Title');
-    $pdf->SetSubject('surat kuesioner');
-    $pdf->setPrintHeader(false);
-    $pdf->AddPage();
-    
-    $pdf->SetFont('helvetica', 'B', 16); 
-    
-    $pdf->writeHTML($htmlContent, true, false, true, false);
-    
-    $pdf->Output('document.pdf', 'I');
-    
+
+    // Step 2: Serve the Word file to the browser as a download
+    header("Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+    header("Content-Disposition: attachment; filename=surat_pernyataan.docx");
+    readfile($tempDocxFile);
+
+    // Step 3: Cleanup temporary file
     unlink($tempDocxFile);
-    unlink($tempHtmlFile);
 }
+// }
+
 ?>

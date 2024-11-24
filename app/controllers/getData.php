@@ -139,7 +139,9 @@ function tingkatPelanggaran($id)
 {
     if (isLogin()) {
         $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
+        // tingkat by sanksi
         $tingkat = $pelanggaranMahasiswaModel->getTingkatPelanggaranForDetailDaftarPelanggaran($id);
+        $tingkat = $tingkat ? setTingkatPelanggaranToSanksi($tingkat) : false;
         return $tingkat;
     }
 }

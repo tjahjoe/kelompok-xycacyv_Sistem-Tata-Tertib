@@ -64,7 +64,7 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
           <span class="upload-icon"><img src="../assets/images/upload-image-icon.svg" width="30px" alt=""></span>
           <p>Upload Lampiran</p>
         </label>
-        <input type="file" name="lampiran[]" id="lampiran" accept="image/*" hidden multiple required>
+        <input type="file" name="lampiran[]" id="lampiran" accept="image/*" hidden multiple>
         <button type="submit" class="btn btn-red">Laporkan!</button>
       </div>
       <div class="list-file-uploaded">

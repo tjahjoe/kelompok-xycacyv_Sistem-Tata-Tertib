@@ -424,7 +424,7 @@ class PelanggaranMahasiswa
 
     public function uploadStatusAndTingkat($idPelanggaran, $status, $idTingkat, $nip)
     {
-        $status = $status == 'reject' ? null : $status;
+        // $status = $status == 'reject' ? null : $status;
 
         $query = "UPDATE " . $this->table . " SET 
         status = ?,
@@ -439,7 +439,7 @@ class PelanggaranMahasiswa
 
         $result = $this->checkAmount($idPelanggaran);
 
-        if ($result && !is_null($status)) {
+        if ($result && !is_null($idTingkat)) {
             if ($result['jumlah'] % 3 == 0) {
                 $this->updateStatusMultipleOfThree($idPelanggaran);
                 $this->uploadPelanggaranMultipleOfThree($idPelanggaran, $idTingkat, $nip, $result);
