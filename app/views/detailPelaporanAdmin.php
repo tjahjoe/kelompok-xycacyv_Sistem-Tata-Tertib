@@ -47,8 +47,8 @@ require_once '../app/controllers/getData.php';
         <!-- id pelanggaran mhs -->
         <input type="hidden" name="idPelanggaranMhs" value="<?php echo $data['id']; ?>" id="idPelanggaranMhs">
         <div class="detail-item">
-          <label for="tingkatPelanggaran">Tingkat Pelanggaran</label>
-          <select id="tingkatPelanggaran" name="tingkatPelanggaran" required>
+          <label for="tingkatPelanggaranAdmin">Tingkat Pelanggaran</label>
+          <select id="tingkatPelanggaranAdmin" name="tingkatPelanggaranAdmin" required>
             <option disabled selected hidden>Pilih Tingkat</option>
             <?php 
               foreach($dataTingkatPelanggaran as $tingkat){
@@ -105,6 +105,7 @@ require_once '../app/controllers/getData.php';
     ?>
 
   </div>
+  <script src="../assets/js/handlePelaporan.js"></script>
   <script src="../assets/js/script.js"></script>
 </body>
 
