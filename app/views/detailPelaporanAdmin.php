@@ -77,6 +77,14 @@ require_once '../app/controllers/getData.php';
           <textarea name="catatan" rows="10" id="catatan"><?php echo $data['Catatan']; ?></textarea>
         </div>
         <div class="detail-item">
+          <label for="bukti">Lampiran</label>
+          <div class="flex-row-start">
+          <?php foreach($data['Bukti'] as $image){
+            echo "<img src='../assets/uploads/bukti/$image' class='lampiran_bukti' alt='Bukti' width='200px'>";
+          }?>
+          </div>
+        </div>
+        <div class="detail-item">
           <label for="sanksi">Sanksi</label>
           <input type="text" name="sanksi" value="<?php echo $data['Sanksi'] ?? null; ?>" id="sanksi" disabled>
         </div>
@@ -103,6 +111,13 @@ require_once '../app/controllers/getData.php';
       echo "<p style='margin:20px auto;'>Data is not available</p>";
     }
     ?>
+
+  <!-- modal box foto -->
+  <div class="overlay">
+    <div class="alert-box">
+      <img src='../assets/uploads/bukti/560.jpg' class='lampiran_bukti_full' alt='Bukti'>
+    </div>
+  </div>
 
   </div>
   <script src="../assets/js/handlePelaporan.js"></script>

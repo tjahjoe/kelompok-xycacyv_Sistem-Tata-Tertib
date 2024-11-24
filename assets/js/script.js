@@ -143,6 +143,23 @@ if(document.querySelector('.logout-btn')){
   });
 }
 
+if(document.querySelector('.lampiran_bukti')){
+  const lampiran = document.querySelectorAll('.lampiran_bukti');
+  const lampiranFull = document.querySelector('.lampiran_bukti_full');
+
+  lampiran.forEach((bukti) => {
+    bukti.addEventListener("click", () => {
+
+      const srcValue = bukti.getAttribute("src");
+      lampiranFull.setAttribute("src", srcValue);
+
+      showAlert();   
+    });
+  });
+
+  document.querySelector(".overlay").addEventListener("click", closeAlert);
+}
+
 if (
   document.querySelector(".overlay") &&
   document.querySelector(".alert-close-button")
