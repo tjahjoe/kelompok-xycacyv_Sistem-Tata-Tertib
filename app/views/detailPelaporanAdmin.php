@@ -30,94 +30,109 @@ require_once '../app/controllers/getData.php';
       $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']);
       $status = strtolower($data['Status']);
     ?>
-    <form id="updatePelaporan" action="../app/controllers/uploadTingkat.php" method="post">
-      <div class="flex-between items-end">
-        <div class="info-laporan">
-          <p><strong>ID Laporan:</strong>
-          <?php echo $data['id']; ?></p>
-          <p><strong>Nama Pelapor:</strong> <?php echo $data['Nama Pelapor']; ?></p>
-          <p><strong>ID pelapor:</strong> <?php echo $data['NIP Pelapor']; ?></p>
+      <form id="updatePelaporan" action="../app/controllers/uploadTingkat.php" method="post">
+        <div class="flex-between items-end">
+          <div class="info-laporan">
+            <p><strong>ID Laporan:</strong>
+              <?php echo $data['id']; ?></p>
+            <p><strong>Nama Pelapor:</strong> <?php echo $data['Nama Pelapor']; ?></p>
+            <p><strong>ID pelapor:</strong> <?php echo $data['NIP Pelapor']; ?></p>
+          </div>
+          <div class="flex-row m-0">
+            <button class="btn btn-primary" type="submit">Simpan</button>
+            <a href="daftar-pelaporan.php" class="btn btn-gray">Kembali</a>
+          </div>
         </div>
-        <div class="flex-row m-0">
-          <button class="btn btn-primary" type="submit">Simpan</button>
-          <a href="daftar-pelaporan.php" class="btn btn-gray">Kembali</a>
-        </div>
-      </div>
-      <div class="detail-container">
-        <!-- id pelanggaran mhs -->
-        <input type="hidden" name="idPelanggaranMhs" value="<?php echo $data['id']; ?>" id="idPelanggaranMhs">
-        <div class="detail-item">
-          <label for="tingkatPelanggaranAdmin">Tingkat Pelanggaran</label>
-          <select id="tingkatPelanggaranAdmin" name="tingkatPelanggaranAdmin" required>
-            <option disabled selected hidden>Pilih Tingkat</option>
-            <?php 
-              foreach($dataTingkatPelanggaran as $tingkat){
+        <div class="detail-container">
+          <!-- id pelanggaran mhs -->
+          <input type="hidden" name="idPelanggaranMhs" value="<?php echo $data['id']; ?>" id="idPelanggaranMhs">
+          <div class="detail-item">
+            <label for="tingkatPelanggaranAdmin">Tingkat Pelanggaran</label>
+            <select id="tingkatPelanggaranAdmin" name="tingkatPelanggaranAdmin" required>
+              <option disabled selected hidden>Pilih Tingkat</option>
+              <?php
+              foreach ($dataTingkatPelanggaran as $tingkat) {
                 $tingkatPelanggaran = $tingkat['tingkat_pelanggaran'];
                 $tingkatSanksi = $tingkat['id_sanksi'];
                 echo "<option value='$tingkatSanksi' >$tingkatPelanggaran</option>";
               }
-            ?>
-          </select>
-        </div>
-        <div class="detail-item">
-          <label for="tanggalPelanggaran">Tanggal Pelanggaran</label>
-          <input type="date" name="tanggalPelanggaran" id="tanggalPelanggaran" class="custom-date"
-            value="<?php echo $data['Tanggal Pelanggaran']; ?>" disabled>
-        </div>
-        <div class="detail-item">
-          <label for="nimPelanggar">NIM Pelanggar</label>
-          <input type="text" name="nimPelanggar" value="<?php echo $data['NIM Pelanggar']; ?>" id="nimPelanggar" disabled>
-        </div>
-        <div class="detail-item">
-          <label for="namaPelanggaran">Nama Pelanggaran</label>
-          <input type="text" name="namaPelanggaran" value="<?php echo $data['Nama Pelanggaran']; ?>" id="namaPelanggaran" disabled>
-        </div>
-        <div class="detail-item">
-          <label for="catatan">Catatan</label>
-          <textarea name="catatan" rows="10" id="catatan"><?php echo $data['Catatan']; ?></textarea>
-        </div>
-        <div class="detail-item">
-          <label for="bukti">Lampiran</label>
-          <div class="flex-row-start">
-          <?php foreach($data['Bukti'] as $image){
-            echo "<img src='../assets/uploads/bukti/$image' class='lampiran_bukti' alt='Bukti' width='200px'>";
-          }?>
+              ?>
+            </select>
+          </div>
+          <div class="detail-item">
+            <label for="tanggalPelanggaran">Tanggal Pelanggaran</label>
+            <input type="date" name="tanggalPelanggaran" id="tanggalPelanggaran" class="custom-date"
+              value="<?php echo $data['Tanggal Pelanggaran']; ?>" disabled>
+          </div>
+          <div class="detail-item">
+            <label for="nimPelanggar">NIM Pelanggar</label>
+            <input type="text" name="nimPelanggar" value="<?php echo $data['NIM Pelanggar']; ?>" id="nimPelanggar" disabled>
+          </div>
+          <div class="detail-item">
+            <label for="namaPelanggaran">Nama Pelanggaran</label>
+            <input type="text" name="namaPelanggaran" value="<?php echo $data['Nama Pelanggaran']; ?>" id="namaPelanggaran" disabled>
+          </div>
+          <div class="detail-item">
+            <label for="catatan">Catatan</label>
+            <textarea name="catatan" rows="10" id="catatan"><?php echo $data['Catatan']; ?></textarea>
+          </div>
+          <div class="detail-item">
+            <label for="bukti">Lampiran</label>
+            <div class="flex-row-start">
+              <?php
+              if ($data['Bukti']) {
+                $totalFileNotFound = 0;
+
+                foreach ($data['Bukti'] as $image) {
+                  $filePath = "../assets/uploads/bukti/$image";
+                  if (file_exists($filePath)) {
+                    echo "<img src='$filePath' class='lampiran_bukti' alt='Bukti' width='200px'>";
+                  } else {
+                    $totalFileNotFound++;
+                  }
+                }
+                if ($totalFileNotFound > 0) {
+                  echo "<p>Beberapa bukti tidak ditemukan!</p>";
+                }
+              } else {
+                echo "<p>Bukti tidak ada!</p>";
+              } ?>
+            </div>
+          </div>
+          <div class="detail-item">
+            <label for="sanksi">Sanksi</label>
+            <input type="text" name="sanksi" value="<?php echo $data['Sanksi'] ?? null; ?>" id="sanksi" disabled>
+          </div>
+          <div class="detail-item">
+            <label for="">Status</label>
+            <div class="badge-contain">
+              <input type="radio" name="status" id="status-pending" value="baru" <?php echo $status == 'baru' ? 'checked' : ''; ?>>
+              <label class="badge badge-gray" for="status-pending">Pending</label>
+
+              <input type="radio" name="status" id="status-completed" value="nonaktif" <?php echo $status == 'nonaktif' ? 'checked' : ''; ?>>
+              <label class="badge badge-gray" for="status-completed">Completed</label>
+
+              <input type="radio" name="status" id="status-processing" value="aktif" <?php echo $status == 'aktif' ? 'checked' : ''; ?>>
+              <label class="badge badge-gray" for="status-processing">Processing</label>
+
+              <input type="radio" name="status" id="status-rejected" value="reject" <?php echo $status == 'reject' ? 'checked' : ''; ?>>
+              <label class="badge badge-gray" for="status-rejected">Rejected</label>
+            </div>
           </div>
         </div>
-        <div class="detail-item">
-          <label for="sanksi">Sanksi</label>
-          <input type="text" name="sanksi" value="<?php echo $data['Sanksi'] ?? null; ?>" id="sanksi" disabled>
-        </div>
-        <div class="detail-item">
-          <label for="">Status</label>
-          <div class="badge-contain">
-            <input type="radio" name="status" id="status-pending" value="baru" <?php echo $status == 'baru' ? 'checked' : ''; ?>>
-            <label class="badge badge-gray" for="status-pending">Pending</label>
-
-            <input type="radio" name="status" id="status-completed" value="nonaktif" <?php echo $status == 'nonaktif' ? 'checked' : ''; ?>>
-            <label class="badge badge-gray" for="status-completed">Completed</label>
-
-            <input type="radio" name="status" id="status-processing" value="aktif" <?php echo $status == 'aktif' ? 'checked' : ''; ?>>
-            <label class="badge badge-gray" for="status-processing">Processing</label>
-
-            <input type="radio" name="status" id="status-rejected" value="reject" <?php echo $status == 'reject' ? 'checked' : ''; ?>>
-            <label class="badge badge-gray" for="status-rejected">Rejected</label>
-          </div>
-        </div>
-      </div>
-    </form>
-    <?php 
-    }else{
+      </form>
+    <?php
+    } else {
       echo "<p style='margin:20px auto;'>Data is not available</p>";
     }
     ?>
 
-  <!-- modal box foto -->
-  <div class="overlay">
-    <div class="alert-box">
-      <img src='../assets/uploads/bukti/560.jpg' class='lampiran_bukti_full' alt='Bukti'>
+    <!-- modal box foto -->
+    <div class="overlay">
+      <div class="bukti-box">
+        <img src='../assets/uploads/bukti/560.jpg' class='lampiran_bukti_full' alt='Bukti'>
+      </div>
     </div>
-  </div>
 
   </div>
   <script src="../assets/js/handlePelaporan.js"></script>

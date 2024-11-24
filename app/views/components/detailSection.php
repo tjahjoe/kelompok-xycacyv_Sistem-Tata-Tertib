@@ -14,25 +14,38 @@ function DetailSection($data)
                         echo Badge(strtolower($nilai));
                     } else if ($kolom == 'Bukti') {
                         echo "<div class='flex-row-start'>";
-                        foreach ($nilai as $image) {
-                            echo "<img src='../assets/uploads/bukti/$image' class='lampiran_bukti' alt='Bukti' width='200px'>";
+                        $totalFileNotFound = 0;
+                        if (isset($nilai)) {
+                            foreach ($nilai as $image) {
+                                $filePath = "../assets/uploads/bukti/$image";
+                                if (file_exists($filePath)) {
+                                    echo "<img src='$filePath' class='lampiran_bukti' alt='Bukti' width='200px'>";
+                                } else {
+                                    $totalFileNotFound++;
+                                }
+                            }
+                            if ($totalFileNotFound > 0) {
+                                echo "<p>Beberapa bukti tidak ditemukan!</p>";
+                            }
+                            echo "</div>";
+                        } else {
+                            echo "<p>Bukti tidak ada!</p>";
                         }
-                        echo "</div>";
                     } else { ?>
                         <p><?php echo $nilai; ?></p>
                     <?php } ?>
                 </div>
             <?php } ?>
         </div>
-         <!-- modal box foto -->
-  <div class="overlay">
-    <div class="alert-box">
-      <img src='../assets/uploads/bukti/560.jpg' class='lampiran_bukti_full' alt='Bukti'>
-    </div>
-  </div>
+        <!-- modal box foto -->
+        <div class="overlay">
+            <div class="bukti-box">
+                <img src='../assets/uploads/bukti/560.jpg' class='lampiran_bukti_full' alt='Bukti'>
+            </div>
+        </div>
 
 <?php
-    } else {    
+    } else {
         echo "<p style='margin:20px auto; '>Data is not available</p>";
     }
 }

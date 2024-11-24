@@ -114,7 +114,6 @@ const updateBadge = () => {
 
       badge.classList.remove("badge-gray");
       badge.classList.add(getBadgeClass(forValue));
-      radios[index].checked = true;
     });
   });
 };
