@@ -38,6 +38,52 @@ $(document).ready(function () {
     });
   });
 
+  // handle update pelaporan
+  $("#updatePelaporan").submit(function (e) {
+    e.preventDefault();
+
+    // Mendapatkan data form
+    var formData = $(this).serialize();
+
+    // Kirim data ke server PHP
+    $.ajax({
+      url: "../app/controllers/uploadTingkat.php",
+      type: "POST",
+      data: formData,
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          window.location.reload();
+        } else {
+          $("#hasil").css("display", "block");
+          $("#hasil").html(response.message);
+        }
+      },
+    });
+  });
+
+  // generate sanksi by tingkat pelanggaran
+  $("#tingkatPelanggaranAdmin").on("change", function () {
+    let tingkatPelanggaran = $(this).val();
+
+    $.ajax({
+      url: "../app/controllers/getSanksi.php",
+      type: "POST",
+      data: { tingkatPelanggaran: tingkatPelanggaran },
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          $("#sanksi").val(response.data.sanksi);
+        } else {
+          $("#sanksi").val("Data tidak ditemukan");
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error:", error);
+      },
+    });
+  });
+
   // filter jenis pelanggaran by tingkat
   $("#tingkatPelanggaran").on("change", function () {
     let tingkatPelanggaran = $(this).val();

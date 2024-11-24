@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
 
     $idPelanggaran = $_POST['idPelanggaranMhs'];
     $status = $_POST['status'];
-    $idTigkat = isset($_POST['tingkatPelanggaran']) ? $_POST['tingkatPelanggaran'] : null;
+    $idTigkat = isset($_POST['tingkatPelanggaranAdmin']) ? $_POST['tingkatPelanggaranAdmin'] : null;
     $nip = $id = $_SESSION['user']['id_users'];
 
 
