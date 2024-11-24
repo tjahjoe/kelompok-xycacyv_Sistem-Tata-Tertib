@@ -154,30 +154,31 @@ class PelanggaranMahasiswa
         AND p.nim=?";
     }
 
-    public function getDetailDaftarPelanggaran($id, $condition, $idUser, $role, $isDpa = false)
+    public function getDetailDaftarPelanggaran($id, $condition, $idUser, $isDpa = false)
     {
-        // $query = "SELECT 
-        // role
-        // FROM " . $this->table . " p
-        // JOIN Users u
-        // ON u.id_users = p.pelapor
-        // WHERE p.id_pelanggaran_mhs = ?";
-        // $stmt = $this->conn->prepare($query);
-        // $stmt->bindParam(1, $id);
-        // $stmt->execute();
-        // $role = $stmt->fetch(PDO::FETCH_ASSOC);
+        $query = "SELECT 
+        role
+        FROM " . $this->table . " p
+        JOIN Users u
+        ON u.id_users = p.pelapor
+        WHERE p.id_pelanggaran_mhs = ?";
+        $this->conn->beginTransaction();
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+        $role = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // if (empty($role)) {
-        //     $this->conn->commit();
-        //     return false;
-        // }
+        if (empty($role)) {
+            $this->conn->commit();
+            return false;
+        }
         $nama = "";
         $tableJoin = "";
 
-        if (in_array($role, ['dosen', 'dpa', 'kps', 'sekjur'])) {
+        if (in_array($role['role'], ['dosen', 'dpa', 'kps', 'sekjur'])) {
             $nama = "d.nama_dosen";
             $tableJoin = "JOIN Dosen d ON d.nip = p.pelapor";
-        } else if ($role == 'admin') {
+        } else if ($role['role'] == 'admin') {
             $nama = "a.nama_admin";
             $tableJoin = "JOIN Admin a ON a.nip = p.pelapor";
         }
@@ -193,10 +194,13 @@ class PelanggaranMahasiswa
             p.pelapor 'NIP Pelapor',";
         } else {
             $addPelapor = "AND p.pelapor = ?";
-            $tableJoinTingkatPelanggaran = "JOIN TingkatPelanggaran t
-            ON t.id_tingkat_pelanggaran = p.id_tingkat_pelanggaran";
-            $sanksi = "t.sanksi 'sanksi',";
+            // $tableJoinTingkatPelanggaran = "JOIN TingkatPelanggaran t
+            // ON t.id_tingkat_pelanggaran = p.id_tingkat_pelanggaran";
+            // $sanksi = "t.sanksi 'sanksi',";
         }
+        $tableJoinTingkatPelanggaran = "JOIN TingkatPelanggaran t
+        ON t.id_tingkat_pelanggaran = p.id_tingkat_pelanggaran";
+        $sanksi = "t.sanksi 'sanksi',";
 
         $tableJoinMahasiswa = "";
         $addNip = "";
@@ -214,7 +218,6 @@ class PelanggaranMahasiswa
             $addNip,
             $addPelapor
         );
-        $this->conn->beginTransaction();
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $id);
         $isDpa ? $stmt->bindParam(2, $idUser) : "";

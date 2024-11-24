@@ -33,16 +33,16 @@ $pelanggaranModel = new PelanggaranMahasiswa();
 
 // var_dump(tingkatPelanggaran(1));
 
-// $tingkat = new TingkatPelanggaran();
+$tingkat = new TingkatPelanggaran();
 
 // var_dump($tingkat->getSanksiByTingkat(1));
 
 // var_dump($pelanggaranModel->uploadPelanggaran( '2341721001', '2024-11-23','on', 198912032017095008, 'Berbusana tidak sopan dan tidak rapi', false));
 // var_dump(dataPelanggaran());
-// var_dump(detailPelaporan(45, true));
+var_dump(detailPelaporan(45, true));
 
 // var_dump($pelanggaranModel->getTingkatPelanggaranForDetailDaftarPelanggaran(44));
-var_dump(tingkatPelanggaran(45));
+// var_dump(tingkatPelanggaran(45));
 ?>
 
 <?php
