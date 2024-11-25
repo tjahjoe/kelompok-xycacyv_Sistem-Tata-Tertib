@@ -36,6 +36,7 @@ class PelanggaranMahasiswa
 		JOIN Mahasiswa m
 		ON m.nim = p.nim
         WHERE m.nim = ?
+        AND p.status IN ('aktif', 'nonaktif', 'reject')
         ORDER BY 
         tgl_pelanggaran DESC, id_pelanggaran_mhs DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
         return $this->getPelanggaran($query, $nim);
@@ -151,7 +152,8 @@ class PelanggaranMahasiswa
         ON l.id_list_pelanggaran = p.id_list_pelanggaran
         $joinTable
         WHERE p.id_pelanggaran_mhs = ? 
-        AND p.nim=?";
+        AND p.nim=?
+        AND p.status IN ('aktif', 'nonaktif', 'reject')";
     }
 
     public function getDetailDaftarPelanggaran($id, $condition, $idUser, $isDpa = false)
@@ -186,8 +188,8 @@ class PelanggaranMahasiswa
         $selectedColumns = "";
         $addPelapor = "";
 
-        $tableJoinTingkatPelanggaran = "";
-        $sanksi = "";
+        // $tableJoinTingkatPelanggaran = "";
+        // $sanksi = "";
 
         if ($condition) {
             $selectedColumns = "$nama 'Nama Pelapor',
@@ -200,7 +202,8 @@ class PelanggaranMahasiswa
         }
         $tableJoinTingkatPelanggaran = "JOIN TingkatPelanggaran t
         ON t.id_tingkat_pelanggaran = p.id_tingkat_pelanggaran";
-        $sanksi = "t.sanksi 'sanksi',";
+        $sanksi = "p.id_tingkat_pelanggaran 'Tingkat Sanksi',
+        t.sanksi 'sanksi',";
 
         $tableJoinMahasiswa = "";
         $addNip = "";
@@ -344,7 +347,7 @@ class PelanggaranMahasiswa
         WHERE 
         $whereClause
         ORDER BY 
-        tgl_pelanggaran DESC
+        tgl_pelanggaran DESC, id_pelanggaran_mhs DESC
         OFFSET ? ROWS FETCH NEXT 10 ROWS ONLY"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
 
         $stmt = $this->conn->prepare($query);
@@ -427,25 +430,45 @@ class PelanggaranMahasiswa
 
     public function uploadStatusAndTingkat($idPelanggaran, $status, $idTingkat, $nip)
     {
-        // $status = $status == 'reject' ? null : $status;
+        $idTingkat = $status == 'reject' ? null : $idTingkat;
 
-        $query = "UPDATE " . $this->table . " SET 
-        status = ?,
-        id_tingkat_pelanggaran = ?
-        WHERE id_pelanggaran_mhs = ?";
+        if ($status != 'reject' and $idTingkat == '') {
+            return false;
+        }
+
+        $query = "SELECT status FROM " . $this->table . " WHERE id_pelanggaran_mhs = ?";
         $this->conn->beginTransaction();
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $status);
-        $stmt->bindParam(2, $idTingkat);
-        $stmt->bindParam(3, $idPelanggaran);
+        $stmt->bindParam(1, $idPelanggaran);
         $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
 
-        $result = $this->checkAmount($idPelanggaran);
+            // jika status sebelumya baru tidak bisa langsung mengubah ke nonaktif atau reject
+            if (in_array($status, ['nonaktif', 'reject']) && $result['status'] == 'baru') {
+                return false;
+            }
 
-        if ($result && !is_null($idTingkat)) {
-            if ($result['jumlah'] % 3 == 0) {
-                $this->updateStatusMultipleOfThree($idPelanggaran);
-                $this->uploadPelanggaranMultipleOfThree($idPelanggaran, $idTingkat, $nip, $result);
+            // mengubah status akan tetapi tidak bisa mengembalikan ke proses sebelumnya
+            if (!in_array($result['status'], ['nonaktif', 'reject']) and $status != 'baru') {
+                $query = "UPDATE " . $this->table . " SET 
+                status = ?,
+                id_tingkat_pelanggaran = ?
+                WHERE id_pelanggaran_mhs = ?";
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(1, $status);
+                $stmt->bindParam(2, $idTingkat);
+                $stmt->bindParam(3, $idPelanggaran);
+                $stmt->execute();
+
+                $result = $this->checkAmount($idPelanggaran);
+
+                if ($result && !is_null($idTingkat) && $status == 'aktif') {
+                    if ($result['jumlah'] % 3 == 0) {
+                        $this->updateStatusMultipleOfThree($idPelanggaran);
+                        $this->uploadPelanggaranMultipleOfThree($idPelanggaran, $idTingkat, $nip, $result);
+                    }
+                }
             }
         }
 
@@ -503,7 +526,7 @@ class PelanggaranMahasiswa
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $idPelanggaran);
         $stmt->bindParam(2, $idPelanggaran);
-        $stmt->bindParam(2, $idPelanggaran);
+        $stmt->bindParam(3, $idPelanggaran);
         $stmt->execute();
     }
 
@@ -511,27 +534,28 @@ class PelanggaranMahasiswa
     {
         $akumulasi = $result['jumlah'] / 3;
         $akumulasi = $idTingkat - $akumulasi;
-
-        $query = "INSERT INTO " . $this->table . " 
-                (id_list_pelanggaran, 
-                id_tingkat_pelanggaran, 
-                nim, 
-                status, 
-                catatan, 
-                pelapor)
-                select 
-                id_list_pelanggaran, 
-                ?, 
-                nim, 
-                'aktif', 
-                'melangggar pelanggaran yang sama " . $result['jumlah'] . "x',
-                ? 
-                FROM PelanggaranMahasiswa
-                WHERE id_pelanggaran_mhs = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $akumulasi);
-        $stmt->bindParam(2, $nip);
-        $stmt->bindParam(3, $idPelanggaran);
-        $stmt->execute();
+        if ($akumulasi > 0) {
+            $query = "INSERT INTO " . $this->table . " 
+            (id_list_pelanggaran, 
+            id_tingkat_pelanggaran, 
+            nim, 
+            status, 
+            catatan, 
+            pelapor)
+            select 
+            id_list_pelanggaran, 
+            ?, 
+            nim, 
+            'aktif', 
+            'melangggar pelanggaran yang sama " . $result['jumlah'] . "x',
+            ? 
+            FROM PelanggaranMahasiswa
+            WHERE id_pelanggaran_mhs = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $akumulasi);
+            $stmt->bindParam(2, $nip);
+            $stmt->bindParam(3, $idPelanggaran);
+            $stmt->execute();
+        }
     }
 }

@@ -94,7 +94,7 @@ function dataPelapor()
 
 //detail pelaporan
 function detailPelaporan($id, $condition = false)
-{
+{   
     if (isLogin()) {
         $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
 
@@ -103,11 +103,11 @@ function detailPelaporan($id, $condition = false)
 
         if ($role == 'dpa') {
             $detail = $pelanggaranMahasiswaModel->getDetailDaftarPelanggaran($id, idUser: $idUser, isDpa: true, condition: $condition);
-            $detail = $detail ? setArrayForImageName($detail) : false;
+            $detail = setArrayForImageName($detail);
             return $detail;
         } else if (in_array($role, ['sekjur', 'kps', 'admin', 'dosen'])) {
             $detail = $pelanggaranMahasiswaModel->getDetailDaftarPelanggaran($id, idUser: $idUser, condition: $condition);
-            $detail = $detail ? setArrayForImageName($detail) : false;
+            $detail = setArrayForImageName($detail);
             return $detail;
         } else {
             return false;

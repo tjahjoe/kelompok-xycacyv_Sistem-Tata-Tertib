@@ -42,7 +42,7 @@ function changeNameValue($datas)
 
 function setArrayForImageName($data)
 {
-    $data['Bukti'] = isset($data['Bukti']) ? explode(",", $data['Bukti']) : $data;
+    $data['Bukti'] = $data['Bukti'] ?  explode(",", $data['Bukti']) : false;
     return $data;
 }
 

@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
 
     $response = [
         'status' => 'error',
-        'message' => 'Email or Password is incorrect!',
+        'message' => 'process failed',
     ];
 
     $idPelanggaran = $_POST['idPelanggaranMhs'];
