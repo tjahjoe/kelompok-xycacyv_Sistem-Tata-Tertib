@@ -15,7 +15,7 @@ function DetailSection($data)
                     } else if ($kolom == 'Bukti') {
                         echo "<div class='flex-row-start'>";
                         $totalFileNotFound = 0;
-                        if (isset($nilai)) {
+                        if ($nilai) {
                             foreach ($nilai as $image) {
                                 $filePath = "../assets/uploads/bukti/$image";
                                 if (file_exists($filePath)) {
