@@ -68,6 +68,7 @@ function setTingkatPelanggaranToSanksi($datas): mixed
                 break;
         }
     }
+    unset($data['tingkat_pelanggaran']);
     return $datas;
 }
 

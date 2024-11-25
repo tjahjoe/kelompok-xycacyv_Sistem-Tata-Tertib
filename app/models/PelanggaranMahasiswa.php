@@ -108,7 +108,7 @@ class PelanggaranMahasiswa
     public function getDetailDataPelanggaran($id, $nim)
     {
         $query = $this->queryDetailDataPelanggaran(
-            "t.sanksi 'Sanksi',",
+            "p.id_tingkat_pelanggaran 'Tingkat Sanksi',t.sanksi 'Sanksi',",
             "JOIN TingkatPelanggaran t ON t.id_tingkat_pelanggaran = p.id_tingkat_pelanggaran"
         );
         $this->conn->beginTransaction();
@@ -188,17 +188,11 @@ class PelanggaranMahasiswa
         $selectedColumns = "";
         $addPelapor = "";
 
-        // $tableJoinTingkatPelanggaran = "";
-        // $sanksi = "";
-
         if ($condition) {
             $selectedColumns = "$nama 'Nama Pelapor',
             p.pelapor 'NIP Pelapor',";
         } else {
             $addPelapor = "AND p.pelapor = ?";
-            // $tableJoinTingkatPelanggaran = "JOIN TingkatPelanggaran t
-            // ON t.id_tingkat_pelanggaran = p.id_tingkat_pelanggaran";
-            // $sanksi = "t.sanksi 'sanksi',";
         }
         $tableJoinTingkatPelanggaran = "JOIN TingkatPelanggaran t
         ON t.id_tingkat_pelanggaran = p.id_tingkat_pelanggaran";
@@ -444,6 +438,10 @@ class PelanggaranMahasiswa
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
 
+            // if ($result['status'] == $status) {
+            //     return false;
+            // }
+
             // jika status sebelumya baru tidak bisa langsung mengubah ke nonaktif atau reject
             if (in_array($status, ['nonaktif', 'reject']) && $result['status'] == 'baru') {
                 return false;
@@ -464,9 +462,11 @@ class PelanggaranMahasiswa
                 $result = $this->checkAmount($idPelanggaran);
 
                 if ($result && !is_null($idTingkat) && $status == 'aktif') {
-                    if ($result['jumlah'] % 3 == 0) {
+                    $akumulasi = $result['jumlah'] / 3;
+                    $akumulasi = $idTingkat - $akumulasi;
+                    if ($result['jumlah'] % 3 == 0 && $akumulasi > 0) {
                         $this->updateStatusMultipleOfThree($idPelanggaran);
-                        $this->uploadPelanggaranMultipleOfThree($idPelanggaran, $idTingkat, $nip, $result);
+                        $this->uploadPelanggaranMultipleOfThree($idPelanggaran, $akumulasi, $nip, $result);
                     }
                 }
             }
@@ -530,11 +530,11 @@ class PelanggaranMahasiswa
         $stmt->execute();
     }
 
-    private function uploadPelanggaranMultipleOfThree($idPelanggaran, $idTingkat, $nip, $result)
+    private function uploadPelanggaranMultipleOfThree($idPelanggaran, $akumulasi, $nip, $result)
     {
-        $akumulasi = $result['jumlah'] / 3;
-        $akumulasi = $idTingkat - $akumulasi;
-        if ($akumulasi > 0) {
+        // $akumulasi = $result['jumlah'] / 3;
+        // $akumulasi = $idTingkat - $akumulasi;
+        // if ($akumulasi > 0) { //handle di atas
             $query = "INSERT INTO " . $this->table . " 
             (id_list_pelanggaran, 
             id_tingkat_pelanggaran, 
@@ -556,6 +556,6 @@ class PelanggaranMahasiswa
             $stmt->bindParam(2, $nip);
             $stmt->bindParam(3, $idPelanggaran);
             $stmt->execute();
-        }
+        // }
     }
 }
