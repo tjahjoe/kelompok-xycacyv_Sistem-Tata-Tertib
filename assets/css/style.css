@@ -1213,6 +1213,16 @@ img.lampiran_bukti_full{
   color: #555;
 }
 
+.no-dropdown {
+  appearance: none; /* Menghapus tampilan bawaan browser */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent; /* Membuat background transparan */
+  border: 1px solid #ccc; /* Tambahkan border jika diperlukan */
+  padding: 8px;
+  cursor: not-allowed; /* Menunjukkan elemen ini tidak interaktif */
+}
+
 /* Responsive styles */
 /* TABLET */
 @media (max-width: 768px) {

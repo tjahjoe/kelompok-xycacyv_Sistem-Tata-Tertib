@@ -29,6 +29,7 @@ require_once '../app/controllers/getData.php';
     if (!empty($data)) {
       $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']);
       $status = strtolower($data['Status']);
+      // var_dump($data);
     ?>
       <form id="updatePelaporan" action="../app/controllers/uploadTingkat.php" method="post">
         <div class="flex-between items-end">
@@ -44,20 +45,54 @@ require_once '../app/controllers/getData.php';
           </div>
         </div>
         <div class="detail-container">
+          <!-- error message -->
+          <div id="hasil" style="color: red; display:none"></div>
+
           <!-- id pelanggaran mhs -->
           <input type="hidden" name="idPelanggaranMhs" value="<?php echo $data['id']; ?>" id="idPelanggaranMhs">
           <div class="detail-item">
             <label for="tingkatPelanggaranAdmin">Tingkat Pelanggaran</label>
-            <select id="tingkatPelanggaranAdmin" name="tingkatPelanggaranAdmin" required>
-              <option disabled selected hidden>Pilih Tingkat</option>
+            <?php
+            $tingkatSanksi = isset($data['Tingkat Sanksi']) ? $data['Tingkat Sanksi'] : '';
+            $tingkatPelanggaran = isset($data['Tingkat Pelanggaran']) ? $data['Tingkat Pelanggaran'] : '';
+            ?>
+
+            <select id="tingkatPelanggaranAdmin" name="tingkatPelanggaranAdmin" required
+              <?php if ($tingkatPelanggaran) {
+                echo 'class="no-dropdown" disabled';
+              } ?>>
+              <option disabled selected hidden><?php echo $tingkatPelanggaran ?></option>
+            </select>
+
+          </div>
+          <div class="detail-item">
+            <label for="tingkatSanksiAdmin">Tingkat Sanksi</label>
+            <?php
+            $tingkatSanksi = isset($data['Tingkat Sanksi']) ? $data['Tingkat Sanksi'] : '';
+            $tingkatPelanggaran = isset($data['Tingkat Pelanggaran']) ? $data['Tingkat Pelanggaran'] : '';
+            ?>
+
+            <select id="tingkatSanksiAdmin" name="tingkatSanksiAdmin" required <?php if ($tingkatSanksi) {
+                                                                                  echo 'class="no-dropdown" disabled';
+                                                                                } ?>>
               <?php
-              foreach ($dataTingkatPelanggaran as $tingkat) {
-                $tingkatPelanggaran = $tingkat['tingkat_pelanggaran'];
-                $tingkatSanksi = $tingkat['id_sanksi'];
-                echo "<option value='$tingkatSanksi' >$tingkatPelanggaran</option>";
+              if ($tingkatSanksi) {
+                echo "<option value='$tingkatSanksi' selected>$tingkatSanksi</option>";
+              } else {
+                echo "<option disabled selected hidden>Pilih Tingkat</option>";
+                foreach ($dataTingkatPelanggaran as $tingkat) {
+                  // $tingkatSanksi = $tingkat['tingkat_Sanksi'];
+                  $tingkatSanksi = $tingkat['id_sanksi'];
+                  echo "<option value='$tingkatSanksi'>$tingkatSanksi</option>";
+                }
               }
               ?>
             </select>
+
+            <!-- Input tersembunyi untuk mengirimkan nilai ketika select dinonaktifkan -->
+            <?php if ($tingkatSanksi): ?>
+              <input type="hidden" name="tingkatSanksiAdmin" value="<?= $tingkatSanksi ?>">
+            <?php endif; ?>
           </div>
           <div class="detail-item">
             <label for="tanggalPelanggaran">Tanggal Pelanggaran</label>
@@ -101,7 +136,7 @@ require_once '../app/controllers/getData.php';
           </div>
           <div class="detail-item">
             <label for="sanksi">Sanksi</label>
-            <input type="text" name="sanksi" value="<?php echo $data['Sanksi'] ?? null; ?>" id="sanksi" disabled>
+            <input type="text" name="sanksi" value="<?php echo $data['sanksi'] ?? null; ?>" id="sanksi" disabled>
           </div>
           <div class="detail-item">
             <label for="">Status</label>

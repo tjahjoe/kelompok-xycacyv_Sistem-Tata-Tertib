@@ -53,7 +53,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          window.location.reload();
+          // window.location.reload();
         } else {
           $("#hasil").css("display", "block");
           $("#hasil").html(response.message);
@@ -63,13 +63,13 @@ $(document).ready(function () {
   });
 
   // generate sanksi by tingkat pelanggaran
-  $("#tingkatPelanggaranAdmin").on("change", function () {
-    let tingkatPelanggaran = $(this).val();
+  $("#tingkatSanksiAdmin").on("change", function () {
+    let tingkatSanksi = $(this).val();
 
     $.ajax({
       url: "../app/controllers/getSanksi.php",
       type: "POST",
-      data: { tingkatPelanggaran: tingkatPelanggaran },
+      data: { tingkatSanksi: tingkatSanksi },
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {

@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         'message' => 'data not valid',
     ];
 
-    $tingkat = $_POST['tingkatPelanggaran'];
+    $tingkat = $_POST['tingkatSanksi'];
 
     $result = $tingkatPelanggaranModel->getSanksiByTingkat($tingkat);
 
