@@ -58,7 +58,7 @@ function dataPelanggaran()
         if ($role == 'mahasiswa') {
             $dataPelanggaran = $pelanggaranMahasiswaModel->getDataPelanggaranByPelanggar($id);
             return $dataPelanggaran;
-        } else if ($role == 'dpa') {
+        } else if ($role == 'dpa') { // dipindah ke file baru
             $dataPelanggaran = $pelanggaranMahasiswaModel->getDataPelanggaranByDpa($id);
             return $dataPelanggaran;
         } else if (in_array($role, ['sekjur', 'kps', 'admin'])) {

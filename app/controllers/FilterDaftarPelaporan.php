@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         $tanggalAkhir,
         $tingkat,
         $status,
-        0,
+        null,
         $id,
         true
     ) : $pelanggaranMahasiswaModel->getDaftarPelaporanByFilter(
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         $tanggalAkhir,
         $tingkat,
         $status,
-        0
+        null
     ) ;
 
     if($results){

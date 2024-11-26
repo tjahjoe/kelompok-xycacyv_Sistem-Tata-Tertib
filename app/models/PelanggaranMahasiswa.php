@@ -322,6 +322,11 @@ class PelanggaranMahasiswa
             $conditions[] = "m.nip = ?";
             $params[] = $id;
         }
+        
+        $limit = "";
+        if (is_numeric($num)) {
+            $limit = "OFFSET ? ROWS FETCH NEXT 10 ROWS ONLY";
+        }
 
         $whereClause = $conditions ? implode(" AND ", $conditions) : "1 = 1";
 
@@ -342,14 +347,16 @@ class PelanggaranMahasiswa
         $whereClause
         ORDER BY 
         tgl_pelanggaran DESC, id_pelanggaran_mhs DESC
-        OFFSET ? ROWS FETCH NEXT 10 ROWS ONLY"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
+        $limit"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
 
         $stmt = $this->conn->prepare($query);
 
         foreach ($params as $index => $param) {
             $stmt->bindValue($index + 1, $param);
         }
-        $stmt->bindValue(count($params) + 1, $num, PDO::PARAM_INT);
+        if (is_numeric($num)) {
+            $stmt->bindValue(count($params) + 1, $num, PDO::PARAM_INT);   
+        }
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
