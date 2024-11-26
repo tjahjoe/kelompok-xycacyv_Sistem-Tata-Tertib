@@ -31,25 +31,25 @@ require_once '../app/controllers/getData.php';
         if (!empty($data)) {
         ?>
           <p><strong>ID Pelanggaran:</strong> <?php echo $data['id'] ?></p>
-        </div>
-        <a href="profile-user.php" class="btn btn-gray">Kembali</a>
+      </div>
+      <a href="profile-user.php" class="btn btn-gray">Kembali</a>
 
     </div>
     <div class="info-box">
-      <span>Informasi</label>
-        <p>Untuk menebus sanksi atas pelanggaran, silakan hubungi admin untuk informasi lebih lanjut.</p>
+      <span style="font-weight: bold">Informasi</span>
+      <p>Untuk menebus sanksi atas pelanggaran, silakan hubungi admin untuk informasi lebih lanjut.</p>
     </div>
   <?php
         }
         DetailSection($data);
   ?>
-  <?php if (!empty($data['Tingkat Pelanggaran']) &&  in_array($data['Tingkat Pelanggaran'], ['III', 'IV', 'V'])) { ?>
-    <div class="danger-box">
-      <label for="">Lampiran</label>
-      <p>Untuk pelanggaran tingkat III hingga V, Anda dapat mengunduh <a href="#" style="text-decoration: underline; color:var(--red-color);">file template di sini.</a></p>
-    </div>
-  <?php } ?>
 
+<?php if (!empty($data['Tingkat Pelanggaran']) &&  in_array($data['Tingkat Pelanggaran'], ['III', 'IV', 'V'])) { ?>
+  <div class="danger-box">
+    <label for="">Lampiran</label>
+    <p>Untuk pelanggaran tingkat III hingga V, Anda dapat mengunduh <a href="#" style="text-decoration: underline; color:var(--red-color);">file template di sini.</a></p>
+  </div>
+<?php } ?>
   </div>
   <script src="../assets/js/script.js"></script>
 </body>

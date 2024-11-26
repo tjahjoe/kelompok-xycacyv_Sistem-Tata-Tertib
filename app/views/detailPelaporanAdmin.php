@@ -14,28 +14,24 @@ require_once '../app/controllers/getData.php';
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
   <?php Navbar(true); ?>
-  <?php
-  $data = detailPelaporan($_GET['id'], true);
-  ?>
+  <?php $data = detailPelaporan($_GET['id'], true); ?>
   <div class="container pt-5">
     <h1 class="title">Detail Pelaporan</h1>
     <?php
     if (!empty($data)) {
       $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']);
       $status = strtolower($data['Status']);
-      // var_dump($data);
     ?>
       <form id="updatePelaporan" action="../app/controllers/uploadTingkat.php" method="post">
         <div class="flex-between items-end">
           <div class="info-laporan">
-            <p><strong>ID Laporan:</strong>
-              <?php echo $data['id']; ?></p>
+            <p><strong>ID Laporan:</strong> <?php echo $data['id']; ?></p>
             <p><strong>Nama Pelapor:</strong> <?php echo $data['Nama Pelapor']; ?></p>
             <p><strong>ID pelapor:</strong> <?php echo $data['NIP Pelapor']; ?></p>
           </div>
@@ -53,51 +49,42 @@ require_once '../app/controllers/getData.php';
           <div class="detail-item">
             <label for="tingkatPelanggaranAdmin">Tingkat Pelanggaran</label>
             <?php
-            $tingkatSanksi = isset($data['Tingkat Sanksi']) ? $data['Tingkat Sanksi'] : '';
-            $tingkatPelanggaran = isset($data['Tingkat Pelanggaran']) ? $data['Tingkat Pelanggaran'] : '';
+            $tingkatSanksi = isset($data['Tingkat Sanksi']) ? $data['Tingkat Sanksi'] : null;
+            $tingkatPelanggaran = isset($data['Tingkat Pelanggaran']) ? $data['Tingkat Pelanggaran'] : null;
             ?>
-
-            <select id="tingkatPelanggaranAdmin" name="tingkatPelanggaranAdmin" required
-              <?php if ($tingkatPelanggaran) {
-                echo 'class="no-dropdown" disabled';
-              } ?>>
-              <option disabled selected hidden><?php echo $tingkatPelanggaran ?></option>
-            </select>
-
+            <input type="text" name="tingkatPelanggaranAdmin" value="<?php echo $tingkatPelanggaran; ?>" id="tingkatPelanggaranAdmin" disabled>
           </div>
           <div class="detail-item">
             <label for="tingkatSanksiAdmin">Tingkat Sanksi</label>
-            <?php
-            $tingkatSanksi = isset($data['Tingkat Sanksi']) ? $data['Tingkat Sanksi'] : '';
-            $tingkatPelanggaran = isset($data['Tingkat Pelanggaran']) ? $data['Tingkat Pelanggaran'] : '';
-            ?>
+            <?php if ($tingkatSanksi) { ?>
+              <input type="hidden" name="tingkatSanksiAdmin" value="<?= $tingkatSanksi ?>">
+            <?php } ?>
 
-            <select id="tingkatSanksiAdmin" name="tingkatSanksiAdmin" required <?php if ($tingkatSanksi) {
-                                                                                  echo 'class="no-dropdown" disabled';
-                                                                                } ?>>
+            <!-- jika data tingkat sanksi ada, maka disabled select -->
+            <select id="tingkatSanksiAdmin" name="tingkatSanksiAdmin" required <?php echo $tingkatSanksi ? 'class="no-dropdown" disabled' : ''; ?>>
               <?php
-              if ($tingkatSanksi) {
-                echo "<option value='$tingkatSanksi' selected>$tingkatSanksi</option>";
-              } else {
-                echo "<option disabled selected hidden>Pilih Tingkat</option>";
-                foreach ($dataTingkatPelanggaran as $tingkat) {
-                  // $tingkatSanksi = $tingkat['tingkat_Sanksi'];
-                  $tingkatSanksi = $tingkat['id_sanksi'];
-                  echo "<option value='$tingkatSanksi'>$tingkatSanksi</option>";
+              // jika status != reject option tingkat sanksi akan tampil
+              if ($status != 'reject') {
+                if ($tingkatSanksi) {
+                  echo "<option value='$tingkatSanksi' selected>$tingkatSanksi</option>";
+                } else {
+                  echo "<option disabled selected hidden>Pilih Tingkat</option>";
+                  foreach ($dataTingkatPelanggaran as $tingkat) {
+                    $tingkatSanksi = $tingkat['id_sanksi'];
+                    echo "<option value='$tingkatSanksi'>$tingkatSanksi</option>";
+                  }
                 }
+              } else {
+                // jika status reject maka tidak menampilkan apa apa
+                echo "<p></p>";
               }
               ?>
             </select>
 
-            <!-- Input tersembunyi untuk mengirimkan nilai ketika select dinonaktifkan -->
-            <?php if ($tingkatSanksi): ?>
-              <input type="hidden" name="tingkatSanksiAdmin" value="<?= $tingkatSanksi ?>">
-            <?php endif; ?>
           </div>
           <div class="detail-item">
             <label for="tanggalPelanggaran">Tanggal Pelanggaran</label>
-            <input type="date" name="tanggalPelanggaran" id="tanggalPelanggaran" class="custom-date"
-              value="<?php echo $data['Tanggal Pelanggaran']; ?>" disabled>
+            <input type="date" name="tanggalPelanggaran" id="tanggalPelanggaran" class="custom-date" value="<?php echo $data['Tanggal Pelanggaran']; ?>" disabled>
           </div>
           <div class="detail-item">
             <label for="nimPelanggar">NIM Pelanggar</label>
@@ -117,7 +104,6 @@ require_once '../app/controllers/getData.php';
               <?php
               if ($data['Bukti']) {
                 $totalFileNotFound = 0;
-
                 foreach ($data['Bukti'] as $image) {
                   $filePath = "../assets/uploads/bukti/$image";
                   if (file_exists($filePath)) {
@@ -131,7 +117,8 @@ require_once '../app/controllers/getData.php';
                 }
               } else {
                 echo "<p>Bukti tidak ada!</p>";
-              } ?>
+              }
+              ?>
             </div>
           </div>
           <div class="detail-item">
@@ -161,14 +148,12 @@ require_once '../app/controllers/getData.php';
       echo "<p style='margin:20px auto;'>Data is not available</p>";
     }
     ?>
-
     <!-- modal box foto -->
     <div class="overlay">
       <div class="bukti-box">
         <img src='../assets/uploads/bukti/560.jpg' class='lampiran_bukti_full' alt='Bukti'>
       </div>
     </div>
-
   </div>
   <script src="../assets/js/handlePelaporan.js"></script>
   <script src="../assets/js/script.js"></script>

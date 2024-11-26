@@ -27,7 +27,6 @@ function DetailSection($data)
                             if ($totalFileNotFound > 0) {
                                 echo "<p>Beberapa bukti tidak ditemukan!</p>";
                             }
-                            echo "</div>";
                         } else {
                             echo "<p>Bukti tidak ada!</p>";
                         }
@@ -35,7 +34,9 @@ function DetailSection($data)
                         <p><?php echo $nilai; ?></p>
                     <?php } ?>
                 </div>
-            <?php } ?>
+            <?php }
+              echo "</div>";
+            ?>
         </div>
         <!-- modal box foto -->
         <div class="overlay">
@@ -43,7 +44,7 @@ function DetailSection($data)
                 <img src='../assets/uploads/bukti/560.jpg' class='lampiran_bukti_full' alt='Bukti'>
             </div>
         </div>
-
+    
 <?php
     } else {
         echo "<p style='margin:20px auto; '>Data is not available</p>";

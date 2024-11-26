@@ -54,22 +54,74 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          $(".table-content tbody").empty();
+          window.location.href = 'daftar-pelaporan.php?page=1';
+          // $(".table-content tbody").empty();
 
-          $.each(response.data, function (index, record) {
-            const row = `
-                    <tr>
-                        <td>${record.nim}</td>
-                        <td class="text-left truncate">${record.nama}</td>
-                        <td>${record.tanggal}</td>
-                        <td class="text-left truncate">${record.judulmasalah}</td>
-                        <td>${record.tingkat}</td>
-                        <td>${record.badge}</td>
-                        <td><a href="detail-pelaporan-admin.php?id=${record.id}">Detail</a></td>
-                    </tr>
-                `;
-            $(".table-content tbody").append(row);
-          });
+          // $.each(response.data, function (index, record) {
+          //   const row = `
+          //           <tr>
+          //               <td>${record.nim}</td>
+          //               <td class="text-left truncate">${record.nama}</td>
+          //               <td>${record.tanggal}</td>
+          //               <td class="text-left truncate">${record.judulmasalah}</td>
+          //               <td>${record.tingkat}</td>
+          //               <td>${record.badge}</td>
+          //               <td><a href="detail-pelaporan-admin.php?id=${record.id}">Detail</a></td>
+          //           </tr>
+          //       `;
+          //   $(".table-content tbody").append(row);
+          // });
+        } else {
+          $(".table-content tbody").html(
+            "<tr><td colspan='7'>Data Not Found</td></tr>"
+          );
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error:", error);
+        console.error("Response Text:", xhr.responseText);
+        alert("An error occurred. Please check the console for details.");
+      },
+    });
+  }
+
+  function resetFilterPelaporan(){
+    let searchNim = '';
+    let tingkat = '';
+    let status = '';
+    let startTanggal = '';
+    let endTanggal = '';
+
+    $.ajax({
+      url: "../app/controllers/FilterDaftarPelaporan.php",
+      type: "POST",
+      data: {
+        searchNim: searchNim,
+        tingkatPelaporan: tingkat,
+        statusPelaporan: status,
+        startTanggalPelaporan: startTanggal,
+        endTanggalPelaporan: endTanggal,
+      },
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          window.location.href = 'daftar-pelaporan.php?page=1';
+          // $(".table-content tbody").empty();
+
+          // $.each(response.data, function (index, record) {
+          //   const row = `
+          //           <tr>
+          //               <td>${record.nim}</td>
+          //               <td class="text-left truncate">${record.nama}</td>
+          //               <td>${record.tanggal}</td>
+          //               <td class="text-left truncate">${record.judulmasalah}</td>
+          //               <td>${record.tingkat}</td>
+          //               <td>${record.badge}</td>
+          //               <td><a href="detail-pelaporan-admin.php?id=${record.id}">Detail</a></td>
+          //           </tr>
+          //       `;
+          //   $(".table-content tbody").append(row);
+          // });
         } else {
           $(".table-content tbody").html(
             "<tr><td colspan='7'>Data Not Found</td></tr>"
@@ -110,6 +162,6 @@ $(document).ready(function () {
   $(".filter-item.reset-button").click(function (e) {
     e.preventDefault();
     $("#filterTab")[0].reset();
-    filterPelaporan();
+    resetFilterPelaporan();
   });
 });
