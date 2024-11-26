@@ -41,7 +41,7 @@
             </div>
             <div class="filter-item filter-select">
               <div class="dropdown">
-              <?php $filterTingkat = $_SESSION['filter']['tingkat'];
+              <?php $filterTingkat = $_SESSION['filter']['tingkat'] ?? null;
               ?>
                 <select id="tingkatPelaporan" class="tingkatPelaporan" name="tingkatPelaporan">
                   <option disabled selected hidden>Tingkat</option>
@@ -57,7 +57,7 @@
             </div>
             <div class="filter-item filter-select">
               <div class="dropdown">
-              <?php $filterStatus = $_SESSION['filter']['status'];
+              <?php $filterStatus = $_SESSION['filter']['status'] ?? null;
               ?>
                 <select id="statusPelaporan" class="statusPelaporan" name="statusPelaporan">
                   <option disabled selected hidden>Status</option>
@@ -78,15 +78,15 @@
       <div class="date-input">
         <span class="flex-col">
           <label for="">Start Date</label>
-          <input type="date" name="startTanggalPelaporan" id="startTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAwal'] ?>">
+          <input type="date" name="startTanggalPelaporan" id="startTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAwal'] ?? null?>">
         </span>
         <span class="flex-col">
           <label for="">End Date</label>
-          <input type="date" name="endTanggalPelaporan" id="endTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAkhir'] ?>">
+          <input type="date" name="endTanggalPelaporan" id="endTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAkhir'] ?? null?>">
         </span>
       </div>
       <div class="search-input-container">
-        <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari..." name="searchNim" id="searchNim" value="<?php echo $_SESSION['filter']['nim'] ?>">
+        <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari..." name="searchNim" id="searchNim" value="<?php echo $_SESSION['filter']['nim'] ?? null ?>">
         <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button>
       </div>
       </form>
