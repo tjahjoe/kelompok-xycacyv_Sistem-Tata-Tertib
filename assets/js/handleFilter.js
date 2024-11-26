@@ -106,22 +106,6 @@ $(document).ready(function () {
       success: function (response) {
         if (response.status === "success") {
           window.location.href = 'daftar-pelaporan.php?page=1';
-          // $(".table-content tbody").empty();
-
-          // $.each(response.data, function (index, record) {
-          //   const row = `
-          //           <tr>
-          //               <td>${record.nim}</td>
-          //               <td class="text-left truncate">${record.nama}</td>
-          //               <td>${record.tanggal}</td>
-          //               <td class="text-left truncate">${record.judulmasalah}</td>
-          //               <td>${record.tingkat}</td>
-          //               <td>${record.badge}</td>
-          //               <td><a href="detail-pelaporan-admin.php?id=${record.id}">Detail</a></td>
-          //           </tr>
-          //       `;
-          //   $(".table-content tbody").append(row);
-          // });
         } else {
           $(".table-content tbody").html(
             "<tr><td colspan='7'>Data Not Found</td></tr>"

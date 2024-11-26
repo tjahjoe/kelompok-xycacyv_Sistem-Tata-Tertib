@@ -96,15 +96,23 @@
       <div class="tab-content active" id="daftar-pelaporan">
         <?php
         require_once __DIR__ . "../../controllers/getData.php";
-        $page = $_GET['page'];
         $allData = dataPelanggaran();
-        $dataPerPage = dataPelanggaranPagination($page);
-        TableContent($dataPerPage, 'detail-pelaporan-admin');
+        $page = 1;
+
+        if(isset($_GET['page'])){
+          $page = $_GET['page'];
+          $dataPerPage = dataPelanggaranPagination($page);
+          TableContent($dataPerPage, 'detail-pelaporan-admin');
+        }else{
+          TableContent($allData, 'detail-pelaporan-admin');
+        }
 
         $maxPage = count($allData) / 10;
         ?>
       </div>
     </div>
+    
+    <?php if(isset($_GET['page'])){ ?>
     <div class="flex-between">
       <?php echo "<p>Showing $page of " . ceil($maxPage) . " Pages</p>"; ?>
       <div class="arrow-container">
@@ -114,6 +122,7 @@
         ?>><img src="../assets/images/arrow.svg" style="transform: rotate(-90deg);" alt=""></button>
       </div>
     </div>
+    <?php }?>
   </div>
   </div>
   <script src="../assets/js/script.js"></script>
