@@ -81,11 +81,11 @@
       <div class="date-input">
         <span class="flex-col">
           <label for="">Start Date</label>
-          <input type="date" name="startTanggalPelaporan" id="startTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAwal'] ?? ''?>">
+          <input type="date" name="startTanggalPelaporan" id="startTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAwal'] ?? ''?>" max="<?php echo $_SESSION['filter']['tanggalAkhir'] ?? ''?>">
         </span>
         <span class="flex-col">
           <label for="">End Date</label>
-          <input type="date" name="endTanggalPelaporan" id="endTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAkhir'] ?? ''?>">
+          <input type="date" name="endTanggalPelaporan" id="endTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAkhir'] ?? ''?>" min="<?php echo $_SESSION['filter']['tanggalAwal'] ?? ''?>">
         </span>
       </div>
       <div class="search-input-container">
