@@ -11,6 +11,7 @@ class ListPelanggaran{
 
     public function getAllListPelanggaran(){
         $query = "SELECT * FROM " . $this->table ." ORDER BY tingkat_pelanggaran desc, nama_jenis_pelanggaran";
+        // $query = "SELECT * FROM " . $this->table ." WHERE tingkat_pelanggaran <> '-' ORDER BY tingkat_pelanggaran desc, nama_jenis_pelanggaran";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

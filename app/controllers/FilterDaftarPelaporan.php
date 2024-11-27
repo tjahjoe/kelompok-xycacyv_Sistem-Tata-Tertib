@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         'message' => 'No data found for the selected tingkat pelanggaran.',
     ];
 
-    $nim = $_SESSION['filter']['nim'] =  $_POST['searchNim'];
+    $nim = $_SESSION['filter']['nim'] = $_POST['searchNim'];
     $tanggalAwal = $_SESSION['filter']['tanggalAwal'] = $_POST['startTanggalPelaporan'];
     $tanggalAkhir = $_SESSION['filter']['tanggalAkhir'] = $_POST['endTanggalPelaporan'];
     $tingkat = $_SESSION['filter']['tingkat'] = $_POST['tingkatPelaporan'];
@@ -26,35 +26,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
     $id = $_SESSION['user']['id_users'];
     $role = $_SESSION['user']['role'];
 
-    $results = $role == 'dpa' ? $pelanggaranMahasiswaModel->getDaftarPelaporanByFilter(
-        $nim,
-        $tanggalAwal,
-        $tanggalAkhir,
-        $tingkat,
-        $status,
-        null,
-        $id,
-        true
-    ) : $pelanggaranMahasiswaModel->getDaftarPelaporanByFilter(
-        $nim,
-        $tanggalAwal,
-        $tanggalAkhir,
-        $tingkat,
-        $status,
-        null
-    ) ;
+    // $results = $role == 'dpa' ? $pelanggaranMahasiswaModel->getDaftarPelaporanByFilter(
+    //     $nim,
+    //     $tanggalAwal,
+    //     $tanggalAkhir,
+    //     $tingkat,
+    //     $status,
+    //     null,
+    //     $id,
+    //     true
+    // ) : $pelanggaranMahasiswaModel->getDaftarPelaporanByFilter(
+    //     $nim,
+    //     $tanggalAwal,
+    //     $tanggalAkhir,
+    //     $tingkat,
+    //     $status,
+    //     null
+    // ) ;
 
-    if($results){
-        foreach ($results as &$item) {
-            $item['badge'] = Badge(strtolower($item['status']));
-        }       
-        
-        echo json_encode(['status' => 'success', 'data' => $results]);
-        exit;
-    }else{
-        echo json_encode($response);
-        exit;
-    }
+    // if($results){
+    //     foreach ($results as &$item) {
+    //         $item['badge'] = Badge(strtolower($item['status']));
+    //     }       
+
+    //     echo json_encode(['status' => 'success', 'data' => $results]);
+    //     exit;
+    // }else{
+    //     echo json_encode($response);
+    //     exit;
+    // }
+    unset($_SESSION['allData']);
+
+    echo json_encode(['status' => 'success']);
+    exit;
 
     // echo $results ? json_encode(['status' => 'success', 'data' => $results]) : json_encode($response);
 

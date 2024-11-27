@@ -96,7 +96,12 @@
       <div class="tab-content active" id="daftar-pelaporan">
         <?php
         require_once __DIR__ . "../../controllers/getData.php";
-        $allData = dataPelanggaran();
+        
+        if (!isset($_SESSION['allData'])) {
+          $_SESSION['allData'] = dataPelanggaranWithoutPagination();
+        } 
+        $allData = $_SESSION['allData'];
+        // $allData = dataPelanggaranWithoutPagination();
         $page = 1;
 
         if(isset($_GET['page'])){
@@ -106,8 +111,8 @@
         }else{
           TableContent($allData, 'detail-pelaporan-admin');
         }
-
-        $maxPage = count($allData) / 10;
+        
+        $maxPage = $allData ? count($allData) / 10 : false;
         ?>
       </div>
     </div>
