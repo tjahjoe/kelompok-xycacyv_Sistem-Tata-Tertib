@@ -19,6 +19,9 @@
   <?php Navbar(true); ?>
   <div class="container bg-gray pt-5">
     <h1 class="title">Daftar Pelaporan</h1>
+    <?php
+      // var_dump( $_SESSION['filter']);
+    ?>
     <div class="feature-tab">
       <!-- FILTER TAB -->
       <div class="filter-tab">
@@ -31,7 +34,7 @@
               <span>Search</span>
             </div>
             <div class="filter-item filter-checkbox">
-              <input type="checkbox" id="showAll" name="showAll" />
+              <input type="checkbox" id="showAll" name="showAll" <?php echo (isset($_GET['page'])) ? '' : 'checked' ?>/>
               <label for="showAll">Perlihatkan Semua</label>
             </div>
             <div class="filter-item filter-select">
@@ -41,11 +44,11 @@
             </div>
             <div class="filter-item filter-select">
               <div class="dropdown">
-              <?php $filterTingkat = $_SESSION['filter']['tingkat'] ?? null;
+              <?php $filterTingkat = $_SESSION['filter']['tingkat'] ?? '';
               ?>
                 <select id="tingkatPelaporan" class="tingkatPelaporan" name="tingkatPelaporan">
                   <option disabled selected hidden>Tingkat</option>
-                  <option value="" <?php echo $filterTingkat == '' ? 'selected' : ''; ?>>All</option>
+                  <option value="">All</option>
                   <option value="I" <?php echo $filterTingkat == 'I' ? 'selected' : ''; ?>>I</option>
                   <option value="I/II" <?php echo $filterTingkat == 'I/II' ? 'selected' : ''; ?>>I/II</option>
                   <option value="II" <?php echo $filterTingkat == 'II' ? 'selected' : ''; ?>>II</option>
@@ -57,14 +60,14 @@
             </div>
             <div class="filter-item filter-select">
               <div class="dropdown">
-              <?php $filterStatus = $_SESSION['filter']['status'] ?? null;
+              <?php $filterStatus = $_SESSION['filter']['status'] ?? '';
               ?>
                 <select id="statusPelaporan" class="statusPelaporan" name="statusPelaporan">
                   <option disabled selected hidden>Status</option>
-                  <option value="" <?php echo $filterStatus == '' ? 'selected' : ''; ?>>All</option>
+                  <option value="">All</option>
                   <option value="baru" <?php echo $filterStatus == 'baru' ? 'selected' : ''; ?>>Pending</option>
                   <option value="aktif" <?php echo $filterStatus == 'aktif' ? 'selected' : ''; ?>>Processing</option>
-                  <option value="nonaktif" <?php echo $filterStatus == '' ? 'nonaktif' : ''; ?>>Completed</option>
+                  <option value="nonaktif" <?php echo $filterStatus == 'nonaktif' ? 'selected' : ''; ?>>Completed</option>
                   <option value="reject" <?php echo $filterStatus == 'reject' ? 'selected' : ''; ?>>Rejected</option>
                 </select>
               </div>
@@ -78,15 +81,15 @@
       <div class="date-input">
         <span class="flex-col">
           <label for="">Start Date</label>
-          <input type="date" name="startTanggalPelaporan" id="startTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAwal'] ?? null?>">
+          <input type="date" name="startTanggalPelaporan" id="startTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAwal'] ?? ''?>">
         </span>
         <span class="flex-col">
           <label for="">End Date</label>
-          <input type="date" name="endTanggalPelaporan" id="endTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAkhir'] ?? null?>">
+          <input type="date" name="endTanggalPelaporan" id="endTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAkhir'] ?? ''?>">
         </span>
       </div>
       <div class="search-input-container">
-        <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari..." name="searchNim" id="searchNim" value="<?php echo $_SESSION['filter']['nim'] ?? null ?>">
+        <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari..." name="searchNim" id="searchNim" value="<?php echo $_SESSION['filter']['nim'] ?? '' ?>">
         <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button>
       </div>
       </form>
@@ -119,7 +122,7 @@
     
     <?php if(isset($_GET['page'])){ ?>
     <div class="flex-between">
-      <?php echo "<p>Showing $page of " . ceil($maxPage) . " Pages</p>"; ?>
+      <?php echo "<p>Showing $page of <span class='max-page'>" . ceil($maxPage) . " </span>Pages</p>"; ?>
       <div class="arrow-container">
         <button class="arrow left-arrow"><img src="../assets/images/arrow.svg" style="transform: rotate(90deg);" alt=""></button>
         <button class="arrow right-arrow"  <?php 

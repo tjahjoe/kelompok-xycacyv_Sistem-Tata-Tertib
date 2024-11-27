@@ -30,7 +30,7 @@ function Navbar($isOtherPage) {
                 <a href="./">Beranda</a>
                 <a href="./pelaporan.php">Pelaporan</a>
                 <?php if($data['role'] !== 'dosen'){ ?>
-                <a href="./daftar-pelaporan.php">Daftar Pelaporan</a>
+                <a href="./daftar-pelaporan.php?page=1">Daftar Pelaporan</a>
                 <?php }?>
             <?php }?>
             </div>

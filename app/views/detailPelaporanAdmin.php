@@ -37,7 +37,7 @@ require_once '../app/controllers/getData.php';
           </div>
           <div class="flex-row m-0">
             <button class="btn btn-primary" type="submit">Simpan</button>
-            <a href="daftar-pelaporan.php" class="btn btn-gray">Kembali</a>
+            <a href="daftar-pelaporan.php?page=1" class="btn btn-gray">Kembali</a>
           </div>
         </div>
         <div class="detail-container">
