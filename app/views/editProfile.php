@@ -31,18 +31,48 @@ require_once '../app/controllers/getData.php';
         $data = dataUser();
     ?>
 
+  <form class="form-container" id="form-editprofile" enctype="multipart/form-data">
     <div class="flex-between">
       <div class="flex-row m-0">
-        <img src="../assets/images/<?php echo $data['foto_diri'] ?>" alt="Profile Picture" class="profile-image border-image" width="100px" height="100px"/>
+        <img src="../assets/images/<?php echo $data['foto_diri'] ?>" alt="Profile Picture" class="profile-image border-image" id="profile-image" width="100px" height="100px"/>
       <div class="flex-row m-0">
+        <input type="file" name="photo" id="change-photo" style="display: none;" />
 
         <label for="change-photo" class="btn btn-white btn-small">Unggah foto baru</label>
-        <label for="delete-photo" class="btn btn-gray btn-small">Hapus Foto</label>
+        <label for="" id="delete-photo" class="btn btn-gray btn-small">Hapus Foto</label>
       </div>
       </div>
       <button class="btn btn-primary" type="submit">Simpan</button>
     </div>
-  </div>
+    
+    <div class="input-editprofile mt-2">
+      <label for="nama">Nama</label>
+      <input type="text" name="nama" value="<?php echo $data['nama'] ?>" id="nama">
+    </div>
+
+    <?php
+            // Mendapatkan nama kolom pertama (key pertama)
+            $kolomIdUser = array_key_first($data);
+            // Mengambil nilai berdasarkan key tersebut
+            $idUser = $data[$kolomIdUser];
+            ?>
+    <div class="input-editprofile uppercase-text">
+      <label for="id-user"><?php echo $kolomIdUser; ?></label>
+      <input type="text" name="id-user" value="<?php echo $idUser; ?>" id="id-user" disabled>
+    </div>
+    <div class="input-editprofile">
+      <label for="notelp">Nomor Telepon</label>
+      <input type="text" name="notelp" value="<?php echo $data['notelp']; ?>" id="notelp">
+    </div>
+    <div class="input-editprofile">
+      <label for="role">Pekerjaan</label>
+      <input type="text" name="role" value="<?php echo $data['role'] ?>" id="role" disabled>
+    </div>
+
+  </form>
+</div>
+
+
   <script src="../assets/js/script.js"></script>
 </body>
 

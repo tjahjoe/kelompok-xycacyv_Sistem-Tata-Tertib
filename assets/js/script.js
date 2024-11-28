@@ -212,6 +212,29 @@ const uploadFile = () => {
   }
 };
 
+const changePhoto = () => {
+  const fileInput = document.getElementById('change-photo');
+  const profileImage = document.getElementById('profile-image');
+  const deletePhoto = document.getElementById('delete-photo');
+  const initialPhoto = profileImage.src;
+
+  if (fileInput && profileImage && deletePhoto) {
+
+  fileInput.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      console.log(imageUrl)
+      profileImage.src = imageUrl;
+    }
+  });
+
+  deletePhoto.addEventListener('click', function(){
+    profileImage.src = initialPhoto;
+  });
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   eventTogglePassword();
   eventNavbarScroll();
@@ -219,4 +242,5 @@ document.addEventListener("DOMContentLoaded", () => {
   switchTabSubMenu();
   updateBadge();
   uploadFile();
+  changePhoto();
 });

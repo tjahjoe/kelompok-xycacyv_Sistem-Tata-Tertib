@@ -53,6 +53,10 @@ a{
   margin-bottom: 10px;
 }
 
+.mt-2{
+  margin-top: 20px;
+}
+
 /* LOGIN PAGE */
 .box {
   display: flex;
@@ -663,6 +667,27 @@ section#footerLapor {
 .border-image{
   border: 2px solid #fff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* EDIT PROFILE */
+.input-editprofile{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.input-editprofile label{
+  font-weight: 600;
+}
+
+.input-editprofile input{
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1.5px solid var(--gray-color);
 }
 
 /* HISTORY PELANGGARAN */
