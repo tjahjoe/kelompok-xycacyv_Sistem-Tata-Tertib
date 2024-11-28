@@ -18,8 +18,8 @@
 
 <body>
   <?php Navbar(false); ?>
-  <?php HeaderSection("Bersama dan Bersatu Mewujudkan POLINEMA MAJU", "Lorem ipsum odor amet, consectetuer adipiscing elit. Habitasse mattis
-      scelerisque nunc fermentum ornare viverra cras.", true); ?>
+  <?php HeaderSection("Bersama dan Bersatu Mewujudkan POLINEMA MAJU", "Pelajari tingkat tata tertib yang berlaku di Jurusan Teknik Informatika dan peraturan umum di Polinema
+Tetap patuhi peraturan untuk menjaga suasana belajar yang kondusif", true); ?>
   <div class="container">
     <?php $data = ListPelanggaran()?>
     <?php TataTertibSection($data)?>

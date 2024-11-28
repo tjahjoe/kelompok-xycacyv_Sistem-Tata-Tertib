@@ -3,7 +3,6 @@ $(document).ready(function () {
   const showAlert = () => {
     $(".overlay").addClass("alert-active");
   };
-
   const closeAlert = () => {
     $(".overlay").removeClass("alert-active");
     window.location.reload();
@@ -53,7 +52,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          // window.location.reload();
+          window.location.reload();
         } else {
           $("#hasil").css("display", "block");
           $("#hasil").html(response.message);

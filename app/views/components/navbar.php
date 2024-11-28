@@ -44,9 +44,9 @@ function Navbar($isOtherPage) {
                     alt=""
                     width="50px"
                 />
-                <span class="profile-text">
+                <span class="profile-text capitalize-text">
                     <p class="profile-username"><?php echo $data['nama']?></p>
-                    <p class="role-user capitalize-text"><?php echo $data['role']?></p>
+                    <p class="role-user"><?php echo $data['role']?></p>
                 </span>
             </a>
             <?php }else{?>

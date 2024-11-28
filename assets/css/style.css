@@ -16,7 +16,7 @@ html {
   --orange-color: #fb923c;
   --red-color: #ea0234;
   --green-color: #00b69b;
-  --gray-color: #979797;
+  --gray-color: #8A8383;
   --lightgray-color: #f2f2f2;
   --blue-color: #007BFF;
 }
@@ -46,6 +46,11 @@ a{
 
 .title {
   font-size: 2.5rem;
+}
+
+.text-gray{
+  color: var(--gray-color);
+  margin-bottom: 10px;
 }
 
 /* LOGIN PAGE */
@@ -318,7 +323,7 @@ a{
   object-fit: cover;
 }
 
-.navbar .menu {
+.menu {
   display: flex;
   gap: 1.5rem;
 }
@@ -337,6 +342,13 @@ a{
 .hidden {
   transform: translateY(-100%);
   transition: transform 0.4s ease-in-out;
+}
+
+.tab-sublink.active{
+  border-bottom: 2px solid blue;
+  border-radius: 0!important;
+  font-weight:600;
+  color: var(--primary-color)!important;
 }
 
 /* span.arrow {
@@ -407,8 +419,8 @@ section#header {
 .btn {
   display: block;
   width: max-content;
-  padding: 10px 25px;
-  border-radius: 7px;
+  padding: 13px 25px;
+  border-radius: 8px;
   outline: none;
   border: 0;
   font-weight: 600;
@@ -443,9 +455,9 @@ section#header {
 }
 
 .btn-white{
-  color: var(--primary-color);
+  color: var(--dark-color);
   background-color: #fff;
-  border: 1px solid #666;
+  border: 1px solid var(--gray-color);
 }
 
 .btn-gray{
@@ -453,6 +465,10 @@ section#header {
   color: var(--dark-color);
   border-radius: 6px;
   border: 1px solid #ddd;
+}
+
+.btn-small{
+  padding: 10px 25px;
 }
 
 /* SECTION TATATERTIB */
@@ -550,6 +566,7 @@ section#footerLapor {
 }
 
 .box-profile {
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
@@ -579,7 +596,7 @@ section#footerLapor {
   flex-direction: column;
 }
 
-.tab-link {
+.tab-link, .tab-sublink {
   display: block;
   padding: 10px;
   color: #333;
@@ -604,13 +621,20 @@ section#footerLapor {
   min-height: 100vh;
 }
 
-.tab-content{
+.tab-subcontent.active{
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  min-height: 100vh;
+}
+
+.tab-content, .tab-subcontent{
   display:none;
 }
 
 .profile-image {
-  width: 80px;
-  height: 80px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -628,6 +652,17 @@ section#footerLapor {
 
 .info-grid span p:first-of-type{
   color: var(--gray-color);
+}
+
+.edit-icon{
+  position:absolute;
+  top: 15px;
+  right: 10px;
+}
+
+.border-image{
+  border: 2px solid #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 /* HISTORY PELANGGARAN */
@@ -884,15 +919,16 @@ form#searchByNIM{
 
 .flex-row{
   display: flex;
-  gap:10px;
+  gap:15px;
   align-items:center;
   width: max-content;
   margin: auto;
+  flex-wrap:wrap;
 }
 
 .flex-row-start{
   display: flex;
-  gap:10px;
+  gap:14px;
   width: 100%;
   margin: 10px;
   flex-wrap:wrap;
@@ -1156,7 +1192,7 @@ img.lampiran_bukti_full{
 
 .alert-message {
   font-size: 1rem;
-  color: #777;
+  color: var(--dark-color);
   margin-top: 10px;
   line-height: 1.5;
 }

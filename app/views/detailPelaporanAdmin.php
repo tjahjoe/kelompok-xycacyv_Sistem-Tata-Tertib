@@ -60,11 +60,13 @@ require_once '../app/controllers/getData.php';
               <input type="hidden" name="tingkatSanksiAdmin" value="<?= $tingkatSanksi ?>">
             <?php } ?>
 
-            <!-- jika data tingkat sanksi ada, maka disabled select -->
-            <select id="tingkatSanksiAdmin" name="tingkatSanksiAdmin" required <?php echo $tingkatSanksi ? 'class="no-dropdown" disabled' : ''; ?>>
-              <?php
-              // jika status != reject option tingkat sanksi akan tampil
-              if ($status != 'reject') {
+            <?php
+            // jika status != reject option tingkat sanksi akan tampil
+            if ($status != 'reject') {
+              ?>
+              <!-- jika data tingkat sanksi ada, maka disabled select -->
+              <select id="tingkatSanksiAdmin" name="tingkatSanksiAdmin" required <?php echo $tingkatSanksi ? 'class="no-dropdown" disabled' : ''; ?>>
+                <?php
                 if ($tingkatSanksi) {
                   echo "<option value='$tingkatSanksi' selected>$tingkatSanksi</option>";
                 } else {
@@ -74,13 +76,14 @@ require_once '../app/controllers/getData.php';
                     echo "<option value='$tingkatSanksi'>$tingkatSanksi</option>";
                   }
                 }
-              } else {
-                // jika status reject maka tidak menampilkan apa apa
-                echo "<p></p>";
-              }
-              ?>
-            </select>
-
+                ?>
+              </select>
+            <?php
+            } else {
+              // jika status reject maka tidak menampilkan apa apa
+              echo "<p>-</p>";
+            }
+            ?>
           </div>
           <div class="detail-item">
             <label for="tanggalPelanggaran">Tanggal Pelanggaran</label>

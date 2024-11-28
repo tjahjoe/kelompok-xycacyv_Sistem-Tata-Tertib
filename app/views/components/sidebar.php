@@ -9,6 +9,7 @@ $data = dataUser();
   if ($data && in_array($data['role'], ['dosen', 'dpa', 'kps', 'sekjur', 'admin'])) {
   ?>
     <a href="#riwayat-pelaporan" class="tab-link">Riwayat Pelaporan</a>
+    <a href="#pengaturan-lanjutan" class="tab-link">Pengaturan Lanjutan</a>
   <?php } else { ?>
     <a href="#riwayat-pelanggaran" class="tab-link">Riwayat Pelanggaran</a>
   <?php } ?>

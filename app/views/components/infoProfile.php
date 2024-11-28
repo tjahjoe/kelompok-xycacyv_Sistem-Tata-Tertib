@@ -5,9 +5,9 @@ function InfoProfile($data)
   <?php if (!empty($data)) { ?>
     <div class="box-profile">
       <div class="info-user">
-        <img src="../assets/images/<?php echo $data['foto_diri'] ?>" alt="Profile Picture" class="profile-image" />
+        <img src="../assets/images/<?php echo $data['foto_diri'] ?>" alt="Profile Picture" class="profile-image" width="80px" height="80px"/>
         <span>
-          <h3><?php echo $data['nama'] ?></h3>
+          <h3 class="capitalize-text"><?php echo $data['nama'] ?></h3>
           <p class="capitalize-text"><?php echo $data['role'] ?></p>
         </span>
       </div>
@@ -16,12 +16,12 @@ function InfoProfile($data)
       <div class="info-personal">
         <h2>Informasi Pribadi</h2>
         <div class="info-grid">
-          <span>
-            <p class="capitalize-text">Nama Awal</p>
+          <span class="capitalize-text">
+            <p>Nama Awal</p>
             <p><?php echo $data['nama_awal']; ?></p>
           </span>
-          <span>
-            <p class="capitalize-text">Nama Akhir</p>
+          <span class="capitalize-text">
+            <p>Nama Akhir</p>
             <p><?php echo $data['nama_akhir']; ?></p>
           </span>
           <span>
@@ -48,6 +48,10 @@ function InfoProfile($data)
           </span>
         </div>
       </div>
+
+      <a href="edit-profile.php">
+        <img class="edit-icon" src="../assets/images/Edit.svg" alt="edit icon" width="35px">
+      </a>
     </div>
 <?php
   }

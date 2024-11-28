@@ -5,10 +5,8 @@
       <div class="alert-icon"><img src="../assets/images/<?php echo $icon; ?>" alt=""></div>
       <div class="alert-title"><?php echo $information; ?></div>
       <div class="alert-message">
-        <strong>
         <?php echo $title; ?><br>
         <?php echo $content; ?><br>
-        </strong>
       </div>
       <?php if(!$isAlertConfirmation){?>
 
@@ -16,7 +14,7 @@
 
       <?php }else{?>
       <div class="flex-row">
-        <button class="btn btn-red alert-logout-button">Konfirmasi</button>
+        <button class="btn btn-primary alert-logout-button">Konfirmasi</button>
         <button class="btn btn-white alert-close-button">Kembali</button>
       </div>
       <?php }?>

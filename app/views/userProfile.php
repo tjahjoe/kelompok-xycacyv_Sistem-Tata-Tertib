@@ -1,12 +1,12 @@
-<?php 
-include 'components/emptyState.php'; 
-include 'components/navbar.php'; 
-include 'components/table.php'; 
+<?php
+include 'components/emptyState.php';
+include 'components/navbar.php';
+include 'components/table.php';
 include 'components/alert.php';
 ?>
 
 <?php
-require_once '../app/controllers/getData.php' ;
+require_once '../app/controllers/getData.php';
 ?>
 
 <!DOCTYPE html>
@@ -35,9 +35,8 @@ require_once '../app/controllers/getData.php' ;
       <div id="profile-user" class="tab-content active">
         <div class="head-tab-content">
           <h2>Profil Saya</h2>
-          <p>Anda tidak dapat mengubah informasi pribadi di sini. Untuk mengubah informasi, silakan hubungi admin.</p>
         </div>
-        <?php include 'components/infoProfile.php'; 
+        <?php include 'components/infoProfile.php';
 
         $user_data = dataUser();
         InfoProfile($user_data);
@@ -49,35 +48,57 @@ require_once '../app/controllers/getData.php' ;
         <div class="head-tab-content">
           <h2>Riwayat Pelanggaran</h2>
         </div>
-        <?php 
+        <?php
         $dataPelanggaran = dataPelanggaran();
 
-        if($dataPelanggaran){
-          TableContent($dataPelanggaran, 'detail-pelanggaran'); 
-        }else{
+        if ($dataPelanggaran) {
+          TableContent($dataPelanggaran, 'detail-pelanggaran');
+        } else {
           EmptyState('EmptyState.png', 'Tidak ada riwayat pelanggaran');
         }
         ?>
-        
+
       </div>
+
+      <!-- Pengaturan Lanjutan -->
+      <div class="tab-content" id="pengaturan-lanjutan">
+        <div class="menu">
+          <a href="#kelola-peraturan-tatib" class="tab-sublink active">Kelola Peraturan Tata Tertib </a>
+          <a href="#kelola-surat-pernyataan" class="tab-sublink">Kelola Surat Pernyataan</a>
+        </div>
+
+        <!-- KELOLA TATIB -->
+        <div class="tab-subcontent active" id="kelola-peraturan-tatib">
+          <div class="head-tab-content">
+            <h2>Kelola Peraturan Tata Tertib</h2>
+          </div>
+        </div>
+
+        <!-- KELOLA SURAT PERNYATAAN -->
+        <div class="tab-subcontent" id="kelola-surat-pernyataan">
+          <div class="head-tab-content">
+            <h2>Kelola Surat Pernyataan</h2>
+          </div>
+        </div>
+      </div>
+
 
       <!-- RIWAYAT PELAPORAN -->
       <div class="tab-content" id="riwayat-pelaporan">
         <div class="head-tab-content">
           <h2>Riwayat Pelaporan</h2>
         </div>
-        <?php 
+        <?php
         $dataPelaporan = dataPelapor();
-        if($dataPelaporan){
-          TableContent($dataPelaporan, 'detail-pelaporan'); 
-        }else{
+        if ($dataPelaporan) {
+          TableContent($dataPelaporan, 'detail-pelaporan');
+        } else {
           EmptyState('EmptyStatePelaporan.png', 'Tidak ada riwayat pelaporan');
         }
         ?>
-        
       </div>
       <!-- ALERT -->
-    <?php Alert('alert-success-icon.svg','Logout', 'Are you sure want to logout?', '', true); ?>
+      <?php Alert('logout-icon.svg', 'Logout', 'Apakah Anda yakin ingin keluar dari akun?', '', true); ?>
     </div>
   </div>
   </div>

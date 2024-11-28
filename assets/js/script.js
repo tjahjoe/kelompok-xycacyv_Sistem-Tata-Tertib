@@ -74,6 +74,28 @@ const switchTab = () => {
   }
 };
 
+const switchTabSubMenu = () => {
+  const tabSubMenu = document.querySelectorAll(".tab-sublink");
+  const tabSubContent = document.querySelectorAll(".tab-subcontent");
+
+  if(tabSubMenu){
+    tabSubMenu.forEach((link) => {
+      link.addEventListener("click", function(event){
+        event.preventDefault();
+
+        tabSubMenu.forEach((tab) => tab.classList.remove("active"));
+        tabSubContent.forEach((content) => content.classList.remove("active"));
+        
+        this.classList.add("active");
+
+        document
+          .querySelector(this.getAttribute("href"))
+          .classList.add("active");
+      });
+    })
+  }
+}
+
 const updateBadge = () => {
 
   const getBadgeClass = (forValue) => {
@@ -194,6 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
   eventTogglePassword();
   eventNavbarScroll();
   switchTab();
+  switchTabSubMenu();
   updateBadge();
   uploadFile();
 });
