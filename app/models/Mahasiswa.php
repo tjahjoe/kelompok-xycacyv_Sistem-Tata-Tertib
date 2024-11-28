@@ -30,6 +30,63 @@ class Mahasiswa
         // return $result ? setFirstnameAndLastname($result) : false;
     }
 
+    // public function getDataMahasiswaForTransaction($nim){
+    //     $this->conn->beginTransaction();
+    //     $result = $this->getDataMahasiswa($nim);
+        
+    //     if ($result) {
+    //         return $result;
+    //     } else {
+    //         $this->conn->commit();
+    //         return false;
+    //     }
+    // }
+
+    // public function changeData($nama, $nim){
+    //     $query = "UPDATE ". $this->table ." 
+    //     SET nama_mahasiswa = ? 
+    //     WHERE nim = ?";
+    //     $stmt = $this->conn->prepare($query);
+    //     $stmt->bindParam(1,$nama);
+    //     $stmt->bindParam(2, $nim);
+    //     $stmt->execute();
+    // }
+    
+    public function changeData($nama, $nim, $notlp)
+    {
+        $query = "SELECT nim as id FROM Mahasiswa WHERE notelp = ?
+        UNION 
+        SELECT nip as id FROM Dosen WHERE notelp = ?
+        UNION 
+        SELECT nip as id FROM Admin WHERE notelp = ?";
+        $this->conn->beginTransaction();
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $notlp);
+        $stmt->bindParam(2, $notlp);
+        $stmt->bindParam(3, $notlp);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            if ($result['id'] != $nim) {
+                $this->conn->rollBack();
+                return false;
+            }
+        }
+
+        $query = "UPDATE " . $this->table . " 
+        SET nama_mahasiswa = ?,
+        notelp = ?
+        WHERE nim = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $nama);
+        $stmt->bindParam(2, $notlp);
+        $stmt->bindParam(3, $nim);
+        $stmt->execute();
+        $this->conn->commit();
+        return true;
+    }
+
     // public function getDataMahasiswaByDpa($nip)
     // {
     //     $query = "SELECT * FROM " . $this->table . " WHERE nip = ?";

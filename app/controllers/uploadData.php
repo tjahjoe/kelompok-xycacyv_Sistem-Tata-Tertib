@@ -8,6 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
     $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
     $mahasiswaModel = new Mahasiswa();
 
+    unset($_SESSION['allData']);
+
     $response = [
         'status' => 'error',
         'message' => 'data not valid',

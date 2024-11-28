@@ -11,7 +11,7 @@ function setFirstnameAndLastname($data)
     }
 
     $lastname = substr($nama, $pos);
-    $firstname = substr($nama, 0, strlen($nama) - strlen($lastname) - 1);
+    $firstname = $pos == 0 ? $nama : substr($nama, 0, strlen($nama) - strlen($lastname) - 1);
 
     $data['nama_awal'] = $firstname;
     $data['nama_akhir'] = $lastname;

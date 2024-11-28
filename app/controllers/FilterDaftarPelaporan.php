@@ -11,11 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         'message' => 'No data found for the selected tingkat pelanggaran.',
     ];
 
-    $nim = $_SESSION['filter']['nim'] = $_POST['searchNim'];
-    $tanggalAwal = $_SESSION['filter']['tanggalAwal'] = $_POST['startTanggalPelaporan'];
-    $tanggalAkhir = $_SESSION['filter']['tanggalAkhir'] = $_POST['endTanggalPelaporan'];
-    $tingkat = $_SESSION['filter']['tingkat'] = $_POST['tingkatPelaporan'];
-    $status = $_SESSION['filter']['status'] = $_POST['statusPelaporan'];
+    $_SESSION['filter']['nim'] = $_POST['searchNim'];
+    $_SESSION['filter']['tanggalAwal'] = $_POST['startTanggalPelaporan'];
+    $_SESSION['filter']['tanggalAkhir'] = $_POST['endTanggalPelaporan'];
+    $_SESSION['filter']['tingkat'] = $_POST['tingkatPelaporan'];
+    $_SESSION['filter']['status'] = $_POST['statusPelaporan'];
 
     // $_SESSION['filter']['nim'] = $nim;
     // $_SESSION['filter']['tanggalAwal'] = $tanggalAwal;
@@ -23,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
     // $_SESSION['filter']['tingkat'] = $tingkat;
     // $_SESSION['filter']['status'] = $status;
 
-    $id = $_SESSION['user']['id_users'];
-    $role = $_SESSION['user']['role'];
+    // $id = $_SESSION['user']['id_users'];
+    // $role = $_SESSION['user']['role'];
 
     // $results = $role == 'dpa' ? $pelanggaranMahasiswaModel->getDaftarPelaporanByFilter(
     //     $nim,

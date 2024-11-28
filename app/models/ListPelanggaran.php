@@ -29,5 +29,36 @@ class ListPelanggaran{
         
         return $results ? $results : false;
     }
+
+    public function getListPelanggaranByNamaAndTingkat($nama, $tingkat){
+        $conditions = [];
+        $params = [];
+
+        if ($nama) {
+            $conditions[] = "nama_jenis_pelanggaran LIKE ?";
+            $params[] = "%" . $nama . "%";
+        }
+
+        if ($tingkat) {
+            $conditions[] = "tingkat_pelanggaran = ?";
+            $params[] = $tingkat;
+        }
+
+        $whereClause = $conditions ? implode(" AND ", $conditions) : "1 = 1";
+
+        $query = "SELECT * 
+        FROM ". $this->table ."
+        WHERE 
+        $whereClause";
+        var_dump($query);
+        $stmt = $this->conn->prepare($query);
+        foreach ($params as $index => $param) {
+            $stmt->bindValue($index + 1, $param);
+        }
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $results ? $results : false;
+    }
 }
 ?>

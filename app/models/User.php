@@ -24,11 +24,11 @@ class User{
         }
 
         if ($result['role'] == 'mahasiswa') {
-            $query = "SELECT * FROM Mahasiswa WHERE nim = ?";
+            $query = "SELECT * FROM Mahasiswa WHERE nim = ? AND status = 'aktif'";
         } else if (in_array($result['role'], ['dosen', 'dpa', 'kps', 'sekjur'])) {
-            $query = "SELECT * FROM Dosen WHERE nip = ?";
+            $query = "SELECT * FROM Dosen WHERE nip = ? AND status = 'aktif'";
         } else if ($result['role'] == 'admin') {
-            $query = "SELECT * FROM Admin WHERE nip = ?";
+            $query = "SELECT * FROM Admin WHERE nip = ? AND status = 'aktif'";
         }
 
         $stmt = $this->conn->prepare($query);
@@ -38,6 +38,17 @@ class User{
         $isValue = $stmt->fetch(PDO::FETCH_ASSOC);
         $this -> conn ->commit();
         return $isValue ? $result : false;
+    }
+
+    public function changeFoto($id, $foto){
+        $query = "UPDATE ". $this->table ."
+        SET foto_diri = ? 
+        WHERE id_users = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $foto);
+        $stmt->bindParam(2, $id);
+        $stmt->execute();
     }
 }
 ?>
