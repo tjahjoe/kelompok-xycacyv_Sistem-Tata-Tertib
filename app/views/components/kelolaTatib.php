@@ -59,7 +59,7 @@ function KelolaTatib()
                 <td><?php echo $index ?></td>
                 <td class="text-left normal-white-space"><?php echo $record['nama_jenis_pelanggaran'] ?></td>
                 <td><?php echo $record['tingkat_pelanggaran'] ?></td>
-                <td>---</td>
+                <td><span id="update-tatib" data-id="<?php echo $record['id_list_pelanggaran'] ?>">•••</span></td>
               </tr>
           <?php }
           } else {

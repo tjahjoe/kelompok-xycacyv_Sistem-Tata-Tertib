@@ -5,7 +5,7 @@ function InfoProfile($data)
   <?php if (!empty($data)) { ?>
     <div class="box-profile">
       <div class="info-user">
-        <img src="../assets/images/<?php echo $data['foto_diri'] ?>" alt="Profile Picture" class="profile-image" width="80px" height="80px"/>
+        <img src="../assets/uploads/photo/<?php echo $data['foto_diri'] ?>" alt="Profile Picture" class="profile-image" width="80px" height="80px"/>
         <span>
           <h3 class="capitalize-text"><?php echo $data['nama'] ?></h3>
           <p class="capitalize-text"><?php echo $data['role'] ?></p>

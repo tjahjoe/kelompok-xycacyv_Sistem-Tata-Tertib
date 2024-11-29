@@ -21,5 +21,10 @@ $(document).ready(function () {
             }
         }
     });
-});
+  });
+
+  $("#update-tatib").on("click", function (e) {
+    e.preventDefault();
+    
+  });
 })
