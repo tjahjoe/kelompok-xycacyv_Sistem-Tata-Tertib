@@ -429,7 +429,7 @@ class PelanggaranMahasiswa
         return $result ? $result : false;
     }
 
-    public function uploadStatusAndTingkat($idPelanggaran, $status, $idTingkat, $nip)
+    public function uploadStatusAndTingkat($idPelanggaran, $catatan, $status, $idTingkat, $nip)
     {
         $idTingkat = $status == 'reject' ? null : $idTingkat;
 
@@ -458,12 +458,14 @@ class PelanggaranMahasiswa
             if (!in_array($result['status'], ['nonaktif', 'reject']) and $status != 'baru') {
                 $query = "UPDATE " . $this->table . " SET 
                 status = ?,
+                catatan = ?,
                 id_tingkat_pelanggaran = ?
                 WHERE id_pelanggaran_mhs = ?";
                 $stmt = $this->conn->prepare($query);
                 $stmt->bindParam(1, $status);
-                $stmt->bindParam(2, $idTingkat);
-                $stmt->bindParam(3, $idPelanggaran);
+                $stmt->bindParam(2, $catatan);
+                $stmt->bindParam(3, $idTingkat);
+                $stmt->bindParam(4, $idPelanggaran);
                 $stmt->execute();
 
                 $result = $this->checkAmount($idPelanggaran);

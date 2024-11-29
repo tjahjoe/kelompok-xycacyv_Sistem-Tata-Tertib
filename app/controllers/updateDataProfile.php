@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
     $id = $_SESSION['user']['id_users'];
     $role = $_SESSION['user']['role'];
 
-    var_dump($nama);
-    var_dump($notelp);
-    var_dump($id);
-    var_dump($role);
+    // var_dump($nama);
+    // var_dump($notelp);
+    // var_dump($id);
+    // var_dump($role);
 
     if ($role == 'mahasiswa') {
         $result = $mahasiswaModel->changeData($nama, $id, $notelp);
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
 
     // $result = $pelanggaranMahasiswaModel->uploadStatusAndTingkat($idPelanggaran, $status, $idTigkat,  $nip);
 
-    // echo $result ? json_encode(['status' => 'success', 'message' => 'upload success']) : json_encode($response);
-    // exit;
+    echo $result ? json_encode(['status' => 'success', 'message' => 'upload success']) : json_encode($response);
+    exit;
 }
 ?>
