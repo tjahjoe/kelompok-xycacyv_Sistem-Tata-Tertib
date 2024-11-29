@@ -18,7 +18,8 @@ class Mahasiswa
         m.nama_mahasiswa as nama,
         m.email,
         u.role,
-        u.foto_diri
+        u.foto_diri,
+        m.status
         FROM " . $this->table . " m
         JOIN Users u ON 
         m.nim = u.id_users WHERE nim = ?";

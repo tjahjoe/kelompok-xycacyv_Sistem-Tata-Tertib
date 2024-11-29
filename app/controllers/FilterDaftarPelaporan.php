@@ -3,7 +3,7 @@ require_once __DIR__ . "/../models/PelanggaranMahasiswa.php";
 require_once __DIR__ . "/../views/components/badge.php";
 require_once __DIR__ . "/check.php";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {//menggunakan get
     $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
 
     $response = [

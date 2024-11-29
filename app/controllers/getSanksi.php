@@ -2,7 +2,7 @@
 require_once __DIR__ . "/../models/TingkatPelanggaran.php";
 require_once __DIR__ . "/check.php";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {//menggunakan get
     $tingkatPelanggaranModel = new TingkatPelanggaran();
 
     $response = [

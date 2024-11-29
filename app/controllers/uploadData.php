@@ -16,10 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
     ];
 
     $nim = $_POST['nim'];
-    // $tingkat = $_POST['tingkat'];
     $jenis = $_POST['jenisPelanggaran'];
     $catatan = $_POST['deskripsiLaporan'];
-    // $tanggal = $_POST['tanggal'];
     $tanggal = date('Y-m-d');
     $pelapor = $_SESSION['user']['id_users'];
     $isEmptyImg = empty($_FILES['lampiran']['name'][0]);
@@ -31,18 +29,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         $condition = array_sum($_FILES['lampiran']['size']) <= $maxsize && count($_FILES['lampiran']['name']) <= 10 ? true : false;
     }
 
-    // echo "p1";
-    $checkNim = $mahasiswaModel->getDataMahasiswa($nim);
-    
+    $mahasiswa = $mahasiswaModel->getDataMahasiswa($nim);
+
     $message = '';
-    if (empty($checkNim)) {
+    $status = true;
+
+    if ($mahasiswa) {
+        if ($mahasiswa['status'] != 'aktif') {
+            $message = "nim not valid";
+            $status = false;
+        }
+    } else if (empty($mahasiswa)) {
         $message = "nim not valid";
     } else if (!$condition) {
         $message = "image size is too large";
     }
 
-    if ($checkNim && $condition) {
-        // echo "p2";
+    if ($mahasiswa && $condition && $status) {
         $idPelanggaranMhs = $pelanggaranMahasiswaModel->uploadPelanggaran(
             $nim,
             $tanggal,
@@ -52,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
             $isEmptyImg
         );
 
-        // echo json_encode($idPelanggaranMhs);
         if ($idPelanggaranMhs) {
 
             $files = uploadImage($idPelanggaranMhs);
@@ -66,7 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
             exit;
         }
     } else {
-        // echo "p3";
         $response['message'] = $message;
         echo json_encode($response);
         exit;
