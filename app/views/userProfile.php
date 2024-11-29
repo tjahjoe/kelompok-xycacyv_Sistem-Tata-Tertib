@@ -3,6 +3,7 @@ include 'components/emptyState.php';
 include 'components/navbar.php';
 include 'components/table.php';
 include 'components/alert.php';
+include 'components/kelolaTatib.php';
 ?>
 
 <?php
@@ -72,6 +73,7 @@ require_once '../app/controllers/getData.php';
           <div class="head-tab-content">
             <h2>Kelola Peraturan Tata Tertib</h2>
           </div>
+          <?php KelolaTatib();?>
         </div>
 
         <!-- KELOLA SURAT PERNYATAAN -->
@@ -102,6 +104,7 @@ require_once '../app/controllers/getData.php';
     </div>
   </div>
   </div>
+  <script src="../assets/js/handleTataTertib.js"></script>
   <script src="../assets/js/script.js"></script>
 </body>
 

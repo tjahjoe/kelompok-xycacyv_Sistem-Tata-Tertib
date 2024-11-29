@@ -29,8 +29,9 @@ require_once '../app/controllers/getData.php';
     
     <?php 
         $data = dataUser();
+      
+        if(!empty($data)){
     ?>
-
   <form class="form-container" id="form-editprofile" enctype="multipart/form-data">
     <div class="flex-between">
       <div class="flex-row m-0">
@@ -70,6 +71,9 @@ require_once '../app/controllers/getData.php';
     </div>
 
   </form>
+  <?php }else{
+    echo "<p>Data is not available</p>";
+  }?>
 </div>
 
 
