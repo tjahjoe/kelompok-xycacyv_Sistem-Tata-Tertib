@@ -49,6 +49,18 @@ class User{
         $stmt->bindParam(1, $foto);
         $stmt->bindParam(2, $id);
         $stmt->execute();
+        // $this->conn->commit();
+        return true;
+    }
+
+    public function checkPhotoName($id){
+        $query = "SELECT foto_diri FROM " . $this->table . " WHERE id_users = ?";
+        // $this -> conn -> beginTransaction();
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result : false;
     }
 }
 ?>

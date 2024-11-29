@@ -62,6 +62,7 @@ class Admin
         $stmt->bindParam(3, $nip);
         $stmt->execute();
         $this->conn->commit();
+        return true;
     }
 }
 ?>

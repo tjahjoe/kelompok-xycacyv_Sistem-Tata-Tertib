@@ -42,7 +42,7 @@ function changeNameValue($datas)
 
 function setArrayForImageName($data)
 {
-    $data['Bukti'] = $data['Bukti'] ?  explode(",", $data['Bukti']) : false;
+    $data['Bukti'] = $data['Bukti'] ? explode(",", $data['Bukti']) : false;
     return $data;
 }
 
@@ -66,16 +66,42 @@ function setTingkatPelanggaranToSanksi($datas): mixed
             case 'V':
                 $data['id_sanksi'] = 5;
                 break;
+            default:
+                $data['id_sanksi'] = 0;
+                break;
         }
     }
     unset($data['tingkat_pelanggaran']);
     return $datas;
 }
 
-function uploadImage($idPelanggaranMhs)
+function setSanksiToTingkatPelanggaran($sanksi)
 {
-    $targetDirectory = "../../assets/uploads/bukti/";
-    $totalFiles = count($_FILES['lampiran']['name']);
+    switch ($sanksi) {
+        case 1:
+            $sanksi = 'I';
+            break;
+        case 2:
+            $sanksi = 'II';
+            break;
+        case 3:
+            $sanksi = 'III';
+            break;
+        case 4:
+            $sanksi = 'IV';
+            break;
+        case 5:
+            $sanksi = 'V';
+            break;
+    }
+
+    return $sanksi;
+}
+
+function uploadImage($idPelanggaranMhs)//untuk edit pp
+{
+    $targetDirectory = "../../assets/uploads/bukti/"; //edit path
+    $totalFiles = count($_FILES['lampiran']['name']); //edit name
 
     $files = [];
 
@@ -94,5 +120,17 @@ function uploadImage($idPelanggaranMhs)
 
     $files = implode(',', $files);
     return $files;
+}
+
+function changePhotoProfil($id)
+{
+    $targetDirectory = "../../assets/uploads/photo/";
+
+    $file = explode('.', $_FILES['photo']['name']);
+    $type = end($file);
+    $fileName = $id . ".$type";
+    $targetFile = $targetDirectory . $fileName;
+    move_uploaded_file($_FILES['photo']['tmp_name'], $targetFile);
+    return $fileName;
 }
 ?>

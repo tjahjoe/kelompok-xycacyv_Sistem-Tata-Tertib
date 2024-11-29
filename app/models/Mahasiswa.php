@@ -27,30 +27,7 @@ class Mahasiswa
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ? $result : false;
-        // return $result ? setFirstnameAndLastname($result) : false;
     }
-
-    // public function getDataMahasiswaForTransaction($nim){
-    //     $this->conn->beginTransaction();
-    //     $result = $this->getDataMahasiswa($nim);
-        
-    //     if ($result) {
-    //         return $result;
-    //     } else {
-    //         $this->conn->commit();
-    //         return false;
-    //     }
-    // }
-
-    // public function changeData($nama, $nim){
-    //     $query = "UPDATE ". $this->table ." 
-    //     SET nama_mahasiswa = ? 
-    //     WHERE nim = ?";
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->bindParam(1,$nama);
-    //     $stmt->bindParam(2, $nim);
-    //     $stmt->execute();
-    // }
     
     public function changeData($nama, $nim, $notlp)
     {
@@ -86,21 +63,5 @@ class Mahasiswa
         $this->conn->commit();
         return true;
     }
-
-    // public function getDataMahasiswaByDpa($nip)
-    // {
-    //     $query = "SELECT * FROM " . $this->table . " WHERE nip = ?";
-    //     return $this->getDataMahasiswa($query, $nip);
-    // }
-
-    // public function getAllDataMahasiswa()
-    // {
-    //     $query = "SELECT * FROM " . $this->table;
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->execute();
-    //     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    //     return $result ? $result : false;
-    // }
 }
 ?>

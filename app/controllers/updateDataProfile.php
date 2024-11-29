@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
 
     // $result = $pelanggaranMahasiswaModel->uploadStatusAndTingkat($idPelanggaran, $status, $idTigkat,  $nip);
 
-    echo $result ? json_encode(['status' => 'success', 'message' => 'upload success']) : json_encode($response);
+    echo $result ? json_encode(['status' => 'success', 'message' => 'update success']) : json_encode($response);
     exit;
 }
 ?>
