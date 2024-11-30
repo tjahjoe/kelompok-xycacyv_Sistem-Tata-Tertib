@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document Upload</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <label for="surat">Upload Document:</label>
-        <input type="file" name="surat" id="surat" accept=".docx">
+    <form id="uploadForm">
+        <label for="nama">nama</label>
+        <input type="text" name="nama">
+        <br>
+        <br>
+        <label for="nim">nim</label>
+        <input type="text" name="nim">
         <input type="submit" value="Submit">
     </form>
     <div id="response"></div>
@@ -20,24 +26,27 @@
                 e.preventDefault(); // Prevent default form submission
 
                 // Create FormData object
-                var formData = new FormData(this);
+                var formData = $(this).serialize()
 
                 // Make AJAX request
                 $.ajax({
-                    url: 'handlerPost.php?action=updateSuratPeringatan',
+                    url: 'handlerPost.php?action=suratPeringatan',
                     type: 'POST',
                     data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function (response) {
-                        $('#response').html('<p>' + response + '</p>');
+                    xhrFields: {
+                        responseType: 'blob'
                     },
-                    error: function (xhr, status, error) {
-                        $('#response').html('<p>Error: ' + error + '</p>');
+                    success: function (blob) {
+                        var link = document.createElement('a');
+                        link.href = window.URL.createObjectURL(blob);
+                        link.download = 'surat_pernyataan.docx';
+                        link.click();
                     }
                 });
+
             });
         });
     </script>
 </body>
+
 </html>
