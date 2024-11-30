@@ -8,7 +8,8 @@ $(document).ready(function() {
 
       // Kirim data ke server PHP
       $.ajax({
-          url: "../app/controllers/AuthLogin.php",
+        //   url: "../app/controllers/AuthLogin.php",
+          url: "../app/controllers/handlerPost.php?action=login",
           type: "POST",
           data: formData,
           dataType: "json",

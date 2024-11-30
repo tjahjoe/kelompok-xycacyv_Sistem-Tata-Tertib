@@ -160,7 +160,7 @@ if(document.querySelector('.logout-btn')){
   document.querySelector('.alert-logout-button').addEventListener('click', (e) => {
     e.preventDefault();
 
-    window.location.href = './../app/controllers/Logout.php';
+    window.location.href = './../app/controllers/logout.php';
   });
 }
 

@@ -18,7 +18,8 @@ $(document).ready(function () {
 
     // Kirim data ke server PHP
     $.ajax({
-      url: "../app/controllers/updateFoto.php",
+      // url: "../app/controllers/updateFoto.php",
+      url: "../app/controllers/handlerPost.php?action=updatePhotoProfil",
       type: "POST",
       data: formData,
       contentType: false, // Biarkan jQuery menetapkan header ini secara otomatis
@@ -38,7 +39,8 @@ $(document).ready(function () {
   $("#delete-photo").on("click", function (e) {
     e.preventDefault();
     $.ajax({
-      url: "../app/controllers/deleteFoto.php",
+      // url: "../app/controllers/deleteFoto.php",
+      url: "../app/controllers/handlerPost.php?action=deletePhotoProfil",
       type: "POST",
       contentType: false, // Biarkan jQuery menetapkan header ini secara otomatis
       processData: false,
@@ -64,7 +66,8 @@ $(document).ready(function () {
 
     // Kirim data ke server PHP
     $.ajax({
-        url: "../app/controllers/updateDataProfile.php",
+        // url: "../app/controllers/updateDataProfile.php",
+        url: "../app/controllers/handlerPost.php?action=updateDataUser",
         type: "POST",
         data: formData,
         dataType: "json",

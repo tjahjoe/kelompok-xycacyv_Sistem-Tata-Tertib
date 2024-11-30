@@ -5,7 +5,8 @@ $(document).ready(function () {
       const formData = $(this).serialize();
   
       $.ajax({
-        url: "../app/controllers/uploadListPelanggaran.php",
+        // url: "../app/controllers/uploadListPelanggaran.php",
+        url: "../app/controllers/handlerPost.php?action=uploadListPelanggaran",
         type: "POST",
         data: formData,
         dataType: "json",
@@ -28,7 +29,8 @@ $(document).ready(function () {
       if (tatibId) formData += "&idPelanggaran=" + tatibId;
   
       $.ajax({
-        url: "../app/controllers/updateListPelanggaran.php",
+        // url: "../app/controllers/updateListPelanggaran.php",
+        url: "../app/controllers/handlerPost.php?action=updateListPelanggaran",
         type: "POST",
         data: formData,
         dataType: "json",
@@ -49,7 +51,8 @@ $(document).ready(function () {
       const tatibId = $(this).data("id");
 
       $.ajax({
-        url: "../app/controllers/getListPelanggaranById.php",
+        // url: "../app/controllers/getListPelanggaranById.php",
+        url: "../app/controllers/handlerGet.php?action=filterListPelanggaranById",
         type: "GET",
         data: { id: tatibId },
         dataType: "json",
@@ -76,7 +79,8 @@ $(document).ready(function () {
         console.log(tatibId)
   
         $.ajax({
-          url: "../app/controllers/deleteListPelanggaran.php",
+          // url: "../app/controllers/deleteListPelanggaran.php",
+          url: "../app/controllers/handlerPost.php?action=deleteListPelanggaran",
           type: "POST",
           data: { id: tatibId },
           dataType: "json",
