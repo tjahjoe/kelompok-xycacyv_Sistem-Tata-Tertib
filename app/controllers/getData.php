@@ -53,20 +53,9 @@ function dataPelanggaran()
         $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
 
         $id = $_SESSION['user']['id_users'];
-        // $role = $_SESSION['user']['role'];
-
-        // if ($role == 'mahasiswa') {
-            $dataPelanggaran = $pelanggaranMahasiswaModel->getDataPelanggaranByPelanggar($id);
-            return $dataPelanggaran;
-        // } else if ($role == 'dpa') { // dipindah ke file baru
-        //     $dataPelanggaran = $pelanggaranMahasiswaModel->getDataPelanggaranByDpa($id);
-        //     return $dataPelanggaran;
-        // } else if (in_array($role, ['sekjur', 'kps', 'admin'])) {
-        //     $dataPelanggaran = $pelanggaranMahasiswaModel->getAllDataPelanggaran();
-        //     return $dataPelanggaran;
-        // } else {
-        //     return false;
-        // }
+        $dataPelanggaran = $pelanggaranMahasiswaModel->getDataPelanggaranByPelanggar($id);
+        return $dataPelanggaran;
+        
     } else {
         return false;
     }

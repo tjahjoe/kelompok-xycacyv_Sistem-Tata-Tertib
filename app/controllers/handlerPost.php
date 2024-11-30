@@ -2,6 +2,7 @@
 require_once __DIR__ . "/post/User.php";
 require_once __DIR__ . "/post/PelanggaranMahasiswa.php";
 require_once __DIR__ . "/post/ListPelanggaran.php";
+require_once __DIR__ . "/post/Tamplate.php";
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
@@ -23,5 +24,7 @@ if ($action == 'login') {//user
     updatePhotoProfil();
 } else if ($action == 'deletePhotoProfil') {//user
     deletePhotoProfil();
+} else if ($action == 'updateSuratPeringatan') {//tamplate
+    updateSuratPeringatan();
 }
 ?>

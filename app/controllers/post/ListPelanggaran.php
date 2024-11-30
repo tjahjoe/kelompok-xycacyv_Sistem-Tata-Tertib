@@ -14,7 +14,11 @@ function uploadListPelanggaran()
         $tingkat = $_POST['tingkatPelanggaran'];
         $nama = $_POST['namaPelanggaran'];
 
-        $result = $listPelanggaranModel->uploadListPelanggaran($nama, $tingkat);
+        $result = false;
+
+        if ($nama) {
+            $result = $listPelanggaranModel->uploadListPelanggaran($nama, $tingkat);  
+        }
 
         echo $result ? json_encode(['status' => 'success', 'message' => 'upload success']) : json_encode($response);
         exit;
@@ -36,7 +40,11 @@ function updateListPelanggaran()
         $nama = $_POST['namaPelanggaran'];
         $tingkat = $_POST['tingkatPelanggaran'];
 
-        $result = $listPelanggaranModel->updateListPelanggaran($id, $nama, $tingkat);
+        $result = false;
+
+        if ($nama) {
+            $result = $listPelanggaranModel->updateListPelanggaran($id, $nama, $tingkat);   
+        }
 
         echo $result ? json_encode(['status' => 'success', 'message' => 'update success']) : json_encode($response);
         exit;
