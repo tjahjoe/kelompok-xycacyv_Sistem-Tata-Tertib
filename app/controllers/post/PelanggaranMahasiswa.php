@@ -91,9 +91,10 @@ function updatePelanggaran(){
         $status = $_POST['status'];
         $idTigkat = isset($_POST['tingkatSanksiAdmin']) ? $_POST['tingkatSanksiAdmin'] : null;
         $nip = $id = $_SESSION['user']['id_users'];
+        $tanggal = date('Y-m-d');
     
     
-        $result = $pelanggaranMahasiswaModel->uploadStatusAndTingkat($idPelanggaran, $catatan, $status, $idTigkat,  $nip);
+        $result = $pelanggaranMahasiswaModel->uploadStatusAndTingkat($idPelanggaran, $catatan, $status, $idTigkat,  $nip, $tanggal);
     
         echo $result ? json_encode(['status' => 'success', 'message' => 'upload success']) : json_encode($response);
         exit;

@@ -1,4 +1,5 @@
 // handle submit form pelaporan
+console.log("a")
 $(document).ready(function () {
   const showAlert = () => {
     $(".overlay").addClass("alert-active");
@@ -68,8 +69,8 @@ $(document).ready(function () {
     let tingkatSanksi = $(this).val();
 
     $.ajax({
-      url: "../app/controllers/getSanksi.php",
-      type: "POST",
+      url: "../app/controllers/handlerGet.php?action=filterSanksiByTingkat",
+      type: "GET",
       data: { tingkatSanksi: tingkatSanksi },
       dataType: "json",
       success: function (response) {
