@@ -10,7 +10,8 @@ class ListPelanggaran{
     }
 
     public function getAllListPelanggaran(){
-        $query = "SELECT * FROM " . $this->table ." ORDER BY tingkat_pelanggaran desc, nama_jenis_pelanggaran"; //where status = aktif
+        // $query = "SELECT * FROM " . $this->table ." ORDER BY tingkat_pelanggaran desc, nama_jenis_pelanggaran"; //where status = aktif
+        $query = "SELECT * FROM " . $this->table ." WHERE status = 'aktif' ORDER BY tingkat_pelanggaran desc, nama_jenis_pelanggaran"; //where status = aktif
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -20,7 +21,8 @@ class ListPelanggaran{
     }
 
     public function getListPelanggaranByTingkat($tingkat){
-        $query = "SELECT * FROM " . $this->table . " WHERE tingkat_pelanggaran = ? ORDER BY tingkat_pelanggaran, nama_jenis_pelanggaran"; //where status = aktif
+        // $query = "SELECT * FROM " . $this->table . " WHERE tingkat_pelanggaran = ? ORDER BY tingkat_pelanggaran, nama_jenis_pelanggaran"; //where status = aktif
+        $query = "SELECT * FROM " . $this->table . " WHERE tingkat_pelanggaran = ? AND status = 'aktif' ORDER BY tingkat_pelanggaran, nama_jenis_pelanggaran"; //where status = aktif
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $tingkat);
         $stmt->execute();
@@ -82,10 +84,11 @@ class ListPelanggaran{
             return false;
         }
 
-        $query = "INSERT INTO ". $this->table ." VALUES (?, ?)";
+        $query = "INSERT INTO ". $this->table ." VALUES (?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $nama);
         $stmt->bindParam(2, $tingkat);
+        $stmt->bindValue(3, "aktif");
         $stmt->execute();
         $this->conn->commit();
         return true;

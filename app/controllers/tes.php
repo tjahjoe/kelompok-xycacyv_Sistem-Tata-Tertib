@@ -5,6 +5,7 @@ require_once __DIR__ . "/../models/Mahasiswa.php";
 require_once __DIR__ . "/../models/Dosen.php";
 require_once __DIR__ . "/../models/Admin.php";
 require_once __DIR__ . "/../models/TingkatPelanggaran.php";
+require_once __DIR__ . "/../models/ListPelanggaran.php";
 require_once __DIR__ . "/getData.php";
 
 
@@ -33,16 +34,37 @@ $pelanggaranModel = new PelanggaranMahasiswa();
 
 // var_dump(tingkatPelanggaran(1));
 
-$tingkat = new TingkatPelanggaran();
+// $tingkat = new TingkatPelanggaran();
 
 // var_dump($tingkat->getSanksiByTingkat(1));
 
 // var_dump($pelanggaranModel->uploadPelanggaran( '2341721001', '2024-11-23','on', 198912032017095008, 'Berbusana tidak sopan dan tidak rapi', false));
 // var_dump(dataPelanggaran());
-var_dump(detailPelaporan(45, true));
+// var_dump(detailPelaporan(75, true));
+
+// $pelanggaranModel->uploadStatusAndTingkat(80, 'aktif',5, '198912032017095008');
 
 // var_dump($pelanggaranModel->getTingkatPelanggaranForDetailDaftarPelanggaran(44));
+
+// var_dump(dataPelanggaranWithoutPagination());
+// var_dump($_SESSION['allData']);
+// var_dump(dataPelanggaranPagination(1));
 // var_dump(tingkatPelanggaran(45));
+
+
+// $listModel = new ListPelanggaran();
+// var_dump($listModel->getListPelanggaranByNamaAndTingkat("a", "V"));
+
+// $mahasiswaModel = new Mahasiswa();
+// var_dump($mahasiswaModel->getDataMahasiswaForTransaction('2341721001'));
+
+// $nama = [];
+// $nama[] = "Wahyu";
+// var_dump(implode(",", $nama));
+
+// $listModel = new ListPelanggaran();
+// var_dump($listModel->getListPelanggaranById(5));
+// var_dump(file_exists("o.php"));
 ?>
 
 <?php

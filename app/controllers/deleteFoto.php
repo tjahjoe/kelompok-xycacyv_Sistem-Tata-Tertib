@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         }
     }
 
-    $fileName = changePhotoProfil($id);
+    $fileName = null;
 
     $result = $userModel->changeFoto($id, $fileName);
 
