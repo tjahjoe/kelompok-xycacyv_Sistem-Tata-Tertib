@@ -37,7 +37,7 @@ function Navbar($isOtherPage) {
             
             <?php if(isLogin()){?>
             <a href="profile-user.php" class="profile" id="profile">
-                <?php $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/'.$data['foto_diri'] : "https://i.pinimg.com/474x/aa/d3/d6/aad3d691d8d8592bb8dd240de636f6a9.jpg";?>
+                <?php $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/'.$data['foto_diri'] : "../assets/images/foto.jpg";?>
                 <img
                     class="img-profile"
                     src="<?php echo $photoProfile?>"

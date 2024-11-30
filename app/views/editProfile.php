@@ -35,12 +35,14 @@ require_once '../app/controllers/getData.php';
       <form class="form-container" id="form-editprofile" enctype="multipart/form-data">
         <div class="flex-between">
           <div class="flex-row m-0">
-            <img src="../assets/uploads/photo/<?php echo $data['foto_diri'] ?>" alt="Profile Picture" class="profile-image border-image" id="profile-image" width="100px" height="100px" />
+          <?php $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/'.$data['foto_diri'] : "../assets/images/foto.jpg";?>
+
+            <img src="<?php echo $photoProfile ?>" alt="Profile Picture" class="profile-image border-image" id="profile-image" width="100px" height="100px" />
             <div class="flex-row m-0">
-              <input type="file" name="photo" id="change-photo" style="display: none;" />
+              <input type="file" name="photo" id="change-photo" style="display: none;" accept="image/*"/>
 
               <label for="change-photo" class="btn btn-white btn-small">Unggah foto baru</label>
-              <label for="" id="delete-photo" class="btn btn-gray btn-small">Hapus Foto</label>
+              <label for="" id="delete-photo" class="btn btn-gray btn-small" <?php echo  $data['foto_diri'] ? '' : 'style="display: none;"' ?>>Hapus Foto</label>
             </div>
           </div>
           <button class="btn btn-primary" type="submit">Simpan</button>

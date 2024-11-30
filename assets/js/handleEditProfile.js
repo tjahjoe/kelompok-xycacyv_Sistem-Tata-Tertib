@@ -35,6 +35,27 @@ $(document).ready(function () {
     });
   });
 
+  $("#delete-photo").on("click", function (e) {
+    e.preventDefault();
+    $.ajax({
+      url: "../app/controllers/deleteFoto.php",
+      type: "POST",
+      contentType: false, // Biarkan jQuery menetapkan header ini secara otomatis
+      processData: false,
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          console.log('success');
+          window.location.href = "./profile-user.php"; // Redirect ke halaman utama
+        } else {
+          $("#hasil").css("display", "block");
+          $("#hasil").html(response.message);
+        }
+      },
+    });
+  });
+
+
   $("#form-editprofile").submit(function(e) {
     e.preventDefault();
 

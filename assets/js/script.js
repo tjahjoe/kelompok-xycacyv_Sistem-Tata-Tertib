@@ -216,13 +216,8 @@ const changePhoto = () => {
   const fileInput = document.getElementById('change-photo');
   const profileImage = document.getElementById('profile-image');
   const deletePhoto = document.getElementById('delete-photo');
-  let initialPhoto = "";
 
-  if(profileImage){
-    initialPhoto = profileImage.src;
-  }
-
-  if (fileInput && profileImage && deletePhoto && initialPhoto) {
+  if (fileInput && profileImage && deletePhoto) {
 
   fileInput.addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -231,10 +226,6 @@ const changePhoto = () => {
       console.log(imageUrl)
       profileImage.src = imageUrl;
     }
-  });
-
-  deletePhoto.addEventListener('click', function(){
-    profileImage.src = initialPhoto;
   });
   }
 }
