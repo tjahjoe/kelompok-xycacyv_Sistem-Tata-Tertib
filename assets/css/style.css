@@ -658,18 +658,16 @@ section#footerLapor {
   color: var(--gray-color);
 }
 
-.edit-icon{
-  position:absolute;
-  top: 20px;
-  right: 20px;
-}
-
 .border-image{
   border: 2px solid #fff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 /* EDIT PROFILE */
+#edit-profile{
+  display:none;
+}
+
 .input-editprofile{
   display: flex;
   flex-direction: column;
@@ -725,6 +723,19 @@ select.input-kelola-tatib{
 
 .icon-tatib, .detail-icon-tatib span{
   cursor:pointer;
+  transition: all 0.3s;
+}
+
+span.btn-edit-profile{
+  position:absolute;
+  top: 20px;
+  right: 20px;
+  cursor:pointer;
+  transition: all 0.3s;
+}
+
+.btn-edit-profile:hover{
+  transform: scale(0.9);
 }
 
 .detail-icon-tatib{

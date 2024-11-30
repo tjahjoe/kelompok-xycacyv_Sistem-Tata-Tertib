@@ -230,11 +230,33 @@ const changePhoto = () => {
   }
 }
 
+const switchProfile = () => {
+  const profile = document.getElementById('profile-user');
+  const profileForm = document.getElementById('edit-profile');
+  const btnToEdit = document.getElementById('btn-edit-profile');
+  const btnBack = document.getElementById('back-to-profile');
+
+  if (profile && profileForm && btnBack) {
+    profileForm.style.display = 'none'
+
+    btnToEdit.addEventListener('click', () => {
+      profileForm.style.display = 'block';
+      profile.classList.remove('active');
+    });
+
+    btnBack.addEventListener('click', () => {
+      profile.classList.add('active');
+      profileForm.style.display = 'none';
+    });
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   eventTogglePassword();
   eventNavbarScroll();
   switchTab();
   switchTabSubMenu();
+  switchProfile();
   updateBadge();
   uploadFile();
   changePhoto();

@@ -51,9 +51,9 @@ function InfoProfile($data)
         </div>
       </div>
 
-      <a href="edit-profile.php">
+      <span class="btn-edit-profile" id="btn-edit-profile">
         <img class="edit-icon" src="../assets/images/Edit.svg" alt="edit icon" width="26px">
-      </a>
+      </span>
     </div>
 <?php
   }

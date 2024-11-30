@@ -4,6 +4,7 @@ include 'components/navbar.php';
 include 'components/table.php';
 include 'components/alert.php';
 include 'components/kelolaTatib.php';
+include 'components/editProfile.php';
 ?>
 
 <?php
@@ -42,6 +43,15 @@ require_once '../app/controllers/getData.php';
         $user_data = dataUser();
         InfoProfile($user_data);
         ?>
+      </div>
+
+      <!-- EDIT PROFILE -->
+      <div id="edit-profile" class="tab-content active">
+      <div class="head-tab-content">
+            <h1>Profil Saya / Edit Informasi Pribadi</h1>
+            <p class="text-gray">Di sini Anda dapat mengubah informasi pribadi Anda. Setelah selesai, tekan tombol 'Simpan'.</p>
+          </div>
+        <?php EditProfile($user_data);?>
       </div>
 
       <!-- RIWAYAT PELANGGARAN -->
@@ -105,6 +115,7 @@ require_once '../app/controllers/getData.php';
   </div>
   </div>
   <script src="../assets/js/handleTataTertib.js"></script>
+  <script src="../assets/js/handleEditProfile.js"></script>
   <script src="../assets/js/script.js"></script>
 </body>
 
