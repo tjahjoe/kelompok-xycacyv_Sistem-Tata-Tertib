@@ -10,10 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isLogin()) {
         'message' => 'process failed',
     ];
 
-
-    $id = $_POST['id'];
-    $nama = $_POST['nama'];
-    $tingkat = $_POST['tingkat'];
+    $id = $_POST['idPelanggaran'];
+    $tingkat = $_POST['tingkatPelanggaran'];
+    $nama = $_POST['namaPelanggaran'];
 
     $result = $listPelanggaranModel->updateListPelanggaran($id,$nama, $tingkat);
 

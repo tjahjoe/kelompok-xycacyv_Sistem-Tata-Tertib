@@ -2,7 +2,7 @@
   <div class="box-footer">
     <a href="./" class="logo">
       <img
-        src="../assets/images/Logo_Politeknik_Negeri_Malang.png"
+        src="../assets/images/logo-sitatib.png"
         width="50px"
         alt="" />
       <p style="color: #fff">SiTatib</p>

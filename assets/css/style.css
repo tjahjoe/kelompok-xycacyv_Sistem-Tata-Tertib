@@ -660,8 +660,8 @@ section#footerLapor {
 
 .edit-icon{
   position:absolute;
-  top: 15px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
 }
 
 .border-image{
@@ -691,14 +691,14 @@ section#footerLapor {
 }
 
 /* KELOLA TATIB */
-.form-add-tatib{
+.form-tatib{
   display: flex;
   align-items: end;
   gap:10px;
   width: 100%;
 }
 
-.form-add-tatib .flex-col:first-child{
+.form-tatib .flex-col:first-child{
   width: 100%;
 }
 
@@ -717,6 +717,48 @@ select.input-kelola-tatib{
   background-color: #fff;
   font-family: "Inter", sans-serif;
   font-size: 1em;
+}
+
+.table-content tbody tr td.icon-tatib{
+  position:relative;
+}
+
+.icon-tatib, .detail-icon-tatib span{
+  cursor:pointer;
+}
+
+.detail-icon-tatib{
+  display:none;
+  position: absolute;
+  top: 70%;
+  right: 20px;
+  background-color: #fff;
+  border: 1px solid var(--gray-color);
+  z-index:10;
+}
+
+.detail-icon-tatib .flex-col{
+  align-items:start!important;
+  gap:0;
+}
+
+.detail-icon-tatib .flex-col span .flex-row{
+  margin:0;
+}
+
+.detail-icon-tatib .flex-col span{
+  padding:13px 20px;
+  width: 100%;
+  background-color: transparent;
+  transition: all 0.3s;
+}
+
+.detail-icon-tatib .flex-col span:hover{
+  background-color:#c7cde6;
+}
+
+.detail-icon-tatib.active{
+  display:block!important;
 }
 
 /* HISTORY PELANGGARAN */
@@ -773,6 +815,10 @@ a.link-detail{
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+span.update-tatib{
+  cursor: pointer;
 }
 
 /* BADGES */

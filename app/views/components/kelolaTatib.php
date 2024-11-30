@@ -7,7 +7,7 @@ function KelolaTatib()
 {
 ?>
   <div class="flex-col">
-    <form action="" id="add-tatatertib" class="form-add-tatib">
+   <form action="" id="add-tatatertib" class="form-tatib">
       <div class="flex-col">
         <label for="namaPelanggaran">
           <h4>Nama Pelanggaran</h4>
@@ -59,7 +59,23 @@ function KelolaTatib()
                 <td><?php echo $index ?></td>
                 <td class="text-left normal-white-space"><?php echo $record['nama_jenis_pelanggaran'] ?></td>
                 <td><?php echo $record['tingkat_pelanggaran'] ?></td>
-                <td><span id="update-tatib" data-id="<?php echo $record['id_list_pelanggaran'] ?>">•••</span></td>
+                <td class="icon-tatib">
+                  <span>•••</span>
+                  <div class="detail-icon-tatib">
+                  <div class="flex-col">
+                    <span class="update-tatib" data-id="<?php echo $record['id_list_pelanggaran'] ?>">
+                      <div class="flex-row">
+                        <img src="../assets/images/Edit.svg" alt="" width="20px">
+                        <p>Edit</p>
+                      </div>
+                    </span>
+                    <span class="delete-tatib" data-id="<?php echo $record['id_list_pelanggaran'] ?>"> <div class="flex-row">
+                        <img src="../assets/images/delete-icon.svg" alt="" width="20px">
+                        <p>Delete</p>
+                      </div></span>
+                  </div>
+                </div>
+                </td>
               </tr>
           <?php }
           } else {

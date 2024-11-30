@@ -50,7 +50,7 @@ function InfoProfile($data)
       </div>
 
       <a href="edit-profile.php">
-        <img class="edit-icon" src="../assets/images/Edit.svg" alt="edit icon" width="35px">
+        <img class="edit-icon" src="../assets/images/Edit.svg" alt="edit icon" width="26px">
       </a>
     </div>
 <?php

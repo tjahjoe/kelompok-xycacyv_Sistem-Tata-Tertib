@@ -73,7 +73,7 @@ class ListPelanggaran{
     // }
 
     public function uploadListPelanggaran($nama, $tingkat){
-        $query = "SELECT * FROM ListPelanggaran WHERE nama_jenis_pelanggaran = ?";
+        $query = "SELECT * FROM ListPelanggaran WHERE nama_jenis_pelanggaran = ? AND status = 'aktif'";
         $this->conn->beginTransaction();
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $nama);
@@ -96,7 +96,7 @@ class ListPelanggaran{
 
     public function updateListPelanggaran($id, $nama, $tingkat){
 
-        $query = "SELECT * FROM ListPelanggaran WHERE nama_jenis_pelanggaran = ?";
+        $query = "SELECT * FROM ListPelanggaran WHERE nama_jenis_pelanggaran = ? AND status = 'aktif'";
         $this->conn->beginTransaction();
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $nama);
@@ -152,13 +152,13 @@ class ListPelanggaran{
         // return true;
 
         $query = "UPDATE ListPelanggaran 
-        SET status = ?,
+        SET status = ?
         WHERE id_list_pelanggaran = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bindValue(1, "nonaktif");
         $stmt->bindParam(2, $id);
         $stmt->execute();
-        $this->conn->commit();
+        // $this->conn->commit();
         return true;
     }
 }
