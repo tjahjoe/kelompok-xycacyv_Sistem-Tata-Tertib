@@ -11,7 +11,6 @@ $(document).ready(function () {
   };
 
   const closingAlertWithReload = (isReload) => {
-    console.log("coba closing")
     $(".alert-close-button, .overlay").on("click", function () {
       const alertId = $(this).data("alert-id");
       const overlayId = $(this).attr("id");

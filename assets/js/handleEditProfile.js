@@ -10,17 +10,18 @@ $(document).ready(function () {
     }
   };
 
-  $(".alert-close-button, .overlay").on("click", function () {
-    const alertId = $(this).data("alert-id");
-    const overlayId = $(this).attr("id");
+  const closingAlertWithReload = (isReload) => {
+    $(".alert-close-button, .overlay").on("click", function () {
+      const alertId = $(this).data("alert-id");
+      const overlayId = $(this).attr("id");
 
-    if (overlayId) {
-      closeAlert(overlayId, false);
-    } else if (alertId) {
-      closeAlert(alertId, false);
-    }
-  });
-
+      if (overlayId) {
+        closeAlert(overlayId, isReload);
+      } else if (alertId) {
+        closeAlert(alertId, isReload);
+      }
+    });
+  };
   $("#change-photo").on("change", function (e) {
     e.preventDefault();
 
@@ -38,6 +39,8 @@ $(document).ready(function () {
     const formData = new FormData();
     formData.append("photo", file);
 
+    const alertId = "alert-success-update-photo";
+
     // Kirim data ke server PHP
     $.ajax({
       url: "../app/controllers/updateFoto.php",
@@ -48,7 +51,8 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          location.reload();
+          showAlert(alertId);
+          closingAlertWithReload(true);
         } else {
           $("#hasil").css("display", "block");
           $("#hasil").html(response.message);
@@ -62,7 +66,7 @@ $(document).ready(function () {
 
     const alertId = "alert-delete-photo";
     showAlert(alertId);
-    
+
     $(".alert-confirm-button").on("click", function () {
       $.ajax({
         url: "../app/controllers/deleteFoto.php",
@@ -88,6 +92,8 @@ $(document).ready(function () {
     // Mendapatkan data form
     var formData = $(this).serialize();
 
+    const alertId = "alert-success-update-infoprofil";
+
     // Kirim data ke server PHP
     $.ajax({
       url: "../app/controllers/updateDataProfile.php",
@@ -96,7 +102,8 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          location.reload();
+          showAlert(alertId);
+          closingAlertWithReload(true);
         } else {
           $("#hasil").css("display", "block");
           $("#hasil").html(response.message);

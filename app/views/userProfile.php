@@ -120,6 +120,10 @@ require_once '../app/controllers/getData.php';
       Alert('alert-success-icon.svg', 'Berhasil Tambah TataTertib', 'Berhasil menambahkan data baru', '', false, 'alert-success-add-tatib');
 
       Alert('alert-success-icon.svg', 'Berhasil Update TataTertib', 'Berhasil update data', '', false, 'alert-success-update-tatib');
+
+      Alert('alert-success-icon.svg', 'Berhasil Update Photo', 'Berhasil update photo profil', '', false, 'alert-success-update-photo');
+
+      Alert('alert-success-icon.svg', 'Berhasil Update Informasi Pribadi', 'Berhasil update data informasi pribadi', '', false, 'alert-success-update-infoprofil');
       ?>
 
     </div>
