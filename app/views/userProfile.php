@@ -89,8 +89,12 @@ require_once '../app/controllers/getData.php';
         <!-- KELOLA SURAT PERNYATAAN -->
         <div class="tab-subcontent" id="kelola-surat-pernyataan">
           <div class="head-tab-content">
-            <h1>Kelola Surat Pernyataan</h1>
+            <h3>Update Link Surat Pernyataan</h3>
           </div>
+          <form id="updateLinkSuratPernyataan" class="flex-row-full m-0">
+            <input type="text" name="linkSuratPernyataan" class="input-kelola-tatib" id="linkSuratPernyataan" placeholder="Ketik nama pelanggaran di sini..." required>
+            <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button>
+          </form>
         </div>
       </div>
 
@@ -111,18 +115,25 @@ require_once '../app/controllers/getData.php';
       </div>
       <!-- ALERT -->
       <?php
+      // ALERT LOGOUT
       Alert('logout-icon.svg', 'Logout', 'Apakah Anda yakin ingin keluar dari akun?', '', true, 'alert-logout');
 
+      // ALERT HAPUS FOTO
       Alert('alert-delete-icon.svg', 'Hapus Photo', 'Apakah Anda yakin ingin menghapus photo?', '', true, 'alert-delete-photo');
 
+      // ALERT HAPUS TATIB
       Alert('alert-delete-icon.svg', 'Hapus TataTertib', 'Apakah Anda yakin ingin menghapus tata tertib?', '', true, 'alert-delete-tatib');
 
+      // ALERT SUCCESS ADD TATIB
       Alert('alert-success-icon.svg', 'Berhasil Tambah TataTertib', 'Berhasil menambahkan data baru', '', false, 'alert-success-add-tatib');
 
+      // ALERT SUCCESS UPDATE TATIB
       Alert('alert-success-icon.svg', 'Berhasil Update TataTertib', 'Berhasil update data', '', false, 'alert-success-update-tatib');
 
+      // ALERT SUCCESS UPDATE PHOTO PROFIL
       Alert('alert-success-icon.svg', 'Berhasil Update Photo', 'Berhasil update photo profil', '', false, 'alert-success-update-photo');
 
+      // ALERT SUCCESS UPDATE INFO PRIBADI
       Alert('alert-success-icon.svg', 'Berhasil Update Informasi Pribadi', 'Berhasil update data informasi pribadi', '', false, 'alert-success-update-infoprofil');
       ?>
 

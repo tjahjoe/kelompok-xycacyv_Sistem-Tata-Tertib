@@ -12,14 +12,14 @@ function KelolaTatib()
         <label for="namaPelanggaran">
           <h4>Nama Pelanggaran</h4>
         </label>
-        <input type="text" name="namaPelanggaran" class="input-kelola-tatib" id="namaPelanggaran" placeholder="Ketik nama pelanggaran di sini...">
+        <input type="text" name="namaPelanggaran" class="input-kelola-tatib" id="namaPelanggaran" placeholder="Ketik nama pelanggaran di sini..." required>
       </div>
       <div class="flex-col">
         <label for="tingkatPelanggaran">
           <h4>Tingkat</h4>
         </label>
         <select id="tingkatPelanggaran" class="tingkatPelanggaran input-kelola-tatib" name="tingkatPelanggaran" required>
-          <option disabled selected hidden>PIlih Tingkat Pelanggaran</option>
+          <option disabled selected hidden value="">PIlih Tingkat Pelanggaran</option>
           <option value="I">I</option>
           <option value="I/II">I/II</option>
           <option value="II">II</option>

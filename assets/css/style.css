@@ -630,7 +630,7 @@ section#footerLapor {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1.5em;
+  gap: 1em;
   min-height: 100vh;
 }
 
@@ -1036,6 +1036,14 @@ form#searchByNIM{
   width: max-content;
   margin: auto;
   flex-wrap:wrap;
+}
+
+.flex-row-full{
+  display: flex;
+  gap:15px;
+  align-items:center;
+  width: 100%;
+  margin: auto;
 }
 
 .flex-row-start{
