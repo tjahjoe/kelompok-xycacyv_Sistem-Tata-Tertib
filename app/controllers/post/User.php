@@ -84,7 +84,7 @@ function updatePhotoProfil(){
     
         $fileName = changePhotoProfil($id);
     
-        $result = $userModel->changeFoto($id, $fileName);
+        $result = $userModel->changePhoto($id, $fileName);
     
         echo $result ? json_encode(['status' => 'success', 'message' => 'update success']) : json_encode($response);
         exit;
@@ -115,7 +115,7 @@ function deletePhotoProfil(){
     
         $fileName = null;
     
-        $result = $userModel->changeFoto($id, $fileName);
+        $result = $userModel->changePhoto($id, $fileName);
     
         echo $result ? json_encode(['status' => 'success', 'message' => 'update success']) : json_encode($response);
         exit;

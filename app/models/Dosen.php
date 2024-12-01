@@ -27,16 +27,6 @@ class Dosen{
         return $result ? $result : false;
     }
 
-    // public function changeData($nama, $nim){
-    //     $query = "UPDATE ". $this->table ." 
-    //     SET nama_dosen = ? 
-    //     WHERE nip = ?";
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->bindParam(1,$nama);
-    //     $stmt->bindParam(2, $nim);
-    //     $stmt->execute();
-    // }
-
     public function changeData($nama, $nip, $notlp)
     {
         $query = "SELECT nim as id FROM Mahasiswa WHERE notelp = ?

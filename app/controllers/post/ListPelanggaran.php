@@ -14,9 +14,10 @@ function uploadListPelanggaran()
         $tingkat = $_POST['tingkatPelanggaran'];
         $nama = $_POST['namaPelanggaran'];
 
+
         $result = false;
 
-        if ($nama) {
+        if ($nama && $tingkat) {
             $result = $listPelanggaranModel->uploadListPelanggaran($nama, $tingkat);  
         }
 

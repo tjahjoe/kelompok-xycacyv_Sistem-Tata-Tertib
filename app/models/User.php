@@ -50,7 +50,7 @@ class User{
         return $result ? $result : false;
     }
 
-    public function changeFoto($id, $foto){
+    public function changePhoto($id, $foto){
         $query = "UPDATE ". $this->table ."
         SET foto_diri = ? 
         WHERE id_users = ?";
