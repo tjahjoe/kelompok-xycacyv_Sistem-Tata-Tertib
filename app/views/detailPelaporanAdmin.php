@@ -1,4 +1,5 @@
 <?php include 'components/emptyState.php'; ?>
+<?php include 'components/alert.php'; ?>
 <?php
 include 'components/navbar.php';
 require_once '../app/controllers/getData.php';
@@ -157,6 +158,10 @@ require_once '../app/controllers/getData.php';
         <img src='../assets/uploads/bukti/560.jpg' class='lampiran_bukti_full' alt='Bukti'>
       </div>
     </div>
+
+    <!-- ALERT -->
+  <?php Alert('alert-success-icon.svg', 'Berhasil update laporan', 'Laporan berhasil di ubah.', '', false, 'alert-detail-pelaporan-success'); ?>
+
   </div>
   <script src="../assets/js/handlePelaporan.js"></script>
   <script src="../assets/js/script.js"></script>

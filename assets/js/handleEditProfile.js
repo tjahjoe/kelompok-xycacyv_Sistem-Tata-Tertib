@@ -1,4 +1,26 @@
 $(document).ready(function () {
+  const showAlert = (alertId) => {
+    $(`#${alertId}`).addClass("alert-active");
+  };
+
+  const closeAlert = (alertId, reload = false) => {
+    $(`#${alertId}`).removeClass("alert-active");
+    if (reload) {
+      window.location.reload();
+    }
+  };
+
+  $(".alert-close-button, .overlay").on("click", function () {
+    const alertId = $(this).data("alert-id");
+    const overlayId = $(this).attr("id");
+
+    if (overlayId) {
+      closeAlert(overlayId, false);
+    } else if (alertId) {
+      closeAlert(alertId, false);
+    }
+  });
+
   $("#change-photo").on("change", function (e) {
     e.preventDefault();
 
@@ -21,12 +43,12 @@ $(document).ready(function () {
       url: "../app/controllers/updateFoto.php",
       type: "POST",
       data: formData,
-      contentType: false, // Biarkan jQuery menetapkan header ini secara otomatis
+      contentType: false,
       processData: false,
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          window.location.href = "./profile-user.php"; // Redirect ke halaman utama
+          location.reload();
         } else {
           $("#hasil").css("display", "block");
           $("#hasil").html(response.message);
@@ -37,26 +59,30 @@ $(document).ready(function () {
 
   $("#delete-photo").on("click", function (e) {
     e.preventDefault();
-    $.ajax({
-      url: "../app/controllers/deleteFoto.php",
-      type: "POST",
-      contentType: false, // Biarkan jQuery menetapkan header ini secara otomatis
-      processData: false,
-      dataType: "json",
-      success: function (response) {
-        if (response.status === "success") {
-          console.log('success');
-          window.location.href = "./profile-user.php"; // Redirect ke halaman utama
-        } else {
-          $("#hasil").css("display", "block");
-          $("#hasil").html(response.message);
-        }
-      },
+
+    const alertId = "alert-delete-photo";
+    showAlert(alertId);
+    
+    $(".alert-confirm-button").on("click", function () {
+      $.ajax({
+        url: "../app/controllers/deleteFoto.php",
+        type: "POST",
+        contentType: false, // Biarkan jQuery menetapkan header ini secara otomatis
+        processData: false,
+        dataType: "json",
+        success: function (response) {
+          if (response.status === "success") {
+            closeAlert(alertId, true);
+          } else {
+            $("#hasil").css("display", "block");
+            $("#hasil").html(response.message);
+          }
+        },
+      });
     });
   });
 
-
-  $("#form-editprofile").submit(function(e) {
+  $("#form-editprofile").submit(function (e) {
     e.preventDefault();
 
     // Mendapatkan data form
@@ -64,18 +90,18 @@ $(document).ready(function () {
 
     // Kirim data ke server PHP
     $.ajax({
-        url: "../app/controllers/updateDataProfile.php",
-        type: "POST",
-        data: formData,
-        dataType: "json",
-        success: function(response) {
-            if (response.status === 'success') {
-                window.location.href = './profile-user.php'; // Redirect ke halaman utama
-            } else {
-              $("#hasil").css("display", "block");
-                $("#hasil").html(response.message);
-            }
+      url: "../app/controllers/updateDataProfile.php",
+      type: "POST",
+      data: formData,
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          location.reload();
+        } else {
+          $("#hasil").css("display", "block");
+          $("#hasil").html(response.message);
         }
+      },
     });
-});
+  });
 });

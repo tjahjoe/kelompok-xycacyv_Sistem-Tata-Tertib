@@ -54,14 +54,16 @@ const switchTab = () => {
   const tabLink = document.querySelectorAll(".tab-link");
   const logoutBtn = document.querySelector(".logout-btn");
   const tabContent = document.querySelectorAll(".tab-content");
+  const profileForm = document.getElementById('edit-profile');
 
-  if (tabLink && tabContent && logoutBtn) {
+  if (tabLink && tabContent && logoutBtn && profileForm) {
     tabLink.forEach((link) => {
       link.addEventListener("click", function (event) {
         if (this === logoutBtn) {
           return;
         }
 
+        profileForm.classList.remove("active");
         event.preventDefault();
         tabLink.forEach((tab) => tab.classList.remove("active"));
         tabContent.forEach((content) => content.classList.remove("active"));
@@ -152,18 +154,6 @@ const closeAlert = () => {
   alertOverlay.classList.remove("alert-active");
 };
 
-if(document.querySelector('.logout-btn')){
-  document.querySelector('.logout-btn').addEventListener('click', (e) => {
-  showAlert();
-  });
-  
-  document.querySelector('.alert-logout-button').addEventListener('click', (e) => {
-    e.preventDefault();
-
-    window.location.href = './../app/controllers/Logout.php';
-  });
-}
-
 if(document.querySelector('.lampiran_bukti')){
   const lampiran = document.querySelectorAll('.lampiran_bukti');
   const lampiranFull = document.querySelector('.lampiran_bukti_full');
@@ -237,16 +227,14 @@ const switchProfile = () => {
   const btnBack = document.getElementById('back-to-profile');
 
   if (profile && profileForm && btnBack) {
-    profileForm.style.display = 'none'
-
     btnToEdit.addEventListener('click', () => {
-      profileForm.style.display = 'block';
+      profileForm.classList.add('active');
       profile.classList.remove('active');
     });
 
     btnBack.addEventListener('click', () => {
       profile.classList.add('active');
-      profileForm.style.display = 'none';
+      profileForm.classList.remove('active');
     });
   }
 }

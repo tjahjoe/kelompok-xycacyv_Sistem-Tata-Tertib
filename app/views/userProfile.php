@@ -36,7 +36,7 @@ require_once '../app/controllers/getData.php';
       <!-- PROFILE USER -->
       <div id="profile-user" class="tab-content active">
         <div class="head-tab-content">
-          <h2>Profil Saya</h2>
+          <h1>Profil Saya</h1>
         </div>
         <?php include 'components/infoProfile.php';
 
@@ -46,18 +46,18 @@ require_once '../app/controllers/getData.php';
       </div>
 
       <!-- EDIT PROFILE -->
-      <div id="edit-profile" class="tab-content active">
-      <div class="head-tab-content">
-            <h1>Profil Saya / Edit Informasi Pribadi</h1>
-            <p class="text-gray">Di sini Anda dapat mengubah informasi pribadi Anda. Setelah selesai, tekan tombol 'Simpan'.</p>
-          </div>
-        <?php EditProfile($user_data);?>
+      <div id="edit-profile" class=" content-edit-profile">
+        <div class="head-tab-content">
+          <h1>Profil Saya / Edit Informasi Pribadi</h1>
+          <p class="text-gray">Di sini Anda dapat mengubah informasi pribadi Anda. Setelah selesai, tekan tombol 'Simpan'.</p>
+        </div>
+        <?php EditProfile($user_data); ?>
       </div>
 
       <!-- RIWAYAT PELANGGARAN -->
       <div class="tab-content" id="riwayat-pelanggaran">
         <div class="head-tab-content">
-          <h2>Riwayat Pelanggaran</h2>
+          <h1>Riwayat Pelanggaran</h1>
         </div>
         <?php
         $dataPelanggaran = dataPelanggaran();
@@ -81,15 +81,15 @@ require_once '../app/controllers/getData.php';
         <!-- KELOLA TATIB -->
         <div class="tab-subcontent active" id="kelola-peraturan-tatib">
           <div class="head-tab-content">
-            <h2>Kelola Peraturan Tata Tertib</h2>
+            <h1>Kelola Peraturan Tata Tertib</h1>
           </div>
-          <?php KelolaTatib();?>
+          <?php KelolaTatib(); ?>
         </div>
 
         <!-- KELOLA SURAT PERNYATAAN -->
         <div class="tab-subcontent" id="kelola-surat-pernyataan">
           <div class="head-tab-content">
-            <h2>Kelola Surat Pernyataan</h2>
+            <h1>Kelola Surat Pernyataan</h1>
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@ require_once '../app/controllers/getData.php';
       <!-- RIWAYAT PELAPORAN -->
       <div class="tab-content" id="riwayat-pelaporan">
         <div class="head-tab-content">
-          <h2>Riwayat Pelaporan</h2>
+          <h1>Riwayat Pelaporan</h1>
         </div>
         <?php
         $dataPelaporan = dataPelapor();
@@ -110,12 +110,24 @@ require_once '../app/controllers/getData.php';
         ?>
       </div>
       <!-- ALERT -->
-      <?php Alert('logout-icon.svg', 'Logout', 'Apakah Anda yakin ingin keluar dari akun?', '', true); ?>
+      <?php
+      Alert('logout-icon.svg', 'Logout', 'Apakah Anda yakin ingin keluar dari akun?', '', true, 'alert-logout');
+
+      Alert('alert-delete-icon.svg', 'Hapus Photo', 'Apakah Anda yakin ingin menghapus photo?', '', true, 'alert-delete-photo');
+
+      Alert('alert-delete-icon.svg', 'Hapus TataTertib', 'Apakah Anda yakin ingin menghapus tata tertib?', '', true, 'alert-delete-tatib');
+
+      Alert('alert-success-icon.svg', 'Berhasil Tambah TataTertib', 'Berhasil menambahkan data baru', '', false, 'alert-success-add-tatib');
+
+      Alert('alert-success-icon.svg', 'Berhasil Update TataTertib', 'Berhasil update data', '', false, 'alert-success-update-tatib');
+      ?>
+
     </div>
   </div>
   </div>
   <script src="../assets/js/handleTataTertib.js"></script>
   <script src="../assets/js/handleEditProfile.js"></script>
+  <script src="../assets/js/handleLogout.js"></script>
   <script src="../assets/js/script.js"></script>
 </body>
 

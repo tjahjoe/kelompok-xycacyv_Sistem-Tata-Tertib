@@ -1,18 +1,38 @@
 // handle submit form pelaporan
 $(document).ready(function () {
-  const showAlert = () => {
-    $(".overlay").addClass("alert-active");
+  const showAlert = (alertId) => {
+    $(`#${alertId}`).addClass("alert-active");
   };
-  const closeAlert = () => {
-    $(".overlay").removeClass("alert-active");
-    window.location.reload();
+
+  const closeAlert = (alertId, reload = false) => {
+    $(`#${alertId}`).removeClass("alert-active");
+    if (reload) {
+      window.location.reload();
+    }
   };
+
+  const closingAlertWithReload = (isReload) => {
+    console.log("coba closing")
+    $(".alert-close-button, .overlay").on("click", function () {
+      const alertId = $(this).data("alert-id");
+      const overlayId = $(this).attr("id");
+
+      if (overlayId) {
+        closeAlert(overlayId, isReload);
+      } else if (alertId) {
+        closeAlert(alertId, isReload);
+      }
+    });
+  };
+
 
   $("#form-pelaporan").submit(function (e) {
     e.preventDefault();
 
     // Mendapatkan data form
     var formData = new FormData(this);
+
+    const alertId = "alert-pelaporan-success";
 
     // Kirim data ke server PHP
     $.ajax({
@@ -24,11 +44,8 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          showAlert();
-          if ($(".overlay").length && $(".alert-close-button").length) {
-            $(".overlay").on("click", closeAlert);
-            $(".alert-close-button").on("click", closeAlert);
-          }
+          showAlert(alertId);
+          closingAlertWithReload(true);
         } else {
           $("#hasil").css("display", "block");
           $("#hasil").html(response.message);
@@ -44,6 +61,8 @@ $(document).ready(function () {
     // Mendapatkan data form
     var formData = $(this).serialize();
 
+    const alertId = "alert-detail-pelaporan-success";
+
     // Kirim data ke server PHP
     $.ajax({
       url: "../app/controllers/uploadTingkat.php",
@@ -52,7 +71,8 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          window.location.reload();
+          showAlert(alertId);
+          closingAlertWithReload(true);
         } else {
           $("#hasil").css("display", "block");
           $("#hasil").html(response.message);

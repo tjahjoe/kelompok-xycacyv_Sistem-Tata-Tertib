@@ -615,7 +615,7 @@ section#footerLapor {
   font-weight: 600;
 }
 
-.tab-content.active{
+.tab-content.active, .content-edit-profile.active{
   width: 100%;
   flex: 1;
   display: flex;
@@ -634,7 +634,7 @@ section#footerLapor {
   min-height: 100vh;
 }
 
-.tab-content, .tab-subcontent{
+.tab-content, .tab-subcontent, .content-edit-profile{
   display:none;
 }
 
@@ -664,9 +664,6 @@ section#footerLapor {
 }
 
 /* EDIT PROFILE */
-#edit-profile{
-  display:none;
-}
 
 .input-editprofile{
   display: flex;
@@ -1313,7 +1310,7 @@ img.lampiran_bukti_full{
 }
 
 .alert-close-button{
-
+  margin: 10px auto;
 }
 
 .alert-button:hover {
