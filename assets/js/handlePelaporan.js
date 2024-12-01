@@ -1,4 +1,5 @@
 // handle submit form pelaporan
+console.log("a")
 $(document).ready(function () {
   const showAlert = (alertId) => {
     $(`#${alertId}`).addClass("alert-active");
@@ -36,7 +37,8 @@ $(document).ready(function () {
 
     // Kirim data ke server PHP
     $.ajax({
-      url: "../app/controllers/uploadData.php",
+      // url: "../app/controllers/uploadData.php",
+      url: "../app/controllers/handlerPost.php?action=uploadPelanggaran",
       type: "POST",
       data: formData,
       processData: false,
@@ -65,7 +67,8 @@ $(document).ready(function () {
 
     // Kirim data ke server PHP
     $.ajax({
-      url: "../app/controllers/uploadTingkat.php",
+      // url: "../app/controllers/uploadTingkat.php",
+      url: "../app/controllers/handlerPost.php?action=updatePelanggaran",
       type: "POST",
       data: formData,
       dataType: "json",
@@ -86,8 +89,8 @@ $(document).ready(function () {
     let tingkatSanksi = $(this).val();
 
     $.ajax({
-      url: "../app/controllers/getSanksi.php",
-      type: "POST",
+      url: "../app/controllers/handlerGet.php?action=filterSanksiByTingkat",
+      type: "GET",
       data: { tingkatSanksi: tingkatSanksi },
       dataType: "json",
       success: function (response) {
@@ -108,8 +111,9 @@ $(document).ready(function () {
     let tingkatPelanggaran = $(this).val();
 
     $.ajax({
-      url: "../app/controllers/FilterTataTertib.php",
-      type: "POST",
+      // url: "../app/controllers/FilterTataTertib.php",
+      url: "../app/controllers/handlerGet.php?action=filterListPelanggaranByTingkat",
+      type: "GET",
       data: { tingkatPelanggaran: tingkatPelanggaran },
       dataType: "json",
       success: function (response) {

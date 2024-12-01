@@ -43,7 +43,8 @@ $(document).ready(function () {
 
     // Kirim data ke server PHP
     $.ajax({
-      url: "../app/controllers/updateFoto.php",
+      // url: "../app/controllers/updateFoto.php",
+      url: "../app/controllers/handlerPost.php?action=updatePhotoProfil",
       type: "POST",
       data: formData,
       contentType: false,
@@ -96,7 +97,12 @@ $(document).ready(function () {
 
     // Kirim data ke server PHP
     $.ajax({
+<<<<<<< HEAD
       url: "../app/controllers/updateDataProfile.php",
+=======
+      // url: "../app/controllers/deleteFoto.php",
+      url: "../app/controllers/handlerPost.php?action=deletePhotoProfil",
+>>>>>>> 5f4e82ba7b50ea020e86f35196ae3dff0e7b323d
       type: "POST",
       data: formData,
       dataType: "json",
@@ -111,4 +117,32 @@ $(document).ready(function () {
       },
     });
   });
+<<<<<<< HEAD
+=======
+
+
+  $("#form-editprofile").submit(function(e) {
+    e.preventDefault();
+
+    // Mendapatkan data form
+    var formData = $(this).serialize();
+
+    // Kirim data ke server PHP
+    $.ajax({
+        // url: "../app/controllers/updateDataProfile.php",
+        url: "../app/controllers/handlerPost.php?action=updateDataUser",
+        type: "POST",
+        data: formData,
+        dataType: "json",
+        success: function(response) {
+            if (response.status === 'success') {
+                window.location.href = './profile-user.php'; // Redirect ke halaman utama
+            } else {
+              $("#hasil").css("display", "block");
+                $("#hasil").html(response.message);
+            }
+        }
+    });
+});
+>>>>>>> 5f4e82ba7b50ea020e86f35196ae3dff0e7b323d
 });

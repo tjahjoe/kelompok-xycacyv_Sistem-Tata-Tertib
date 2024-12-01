@@ -4,8 +4,9 @@ $(document).ready(function () {
     let tingkatPelanggaran = $(this).val();
 
     $.ajax({
-      url: "../app/controllers/FilterTataTertib.php",
-      type: "POST",
+      // url: "../app/controllers/FilterTataTertib.php",
+      url: "../app/controllers/handlerGet.php?action=filterListPelanggaranByTingkat",
+      type: "GET",
       data: { tingkatPelanggaran: tingkatPelanggaran },
       dataType: "json",
       success: function (response) {
@@ -42,8 +43,9 @@ $(document).ready(function () {
     let endTanggal = $("#endTanggalPelaporan").val();
 
     $.ajax({
-      url: "../app/controllers/FilterDaftarPelaporan.php",
-      type: "POST",
+      // url: "../app/controllers/FilterDaftarPelaporan.php",
+      url: "../app/controllers/handlerGet.php?action=filterDaftarPelaporan",
+      type: "GET",
       data: {
         searchNim: searchNim,
         tingkatPelaporan: tingkat,
@@ -97,8 +99,9 @@ $(document).ready(function () {
     let endTanggal = "";
 
     $.ajax({
-      url: "../app/controllers/FilterDaftarPelaporan.php",
-      type: "POST",
+      // url: "../app/controllers/FilterDaftarPelaporan.php",
+      url: "../app/controllers/handlerGet.php?action=filterDaftarPelaporan",
+      type: "GET",
       data: {
         searchNim: searchNim,
         tingkatPelaporan: tingkat,

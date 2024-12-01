@@ -1,0 +1,252 @@
+[33mcommit 73405b62d723de23e06b38d82d7f54913bafed3e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Sun Dec 1 19:55:07 2024 +0700
+
+    add alert when update profile
+
+[33mcommit 8edc4ee17435d08ed13468588cf443b16c486bbb[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Sun Dec 1 19:23:18 2024 +0700
+
+    handle bug on user profile, and add alert for some page
+
+[33mcommit 0b46ec756411ee1b6ecb5bd96fbc774eadce2609[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Sat Nov 30 18:06:42 2024 +0700
+
+    handle event switch content in profile user(user profile & edit profile)
+
+[33mcommit da4799e1fb215664419eef404ed3bf8277204530[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Sat Nov 30 17:06:46 2024 +0700
+
+    handle delete photo
+
+[33mcommit c065ed075fe8c70c7034b2eae19862b17499c3f4[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Sat Nov 30 13:31:40 2024 +0700
+
+    handle edit tatib dan delete tatib
+
+[33mcommit a052cbd971fdaad824a9a1a975a117f741f1751f[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Sat Nov 30 10:53:30 2024 +0700
+
+    fix query and handle for delete photo profil
+
+[33mcommit 69213bd03b944c0774205fdba1f822da248cd87e[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Fri Nov 29 21:51:51 2024 +0700
+
+    add handle for crud list pelanggaran and revisi about concepet for this
+
+[33mcommit b293e1cfc55f067b5594f83cb71928302875c93c[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Fri Nov 29 15:23:53 2024 +0700
+
+    handle edit profile
+
+[33mcommit a34b7cb25cf655d63127b0a63cfeb4624d83bc5f[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Fri Nov 29 13:07:49 2024 +0700
+
+    add kelola peraturan tatib & add event tambah tatib
+
+[33mcommit 387fdc35518425d8436fdc6ee72ff1f702e3b56f[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Fri Nov 29 12:26:20 2024 +0700
+
+    add query for update poto and handle for this
+
+[33mcommit 97de36f70795cac6e1bccf7c7588294d77c435f8[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Fri Nov 29 10:45:12 2024 +0700
+
+    add handle action for update profil and update list pelanggaran
+
+[33mcommit 09a0d6e4fb42b8dd27b1883aa8c595e256eea446[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Thu Nov 28 18:45:33 2024 +0700
+
+    update ui edit profile
+
+[33mcommit bee286047e02b5704fef8b84699e09a1f354304b[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Thu Nov 28 10:51:24 2024 +0700
+
+    update alert logout, add menu pengaturan lanjutan, add edit profile page(not final)
+
+[33mcommit a52e08cb4be777cce7c0b8f6678176f60ac9856d[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Thu Nov 28 07:28:33 2024 +0700
+
+    add query for edit profile and fix syntax for set firstname and lastname
+
+[33mcommit 49a1eedc3fee148246bfd38a12d9c31c48e115fc[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Wed Nov 27 08:43:21 2024 +0700
+
+    handle minimum maximum filter date range
+
+[33mcommit 4229e95034061077cef96cb91a310b9967dc64d8[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Wed Nov 27 08:26:11 2024 +0700
+
+    handle filter again
+
+[33mcommit df278817ebcc1f77353e5162d392693782099f04[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Wed Nov 27 07:33:48 2024 +0700
+
+    handle for pagination and tampilkan semua
+
+[33mcommit 30e470e50820381b09e8d24b6dcce53df77b915c[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Tue Nov 26 17:46:18 2024 +0700
+
+    provides data for filters
+
+[33mcommit 13b3168cc9a5f90b093862dc9e97cf5463e2adbb[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Tue Nov 26 10:32:24 2024 +0700
+
+    try to handle bug on filter
+
+[33mcommit 4733127008e9fa329747a5f05cab423646549393[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Tue Nov 26 10:21:09 2024 +0700
+
+    simple handle show all data
+
+[33mcommit 8beaeaf93d6b6cba44ae77c27e10fe8628a6ef32[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Tue Nov 26 09:41:28 2024 +0700
+
+    handle pagination & handle filter when pagination
+
+[33mcommit e561316fb63de5c6e019b491c9dfdeb7ac3b41bb[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Tue Nov 26 05:57:39 2024 +0700
+
+    add data tingkat sanksi and remove data tingkat pelanggaran
+
+[33mcommit 9824197cd73c2a4a0981c0e28c8995f3682d5cac[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Mon Nov 25 13:21:50 2024 +0700
+
+    handle bukti pelaporan
+
+[33mcommit 8774aa3b21c5a24f22998fd40461e8f1e5b06469[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Mon Nov 25 13:09:13 2024 +0700
+
+    handle bug update detail pelaporandetai
+
+[33mcommit 8747560df14ce2e635fd6a67ff8dc528d3c6123e[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Mon Nov 25 08:19:26 2024 +0700
+
+    handle update status and redudant data
+
+[33mcommit 061d85afc2ef8152db60f0899105d0e94847df6e[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Sun Nov 24 19:23:28 2024 +0700
+
+    handle when lampiran not found
+
+[33mcommit 82bb49304353fb7852a4960d7f7a79a065424044[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Sun Nov 24 10:34:39 2024 +0700
+
+    add bukti/lampiran pelaporan in detail pelaporan & detail pelanggaran
+
+[33mcommit a437d5fa054cac4a1728f1593ff55a6d6e567a1c[m
+Merge: b3ab144 a9b3a6f
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Sun Nov 24 10:27:45 2024 +0700
+
+    Merge branch 'main' of https://github.com/tjahjoe/kelompok-xycacyv_Sistem-Tata-Tertib
+
+[33mcommit b3ab144c790056b3285b051cfc654a7bc58ee06c[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Sun Nov 24 10:27:38 2024 +0700
+
+    fix admin access detail pelaporan
+
+[33mcommit a9b3a6f2eddf3aca499905e0db230de2c2812232[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Sun Nov 24 09:32:00 2024 +0700
+
+    handle update pelaporan
+
+[33mcommit 9f7782884408605a8952b30b01a84b083a330de7[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Sun Nov 24 08:04:00 2024 +0700
+
+    add lib to create surat pelanggaran and add id sanksi for update pelaporan
+
+[33mcommit 053e28eb134d6b7c71aa79e62b7d83f9c96f2a00[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Sat Nov 23 18:21:47 2024 +0700
+
+    add handle event on submit form pelaporan
+
+[33mcommit fdc50bc39944fb30325eb259bcc96f552ebf754e[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Sat Nov 23 14:09:20 2024 +0700
+
+    add fix ajax
+
+[33mcommit 8f197a1fca174802d299645d7bcd5fa8aef57b88[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Sat Nov 23 13:43:50 2024 +0700
+
+    set function utils
+
+[33mcommit 902cd2674c00ea57c544adfd08eeef5502837ace[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Sat Nov 23 13:17:02 2024 +0700
+
+    add data for detail pelanggaran, handle bug pelaporan and clean the code
+
+[33mcommit 90d10a64a0f70aa89da285a992f98eaf52d541b7[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Sat Nov 23 11:04:36 2024 +0700
+
+    try to handle submit form pelaporan
+
+[33mcommit 6e263e2f45399cf7e8a6c6594ea5db957c00f131[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Fri Nov 22 09:15:17 2024 +0700
+
+    update detail pelaporan, pelanggaran
+
+[33mcommit 74a94c2b92c3fef9939c1a32581507e5ad8579d6[m
+Author: tjahjoe <ntell634@gmail.com>
+Date:   Fri Nov 22 08:35:54 2024 +0700
+
+    add query update pelanggaran and tingkat. add function to get tingkat
+
+[33mcommit 6bc3cd0abcef00a6a9cef1e260553ed5c1bce7d0[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Thu Nov 21 21:09:48 2024 +0700
+
+    update alert & fix bug od badge
+
+[33mcommit 67d5352db85088bb93d7bcddb227ce32765fd44a[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Wed Nov 20 21:50:46 2024 +0700
+
+    fix some bug on filtertab
+
+[33mcommit d95eed67830c0549342ea1307a7592e71243797a[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Wed Nov 20 21:41:02 2024 +0700
+
+    fix some bug on sidebar
+
+[33mcommit 725f8cf381926b52ca15c15af68cdb9dc229eb68[m
+Author: Hikmah Aldrin Abdillah <hikmahaldrin44@gmail.com>
+Date:   Wed Nov 20 21:32:11 2024 +0700
+
+ 

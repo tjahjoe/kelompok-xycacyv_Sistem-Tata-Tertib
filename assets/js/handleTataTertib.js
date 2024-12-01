@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
   const showAlert = (alertId) => {
     $(`#${alertId}`).addClass("alert-active");
   };
@@ -30,7 +31,7 @@ $(document).ready(function () {
 
     const alertId = "alert-success-add-tatib";
     $.ajax({
-      url: "../app/controllers/uploadListPelanggaran.php",
+      url: "../app/controllers/handlerPost.php?action=uploadListPelanggaran",
       type: "POST",
       data: formData,
       dataType: "json",
@@ -55,7 +56,7 @@ $(document).ready(function () {
     const alertId = "alert-success-update-tatib";
 
     $.ajax({
-      url: "../app/controllers/updateListPelanggaran.php",
+      url: "../app/controllers/handlerPost.php?action=updateListPelanggaran",
       type: "POST",
       data: formData,
       dataType: "json",
@@ -76,7 +77,7 @@ $(document).ready(function () {
     const tatibId = $(this).data("id");
 
     $.ajax({
-      url: "../app/controllers/getListPelanggaranById.php",
+      url: "../app/controllers/handlerGet.php?action=filterListPelanggaranById",
       type: "GET",
       data: { id: tatibId },
       dataType: "json",
@@ -106,7 +107,7 @@ $(document).ready(function () {
 
     $(".alert-confirm-button").on("click", function () {
       $.ajax({
-        url: "../app/controllers/deleteListPelanggaran.php",
+        url: "../app/controllers/handlerPost.php?action=deleteListPelanggaran",
         type: "POST",
         data: { id: tatibId },
         dataType: "json",
@@ -122,8 +123,6 @@ $(document).ready(function () {
         },
       });
     });
-
-    closingAlertWithReload(false);
   });
 
   $(".icon-tatib").on("click", function (e) {

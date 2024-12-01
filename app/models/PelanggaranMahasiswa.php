@@ -429,7 +429,7 @@ class PelanggaranMahasiswa
         return $result ? $result : false;
     }
 
-    public function uploadStatusAndTingkat($idPelanggaran, $catatan, $status, $idTingkat, $nip)
+    public function uploadStatusAndTingkat($idPelanggaran, $catatan, $status, $idTingkat, $nip, $tanggal)
     {
         $idTingkat = $status == 'reject' ? null : $idTingkat;
 
@@ -475,7 +475,7 @@ class PelanggaranMahasiswa
                     $akumulasi = $idTingkat - $akumulasi;
                     if ($result['jumlah'] % 3 == 0 && $akumulasi > 0) {
                         $this->updateStatusMultipleOfThree($idPelanggaran);
-                        $this->uploadPelanggaranMultipleOfThree($idPelanggaran, $akumulasi, $nip, $result);
+                        $this->uploadPelanggaranMultipleOfThree($idPelanggaran, $akumulasi, $nip, $result, $tanggal);
                     }
                 }
             }
@@ -539,7 +539,7 @@ class PelanggaranMahasiswa
         $stmt->execute();
     }
 
-    private function uploadPelanggaranMultipleOfThree($idPelanggaran, $akumulasi, $nip, $result)
+    private function uploadPelanggaranMultipleOfThree($idPelanggaran, $akumulasi, $nip, $result, $tanggal)
     {
         // $akumulasi = $result['jumlah'] / 3;
         // $akumulasi = $idTingkat - $akumulasi;
@@ -550,20 +550,23 @@ class PelanggaranMahasiswa
             nim, 
             status, 
             catatan, 
-            pelapor)
+            pelapor,
+            tgl_pelanggaran)
             select 
             id_list_pelanggaran, 
             ?, 
             nim, 
             'aktif', 
             'melangggar pelanggaran yang sama " . $result['jumlah'] . "x',
+            ?,
             ? 
             FROM PelanggaranMahasiswa
             WHERE id_pelanggaran_mhs = ?";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(1, $akumulasi);
             $stmt->bindParam(2, $nip);
-            $stmt->bindParam(3, $idPelanggaran);
+            $stmt->bindParam(3, $tanggal);
+            $stmt->bindParam(4, $idPelanggaran);
             $stmt->execute();
         // }
     }
