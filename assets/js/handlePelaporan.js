@@ -1,5 +1,3 @@
-// handle submit form pelaporan
-console.log("a")
 $(document).ready(function () {
   const showAlert = (alertId) => {
     $(`#${alertId}`).addClass("alert-active");
