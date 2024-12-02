@@ -47,10 +47,13 @@ require_once '../app/controllers/getData.php';
 <?php if (!empty($data['Tingkat Pelanggaran']) &&  in_array($data['Tingkat Pelanggaran'], ['III', 'IV', 'V'])) { ?>
   <div class="danger-box">
     <label for="">Lampiran</label>
-    <p>Untuk pelanggaran tingkat III hingga V, Anda dapat mengunduh <a href="#" style="text-decoration: underline; color:var(--red-color);">file template di sini.</a></p>
+    <p>Untuk pelanggaran tingkat III hingga V, Anda dapat mengunduh <a href="#" id="download-surat-peringatan" style="text-decoration: underline; color:var(--red-color);">
+  file template di sini.
+</a>
   </div>
 <?php } ?>
   </div>
+  <script src="../assets/js/handleDownloadSurat.js"></script>
   <script src="../assets/js/script.js"></script>
 </body>
 

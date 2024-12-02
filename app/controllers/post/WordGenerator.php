@@ -12,7 +12,7 @@ function generateWordFromTemplate()
 
         $templateProcessor = new TemplateProcessor($templateFilePath);
 
-        $templateProcessor->setValue('nama', $_POST['nama']);
+        $templateProcessor->setValue('nama', ucwords($_POST['nama']));
         $templateProcessor->setValue('nim', $_POST['nim']);
         $templateProcessor->setValue('jurusan', 'Teknik Informatika');
         $templateProcessor->setValue('alamat', 'Jl. Contoh No. 123');

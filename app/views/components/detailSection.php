@@ -31,7 +31,7 @@ function DetailSection($data)
                             echo "<p>Bukti tidak ada!</p>";
                         }
                     } else { ?>
-                        <p><?php echo $nilai; ?></p>
+                        <p class="<?php echo $kolom; ?>"><?php echo $nilai; ?></p>
                     <?php } ?>
                 </div>
             <?php }
