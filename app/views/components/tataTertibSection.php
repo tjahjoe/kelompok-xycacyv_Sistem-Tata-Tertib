@@ -24,9 +24,9 @@ function TataTertibSection($data)
       <table id="tataTertib">
         <thead>
           <tr>
-            <th>No</th>
+            <th width="100px">No</th>
             <th>Pelanggaran</th>
-            <th>Tingkat</th>
+            <th width="100px">Tingkat</th>
           </tr>
         </thead>
         <tbody>

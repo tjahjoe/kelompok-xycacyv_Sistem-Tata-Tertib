@@ -9,7 +9,7 @@ function InfoProfile($data)
 
         <img src="<?php echo $photoProfile; ?>" alt="Profile Picture" class="profile-image" width="80px" height="80px"/>
         <span>
-          <h3 class="capitalize-text"><?php echo $data['nama'] ?></h3>
+          <h2 class="capitalize-text"><?php echo $data['nama'] ?></h2>
           <p class="capitalize-text"><?php echo $data['role'] ?></p>
         </span>
       </div>

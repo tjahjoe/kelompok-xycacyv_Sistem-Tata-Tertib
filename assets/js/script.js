@@ -189,10 +189,12 @@ const uploadFile = () => {
   if (fileInput && fileCountDisplay && fileListDisplay) {
     fileInput.addEventListener("change", () => {
       const files = fileInput.files;
-      fileCountDisplay.textContent = `${files.length} file(s) uploaded`;
+      
+      if(files.length > 1) fileCountDisplay.textContent = `${files.length} file(s) uploaded`;
+      else fileCountDisplay.textContent = "file uploaded";
 
       fileListDisplay.innerHTML = "";
-
+      
       for (let i = 0; i < files.length; i++) {
         const listItem = document.createElement("li");
         listItem.textContent = files[i].name;

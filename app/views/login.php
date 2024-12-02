@@ -4,16 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login Sitatib</title>
+  <title>Login | SiTatib</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="icon" href="../assets/images/logo-sitatib.png" type="image/png">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-  <div class="container">
+  <div class="container grid-center">
     <div class="box">
       <div class="bg-img"></div>
       <div class="box-contain">
@@ -27,7 +28,7 @@
           </div>
           <h2>Login Anggota</h2>
           <div id="hasil" style="color: red; display:none"></div>
-          <div class="info-box">
+          <div class="info-box m-0">
             <h4>Informasi</h3>
             <ul>
               <li>Bagi Mahasiswa: Gunakan akun siakad</li>

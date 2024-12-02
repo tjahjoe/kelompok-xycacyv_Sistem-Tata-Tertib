@@ -32,6 +32,11 @@ body {
   padding: 1.5rem;
 }
 
+.grid-center{
+  display:grid;
+  place-items:center;
+}
+
 a{
   text-decoration: none;
 }
@@ -64,7 +69,7 @@ a{
   align-items: center;
   width: 100%;
   max-width: 1000px;
-  height: 95%;
+  height: 100%;
   margin: auto;
   border-radius: 20px;
   overflow: hidden;
@@ -224,7 +229,7 @@ a{
 .back-home a {
   display: inline-block;
   text-decoration: none;
-  margin-top: 30px;
+  margin-top: 10px;
   margin-right: 10px;
 }
 
@@ -349,7 +354,7 @@ a{
 }
 
 .tab-sublink.active{
-  border-bottom: 2px solid blue;
+  border-bottom: 2px solid var(--primary-color);
   border-radius: 0!important;
   font-weight:600;
   color: var(--primary-color)!important;
@@ -409,6 +414,10 @@ section#header {
   max-width: 600px;
   font-size: 1rem;
   font-weight: normal;
+}
+
+textarea {
+  resize: vertical;
 }
 
 /* for all header */
@@ -484,6 +493,8 @@ section#tataTertib {
 .table-container {
   width: 100%;
   overflow: auto;
+  border-radius:15px;
+  border: 1px solid #ddd;
 }
 
 table#tataTertib {
@@ -536,7 +547,7 @@ section#footerLapor span.text-red {
 
 section#footerLapor {
   margin-top: 30px;
-  background: linear-gradient(-140deg ,rgba(0, 28, 147, 1) 80%, rgba(0, 28, 147, 0)) 10%;
+  background: linear-gradient(-160deg ,rgba(0, 28, 147, 1) 70%, rgba(0, 28, 147, 0)) 10%;
   border-radius: 20px;
   /* background-repeat: no-repeat;
   background-size: cover;
@@ -574,7 +585,8 @@ section#footerLapor {
   display: flex;
   align-items: center;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 15px;
+  border: 1.5px solid #ddd;
   padding: 20px;
   overflow: hidden;
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
@@ -607,6 +619,12 @@ section#footerLapor {
   text-decoration: none;
   margin-bottom: 5px;
   border-radius: 5px;
+  font-weight: 600;
+}
+
+.tab-sublink{
+  border-radius: 0;
+  border-bottom: 2px solid var(--gray-color);
 }
 
 .tab-link.active {
@@ -785,7 +803,7 @@ span.btn-edit-profile{
 
 .table-content th, .table-content td {
   text-align:center;
-  padding: 12px 15px;
+  padding: 15px;
   border-bottom: 1px solid #ddd;
   white-space: nowrap;
 }
@@ -1395,7 +1413,7 @@ img.lampiran_bukti_full{
   }
 
   .box {
-    height: 100%;
+    height: max-content;
     max-width: max-content;
   }
 

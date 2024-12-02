@@ -17,17 +17,18 @@ require_once '../app/controllers/getData.php';
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile User</title>
+  <title>Profil User | SiTatib</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="../assets/images/logo-sitatib.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
   <?php Navbar(true); ?>
-  <div class="container bg-gray pt-5">
+  <div class="container pt-5">
     <h1 class="title">Pengaturan Akun</h1>
     <div class="box-content">
       <!-- SIDEBAR -->
@@ -36,7 +37,7 @@ require_once '../app/controllers/getData.php';
       <!-- PROFILE USER -->
       <div id="profile-user" class="tab-content active">
         <div class="head-tab-content">
-          <h1>Profil Saya</h1>
+          <h2>Profil Saya</h2>
         </div>
         <?php include 'components/infoProfile.php';
 
@@ -48,7 +49,7 @@ require_once '../app/controllers/getData.php';
       <!-- EDIT PROFILE -->
       <div id="edit-profile" class=" content-edit-profile">
         <div class="head-tab-content">
-          <h1>Profil Saya / Edit Informasi Pribadi</h1>
+          <h2>Profil Saya / Edit Informasi Pribadi</h2>
           <p class="text-gray">Di sini Anda dapat mengubah informasi pribadi Anda. Setelah selesai, tekan tombol 'Simpan'.</p>
         </div>
         <?php EditProfile($user_data); ?>
@@ -57,7 +58,7 @@ require_once '../app/controllers/getData.php';
       <!-- RIWAYAT PELANGGARAN -->
       <div class="tab-content" id="riwayat-pelanggaran">
         <div class="head-tab-content">
-          <h1>Riwayat Pelanggaran</h1>
+          <h2>Riwayat Pelanggaran</h2>
         </div>
         <?php
         $dataPelanggaran = dataPelanggaran();
@@ -81,7 +82,7 @@ require_once '../app/controllers/getData.php';
         <!-- KELOLA TATIB -->
         <div class="tab-subcontent active" id="kelola-peraturan-tatib">
           <div class="head-tab-content">
-            <h1>Kelola Peraturan Tata Tertib</h1>
+            <h2>Kelola Peraturan Tata Tertib</h2>
           </div>
           <?php KelolaTatib(); ?>
         </div>
@@ -89,12 +90,24 @@ require_once '../app/controllers/getData.php';
         <!-- KELOLA SURAT PERNYATAAN -->
         <div class="tab-subcontent" id="kelola-surat-pernyataan">
           <div class="head-tab-content">
-            <h3>Update Link Surat Pernyataan</h3>
+            <h3>Update Surat Pernyataan</h3>
           </div>
-          <form id="updateLinkSuratPernyataan" class="flex-row-full m-0">
-            <input type="text" name="linkSuratPernyataan" class="input-kelola-tatib" id="linkSuratPernyataan" placeholder="Ketik nama pelanggaran di sini..." required>
-            <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button>
+
+          <div id="hasil" style="color: red; display:none"></div>
+
+          <form id="updateSuratPernyataan" class="flex-row-full m-0">
+            <label class="upload-section" for="lampiran">
+              <span class="upload-icon"><img src="../assets/images/upload-surat-icon.svg" width="30px" alt=""></span>
+              <p>Upload Lampiran (Max: 5MB)</p>
+            </label>
+            <input type="file" name="suratPernyataan" id="lampiran" placeholder="Ketik nama pelanggaran di sini..." required hidden accept=".docx">
+            <!-- <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button> -->
           </form>
+          <div class="list-file-uploaded">
+            <h4 id="file-count"></h4>
+            <ul id="file-list">
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -102,7 +115,7 @@ require_once '../app/controllers/getData.php';
       <!-- RIWAYAT PELAPORAN -->
       <div class="tab-content" id="riwayat-pelaporan">
         <div class="head-tab-content">
-          <h1>Riwayat Pelaporan</h1>
+          <h2>Riwayat Pelaporan</h2>
         </div>
         <?php
         $dataPelaporan = dataPelapor();
@@ -135,12 +148,16 @@ require_once '../app/controllers/getData.php';
 
       // ALERT SUCCESS UPDATE INFO PRIBADI
       Alert('alert-success-icon.svg', 'Berhasil Update Informasi Pribadi', 'Berhasil update data informasi pribadi', '', false, 'alert-success-update-infoprofil');
+
+      // ALERT SUCCESS UPDATE SURAT PERNYATAAN
+      Alert('alert-success-icon.svg', 'Berhasil Update Surat Pernyataan', '', '', false, 'alert-success-update-surat');
       ?>
 
     </div>
   </div>
   </div>
   <script src="../assets/js/handleTataTertib.js"></script>
+  <script src="../assets/js/handleUpdateSurat.js"></script>
   <script src="../assets/js/handleEditProfile.js"></script>
   <script src="../assets/js/handleLogout.js"></script>
   <script src="../assets/js/script.js"></script>
