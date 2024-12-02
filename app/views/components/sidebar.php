@@ -10,7 +10,7 @@ $data = dataUser();
   ?>
     <a href="#riwayat-pelaporan" class="tab-link">Riwayat Pelaporan</a>
   <?php } 
-  if ($data && $data['role'] != 'dosen' && $data['role'] != 'mahasiswa') { ?>
+  if ($data && $data['role'] == 'admin') { ?>
     <a href="#pengaturan-lanjutan" class="tab-link">Pengaturan Lanjutan</a>
   <?php } 
   if ($data && $data['role'] == 'mahasiswa') { ?>
