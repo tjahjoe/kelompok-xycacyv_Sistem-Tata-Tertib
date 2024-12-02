@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "../../../controllers/getData.php";
-require_once __DIR__ . "../../../controllers/check.php";
+require_once __DIR__ . "../../../controllers/utils/check.php";
 
 function Navbar($isOtherPage) {
     $data = dataUser();

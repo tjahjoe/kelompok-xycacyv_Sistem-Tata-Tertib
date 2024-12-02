@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . "/../../models/TingkatPelanggaran.php";
-header('Content-Type: application/json');
 
 function filterSanksiByTingkat(){
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {

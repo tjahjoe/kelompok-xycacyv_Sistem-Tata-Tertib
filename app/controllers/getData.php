@@ -4,9 +4,8 @@ require_once __DIR__ . "/../models/Mahasiswa.php";
 require_once __DIR__ . "/../models/Dosen.php";
 require_once __DIR__ . "/../models/Admin.php";
 require_once __DIR__ . "/../models/PelanggaranMahasiswa.php";
-// require_once __DIR__ . "/../../assets/utils/setData.php";
 require_once __DIR__ . "/utils/setData.php";
-require_once __DIR__ . "/check.php";
+require_once __DIR__ . "/utils/check.php";
 
 function ListPelanggaran()
 {

@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . "/../../models/PelanggaranMahasiswa.php";
 require_once __DIR__ . "/../../models/Mahasiswa.php";
-// require_once __DIR__ . "/../../../assets/utils/setData.php";
 require_once __DIR__ . "/../utils/uploadFile.php";
 function uploadPelanggaran(){
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -12,7 +11,7 @@ function uploadPelanggaran(){
     
         $response = [
             'status' => 'error',
-            'message' => 'data not valid',
+            'message' => 'Gagal: data tidak valid',
         ];
     
         $nim = $_POST['nim'];
@@ -22,32 +21,36 @@ function uploadPelanggaran(){
         $pelapor = $_SESSION['user']['id_users'];
         $isEmptyImg = empty($_FILES['lampiran']['name'][0]);
     
-        $condition = true;
+        $sizeImages = true;
+        $countImages = true;
         $message = '';
         $status = true;
         $invalidListPelanggaran = "Data is not No data found for the selected tingkat pelanggaran.";
     
         if (!$isEmptyImg) {
             $maxsize = 3 * 1024 * 1024;
-            $condition = array_sum($_FILES['lampiran']['size']) <= $maxsize && count($_FILES['lampiran']['name']) <= 10 ? true : false;
+            $sizeImages = array_sum($_FILES['lampiran']['size']) <= $maxsize ? true : false;
+            $countImages = count($_FILES['lampiran']['name']) <= 10 ? true : false;
         }
     
         $mahasiswa = $mahasiswaModel->getDataMahasiswa($nim);
     
         if ($mahasiswa) {
             if ($mahasiswa['status'] != 'aktif') {
-                $message = "nim not valid";
+                $message = "Gagal: NIM tidak valid";
                 $status = false;
             }
         } else if (empty($mahasiswa)) {
-            $message = "nim not valid";
-        } else if (!$condition) {
-            $message = "image size is too large";
+            $message = "Gagal: NIM tidak valid";
+        } else if (!$sizeImages) {
+            $message = "Gagal: foto terlalu besar";
+        } else if (!$countImages) {
+            $message = "Gagal: jumlah maksimal foto 10";
         } else if ($jenis == $invalidListPelanggaran) {
-            $message = "data not valid";
+            $message = "Gagal: pelanggaran tidak valid";
         }
     
-        if ($mahasiswa && $condition && $status && $jenis != $invalidListPelanggaran) {
+        if ($mahasiswa && $sizeImages && $countImages && $status && $jenis != $invalidListPelanggaran) {
             $idPelanggaranMhs = $pelanggaranMahasiswaModel->uploadPelanggaran(
                 $nim,
                 $tanggal,
@@ -61,8 +64,7 @@ function uploadPelanggaran(){
     
                 $files = uploadImage($idPelanggaranMhs);
                 $result = $pelanggaranMahasiswaModel->uploadImages($files, $idPelanggaranMhs['id_pelanggaran_mhs']);
-    
-                // echo json_encode($result);
+                
                 echo $result ? json_encode(['status' => 'success', 'message' => 'upload success']) : json_encode($response);
                 exit;
             } else {
@@ -83,20 +85,23 @@ function updatePelanggaran(){
     
         $response = [
             'status' => 'error',
-            'message' => 'process failed',
+            'message' => 'Gagal: pilih tingkat pelanggaran',
         ];
 
         $idPelanggaran = $_POST['idPelanggaranMhs'];
         $catatan = $_POST['catatan'];
         $status = $_POST['status'];
         $idTigkat = isset($_POST['tingkatSanksiAdmin']) ? $_POST['tingkatSanksiAdmin'] : null;
-        $nip = $id = $_SESSION['user']['id_users'];
+        $nip = $_SESSION['user']['id_users'];
         $tanggal = date('Y-m-d');
     
     
         $result = $pelanggaranMahasiswaModel->uploadStatusAndTingkat($idPelanggaran, $catatan, $status, $idTigkat,  $nip, $tanggal);
     
-        echo $result ? json_encode(['status' => 'success', 'message' => 'upload success']) : json_encode($response);
+        echo $result == "berhasil" ? 
+        json_encode(['status' => 'success', 'message' => 'upload success']) 
+        : 
+        json_encode(['status' => 'error', 'message' => $result]);
         exit;
     }
 }

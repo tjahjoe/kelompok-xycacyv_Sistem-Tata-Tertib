@@ -4,7 +4,6 @@ require_once __DIR__ . "/../../models/User.php";
 require_once __DIR__ . "/../../models/Admin.php";
 require_once __DIR__ . "/../../models/Dosen.php";
 require_once __DIR__ . "/../../models/Mahasiswa.php";
-// require_once __DIR__ . "/../../../assets/utils/setData.php";
 require_once __DIR__ . "/../utils/uploadFile.php";
 function login(){
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

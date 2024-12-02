@@ -36,7 +36,7 @@ function changePhotoProfil($id)
 }
 
 function changeSuratPeringatan(){
-    $targetDirectory = __DIR__ . "/../../../assets/word/";
+    $targetDirectory = "../../assets/word/";
     $fileName = "surat_peringatan.docx";
 
     if (file_exists($targetDirectory . $fileName)) {

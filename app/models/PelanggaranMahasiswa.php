@@ -434,7 +434,7 @@ class PelanggaranMahasiswa
         $idTingkat = $status == 'reject' ? null : $idTingkat;
 
         if ($status != 'reject' and $idTingkat == '') {
-            return false;
+            return "Gagal: pilih tingkat pelanggaran";
         }
 
         $query = "SELECT status FROM " . $this->table . " WHERE id_pelanggaran_mhs = ?";
@@ -445,13 +445,13 @@ class PelanggaranMahasiswa
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
 
-            // if ($result['status'] == $status) {
-            //     return false;
-            // }
+            if ($result['status'] == $status) {
+                return "Gagal: ubah status";
+            }
 
             // jika status sebelumya baru tidak bisa langsung mengubah ke nonaktif atau reject
             if (in_array($status, ['nonaktif', 'reject']) && $result['status'] == 'baru') {
-                return false;
+                return "Gagal: pemrosesan harus bertahap";
             }
 
             // mengubah status akan tetapi tidak bisa mengembalikan ke proses sebelumnya
@@ -482,7 +482,7 @@ class PelanggaranMahasiswa
         }
 
         $this->conn->commit();
-        return true;
+        return "berhasil";
     }
 
     private function checkAmount($idPelanggaran)
