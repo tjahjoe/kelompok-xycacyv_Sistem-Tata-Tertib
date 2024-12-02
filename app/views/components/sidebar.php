@@ -9,8 +9,11 @@ $data = dataUser();
   if ($data && in_array($data['role'], ['dosen', 'dpa', 'kps', 'sekjur', 'admin'])) {
   ?>
     <a href="#riwayat-pelaporan" class="tab-link">Riwayat Pelaporan</a>
+  <?php } 
+  if ($data && $data['role'] != 'dosen' && $data['role'] != 'mahasiswa') { ?>
     <a href="#pengaturan-lanjutan" class="tab-link">Pengaturan Lanjutan</a>
-  <?php } else if($data && $data['role'] == 'mahasiswa') { ?>
+  <?php } 
+  if ($data && $data['role'] == 'mahasiswa') { ?>
     <a href="#riwayat-pelanggaran" class="tab-link">Riwayat Pelanggaran</a>
   <?php } ?>
   <a href="#" class="tab-link logout-btn">Keluar Akun</a>

@@ -9,7 +9,7 @@ function EditProfile($data)
   if (!empty($data)) {
   ?>
     <form class="form-container" id="form-editprofile" enctype="multipart/form-data">
-      <div class="flex-between">
+      <div class="flex-between m-0">
         <div class="flex-row m-0">
           <?php $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/' . $data['foto_diri'] : "../assets/images/foto.jpg"; ?>
 

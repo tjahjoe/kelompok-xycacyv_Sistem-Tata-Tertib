@@ -5,10 +5,12 @@ function Alert($icon, $information, $title, $content, $isAlertConfirmation, $id)
     <div class="alert-box">
       <div class="alert-icon"><img src="../assets/images/<?php echo $icon; ?>" alt=""></div>
       <div class="alert-title"><?php echo $information; ?></div>
+      <?php if($title != '' || $content != '') { ?>
       <div class="alert-message">
         <?php echo $title; ?><br>
-        <?php echo $content; ?><br>
+        <?php echo $content; ?>
       </div>
+      <?php }?>
       <?php if(!$isAlertConfirmation){?>
 
         <button class="btn btn-primary alert-close-button" data-alert-id="<?php echo $id; ?>">Kembali</button>
