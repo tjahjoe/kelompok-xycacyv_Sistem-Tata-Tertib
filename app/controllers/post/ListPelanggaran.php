@@ -32,7 +32,7 @@ function uploadListPelanggaran()
                 json_encode(['status' => 'error', 'message' => 'Gagal: Nama pelanggaran tidak boleh sama']);
             exit;
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Gagal: ' . $message]);
+            echo json_encode(['status' => 'error', 'message' => $message]);
             exit;
         }
     }
@@ -58,7 +58,7 @@ function updateListPelanggaran()
                 json_encode(['status' => 'error', 'message' => 'Gagal: Nama pelanggaran tidak boleh sama']);
             exit;
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Gagal: Gagal: Nama pelanggaran harus diisi']);
+            echo json_encode(['status' => 'error', 'message' => 'Gagal: Nama pelanggaran harus diisi']);
             exit;
         }
 

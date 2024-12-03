@@ -40,20 +40,32 @@ function updateDataUser(){
         $notelp = $_POST['notelp'];
         $id = $_SESSION['user']['id_users'];
         $role = $_SESSION['user']['role'];
-    
-        if ($role == 'mahasiswa') {
-            $result = $mahasiswaModel->changeData($nama, $id, $notelp);
-        } else if ($role == 'admin') {
-            $result = $adminModel->changeData($nama, $id, $notelp);
-        } else if (in_array($role, ['sekjur', 'kps', 'dpa', 'dosen'])) {
-            $result = $dosenModel->changeData($nama, $id, $notelp);
+
+        $message = "";
+        if (!$nama) {
+            $message = "Gagal: Nama harus diisi";
+        } else if (!$notelp) {
+            $message = "Gagal: Nomor telepon harus diisi";
         }
-    
-        echo $result ? 
-        json_encode(['status' => 'success', 'message' => 'update success']) 
-        : 
-        json_encode(['status' => 'error', 'message' => 'Gagal: Nomor telepon tidak valid']);
-        exit;
+
+        if ($nama && $notelp) {
+            if ($role == 'mahasiswa') {
+                $result = $mahasiswaModel->changeData($nama, $id, $notelp);
+            } else if ($role == 'admin') {
+                $result = $adminModel->changeData($nama, $id, $notelp);
+            } else if (in_array($role, ['sekjur', 'kps', 'dpa', 'dosen'])) {
+                $result = $dosenModel->changeData($nama, $id, $notelp);
+            }
+        
+            echo $result ? 
+            json_encode(['status' => 'success', 'message' => 'update success']) 
+            : 
+            json_encode(['status' => 'error', 'message' => 'Gagal: Nomor telepon tidak valid']);
+            exit;
+        } else {
+            echo json_encode(['status' => 'error', 'message' => $message]);
+            exit;
+        }
     }
 }
 
