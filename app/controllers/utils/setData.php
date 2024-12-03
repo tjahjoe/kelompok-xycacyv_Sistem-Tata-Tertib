@@ -23,11 +23,11 @@ function changeNameValue($datas)
 {
     foreach ($datas as &$data) {
         $data['NIM'] = $data['nim'];
-        $data['NAMA'] = $data['nama'];
+        $data['NAMA'] = ucwords($data['nama']);
         $data['TANGGAL'] = $data['tanggal'];
         $data['JUDUL MASALAH'] = $data['judulmasalah'];
         $data['TINGKAT'] = $data['tingkat'];
-        $data['STATUS'] = $data['status'];
+        $data['STATUS'] = $data['status'];  
 
         unset($data['nim']);
         unset($data['nama']);

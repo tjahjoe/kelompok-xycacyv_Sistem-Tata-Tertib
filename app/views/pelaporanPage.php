@@ -55,7 +55,7 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
             <option value="<?php echo $record['nama_jenis_pelanggaran'] ?>"><?php echo $record['nama_jenis_pelanggaran'] ?></option>
         <?php }
         } else {
-          echo "<option>Data is not availabel</option>";
+          echo "<option>Data is not available</option>";
         } ?>
       </select>
       <textarea placeholder="Ketik Laporan Anda *" class="input-field" rows="10" name="deskripsiLaporan" required></textarea>

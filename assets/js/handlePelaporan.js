@@ -30,9 +30,11 @@ $(document).ready(function () {
 
     // Mendapatkan data form
     var formData = new FormData(this);
+    // var formData = $(this).serialize();
 
     const alertId = "alert-pelaporan-success";
 
+    alert(formData)
     // Kirim data ke server PHP
     $.ajax({
       // url: "../app/controllers/uploadData.php",
@@ -125,7 +127,7 @@ $(document).ready(function () {
           });
         } else {
           $("#jenisPelanggaran").html(
-            `<option>Data is not ${response.message}</option>`
+            `<option value='${response.message}'>${response.message}</option>`
           );
         }
       },

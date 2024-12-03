@@ -46,7 +46,6 @@ function dataUser()
 
 
 //riwayat pelanggaran
-//daftar pelaporan
 function dataPelanggaran()
 {
     if (isLogin()) {

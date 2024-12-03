@@ -35,6 +35,9 @@ $(document).ready(function () {
       data: formData,
       dataType: "json",
       success: function (response) {
+        // console.log(response)
+        // console.log(response.status)
+        // console.log(response.message)
         if (response.status === "success") {
           showAlert(alertId);
           closingAlertWithReload(true);
@@ -63,8 +66,10 @@ $(document).ready(function () {
         if (response.status === "success") {
           showAlert(alertId);
           closingAlertWithReload(true);
+          console.log('benar')
         } else {
-          $("#hasil").css("display", "block").html(response.message);
+          console.log('salah')
+          $("#hasil").css("display", "block").html("hahaha");
         }
       },
     });

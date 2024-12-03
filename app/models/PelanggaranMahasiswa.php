@@ -25,7 +25,6 @@ class PelanggaranMahasiswa
         $query = "SELECT
         p.id_pelanggaran_mhs 'id',
 		p.nim 'NIM',
-		m.nama_mahasiswa 'NAMA',
         p.tgl_pelanggaran 'TANGGAL', 
         l.nama_jenis_pelanggaran 'JUDUL MASALAH', 
         l.tingkat_pelanggaran 'TINGKAT', 

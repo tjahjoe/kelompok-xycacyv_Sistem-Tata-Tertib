@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -49,4 +49,12 @@
     </script>
 </body>
 
-</html>
+</html> -->
+
+<?php
+require_once __DIR__ . "/utils/setData.php";
+//  $tanggal = date('m', strtotime("2024-12-02"));
+//  var_dump($tanggal);
+
+var_dump(setTimeWithMonthName(date("Y-m-d")));
+?>

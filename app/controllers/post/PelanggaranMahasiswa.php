@@ -25,7 +25,7 @@ function uploadPelanggaran(){
         $countImages = true;
         $message = '';
         $status = true;
-        $invalidListPelanggaran = "Data is not No data found for the selected tingkat pelanggaran.";
+        $invalidListPelanggaran = "No data found for the selected tingkat pelanggaran.";
     
         if (!$isEmptyImg) {
             $maxsize = 3 * 1024 * 1024;
@@ -35,12 +35,7 @@ function uploadPelanggaran(){
     
         $mahasiswa = $mahasiswaModel->getDataMahasiswa($nim);
     
-        if ($mahasiswa) {
-            if ($mahasiswa['status'] != 'aktif') {
-                $message = "Gagal: NIM tidak valid";
-                $status = false;
-            }
-        } else if (empty($mahasiswa)) {
+        if (empty($mahasiswa)) {
             $message = "Gagal: NIM tidak valid";
         } else if (!$sizeImages) {
             $message = "Gagal: foto terlalu besar";
@@ -48,6 +43,11 @@ function uploadPelanggaran(){
             $message = "Gagal: jumlah maksimal foto 10";
         } else if ($jenis == $invalidListPelanggaran) {
             $message = "Gagal: pelanggaran tidak valid";
+        } else if ($mahasiswa) {
+            if ($mahasiswa['status'] != 'aktif') {
+                $message = "Gagal: NIM tidak valid";
+                $status = false;
+            }
         }
     
         if ($mahasiswa && $sizeImages && $countImages && $status && $jenis != $invalidListPelanggaran) {
