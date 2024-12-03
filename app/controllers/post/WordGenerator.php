@@ -18,13 +18,6 @@ function generateWordFromTemplate()
 
         $templateProcessor = new TemplateProcessor($templateFilePath);
 
-        // $templateProcessor->setValue('nama', ucwords($_POST['nama']));
-        // $templateProcessor->setValue('nim', $_POST['nim']);
-        // $templateProcessor->setValue('jurusan', 'Teknik Informatika');
-        // $templateProcessor->setValue('alamat', 'Jl. Contoh No. 123');
-        // $templateProcessor->setValue('tanggal', '23 November 2024');
-        // $templateProcessor->setValue('perguruan', 'Politeknik Negeri Malang');
-
         $templateProcessor->setValue('nama', $nama);
         $templateProcessor->setValue('nim', $nim);
         $templateProcessor->setValue('tanggalPelaporan', $tanggalPelaporan);

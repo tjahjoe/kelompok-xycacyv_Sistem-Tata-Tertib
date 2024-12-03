@@ -540,9 +540,6 @@ class PelanggaranMahasiswa
 
     private function uploadPelanggaranMultipleOfThree($idPelanggaran, $akumulasi, $nip, $result, $tanggal)
     {
-        // $akumulasi = $result['jumlah'] / 3;
-        // $akumulasi = $idTingkat - $akumulasi;
-        // if ($akumulasi > 0) { //handle di atas
             $query = "INSERT INTO " . $this->table . " 
             (id_list_pelanggaran, 
             id_tingkat_pelanggaran, 
@@ -567,6 +564,5 @@ class PelanggaranMahasiswa
             $stmt->bindParam(3, $tanggal);
             $stmt->bindParam(4, $idPelanggaran);
             $stmt->execute();
-        // }
     }
 }

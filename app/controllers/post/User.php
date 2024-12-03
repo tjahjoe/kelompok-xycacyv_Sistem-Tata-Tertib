@@ -101,23 +101,6 @@ function updatePhotoProfil(){
             echo json_encode(['status' => 'error', 'message' => 'Gagal: Batas maksimal ukuran foto profil 3MB']);
             exit;
         }
-        // $lastFileName = $userModel->checkPhotoName($id);
-    
-        // if ($lastFileName) {
-        //     if ($lastFileName['foto_diri'] != null) {
-        //         $targetDirectory = "../../assets/uploads/photo/";
-        //         if (file_exists($targetDirectory . $lastFileName['foto_diri'])) {
-        //             unlink($targetDirectory . $lastFileName['foto_diri']);
-        //         }
-        //     }
-        // }
-    
-        // $fileName = changePhotoProfil($id);
-    
-        // $result = $userModel->changePhoto($id, $fileName);
-    
-        // echo $result ? json_encode(['status' => 'success', 'message' => 'update success']) : json_encode($response);
-        // exit;
     }
 }
 
