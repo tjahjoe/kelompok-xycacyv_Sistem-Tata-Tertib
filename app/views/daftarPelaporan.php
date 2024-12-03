@@ -95,9 +95,8 @@
       </div>
       </form>
     </div>
-    <div class="box-content">
       <!-- daftar PELAPORAN -->
-      <div class="tab-content active" id="daftar-pelaporan">
+      <div class="table-container" id="daftar-pelaporan">
         <?php
         require_once __DIR__ . "../../controllers/getData.php";
         
@@ -118,7 +117,6 @@
         
         $maxPage = $allData ? count($allData) / 10 : false;
         ?>
-      </div>
     </div>
     
     <?php if(isset($_GET['page'])){ ?>

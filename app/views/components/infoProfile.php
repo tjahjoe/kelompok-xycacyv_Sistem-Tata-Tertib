@@ -44,8 +44,8 @@ function InfoProfile($data)
             <p class="capitalize-text">Email</p>
             <p><?php echo $data['email']; ?></p>
           </span>
-          <span>
-            <p class="capitalize-text">Pekerjaan</p>
+          <span class="capitalize-text">
+            <p>Pekerjaan</p>
             <p><?php echo $data['role']; ?></p>
           </span>
         </div>

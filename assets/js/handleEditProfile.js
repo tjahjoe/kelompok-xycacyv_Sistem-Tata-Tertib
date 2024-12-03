@@ -90,8 +90,11 @@ $(document).ready(function () {
   $("#form-editprofile").submit(function (e) {
     e.preventDefault();
 
+    $("input[name='nama']").val($.trim($("input[name='nama']").val()));
+    $("input[name='notelp']").val($.trim($("input[name='notelp']").val()));
+
     // Mendapatkan data form
-    var formData = $(this).serialize();
+    const formData = $(this).serialize();
 
     const alertId = "alert-success-update-infoprofil";
 

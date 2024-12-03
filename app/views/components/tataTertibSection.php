@@ -12,16 +12,16 @@ function TataTertibSection($data)
       <h4>Filter by tingkat:</h4>
       <select id="tingkatPelanggaran" class="tingkatPelanggaran" name="tingkatPelanggaran">
         <option value="">All</option>
-        <option value="I">I</option>
-        <option value="I/II">I/II</option>
-        <option value="II">II</option>
-        <option value="III">III</option>
-        <option value="IV">IV</option>
-        <option value="V">V</option>
+        <option value="I">Tingkat I</option>
+        <option value="I/II">Tingkat I/II</option>
+        <option value="II">Tingkat II</option>
+        <option value="III">Tingkat III</option>
+        <option value="IV">Tingkat IV</option>
+        <option value="V">Tingkat V</option>
       </select>
     </div>
-    <div class="table-container">
-      <table id="tataTertib">
+    <div class="table-container square-border mt-2">
+      <table id="tataTertib" class="m-0">
         <thead>
           <tr>
             <th width="100px">No</th>

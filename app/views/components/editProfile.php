@@ -51,7 +51,7 @@ function EditProfile($data)
       </div>
       <div class="input-editprofile">
         <label for="role">Pekerjaan</label>
-        <input type="text" name="role" value="<?php echo $data['role'] ?>" id="role" disabled>
+        <input type="text" name="role" value="<?php echo $data['role'] ?>" class="capitalize-text" id="role" disabled>
       </div>
 
     </form>

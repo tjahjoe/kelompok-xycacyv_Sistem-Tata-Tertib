@@ -26,6 +26,9 @@ $(document).ready(function () {
   // Tambah Data
   $(document).on("submit", "#add-tatatertib", function (e) {
     e.preventDefault();
+
+    $("input[name='namaPelanggaran']").val($.trim($("input[name='namaPelanggaran']").val()));
+
     const formData = $(this).serialize();
 
     const alertId = "alert-success-add-tatib";
@@ -51,6 +54,7 @@ $(document).ready(function () {
   // Update Data
   $(document).on("submit", "#update-tatatertib", function (e) {
     e.preventDefault();
+    $("input[name='namaPelanggaran']").val($.trim($("input[name='namaPelanggaran']").val()));
     const tatibId = $(this).data("id");
     let formData = $(this).serialize();
     if (tatibId) formData += "&idPelanggaran=" + tatibId;

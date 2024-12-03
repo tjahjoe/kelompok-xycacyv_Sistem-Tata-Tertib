@@ -11,7 +11,7 @@ $(document).ready(function () {
   };
 
   const closingAlertWithReload = (isReload) => {
-    console.log("coba closing")
+    console.log("coba closing");
     $(".alert-close-button, .overlay").on("click", function () {
       const alertId = $(this).data("alert-id");
       const overlayId = $(this).attr("id");
@@ -24,17 +24,23 @@ $(document).ready(function () {
     });
   };
 
-
   $("#form-pelaporan").submit(function (e) {
     e.preventDefault();
 
-    // Mendapatkan data form
-    var formData = new FormData(this);
-    // var formData = $(this).serialize();
+    // Membuat FormData dari form secara otomatis
+    const form = this;
+    const formData = new FormData(form);
+
+    // Mengubah nilai tertentu di FormData
+    const nim = $.trim(formData.get("nim")); // Hapus whitespace pada nim
+    const deskripsiLaporan = $.trim(formData.get("deskripsiLaporan")); // Hapus whitespace pada deskripsi laporan
+
+    // Set nilai yang sudah dimodifikasi kembali ke FormData
+    formData.set("nim", nim);
+    formData.set("deskripsiLaporan", deskripsiLaporan);
 
     const alertId = "alert-pelaporan-success";
 
-    alert(formData)
     // Kirim data ke server PHP
     $.ajax({
       // url: "../app/controllers/uploadData.php",
@@ -60,8 +66,10 @@ $(document).ready(function () {
   $("#updatePelaporan").submit(function (e) {
     e.preventDefault();
 
+    $("textarea[name='catatan']").val($.trim($("textarea[name='catatan']").val()));
+
     // Mendapatkan data form
-    var formData = $(this).serialize();
+    const formData = $(this).serialize();
 
     const alertId = "alert-detail-pelaporan-success";
 
