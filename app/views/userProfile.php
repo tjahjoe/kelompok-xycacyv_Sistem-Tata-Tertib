@@ -138,19 +138,19 @@ require_once '../app/controllers/getData.php';
       Alert('alert-delete-icon.svg', 'Hapus TataTertib', 'Apakah Anda yakin ingin menghapus tata tertib?', '', true, 'alert-delete-tatib');
 
       // ALERT SUCCESS ADD TATIB
-      Alert('alert-success-icon.svg', 'Berhasil Tambah TataTertib', 'Berhasil menambahkan data baru', '', false, 'alert-success-add-tatib');
+      Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil menambahkan tata tertib baru', '', false, 'alert-success-add-tatib');
 
       // ALERT SUCCESS UPDATE TATIB
-      Alert('alert-success-icon.svg', 'Berhasil Update TataTertib', 'Berhasil update data', '', false, 'alert-success-update-tatib');
+      Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil update tata tertib', '', false, 'alert-success-update-tatib');
 
       // ALERT SUCCESS UPDATE PHOTO PROFIL
-      Alert('alert-success-icon.svg', 'Berhasil Update Photo', 'Berhasil update photo profil', '', false, 'alert-success-update-photo');
+      Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil update photo profil', '', false, 'alert-success-update-photo');
 
       // ALERT SUCCESS UPDATE INFO PRIBADI
-      Alert('alert-success-icon.svg', 'Berhasil Update Informasi Pribadi', 'Berhasil update data informasi pribadi', '', false, 'alert-success-update-infoprofil');
+      Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil update data informasi pribadi', '', false, 'alert-success-update-infoprofil');
 
       // ALERT SUCCESS UPDATE SURAT PERNYATAAN
-      Alert('alert-success-icon.svg', 'Berhasil Update Surat Pernyataan', '', '', false, 'alert-success-update-surat');
+      Alert('alert-success-icon.svg', 'Berhasil', ' Berhasil update Surat Pernyataan', '', false, 'alert-success-update-surat');
       ?>
 
     </div>

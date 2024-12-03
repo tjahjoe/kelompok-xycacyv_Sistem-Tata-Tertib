@@ -6,6 +6,8 @@ require_once __DIR__ . "../../../controllers/getData.php";
 function KelolaTatib()
 {
 ?>
+
+<div id="error-tatib" style="color: red; display:none"></div>
   <div class="flex-col">
    <form action="" id="add-tatatertib" class="form-tatib">
       <div class="flex-col">
@@ -37,7 +39,6 @@ function KelolaTatib()
     // var_dump($data);
     ?>
 
-    <div id="hasil" style="color: red; display:none"></div>
     <div class="table-container">
       <table class="table-content">
         <thead>

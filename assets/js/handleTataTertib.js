@@ -26,30 +26,31 @@ $(document).ready(function () {
   // Tambah Data
   $(document).on("submit", "#add-tatatertib", function (e) {
     e.preventDefault();
-
+  
     $("input[name='namaPelanggaran']").val($.trim($("input[name='namaPelanggaran']").val()));
-
+  
     const formData = $(this).serialize();
-
     const alertId = "alert-success-add-tatib";
+  
     $.ajax({
       url: "../app/controllers/handlerPost.php?action=uploadListPelanggaran",
-        type: "POST",
+      type: "POST",
       data: formData,
       dataType: "json",
       success: function (response) {
-        // console.log(response)
-        // console.log(response.status)
-        // console.log(response.message)
+        console.log("Response received:", response);
         if (response.status === "success") {
           showAlert(alertId);
           closingAlertWithReload(true);
         } else {
-          $("#hasil").css("display", "block").html(response.message);
+          $("#error-tatib")
+            .css("display", "block")
+            .html(response.message);
         }
-      },
+      }
     });
   });
+  
 
   // Update Data
   $(document).on("submit", "#update-tatatertib", function (e) {
@@ -70,10 +71,8 @@ $(document).ready(function () {
         if (response.status === "success") {
           showAlert(alertId);
           closingAlertWithReload(true);
-          console.log('benar')
         } else {
-          console.log('salah')
-          $("#hasil").css("display", "block").html("hahaha");
+          $("#error-tatib").css("display", "block").html(response.message);
         }
       },
     });

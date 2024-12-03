@@ -161,7 +161,7 @@ require_once '../app/controllers/getData.php';
     </div>
 
     <!-- ALERT -->
-  <?php Alert('alert-success-icon.svg', 'Berhasil update laporan', 'Laporan berhasil di ubah.', '', false, 'alert-detail-pelaporan-success'); ?>
+  <?php Alert('alert-success-icon.svg', 'Berhasil', 'Laporan berhasil di ubah.', '', false, 'alert-detail-pelaporan-success'); ?>
 
   </div>
   <script src="../assets/js/handlePelaporan.js"></script>
