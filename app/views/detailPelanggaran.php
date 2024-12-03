@@ -1,5 +1,5 @@
-<?php include 'components/emptyState.php'; ?>
-<?php
+<?php 
+include 'components/emptyState.php';
 include 'components/detailSection.php';
 require_once '../app/controllers/getData.php';
 ?>
@@ -20,8 +20,10 @@ require_once '../app/controllers/getData.php';
 </head>
 
 <body>
-  <?php include 'components/navbar.php'; ?>
-  <?php Navbar(true); ?>
+  <?php 
+  include 'components/navbar.php';
+  Navbar(true); 
+  ?>
 
   <div class="container pt-5">
     <div class="flex-between">
@@ -29,31 +31,36 @@ require_once '../app/controllers/getData.php';
         <h1 class="title">Detail Pelanggaran</h1>
         <?php
         $data = detailPelanggaran($_GET['id']);
-        if (!empty($data)) {
-        ?>
-          <p><strong>ID Pelanggaran:</strong> <?php echo $data['id'] ?></p>
+        if (!empty($data)) { ?>
+          <p><strong>ID Pelanggaran:</strong> <?php echo $data['id']; ?></p>
       </div>
       <a href="profile-user.php" class="btn btn-gray">Kembali</a>
-
     </div>
+
     <div class="info-box">
       <span style="font-weight: bold">Informasi</span>
       <p>Untuk menebus sanksi atas pelanggaran, silakan hubungi admin untuk informasi lebih lanjut.</p>
     </div>
-  <?php
-        }
-        DetailSection($data);
-  ?>
 
-<?php if (!empty($data['Tingkat Pelanggaran']) &&  in_array($data['Tingkat Pelanggaran'], ['III', 'IV', 'V'])) { ?>
-  <div class="danger-box">
-    <label for="">Lampiran</label>
-    <p>Untuk pelanggaran tingkat III hingga V, Anda dapat mengunduh <a href="#" id="download-surat-peringatan" style="text-decoration: underline; color:var(--red-color);">
-  file template di sini.
-</a>
+    <?php 
+        }
+        DetailSection($data); 
+    ?>
+
+    <?php 
+    if (!empty($data['Tingkat Pelanggaran']) && in_array($data['Tingkat Pelanggaran'], ['III', 'IV', 'V'])) { ?>
+      <div class="danger-box">
+        <label for="">Lampiran</label>
+        <p>
+          Untuk pelanggaran tingkat III hingga V, Anda dapat mengunduh 
+          <a href="#" id="download-surat-peringatan" style="text-decoration: underline; color:var(--red-color);">
+            file template di sini.
+          </a>
+        </p>
+      </div>
+    <?php } ?>
   </div>
-<?php } ?>
-  </div>
+
   <script src="../assets/js/handleDownloadSurat.js"></script>
   <script src="../assets/js/script.js"></script>
 </body>

@@ -1,12 +1,6 @@
 <?php
-require_once __DIR__ . "../../../controllers/getData.php";
+function KelolaTatib($data) {
 ?>
-
-<?php
-function KelolaTatib()
-{
-?>
-
 <div id="error-tatib" style="color: red; display:none"></div>
   <div class="flex-col">
    <form action="" id="add-tatatertib" class="form-tatib">
@@ -29,15 +23,9 @@ function KelolaTatib()
           <option value="IV">IV</option>
           <option value="V">V</option>
         </select>
-        <!-- <input type="text" name="tingkatPelanggaran" class="input-kelola-tatib" id="tingkatPelanggaran"> -->
       </div>
       <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button>
     </form>
-
-    <?php
-    $data = ListPelanggaran();
-    // var_dump($data);
-    ?>
 
     <div class="table-container">
       <table class="table-content">

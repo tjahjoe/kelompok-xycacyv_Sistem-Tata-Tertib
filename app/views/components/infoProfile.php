@@ -5,8 +5,9 @@ function InfoProfile($data)
   <?php if (!empty($data)) { ?>
     <div class="box-profile">
       <div class="info-user">
-      <?php $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/'.$data['foto_diri'] : "../assets/images/foto.jpg";?>
-
+      <?php 
+      $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/'.$data['foto_diri'] : "../assets/images/foto.jpg";
+      ?>
         <img src="<?php echo $photoProfile; ?>" alt="Profile Picture" class="profile-image" width="80px" height="80px"/>
         <span>
           <h2 class="capitalize-text"><?php echo $data['nama'] ?></h2>
@@ -28,9 +29,7 @@ function InfoProfile($data)
           </span>
           <span>
             <?php
-            // Mendapatkan nama kolom pertama (key pertama)
             $kolomIdUser = array_key_first($data);
-            // Mengambil nilai berdasarkan key tersebut
             $idUser = $data[$kolomIdUser];
             ?>
             <p class="uppercase-text"><?php echo $kolomIdUser; ?></p>

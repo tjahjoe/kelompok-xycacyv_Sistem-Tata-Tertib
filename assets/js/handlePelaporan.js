@@ -127,7 +127,7 @@ $(document).ready(function () {
       success: function (response) {
         if (response.status === "success") {
           $("#jenisPelanggaran").empty();
-          $.each(response.data, function (index, record) {
+          $.each(response.data, function (record) {
             const row = `
             <option value="${record.nama_jenis_pelanggaran}">${record.nama_jenis_pelanggaran}</option>
         `;

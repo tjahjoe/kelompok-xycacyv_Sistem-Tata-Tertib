@@ -5,9 +5,9 @@ include 'components/table.php';
 include 'components/alert.php';
 include 'components/kelolaTatib.php';
 include 'components/editProfile.php';
-?>
+include 'components/infoProfile.php';
+include 'components/sidebar.php';
 
-<?php
 require_once '../app/controllers/getData.php';
 ?>
 
@@ -27,23 +27,28 @@ require_once '../app/controllers/getData.php';
 </head>
 
 <body>
+  <!-- DATA -->
+  <?php
+    $user_data = dataUser(); // data user
+    $dataPelanggaran = dataPelanggaran(); //data pelanggaran user
+    $dataListPelanggaran = ListPelanggaran(); //data list tatib
+    $dataPelaporan = dataPelapor(); //data pelaporan dari user
+  ?>
+
+  <!-- NAVBAR -->
   <?php Navbar(true); ?>
   <div class="container pt-5">
     <h1 class="title">Pengaturan Akun</h1>
     <div class="box-content">
       <!-- SIDEBAR -->
-      <?php include 'components/sidebar.php'; ?>
+      <?php Sidebar($user_data); ?>
 
       <!-- PROFILE USER -->
       <div id="profile-user" class="tab-content active">
         <div class="head-tab-content">
           <h2>Profil Saya</h2>
         </div>
-        <?php include 'components/infoProfile.php';
-
-        $user_data = dataUser();
-        InfoProfile($user_data);
-        ?>
+        <?php InfoProfile($user_data);?>
       </div>
 
       <!-- EDIT PROFILE -->
@@ -61,15 +66,12 @@ require_once '../app/controllers/getData.php';
           <h2>Riwayat Pelanggaran</h2>
         </div>
         <?php
-        $dataPelanggaran = dataPelanggaran();
-
         if ($dataPelanggaran) {
           TableContent($dataPelanggaran, 'detail-pelanggaran');
         } else {
           EmptyState('EmptyState.png', 'Tidak ada riwayat pelanggaran');
         }
         ?>
-
       </div>
 
       <!-- Pengaturan Lanjutan -->
@@ -84,7 +86,7 @@ require_once '../app/controllers/getData.php';
           <div class="head-tab-content">
             <h2>Kelola Peraturan Tata Tertib</h2>
           </div>
-          <?php KelolaTatib(); ?>
+          <?php KelolaTatib($dataListPelanggaran); ?>
         </div>
 
         <!-- KELOLA SURAT PERNYATAAN -->
@@ -93,7 +95,7 @@ require_once '../app/controllers/getData.php';
             <h3>Update Surat Pernyataan</h3>
           </div>
 
-          <div id="hasil" style="color: red; display:none"></div>
+          <div id="error-updateSurat" style="color: red; display:none"></div>
 
           <form id="updateSuratPernyataan" class="flex-row-full m-0">
             <label class="upload-section" for="lampiran">
@@ -101,7 +103,6 @@ require_once '../app/controllers/getData.php';
               <p>Upload Lampiran (Max: 5MB)</p>
             </label>
             <input type="file" name="suratPernyataan" id="lampiran" placeholder="Ketik nama pelanggaran di sini..." required hidden accept=".docx">
-            <!-- <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button> -->
           </form>
           <div class="list-file-uploaded">
             <h4 id="file-count"></h4>
@@ -111,14 +112,12 @@ require_once '../app/controllers/getData.php';
         </div>
       </div>
 
-
       <!-- RIWAYAT PELAPORAN -->
       <div class="tab-content" id="riwayat-pelaporan">
         <div class="head-tab-content">
           <h2>Riwayat Pelaporan</h2>
         </div>
         <?php
-        $dataPelaporan = dataPelapor();
         if ($dataPelaporan) {
           TableContent($dataPelaporan, 'detail-pelaporan');
         } else {
@@ -126,6 +125,7 @@ require_once '../app/controllers/getData.php';
         }
         ?>
       </div>
+      
       <!-- ALERT -->
       <?php
       // ALERT LOGOUT

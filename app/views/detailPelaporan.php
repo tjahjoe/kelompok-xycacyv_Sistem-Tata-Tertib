@@ -1,5 +1,5 @@
-<?php include 'components/navbar.php'; ?>
 <?php
+include 'components/navbar.php';
 include 'components/detailSection.php';
 require_once '../app/controllers/getData.php';
 ?>
@@ -20,7 +20,9 @@ require_once '../app/controllers/getData.php';
 </head>
 
 <body>
+  <!-- NAVBAR -->
   <?php Navbar(true); ?>
+
   <div class="container pt-5">
     <div class="flex-between">
       <div class="flex-col">
@@ -33,11 +35,12 @@ require_once '../app/controllers/getData.php';
       </div>
       <a href="profile-user.php" class="btn btn-gray">Kembali</a>
     </div>
+
   <?php
-          DetailSection($data);
-        } else {
-          echo "<p style='margin:20px auto;'>Data is not available</p>";
-        }
+    DetailSection($data);
+    } else {
+      echo "<p style='margin:20px auto;'>Data is not available</p>";
+    }
   ?>
 
   </div>

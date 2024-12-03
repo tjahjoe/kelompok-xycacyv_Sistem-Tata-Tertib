@@ -9,7 +9,6 @@ function HeaderSection($title, $paragraph, $showButton) {
     <p>
       <?php echo $paragraph?>
     </p>
-
     <?php echo $showButton ? " 
     <a href='#tataTertib'>
       <button class='btn btn-primary btn-tatib'>Baca Tata Tertib</button>

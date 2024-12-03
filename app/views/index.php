@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<?php include 'components/navbar.php'; ?>
-<?php include 'components/headerSection.php'; ?>
-<?php include 'components/tataTertibSection.php'; ?>
-<?php require_once '../app/controllers/getData.php' ?>
+<?php
+include 'components/navbar.php';
+include 'components/headerSection.php';
+include 'components/tataTertibSection.php';
+require_once '../app/controllers/getData.php';
+?>
 
 <html lang="en">
 <head>
@@ -18,16 +20,18 @@
 </head>
 
 <body>
+  <!-- DATA -->
+  <?php $data = ListPelanggaran() ?>
+
   <?php Navbar(false); ?>
-  <?php HeaderSection("Bersama dan Bersatu Mewujudkan POLINEMA MAJU", "Pelajari tingkat tata tertib yang berlaku di Jurusan Teknik Informatika dan peraturan umum di Polinema
-Tetap patuhi peraturan untuk menjaga suasana belajar yang kondusif", true); ?>
+  <?php HeaderSection("Bersama dan Bersatu Mewujudkan POLINEMA MAJU", "Pelajari tingkat tata tertib yang berlaku di Jurusan Teknik Informatika dan peraturan umum di Polinema Tetap patuhi peraturan untuk menjaga suasana belajar yang kondusif", true); ?>
+
   <div class="container">
-    <?php $data = ListPelanggaran()?>
-    <?php TataTertibSection($data)?>
+    <?php TataTertibSection($data) ?>
     <?php include 'components/footerSection.php'; ?>
   </div>
+
   <script src="../assets/js/script.js"></script>
   <script src="../assets/js/handleFilter.js"></script>
 </body>
-
 </html>

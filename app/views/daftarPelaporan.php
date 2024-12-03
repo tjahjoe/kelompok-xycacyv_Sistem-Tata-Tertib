@@ -1,5 +1,10 @@
-<?php include 'components/table.php'; ?>
-<?php include 'components/emptyState.php'; ?>
+<?php
+include 'components/table.php';
+include 'components/emptyState.php';
+include 'components/navbar.php';
+require_once __DIR__ . "../../controllers/getData.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,13 +21,21 @@
 </head>
 
 <body>
-  <?php include 'components/navbar.php'; ?>
+  <!-- DATA -->
+  <?php
+  $isShowAll = isset($_GET['page']) ? '' : 'checked';
+  $filterTingkat = $_SESSION['filter']['tingkat'] ?? '';
+  $filterStatus = $_SESSION['filter']['status'] ?? '';
+  $filterTanggalAwal = $_SESSION['filter']['tanggalAwal'] ?? '';
+  $filterTanggalAkhir = $_SESSION['filter']['tanggalAkhir'] ?? '';
+  $searchByNIM = $_SESSION['filter']['nim'] ?? '';
+  ?>
+
+  <!-- NAVBAR -->
   <?php Navbar(true); ?>
+
   <div class="container pt-5">
     <h1 class="title">Daftar Pelaporan</h1>
-    <?php
-      // var_dump( $_SESSION['filter']);
-    ?>
     <div class="feature-tab">
       <!-- FILTER TAB -->
       <div class="filter-tab">
@@ -35,7 +48,7 @@
               <span>Search</span>
             </div>
             <div class="filter-item filter-checkbox">
-              <input type="checkbox" id="showAll" name="showAll" <?php echo (isset($_GET['page'])) ? '' : 'checked' ?>/>
+              <input type="checkbox" id="showAll" name="showAll" <?php echo $isShowAll ?> />
               <label for="showAll">Perlihatkan Semua</label>
             </div>
             <div class="filter-item filter-select">
@@ -45,8 +58,6 @@
             </div>
             <div class="filter-item filter-select">
               <div class="dropdown">
-              <?php $filterTingkat = $_SESSION['filter']['tingkat'] ?? '';
-              ?>
                 <select id="tingkatPelaporan" class="tingkatPelaporan" name="tingkatPelaporan">
                   <option disabled selected hidden>Tingkat</option>
                   <option value="">All</option>
@@ -61,8 +72,6 @@
             </div>
             <div class="filter-item filter-select">
               <div class="dropdown">
-              <?php $filterStatus = $_SESSION['filter']['status'] ?? '';
-              ?>
                 <select id="statusPelaporan" class="statusPelaporan" name="statusPelaporan">
                   <option disabled selected hidden>Status</option>
                   <option value="">All</option>
@@ -82,101 +91,91 @@
       <div class="date-input">
         <span class="flex-col">
           <label for="">Start Date</label>
-          <input type="date" name="startTanggalPelaporan" id="startTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAwal'] ?? ''?>" max="<?php echo $_SESSION['filter']['tanggalAkhir'] ?? ''?>">
+          <input type="date" name="startTanggalPelaporan" id="startTanggalPelaporan" class="custom-date" value="<?php echo $filterTanggalAwal; ?>" max="<?php echo $filterTanggalAkhir; ?>">
         </span>
         <span class="flex-col">
           <label for="">End Date</label>
-          <input type="date" name="endTanggalPelaporan" id="endTanggalPelaporan" class="custom-date" value="<?php echo $_SESSION['filter']['tanggalAkhir'] ?? ''?>" min="<?php echo $_SESSION['filter']['tanggalAwal'] ?? ''?>">
+          <input type="date" name="endTanggalPelaporan" id="endTanggalPelaporan" class="custom-date" value="<?php echo $filterTanggalAkhir; ?>" min="<?php echo $filterTanggalAwal; ?>">
         </span>
       </div>
       <div class="search-input-container">
-        <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari..." name="searchNim" id="searchNim" value="<?php echo $_SESSION['filter']['nim'] ?? '' ?>">
+        <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari..." name="searchNim" id="searchNim" value="<?php echo $searchByNIM ?>">
         <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button>
       </div>
       </form>
     </div>
-      <!-- daftar PELAPORAN -->
-      <div class="table-container" id="daftar-pelaporan">
-        <?php
-        require_once __DIR__ . "../../controllers/getData.php";
-        
-        if (!isset($_SESSION['allData'])) {
-          $_SESSION['allData'] = dataPelanggaranWithoutPagination();
-        } 
-        $allData = $_SESSION['allData'];
-        // $allData = dataPelanggaranWithoutPagination();
-        $page = 1;
+    <!-- daftar PELAPORAN -->
+    <div class="table-container" id="daftar-pelaporan">
+      <?php
 
-        if(isset($_GET['page'])){
-          $page = $_GET['page'];
-          $dataPerPage = dataPelanggaranPagination($page);
-          TableContent($dataPerPage, 'detail-pelaporan-admin');
-        }else{
-          TableContent($allData, 'detail-pelaporan-admin');
-        }
-        
-        $maxPage = $allData ? count($allData) / 10 : false;
-        ?>
+      if (!isset($_SESSION['allData'])) {
+        $_SESSION['allData'] = dataPelanggaranWithoutPagination();
+      }
+
+      $allData = $_SESSION['allData'];
+      $page = 1;
+
+      if (isset($_GET['page'])) {
+        $page = $_GET['page'];
+        $dataPerPage = dataPelanggaranPagination($page);
+        TableContent($dataPerPage, 'detail-pelaporan-admin');
+      } else {
+        TableContent($allData, 'detail-pelaporan-admin');
+      }
+
+      $maxPage = $allData ? count($allData) / 10 : false;
+      ?>
     </div>
-    
-    <?php if(isset($_GET['page'])){ ?>
-    <div class="flex-between">
-      <?php echo "<p>Showing $page of <span class='max-page'>" . ceil($maxPage) . " </span>Pages</p>"; ?>
-      <div class="arrow-container">
-        <button class="arrow left-arrow"><img src="../assets/images/arrow.svg" style="transform: rotate(90deg);" alt=""></button>
-        <button class="arrow right-arrow"  <?php 
-          echo $page == ceil($maxPage) ? "disabled" : "";
-        ?>><img src="../assets/images/arrow.svg" style="transform: rotate(-90deg);" alt=""></button>
+
+    <?php if (isset($_GET['page'])) { ?>
+      <div class="flex-between">
+        <?php echo "<p>Showing $page of <span class='max-page'>" . ceil($maxPage) . " </span>Pages</p>"; ?>
+        <div class="arrow-container">
+          <button class="arrow left-arrow"><img src="../assets/images/arrow.svg" style="transform: rotate(90deg);" alt=""></button>
+          <button class="arrow right-arrow" <?php echo $page == ceil($maxPage) ? "disabled" : "";?>>
+          <img src="../assets/images/arrow.svg" style="transform: rotate(-90deg);" alt="">
+        </button>
+        </div>
       </div>
-    </div>
-    <?php }?>
+    <?php } ?>
   </div>
   </div>
   <script src="../assets/js/script.js"></script>
   <script src="../assets/js/handleFilter.js"></script>
   <script>
-    // event untuk filter tab
     $(".search-input-container").hide();
 
-    // event search dropdown
     $(".filter-item.search").click(function() {
       $(".search-input-container").slideToggle(500);
       $(".date-input").removeClass("date-input-active");
     });
 
-    // event date range dropdown
     $(".date-range-input").click(function() {
       $(".search-input-container").slideUp(500);
       $(".date-input").toggleClass("date-input-active");
     });
 
-    // pagination event
-    // Fungsi untuk mendapatkan nilai parameter dari URL
     function getQueryParam(param) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(param);
     }
 
-    // Fungsi untuk mengupdate nilai parameter `page` di URL
     function updatePageParam(newPage) {
       const urlParams = new URLSearchParams(window.location.search);
-      urlParams.set('page', newPage); // Set parameter `page` dengan nilai baru
-      window.location.search = urlParams.toString(); // Redirect ke URL baru
+      urlParams.set('page', newPage); 
+      window.location.search = urlParams.toString();
     }
 
-    // Event handler untuk tombol kiri
     $(".left-arrow").click(function() {
-      const currentPage = parseInt(getQueryParam('page')) || 1; // Ambil nilai `page`, default 1 jika tidak ada
+      const currentPage = parseInt(getQueryParam('page')) || 1;
       if (currentPage > 1) {
-        updatePageParam(currentPage - 1); // Kurangi nilai `page`
+        updatePageParam(currentPage - 1);
       }
     });
 
-    // Event handler untuk tombol kanan
     $(".right-arrow").click(function() {
-      const currentPage = parseInt(getQueryParam('page')) || 1; // Ambil nilai `page`, default 1 jika tidak ada
-      updatePageParam(currentPage + 1); // Tambahkan nilai `page`
-      
+      const currentPage = parseInt(getQueryParam('page')) || 1;
+      updatePageParam(currentPage + 1);
     });
   </script>
 </body>

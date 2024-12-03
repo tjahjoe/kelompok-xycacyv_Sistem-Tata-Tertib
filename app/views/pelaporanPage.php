@@ -1,7 +1,9 @@
-<?php include 'components/navbar.php'; ?>
-<?php include 'components/headerSection.php'; ?>
-<?php include 'components/alert.php'; ?>
-<?php require_once '../app/controllers/getData.php' ?>
+<?php
+include 'components/navbar.php';
+include 'components/headerSection.php';
+include 'components/alert.php';
+require_once '../app/controllers/getData.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,10 +25,8 @@
   <?php Navbar(false); ?>
 
   <!-- HEADER SECTION -->
-  <?php HeaderSection("Pengaduan Online Mahasiswa
-Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Teknik Informatika dengan cepat dan aman", false); ?>
+  <?php HeaderSection("Pengaduan Online Mahasiswa Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Teknik Informatika dengan cepat dan aman", false); ?>
 
-  <!--  Data  Pelanggaran -->
   <?php $data = ListPelanggaran() ?>
 
   <!-- FORM -->
@@ -34,8 +34,6 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
     <h2>Laporan anda:</h2>
     <div id="hasil" style="color: red; display:none; margin-bottom: 10px;"></div>
     <form class="form-container" id="form-pelaporan" enctype="multipart/form-data">
-      <!-- <input type="text" placeholder="Ketik Judul Laporan *" class="input-field"> -->
-      <!-- <input type="text" placeholder="PIlih Tingkat Pelanggaran *" class="input-field"> -->
       <input type="text" placeholder="Masukkan NIM Pelanggar *" name="nim" class="input-field" required>
       <select id="tingkatPelanggaran" class="tingkatPelanggaran input-field" name="tingkatPelanggaran" required>
         <option disabled selected hidden>PIlih Tingkat Pelanggaran *</option>
@@ -54,12 +52,9 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
         ?>
             <option value="<?php echo $record['nama_jenis_pelanggaran'] ?>"><?php echo $record['nama_jenis_pelanggaran'] ?></option>
         <?php }
-        } else {
-          echo "<option>Data is not available</option>";
         } ?>
       </select>
       <textarea placeholder="Ketik Laporan Anda *" class="input-field" rows="10" name="deskripsiLaporan" required></textarea>
-      <!-- <input type="date" class="input-field" placeholder="Pilih Tanggal Kejadian *" class="input-field custom-date" name="tanggalKejadian" required> -->
       <div class="footer-modal">
         <label class="upload-section" for="lampiran">
           <span class="upload-icon"><img src="../assets/images/upload-image-icon.svg" width="30px" alt=""></span>
@@ -78,20 +73,6 @@ Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Tekni
 
   <!-- ALERT -->
   <?php Alert('alert-success-icon.svg', 'Berhasil', 'Laporan berhasil terkirim.', 'Kami akan berusaha untuk menyelesaikan kasus ini.', false, 'alert-pelaporan-success'); ?>
-
-  <!-- Login Modal -->
-  <!-- <div class="modal-box">
-    <div class="login-required">
-      <img src="../assets/images/Lock.png" alt="">
-      <span>
-        <h3>Perlu Login</h3>
-        <p>Mohon login terlebih dahulu</p>
-      </span>
-      <a href="./login.php" class="btn btn-full btn-primary">
-        Login
-      </a>
-    </div>
-  </div> -->
 
   <script src="../assets/js/handlePelaporan.js"></script>
   <script src="../assets/js/script.js"></script>

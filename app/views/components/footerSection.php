@@ -14,7 +14,6 @@
       </p>
     </div>
     <div class="flex-col">
-
       <h4>MEDIA SOSIAL</h4>
       <div class="flex-row">
         <a href="#">
@@ -30,7 +29,6 @@
           <img src="../assets/images/Email.svg" alt="Email">
         </a>
       </div>
-
     </div>
   </div>
 </section>

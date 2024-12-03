@@ -42,7 +42,6 @@
               id="idAnggota"
               name="idAnggota"
               placeholder="Isikan NIM atau akun Portal Polinema" required/>
-
             <label for="password">Password</label>
             <div class="password-wrapper">
               <input
@@ -52,7 +51,6 @@
                 placeholder="Isikan password" required/>
               <span class="toggle-password"><i class="toggle-password-icon fa-solid fa-eye fa-lg"></i></span>
             </div>
-
             <button type="submit" class="login-button">LOGIN</button>
           </form>
         </div>

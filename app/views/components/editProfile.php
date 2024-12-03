@@ -1,9 +1,6 @@
 <?php
-require_once __DIR__ . "../../../controllers/getData.php";
-
 function EditProfile($data)
 {
-  // var_dump($data);
 ?>
   <?php
   if (!empty($data)) {
@@ -11,7 +8,9 @@ function EditProfile($data)
     <form class="form-container" id="form-editprofile" enctype="multipart/form-data">
       <div class="flex-between m-0">
         <div class="flex-row m-0">
-          <?php $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/' . $data['foto_diri'] : "../assets/images/foto.jpg"; ?>
+          <?php 
+          $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/' . $data['foto_diri'] : "../assets/images/foto.jpg"; 
+          ?>
 
           <img src="<?php echo $photoProfile ?>" alt="Profile Picture" class="profile-image border-image" id="profile-image" width="100px" height="100px" />
           <div class="flex-row m-0">
@@ -27,6 +26,8 @@ function EditProfile($data)
           <button type="button" class="btn btn-gray" id="back-to-profile">Kembali</button>
         </div>
       </div>
+
+      <!-- Pesan Error -->
       <div id="hasil" style="color: red; display:none"></div>
 
       <div class="input-editprofile mt-2">
@@ -35,12 +36,9 @@ function EditProfile($data)
       </div>
 
       <?php
-      // Mendapatkan nama kolom pertama (key pertama)
       $kolomIdUser = array_key_first($data);
-      // Mengambil nilai berdasarkan key tersebut
       $idUser = $data[$kolomIdUser];
       ?>
-
       <div class="input-editprofile uppercase-text">
         <label for="id-user"><?php echo $kolomIdUser; ?></label>
         <input type="text" name="id-user" value="<?php echo $idUser; ?>" id="id-user" disabled>

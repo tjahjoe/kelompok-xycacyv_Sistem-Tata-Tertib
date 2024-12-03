@@ -1,6 +1,6 @@
-<?php include 'components/emptyState.php'; ?>
-<?php include 'components/alert.php'; ?>
-<?php
+<?php 
+include 'components/emptyState.php';
+include 'components/alert.php';
 include 'components/navbar.php';
 require_once '../app/controllers/getData.php';
 ?>
@@ -21,21 +21,40 @@ require_once '../app/controllers/getData.php';
 </head>
 
 <body>
+  <!-- NAVBAR -->
   <?php Navbar(true); ?>
-  <?php $data = detailPelaporan($_GET['id'], true); ?>
+
+  <!-- DATA -->
+  <?php 
+   $data = detailPelaporan($_GET['id'], true); //data detail pelaporan
+
+   $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']); 
+  ?>
+
   <div class="container pt-5">
     <h1 class="title">Detail Pelaporan</h1>
     <?php
     if (!empty($data)) {
-      $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']);
+      $idLaporan = $data['id'];
+      $namaPelapor = $data['Nama Pelapor'];
+      $idPelapor = $data['NIP Pelapor'];
       $status = strtolower($data['Status']);
+      $tingkatSanksi = $data['Tingkat Sanksi'] ?? null;
+      $sanksi = $data['sanksi'] ?? null;
+      $tingkatPelanggaran = $data['Tingkat Pelanggaran'];
+      $tanggalPelanggaran = $data['Tanggal Pelanggaran'];
+      $nimPelanggar = $data['NIM Pelanggar'];
+      $namaPelanggaran = $data['Nama Pelanggaran'];
+      $catatan = $data['Catatan'];
+      $bukti = $data['Bukti'];
+
     ?>
       <form id="updatePelaporan" action="../app/controllers/uploadTingkat.php" method="post">
         <div class="flex-between items-end">
           <div class="info-laporan">
-            <p><strong>ID Laporan:</strong> <?php echo $data['id']; ?></p>
-            <p><strong>Nama Pelapor:</strong> <?php echo $data['Nama Pelapor']; ?></p>
-            <p><strong>ID pelapor:</strong> <?php echo $data['NIP Pelapor']; ?></p>
+            <p><strong>ID Laporan:</strong> <?php echo $idLaporan ?></p>
+            <p><strong>Nama Pelapor:</strong> <?php echo $namaPelapor ?></p>
+            <p><strong>ID pelapor:</strong> <?php echo $idPelapor ?></p>
           </div>
           <div class="flex-row m-0">
             <button class="btn btn-primary" type="submit">Simpan</button>
@@ -50,23 +69,18 @@ require_once '../app/controllers/getData.php';
           <input type="hidden" name="idPelanggaranMhs" value="<?php echo $data['id']; ?>" id="idPelanggaranMhs">
           <div class="detail-item">
             <label for="tingkatPelanggaranAdmin">Tingkat Pelanggaran</label>
-            <?php
-            $tingkatSanksi = isset($data['Tingkat Sanksi']) ? $data['Tingkat Sanksi'] : null;
-            $tingkatPelanggaran = isset($data['Tingkat Pelanggaran']) ? $data['Tingkat Pelanggaran'] : null;
-            ?>
             <input type="text" name="tingkatPelanggaranAdmin" value="<?php echo $tingkatPelanggaran; ?>" id="tingkatPelanggaranAdmin" disabled>
           </div>
           <div class="detail-item">
             <label for="tingkatSanksiAdmin">Tingkat Sanksi</label>
+
             <?php if ($tingkatSanksi) { ?>
               <input type="hidden" name="tingkatSanksiAdmin" value="<?= $tingkatSanksi ?>">
             <?php } ?>
 
             <?php
-            // jika status != reject option tingkat sanksi akan tampil
             if ($status != 'reject') {
               ?>
-              <!-- jika data tingkat sanksi ada, maka disabled select -->
               <select id="tingkatSanksiAdmin" name="tingkatSanksiAdmin" required <?php echo $tingkatSanksi ? 'class="no-dropdown" disabled' : ''; ?>>
                 <?php
                 if ($tingkatSanksi) {
@@ -82,34 +96,33 @@ require_once '../app/controllers/getData.php';
               </select>
             <?php
             } else {
-              // jika status reject maka tidak menampilkan apa apa
               echo "<p>-</p>";
             }
             ?>
           </div>
           <div class="detail-item">
             <label for="tanggalPelanggaran">Tanggal Pelanggaran</label>
-            <input type="date" name="tanggalPelanggaran" id="tanggalPelanggaran" class="custom-date" value="<?php echo $data['Tanggal Pelanggaran']; ?>" disabled>
+            <input type="date" name="tanggalPelanggaran" id="tanggalPelanggaran" class="custom-date" value="<?php echo $tanggalPelanggaran ?>" disabled>
           </div>
           <div class="detail-item">
             <label for="nimPelanggar">NIM Pelanggar</label>
-            <input type="text" name="nimPelanggar" value="<?php echo $data['NIM Pelanggar']; ?>" id="nimPelanggar" disabled>
+            <input type="text" name="nimPelanggar" value="<?php echo $nimPelanggar ?>" id="nimPelanggar" disabled>
           </div>
           <div class="detail-item">
             <label for="namaPelanggaran">Nama Pelanggaran</label>
-            <input type="text" name="namaPelanggaran" value="<?php echo $data['Nama Pelanggaran']; ?>" id="namaPelanggaran" disabled>
+            <input type="text" name="namaPelanggaran" value="<?php echo $namaPelanggaran ?>" id="namaPelanggaran" disabled>
           </div>
           <div class="detail-item">
             <label for="catatan">Catatan</label>
-            <textarea name="catatan" rows="10" id="catatan"><?php echo $data['Catatan']; ?></textarea>
+            <textarea name="catatan" rows="10" id="catatan"><?php echo $catatan ?></textarea>
           </div>
           <div class="detail-item">
             <label for="bukti">Lampiran</label>
             <div class="flex-row-start">
               <?php
-              if ($data['Bukti']) {
+              if ($bukti) {
                 $totalFileNotFound = 0;
-                foreach ($data['Bukti'] as $image) {
+                foreach ($bukti as $image) {
                   $filePath = "../assets/uploads/bukti/$image";
                   if (file_exists($filePath)) {
                     echo "<img src='$filePath' class='lampiran_bukti' alt='Bukti' width='200px'>";
@@ -128,7 +141,7 @@ require_once '../app/controllers/getData.php';
           </div>
           <div class="detail-item">
             <label for="sanksi">Sanksi</label>
-            <input type="text" name="sanksi" value="<?php echo $data['sanksi'] ?? null; ?>" id="sanksi" disabled>
+            <input type="text" name="sanksi" value="<?php echo $sanksi ?>" id="sanksi" disabled>
           </div>
           <div class="detail-item">
             <label for="">Status</label>
@@ -153,6 +166,7 @@ require_once '../app/controllers/getData.php';
       echo "<p style='margin:20px auto;'>Data is not available</p>";
     }
     ?>
+
     <!-- modal box foto -->
     <div class="overlay">
       <div class="bukti-box">
@@ -161,7 +175,7 @@ require_once '../app/controllers/getData.php';
     </div>
 
     <!-- ALERT -->
-  <?php Alert('alert-success-icon.svg', 'Berhasil', 'Laporan berhasil di ubah.', '', false, 'alert-detail-pelaporan-success'); ?>
+    <?php Alert('alert-success-icon.svg', 'Berhasil', 'Laporan berhasil di ubah.', '', false, 'alert-detail-pelaporan-success'); ?>
 
   </div>
   <script src="../assets/js/handlePelaporan.js"></script>
