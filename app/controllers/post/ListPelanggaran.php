@@ -6,22 +6,35 @@ function uploadListPelanggaran()
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $listPelanggaranModel = new ListPelanggaran();
 
-        $response = [
-            'status' => 'error',
-            'message' => 'process failed',
-        ];
+        // $response = [
+        //     'status' => 'error',
+        //     'message' => 'process failed',
+        // ];
 
         $tingkat = $_POST['tingkatPelanggaran'];
         $nama = $_POST['namaPelanggaran'];
 
         $result = false;
+        $message = "";
 
-        if ($nama && $tingkat) {
-            $result = $listPelanggaranModel->uploadListPelanggaran($nama, $tingkat);  
+        if (!$nama) {
+            $message = "Gagal: Nama pelanggaran harus diisi";
+        } else if (!$tingkat) {
+            $message = "Gagal: Tingkat pelanggaran harus diisi";
         }
 
-        echo $result ? json_encode(['status' => 'success', 'message' => 'upload success']) : json_encode($response);
-        exit;
+        if ($nama && $tingkat) {
+            $result = $listPelanggaranModel->uploadListPelanggaran($nama, $tingkat);
+
+            echo $result ?
+                json_encode(['status' => 'success', 'message' => 'upload success'])
+                :
+                json_encode(['status' => 'error', 'message' => 'Gagal: Nama pelanggaran tidak boleh sama']);
+            exit;
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Gagal: ' . $message]);
+            exit;
+        }
     }
 }
 
@@ -30,12 +43,6 @@ function updateListPelanggaran()
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $listPelanggaranModel = new ListPelanggaran();
 
-        $response = [
-            'status' => 'error',
-            'message' => 'process failed',
-        ];
-
-
         $id = $_POST['idPelanggaran'];
         $nama = $_POST['namaPelanggaran'];
         $tingkat = $_POST['tingkatPelanggaran'];
@@ -43,11 +50,20 @@ function updateListPelanggaran()
         $result = false;
 
         if ($nama) {
-            $result = $listPelanggaranModel->updateListPelanggaran($id, $nama, $tingkat);   
+            $result = $listPelanggaranModel->updateListPelanggaran($id, $nama, $tingkat);
+
+            echo $result ?
+                json_encode(['status' => 'success', 'message' => 'upload success'])
+                :
+                json_encode(['status' => 'error', 'message' => 'Gagal: Nama pelanggaran tidak boleh sama']);
+            exit;
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Gagal: Gagal: Nama pelanggaran harus diisi']);
+            exit;
         }
 
-        echo $result ? json_encode(['status' => 'success', 'message' => 'update success']) : json_encode($response);
-        exit;
+        // echo $result ? json_encode(['status' => 'success', 'message' => 'update success']) : json_encode($response);
+        // exit;
     }
 }
 function deleteListPelanggaran()

@@ -38,11 +38,11 @@ function uploadPelanggaran(){
         if (empty($mahasiswa)) {
             $message = "Gagal: NIM tidak valid";
         } else if (!$sizeImages) {
-            $message = "Gagal: foto terlalu besar";
+            $message = "Gagal: Foto terlalu besar";
         } else if (!$countImages) {
-            $message = "Gagal: jumlah maksimal foto 10";
+            $message = "Gagal: Jumlah maksimal foto 10";
         } else if ($jenis == $invalidListPelanggaran) {
-            $message = "Gagal: pelanggaran tidak valid";
+            $message = "Gagal: Pelanggaran tidak valid";
         } else if ($mahasiswa) {
             if ($mahasiswa['status'] != 'aktif') {
                 $message = "Gagal: NIM tidak valid";
@@ -82,11 +82,6 @@ function uploadPelanggaran(){
 function updatePelanggaran(){
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
-    
-        $response = [
-            'status' => 'error',
-            'message' => 'Gagal: pilih tingkat pelanggaran',
-        ];
 
         $idPelanggaran = $_POST['idPelanggaranMhs'];
         $catatan = $_POST['catatan'];

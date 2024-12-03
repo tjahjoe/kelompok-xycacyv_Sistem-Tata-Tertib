@@ -36,11 +36,6 @@ function updateDataUser(){
         $dosenModel = new Dosen();
         $mahasiswaModel = new Mahasiswa();
     
-        $response = [
-            'status' => 'error',
-            'message' => 'process failed',
-        ];
-    
         $nama = $_POST['nama'];
         $notelp = $_POST['notelp'];
         $id = $_SESSION['user']['id_users'];
@@ -54,7 +49,10 @@ function updateDataUser(){
             $result = $dosenModel->changeData($nama, $id, $notelp);
         }
     
-        echo $result ? json_encode(['status' => 'success', 'message' => 'update success']) : json_encode($response);
+        echo $result ? 
+        json_encode(['status' => 'success', 'message' => 'update success']) 
+        : 
+        json_encode(['status' => 'error', 'message' => 'Gagal: Nomor telepon tidak valid']);
         exit;
     }
 }
@@ -62,31 +60,52 @@ function updateDataUser(){
 function updatePhotoProfil(){
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $userModel = new User();
-    
-        $response = [
-            'status' => 'error',
-            'message' => 'process failed',
-        ];
-    
+
         $id = $_SESSION['user']['id_users'];
+        $sizeImage = $_FILES['photo']['size'];
+        $maxsize = 3 * 1024 * 1024;
+
+        $checkSize = $sizeImage <= $maxsize ? true : false;
     
-        $lastFileName = $userModel->checkPhotoName($id);
+        if ($checkSize) {
+            $lastFileName = $userModel->checkPhotoName($id);
     
-        if ($lastFileName) {
-            if ($lastFileName['foto_diri'] != null) {
-                $targetDirectory = "../../assets/uploads/photo/";
-                if (file_exists($targetDirectory . $lastFileName['foto_diri'])) {
-                    unlink($targetDirectory . $lastFileName['foto_diri']);
+            if ($lastFileName) {
+                if ($lastFileName['foto_diri'] != null) {
+                    $targetDirectory = "../../assets/uploads/photo/";
+                    if (file_exists($targetDirectory . $lastFileName['foto_diri'])) {
+                        unlink($targetDirectory . $lastFileName['foto_diri']);
+                    }
                 }
             }
+        
+            $fileName = changePhotoProfil($id);
+        
+            $userModel->changePhoto($id, $fileName);
+        
+            echo json_encode(['status' => 'success', 'message' => 'update success']);
+            exit;
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Gagal: Batas maksimal ukuran foto profil 3MB']);
+            exit;
         }
+        // $lastFileName = $userModel->checkPhotoName($id);
     
-        $fileName = changePhotoProfil($id);
+        // if ($lastFileName) {
+        //     if ($lastFileName['foto_diri'] != null) {
+        //         $targetDirectory = "../../assets/uploads/photo/";
+        //         if (file_exists($targetDirectory . $lastFileName['foto_diri'])) {
+        //             unlink($targetDirectory . $lastFileName['foto_diri']);
+        //         }
+        //     }
+        // }
     
-        $result = $userModel->changePhoto($id, $fileName);
+        // $fileName = changePhotoProfil($id);
     
-        echo $result ? json_encode(['status' => 'success', 'message' => 'update success']) : json_encode($response);
-        exit;
+        // $result = $userModel->changePhoto($id, $fileName);
+    
+        // echo $result ? json_encode(['status' => 'success', 'message' => 'update success']) : json_encode($response);
+        // exit;
     }
 }
 

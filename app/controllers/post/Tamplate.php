@@ -12,10 +12,21 @@ function updateSuratPeringatan()
 
         // $targetFile = $targetDirectory . $fileName;
         // move_uploaded_file($_FILES['surat']['tmp_name'], $targetFile);
-        changeSuratPeringatan();
 
-        echo json_encode(['status' => 'success', 'message' => 'update success']);
-        exit;
+        $sizeImage = $_FILES['surat']['size'];
+        $maxsize = 5 * 1024 * 1024;
+
+        $checkSize = $sizeImage <= $maxsize ? true : false;
+
+        if ($checkSize) {
+            changeSuratPeringatan();
+
+            echo json_encode(['status' => 'success', 'message' => 'update success']);
+            exit;
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Gagal: Batas maksimal ukuran file 5MB']);
+            exit;
+        }
     }
 }
 ?>

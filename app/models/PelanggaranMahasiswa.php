@@ -433,7 +433,7 @@ class PelanggaranMahasiswa
         $idTingkat = $status == 'reject' ? null : $idTingkat;
 
         if ($status != 'reject' and $idTingkat == '') {
-            return "Gagal: pilih tingkat pelanggaran";
+            return "Gagal: Pilih tingkat sanksi";
         }
 
         $query = "SELECT status FROM " . $this->table . " WHERE id_pelanggaran_mhs = ?";
@@ -445,12 +445,12 @@ class PelanggaranMahasiswa
         if ($result) {
 
             if ($result['status'] == $status) {
-                return "Gagal: ubah status";
+                return "Gagal: Ubah status";
             }
 
             // jika status sebelumya baru tidak bisa langsung mengubah ke nonaktif atau reject
             if (in_array($status, ['nonaktif', 'reject']) && $result['status'] == 'baru') {
-                return "Gagal: pemrosesan harus bertahap";
+                return "Gagal: Pemrosesan harus bertahap";
             }
 
             // mengubah status akan tetapi tidak bisa mengembalikan ke proses sebelumnya
