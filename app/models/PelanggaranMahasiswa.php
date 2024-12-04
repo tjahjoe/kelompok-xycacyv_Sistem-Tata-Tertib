@@ -251,7 +251,6 @@ class PelanggaranMahasiswa
     {
         $conditions = [];
         $params = [];
-        $tingkatPelanggaranByDpa = "";
 
         if ($nim) {
             $conditions[] = "p.nim LIKE ?";
@@ -276,8 +275,6 @@ class PelanggaranMahasiswa
         if ($isDpa) {
             $conditions[] = "m.nip = ?";
             $params[] = $id;
-
-            // $tingkatPelanggaranByDpa = "AND l.tingkat_pelanggaran IN ('V', 'IV', 'III')";
         }
         
         $limit = "";
@@ -302,7 +299,6 @@ class PelanggaranMahasiswa
 		ON m.nim = p.nim
         WHERE 
         $whereClause
-        $tingkatPelanggaranByDpa
         ORDER BY 
         tgl_pelanggaran DESC, id_pelanggaran_mhs DESC
         $limit"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
