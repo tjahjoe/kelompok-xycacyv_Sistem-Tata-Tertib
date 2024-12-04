@@ -1,14 +1,13 @@
 <?php
-function Alert($icon, $information, $title, $content, $isAlertConfirmation, $id)
+function Alert($icon, $information, $title, $isAlertConfirmation, $id)
 { ?>
   <div class="overlay" id="<?php echo $id; ?>">
     <div class="alert-box">
       <div class="alert-icon"><img src="../assets/images/<?php echo $icon; ?>" alt=""></div>
       <div class="alert-title"><?php echo $information; ?></div>
-      <?php if($title != '' || $content != '') { ?>
+      <?php if($title != '') { ?>
       <div class="alert-message">
         <?php echo $title; ?><br>
-        <?php echo $content; ?>
       </div>
       <?php }?>
       <?php if(!$isAlertConfirmation){?>

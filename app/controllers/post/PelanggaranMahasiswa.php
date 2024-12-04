@@ -89,15 +89,15 @@ function updatePelanggaran()
         $catatan = $_POST['catatan'];
         $status = $_POST['status'];
         $idTigkat = isset($_POST['tingkatSanksiAdmin']) ? $_POST['tingkatSanksiAdmin'] : null;
-        $tingkatPelanggaran = $_POST['tingkatPelanggaranAdmin'];
         $nip = $_SESSION['user']['id_users'];
-        $role = $_SESSION['user']['role'];
         $tanggal = date('Y-m-d');
+        // $tingkatPelanggaran = $_POST['tingkatPelanggaranAdmin'];
+        // $role = $_SESSION['user']['role'];
 
         $condition = true;
-        if ($role == "dpa" && !in_array($tingkatPelanggaran, ['V', 'IV', "III"])) {
-            $condition = false;
-        }
+        // if ($role == "dpa" && !in_array($tingkatPelanggaran, ['V', 'IV', "III"])) {
+        //     $condition = false;
+        // }
 
         if ($condition) {
             $result = $pelanggaranMahasiswaModel->uploadStatusAndTingkat($idPelanggaran, $catatan, $status, $idTigkat, $nip, $tanggal);

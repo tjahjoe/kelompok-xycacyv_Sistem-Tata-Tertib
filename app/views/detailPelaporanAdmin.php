@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'components/emptyState.php';
 include 'components/alert.php';
 include 'components/navbar.php';
@@ -25,10 +25,10 @@ require_once '../app/controllers/getData.php';
   <?php Navbar(true); ?>
 
   <!-- DATA -->
-  <?php 
-   $data = detailPelaporan($_GET['id'], true); //data detail pelaporan
+  <?php
+  $data = detailPelaporan($_GET['id'], true); //data detail pelaporan
 
-   $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']); 
+  $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']);
   ?>
 
   <div class="container pt-5">
@@ -48,16 +48,29 @@ require_once '../app/controllers/getData.php';
       $catatan = $data['Catatan'];
       $bukti = $data['Bukti'];
 
+      $roleUser = $_SESSION['user']['role'];
+      $hakAksesDpa = $roleUser == 'dpa' && !in_array($tingkatPelanggaran, ['V', 'IV', "III"]);
+
     ?>
-      <form id="updatePelaporan" action="../app/controllers/uploadTingkat.php" method="post">
+      <form id="updatePelaporan" method="post">
         <div class="flex-between items-end">
           <div class="info-laporan">
             <p><strong>ID Laporan:</strong> <?php echo $idLaporan ?></p>
             <p><strong>Nama Pelapor:</strong> <?php echo $namaPelapor ?></p>
             <p><strong>ID pelapor:</strong> <?php echo $idPelapor ?></p>
           </div>
+
+          <?php if ($hakAksesDpa) {
+            echo '<p style="color: red;">Pemberitahuan: DPA tidak bisa memproses pelanggaran diatas tingkat III</p>';
+          }
+          ?>
+
           <div class="flex-row m-0">
-            <button class="btn btn-primary" type="submit">Simpan</button>
+            <?php if ($hakAksesDpa) {
+              echo '';
+            } else {
+              echo '<button class="btn btn-primary" type="submit">Simpan</button>';
+            } ?>
             <a href="daftar-pelaporan.php?page=1" class="btn btn-gray">Kembali</a>
           </div>
         </div>
@@ -67,22 +80,23 @@ require_once '../app/controllers/getData.php';
 
           <!-- id pelanggaran mhs -->
           <input type="hidden" name="idPelanggaranMhs" value="<?php echo $data['id']; ?>" id="idPelanggaranMhs">
+
           <div class="detail-item">
             <label for="tingkatPelanggaranAdmin">Tingkat Pelanggaran</label>
-            <input type="text" value="<?php echo $tingkatPelanggaran; ?>" disabled>
-            <input type="hidden" name="tingkatPelanggaranAdmin" value="<?php echo $tingkatPelanggaran; ?>" id="tingkatPelanggaranAdmin">
+            <input type="text" name="tingkatPelanggaranAdmin" value="<?php echo $tingkatPelanggaran; ?>" id="tingkatPelanggaranAdmin" disabled>
           </div>
           <div class="detail-item">
             <label for="tingkatSanksiAdmin">Tingkat Sanksi</label>
 
-            <?php if ($tingkatSanksi) { ?>
-              <input type="hidden" name="tingkatSanksiAdmin" value="<?= $tingkatSanksi ?>">
-            <?php } ?>
+            <?php
+              if ($tingkatSanksi) { ?>
+                <input type="hidden" name="tingkatSanksiAdmin" value="<?= $tingkatSanksi ?>">
+            <?php }?>
 
             <?php
             if ($status != 'reject') {
-              ?>
-              <select id="tingkatSanksiAdmin" name="tingkatSanksiAdmin" required <?php echo $tingkatSanksi ? 'class="no-dropdown" disabled' : ''; ?>>
+            ?>
+              <select id="tingkatSanksiAdmin" name="tingkatSanksiAdmin" required <?php echo $tingkatSanksi || $hakAksesDpa ? 'class="no-dropdown" disabled' : ''; ?>>
                 <?php
                 if ($tingkatSanksi) {
                   echo "<option value='$tingkatSanksi' selected>$tingkatSanksi</option>";
@@ -115,7 +129,11 @@ require_once '../app/controllers/getData.php';
           </div>
           <div class="detail-item">
             <label for="catatan">Catatan</label>
-            <textarea name="catatan" rows="10" id="catatan"><?php echo $catatan ?></textarea>
+            <?php if ($hakAksesDpa) {
+              echo '<textarea name="catatan" rows="10" id="catatan" disabled>' . $catatan . '</textarea>';
+            } else {
+              echo '<textarea name="catatan" rows="10" id="catatan">' . $catatan . '</textarea>';
+            } ?>
           </div>
           <div class="detail-item">
             <label for="bukti">Lampiran</label>
@@ -144,10 +162,10 @@ require_once '../app/controllers/getData.php';
             <label for="sanksi">Sanksi</label>
             <input type="text" name="sanksi" value="<?php echo $sanksi ?>" id="sanksi" disabled>
           </div>
-          <div class="detail-item">
+          <div class="detail-item" <?php echo $hakAksesDpa ? 'style="pointer-events: none;"' : ''; ?> >
             <label for="">Status</label>
             <div class="badge-contain">
-              <input type="radio" name="status" id="status-pending" value="baru" <?php echo $status == 'baru' ? 'checked' : ''; ?>>
+              <input type="radio" name="status" id="status-pending" value="baru" <?php echo $status == 'baru' ? 'checked' : '';?>>
               <label class="badge badge-gray" for="status-pending">Pending</label>
 
               <input type="radio" name="status" id="status-completed" value="nonaktif" <?php echo $status == 'nonaktif' ? 'checked' : ''; ?>>
@@ -176,7 +194,7 @@ require_once '../app/controllers/getData.php';
     </div>
 
     <!-- ALERT -->
-    <?php Alert('alert-success-icon.svg', 'Berhasil', 'Laporan berhasil di ubah.', '', false, 'alert-detail-pelaporan-success'); ?>
+    <?php Alert('alert-success-icon.svg', 'Berhasil', 'Laporan berhasil di ubah.', false, 'alert-detail-pelaporan-success'); ?>
 
   </div>
   <script src="../assets/js/handlePelaporan.js"></script>

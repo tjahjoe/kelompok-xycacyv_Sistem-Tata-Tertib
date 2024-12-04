@@ -127,10 +127,12 @@ $(document).ready(function () {
       success: function (response) {
         if (response.status === "success") {
           $("#jenisPelanggaran").empty();
-          $.each(response.data, function (record) {
+          $.each(response.data, function (_, record) { // Tambahkan parameter index
             const row = `
-            <option value="${record.nama_jenis_pelanggaran}">${record.nama_jenis_pelanggaran}</option>
-        `;
+              <option value="${record.nama_jenis_pelanggaran}">
+                ${record.nama_jenis_pelanggaran}
+              </option>
+            `;
             $("#jenisPelanggaran").append(row);
           });
         } else {
@@ -138,7 +140,7 @@ $(document).ready(function () {
             `<option value='${response.message}'>${response.message}</option>`
           );
         }
-      },
+      },      
       error: function (xhr, status, error) {
         console.error("Error:", error);
       },

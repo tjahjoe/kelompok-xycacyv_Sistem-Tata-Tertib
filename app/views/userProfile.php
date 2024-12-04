@@ -129,28 +129,28 @@ require_once '../app/controllers/getData.php';
       <!-- ALERT -->
       <?php
       // ALERT LOGOUT
-      Alert('logout-icon.svg', 'Logout', 'Apakah Anda yakin ingin keluar dari akun?', '', true, 'alert-logout');
+      Alert('logout-icon.svg', 'Logout', 'Apakah Anda yakin ingin keluar dari akun?', true, 'alert-logout');
 
       // ALERT HAPUS FOTO
-      Alert('alert-delete-icon.svg', 'Hapus Photo', 'Apakah Anda yakin ingin menghapus photo?', '', true, 'alert-delete-photo');
+      Alert('alert-delete-icon.svg', 'Hapus Photo', 'Apakah Anda yakin ingin menghapus photo?', true, 'alert-delete-photo');
 
       // ALERT HAPUS TATIB
-      Alert('alert-delete-icon.svg', 'Hapus TataTertib', 'Apakah Anda yakin ingin menghapus tata tertib?', '', true, 'alert-delete-tatib');
+      Alert('alert-delete-icon.svg', 'Hapus TataTertib', 'Apakah Anda yakin ingin menghapus tata tertib?', true, 'alert-delete-tatib');
 
       // ALERT SUCCESS ADD TATIB
-      Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil menambahkan tata tertib baru', '', false, 'alert-success-add-tatib');
+      Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil menambahkan tata tertib baru', false, 'alert-success-add-tatib');
 
       // ALERT SUCCESS UPDATE TATIB
-      Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil update tata tertib', '', false, 'alert-success-update-tatib');
+      Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil update tata tertib', false, 'alert-success-update-tatib');
 
       // ALERT SUCCESS UPDATE PHOTO PROFIL
-      Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil update photo profil', '', false, 'alert-success-update-photo');
+      Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil update photo profil', false, 'alert-success-update-photo');
 
       // ALERT SUCCESS UPDATE INFO PRIBADI
-      Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil update data informasi pribadi', '', false, 'alert-success-update-infoprofil');
+      Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil update data informasi pribadi', false, 'alert-success-update-infoprofil');
 
       // ALERT SUCCESS UPDATE SURAT PERNYATAAN
-      Alert('alert-success-icon.svg', 'Berhasil', ' Berhasil update Surat Pernyataan', '', false, 'alert-success-update-surat');
+      Alert('alert-success-icon.svg', 'Berhasil', ' Berhasil update Surat Pernyataan', false, 'alert-success-update-surat');
       ?>
 
     </div>

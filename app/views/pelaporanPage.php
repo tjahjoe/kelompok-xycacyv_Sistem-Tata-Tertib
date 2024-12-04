@@ -72,7 +72,7 @@ require_once '../app/controllers/getData.php';
   </div>
 
   <!-- ALERT -->
-  <?php Alert('alert-success-icon.svg', 'Berhasil', 'Laporan berhasil terkirim.', 'Kami akan berusaha untuk menyelesaikan kasus ini.', false, 'alert-pelaporan-success'); ?>
+  <?php Alert('alert-success-icon.svg', 'Berhasil', 'Laporan berhasil terkirim.', false, 'alert-pelaporan-success'); ?>
 
   <script src="../assets/js/handlePelaporan.js"></script>
   <script src="../assets/js/script.js"></script>
