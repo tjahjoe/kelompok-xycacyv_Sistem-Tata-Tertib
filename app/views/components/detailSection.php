@@ -1,5 +1,6 @@
 <?php
 require_once 'badge.php';
+require_once 'buktiBox.php';
 
 function DetailSection($data)
 {
@@ -43,13 +44,8 @@ function DetailSection($data)
         </div>
       <?php } ?>
     </div>
-
-    <!-- Modal box foto -->
-    <div class="overlay">
-      <div class="bukti-box">
-        <img src="../assets/uploads/bukti/560.jpg" class="lampiran_bukti_full" alt="Bukti">
-      </div>
-    </div>
+    
+    <?php BuktiBox(); ?>
   <?php 
   } else {
     echo "<p style='margin:20px auto;'>Data is not available</p>";

@@ -9,7 +9,7 @@ function EditProfile($data)
       <div class="flex-between m-0">
         <div class="flex-row m-0">
           <?php 
-          $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/' . $data['foto_diri'] : "../assets/images/foto.jpg"; 
+          $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/' . $data['foto_diri'] : "../assets/images/foto.webp"; 
           ?>
 
           <img src="<?php echo $photoProfile ?>" alt="Profile Picture" class="profile-image border-image" id="profile-image" width="100px" height="100px" />

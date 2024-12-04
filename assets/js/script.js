@@ -163,7 +163,6 @@ const showLampiran = () => {
   const lampiran = document.querySelectorAll(".lampiran_bukti");
   const lampiranFull = document.querySelector(".lampiran_bukti_full");
   const overlay = document.querySelector(".overlay");
-  const alertCloseButton = document.querySelector(".alert-close-button");
 
   if (lampiran.length > 0 && lampiranFull) {
     lampiran.forEach((bukti) => {
@@ -175,9 +174,8 @@ const showLampiran = () => {
     });
   }
 
-  if (overlay && alertCloseButton) {
+  if (overlay) {
     overlay.addEventListener("click", closeAlert);
-    alertCloseButton.addEventListener("click", closeAlert);
   }
 };
 
@@ -254,5 +252,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateBadge();
   uploadFile();
   changePhoto();
+  showLampiran();
   toggleNavigationMenu();
 });

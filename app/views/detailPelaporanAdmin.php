@@ -2,6 +2,7 @@
 include 'components/emptyState.php';
 include 'components/alert.php';
 include 'components/navbar.php';
+include 'components/buktiBox.php';
 require_once '../app/controllers/getData.php';
 ?>
 
@@ -185,12 +186,7 @@ require_once '../app/controllers/getData.php';
     }
     ?>
 
-    <!-- modal box foto -->
-    <div class="overlay">
-      <div class="bukti-box">
-        <img src='../assets/uploads/bukti/560.jpg' class='lampiran_bukti_full' alt='Bukti'>
-      </div>
-    </div>
+    <?php BuktiBox(); ?>
 
     <!-- ALERT -->
     <?php Alert('alert-success-icon.svg', 'Berhasil', 'Laporan berhasil di ubah.', false, 'alert-detail-pelaporan-success'); ?>

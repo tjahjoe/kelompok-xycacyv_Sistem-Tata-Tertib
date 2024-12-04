@@ -391,7 +391,7 @@ transition: all 0.3s;
 /* Section Header */
 section#header {
   padding-top: 80px;
-  min-height: 400px;
+  min-height: 450px;
   background: linear-gradient(-140deg ,rgba(0, 28, 147, 0.7) 30%, rgba(0, 28, 147, 0)) 30%,
     url("../images/Gedung-TI.jpg");
   background-repeat: no-repeat;
@@ -972,7 +972,13 @@ span.update-tatib{
   background-color: var(--lightgray-color);
   font-family: "Inter", sans-serif;
   font-size: 1em;
+  color: rgba(var(--primary-color-rgb), 0.8); 
 }
+
+.input-field::placeholder {
+  color: rgba(var(--primary-color-rgb), 0.8); 
+}
+
 
 .date-container {
   display: flex;

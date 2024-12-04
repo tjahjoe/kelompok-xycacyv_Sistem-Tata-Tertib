@@ -76,6 +76,9 @@ require_once '../app/controllers/getData.php';
 
       <!-- Pengaturan Lanjutan -->
       <div class="tab-content" id="pengaturan-lanjutan">
+        <div class="head-tab-content">
+          <h2>Pengaturan Lanjutan</h2>
+        </div>
         <div class="menu">
           <a href="#kelola-peraturan-tatib" class="tab-sublink active">Kelola Peraturan Tata Tertib </a>
           <a href="#kelola-surat-pernyataan" class="tab-sublink">Kelola Surat Pernyataan</a>
@@ -150,7 +153,7 @@ require_once '../app/controllers/getData.php';
       Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil update data informasi pribadi', false, 'alert-success-update-infoprofil');
 
       // ALERT SUCCESS UPDATE SURAT PERNYATAAN
-      Alert('alert-success-icon.svg', 'Berhasil', ' Berhasil update Surat Pernyataan', false, 'alert-success-update-surat');
+      Alert('alert-success-icon.svg', 'Berhasil', ' Berhasil update surat pernyataan', false, 'alert-success-update-surat');
       ?>
 
     </div>

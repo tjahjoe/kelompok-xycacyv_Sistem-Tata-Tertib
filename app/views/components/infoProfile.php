@@ -6,7 +6,7 @@ function InfoProfile($data)
     <div class="box-profile">
       <div class="info-user">
       <?php 
-      $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/'.$data['foto_diri'] : "../assets/images/foto.jpg";
+      $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/'.$data['foto_diri'] : "../assets/images/foto.webp";
       ?>
         <img src="<?php echo $photoProfile; ?>" alt="Profile Picture" class="profile-image" width="80px" height="80px"/>
         <span>

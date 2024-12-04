@@ -25,7 +25,7 @@ require_once '../app/controllers/getData.php';
   <?php Navbar(false); ?>
 
   <!-- HEADER SECTION -->
-  <?php HeaderSection("Pengaduan Online Mahasiswa Teknik Informatika", "Sampaikan laporan Anda langsung kepada admin jurusan Teknik Informatika dengan cepat dan aman", false); ?>
+  <?php HeaderSection("Pengaduan Online Mahasiswa Teknik Informatika", "Kejujuran adalah dasar dari semua kebajikan. Tanpa kejujuran, tidak ada integritas, dan tanpa integritas, tidak ada kepercayaan. Dalam pendidikan, kejujuran adalah kunci untuk membangun karakter yang kuat dan masyarakat yang adil. - Mahatma Gandhi", false); ?>
 
   <?php $data = ListPelanggaran() ?>
 
