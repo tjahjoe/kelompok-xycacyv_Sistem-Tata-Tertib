@@ -12,7 +12,7 @@ function uploadPelanggaran()
 
         $response = [
             'status' => 'error',
-            'message' => 'Gagal: data tidak valid',
+            'message' => 'Gagal: data tidak valid!',
         ];
 
         $nim = $_POST['nim'];
@@ -37,16 +37,16 @@ function uploadPelanggaran()
         $mahasiswa = $mahasiswaModel->getDataMahasiswa($nim);
 
         if (empty($mahasiswa)) {
-            $message = "Gagal: NIM tidak valid";
+            $message = "Gagal: NIM tidak valid!";
         } else if (!$sizeImages) {
-            $message = "Gagal: Foto terlalu besar";
+            $message = "Gagal: Foto terlalu besar!";
         } else if (!$countImages) {
-            $message = "Gagal: Jumlah maksimal foto 10";
+            $message = "Gagal: Jumlah maksimal foto 10!";
         } else if ($jenis == $invalidListPelanggaran) {
-            $message = "Gagal: Pelanggaran tidak valid";
+            $message = "Gagal: Pelanggaran tidak valid!";
         } else if ($mahasiswa) {
             if ($mahasiswa['status'] != 'aktif') {
-                $message = "Gagal: NIM tidak valid";
+                $message = "Gagal: NIM tidak valid!";
                 $status = false;
             }
         }
@@ -91,26 +91,15 @@ function updatePelanggaran()
         $idTigkat = isset($_POST['tingkatSanksiAdmin']) ? $_POST['tingkatSanksiAdmin'] : null;
         $nip = $_SESSION['user']['id_users'];
         $tanggal = date('Y-m-d');
-        // $tingkatPelanggaran = $_POST['tingkatPelanggaranAdmin'];
-        // $role = $_SESSION['user']['role'];
 
-        $condition = true;
-        // if ($role == "dpa" && !in_array($tingkatPelanggaran, ['V', 'IV', "III"])) {
-        //     $condition = false;
-        // }
+        $result = $pelanggaranMahasiswaModel->uploadStatusAndTingkat($idPelanggaran, $catatan, $status, $idTigkat, $nip, $tanggal);
 
-        if ($condition) {
-            $result = $pelanggaranMahasiswaModel->uploadStatusAndTingkat($idPelanggaran, $catatan, $status, $idTigkat, $nip, $tanggal);
+        echo $result == "berhasil" ?
+            json_encode(['status' => 'success', 'message' => 'upload success'])
+            :
+            json_encode(['status' => 'error', 'message' => $result]);
+        exit;
 
-            echo $result == "berhasil" ?
-                json_encode(['status' => 'success', 'message' => 'upload success'])
-                :
-                json_encode(['status' => 'error', 'message' => $result]);
-            exit;
-        } else {
-            echo json_encode(['status' => 'error', 'message' => 'Gagal: DPA tidak bisa memproses pelanggaran diatas tingkat III']);
-            exit;
-        }
     }
 }
 ?>

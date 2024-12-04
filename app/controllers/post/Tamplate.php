@@ -14,7 +14,7 @@ function updateSuratPeringatan()
             echo json_encode(['status' => 'success', 'message' => 'update success']);
             exit;
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Gagal: Batas maksimal ukuran file 5MB']);
+            echo json_encode(['status' => 'error', 'message' => 'Gagal: Batas maksimal ukuran file 5MB!']);
             exit;
         }
     }

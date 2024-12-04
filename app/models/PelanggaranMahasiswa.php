@@ -251,7 +251,6 @@ class PelanggaranMahasiswa
     {
         $conditions = [];
         $params = [];
-        $tingkatPelanggaranByDpa = "";
 
         if ($nim) {
             $conditions[] = "p.nim LIKE ?";
@@ -276,8 +275,6 @@ class PelanggaranMahasiswa
         if ($isDpa) {
             $conditions[] = "m.nip = ?";
             $params[] = $id;
-
-            // $tingkatPelanggaranByDpa = "AND l.tingkat_pelanggaran IN ('V', 'IV', 'III')";
         }
         
         $limit = "";
@@ -302,7 +299,6 @@ class PelanggaranMahasiswa
 		ON m.nim = p.nim
         WHERE 
         $whereClause
-        $tingkatPelanggaranByDpa
         ORDER BY 
         tgl_pelanggaran DESC, id_pelanggaran_mhs DESC
         $limit"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
@@ -391,10 +387,6 @@ class PelanggaranMahasiswa
     {
         $idTingkat = $status == 'reject' ? null : $idTingkat;
 
-        if ($status != 'reject' and $idTingkat == '') {
-            return "Gagal: Pilih tingkat sanksi";
-        }
-
         $query = "SELECT status FROM " . $this->table . " WHERE id_pelanggaran_mhs = ?";
         $this->conn->beginTransaction();
         $stmt = $this->conn->prepare($query);
@@ -403,13 +395,16 @@ class PelanggaranMahasiswa
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
 
-            if ($result['status'] == $status) {
-                return "Gagal: Ubah status";
-            }
-
-            // jika status sebelumya baru tidak bisa langsung mengubah ke nonaktif atau reject
             if (in_array($status, ['nonaktif', 'reject']) && $result['status'] == 'baru') {
-                return "Gagal: Pemrosesan harus bertahap";
+                return "Gagal: Pemrosesan harus bertahap!";
+            } else if ($status == 'baru' && $result['status'] == 'aktif') {
+                return "Gagal: Pemrosesan harus bertahap!";
+            } else if (in_array($result['status'], ['nonaktif', 'reject'])) {
+                return "Gagal: Data Tidak bisa diubah!";
+            } else if ($result['status'] == $status) {
+                return "Gagal: Ubah status!";
+            } else if ($status != 'reject' && $idTingkat == '') {
+                return "Gagal: Pilih tingkat sanksi!";
             }
 
             // mengubah status akan tetapi tidak bisa mengembalikan ke proses sebelumnya

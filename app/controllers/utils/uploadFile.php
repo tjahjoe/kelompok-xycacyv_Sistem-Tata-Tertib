@@ -1,8 +1,8 @@
 <?php
-function uploadImage($idPelanggaranMhs)//untuk edit pp
+function uploadImage($idPelanggaranMhs)
 {
-    $targetDirectory = "../../assets/uploads/bukti/"; //edit path
-    $totalFiles = count($_FILES['lampiran']['name']); //edit name
+    $targetDirectory = "../../assets/uploads/bukti/"; 
+    $totalFiles = count($_FILES['lampiran']['name']); 
 
     $files = [];
 
@@ -12,10 +12,7 @@ function uploadImage($idPelanggaranMhs)//untuk edit pp
         $fileName = $idPelanggaranMhs['id_pelanggaran_mhs'] . $i . ".$type";
         $targetFile = $targetDirectory . $fileName;
         if (move_uploaded_file($_FILES['lampiran']['tmp_name'][$i], $targetFile)) {
-            // echo "File $fileName berhasil diunggah.<br>";
             $files[] = $fileName;
-        } else {
-            // echo "Gagal mengunggah file $fileName.<br>";
         }
     }
 
