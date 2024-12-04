@@ -23,7 +23,7 @@ $(document).ready(function () {
     });
   };
 
-  // Tambah Data
+  // Tambah Data tatatertib
   $(document).on("submit", "#add-tatatertib", function (e) {
     e.preventDefault();
   
@@ -38,7 +38,6 @@ $(document).ready(function () {
       data: formData,
       dataType: "json",
       success: function (response) {
-        console.log("Response received:", response);
         if (response.status === "success") {
           showAlert(alertId);
           closingAlertWithReload(true);
@@ -52,7 +51,7 @@ $(document).ready(function () {
   });
   
 
-  // Update Data
+  // Update Data tatatertib
   $(document).on("submit", "#update-tatatertib", function (e) {
     e.preventDefault();
     $("input[name='namaPelanggaran']").val($.trim($("input[name='namaPelanggaran']").val()));
@@ -78,7 +77,7 @@ $(document).ready(function () {
     });
   });
 
-  // Ambil Data untuk Update
+  // Ambil Data untuk Update tatatertib
   $(".update-tatib").on("click", function (e) {
     e.preventDefault();
     const tatibId = $(this).data("id");
@@ -97,14 +96,11 @@ $(document).ready(function () {
         } else {
           $("#hasil").css("display", "block").html(response.message);
         }
-      },
-      error: function () {
-        $("#hasil").css("display", "block").html("Terjadi kesalahan.");
-      },
+      }
     });
   });
 
-  // delete data
+  // delete data tatatertib
   $(".delete-tatib").on("click", function (e) {
     e.preventDefault();
     const tatibId = $(this).data("id");
@@ -124,23 +120,19 @@ $(document).ready(function () {
           } else {
             $("#hasil").css("display", "block").html(response.message);
           }
-        },
-        error: function () {
-          $("#hasil").css("display", "block").html("Terjadi kesalahan.");
-        },
+        }
       });
     });
 
     closingAlertWithReload(false);
   });
 
+  //  untuk menampilkan menu tombol edit dan hapus
   $(".icon-tatib").on("click", function (e) {
     e.preventDefault();
 
-    // Cari elemen ".detail-icon-tatib" dalam row yang sama
     const detailTatib = $(this).closest("tr").find(".detail-icon-tatib");
 
-    // Tambahkan kelas "active" untuk menampilkan detail
     detailTatib.toggleClass("active");
   });
 });

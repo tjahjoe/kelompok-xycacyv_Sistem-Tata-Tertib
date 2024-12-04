@@ -1,10 +1,9 @@
 $(document).ready(function () {
-  // filter tatatertib by tingkat
+  // filter tatatertib by tingkat (home page)
   $("#tingkatPelanggaran").on("change", function () {
     let tingkatPelanggaran = $(this).val();
 
     $.ajax({
-      // url: "../app/controllers/FilterTataTertib.php",
       url: "../app/controllers/handlerGet.php?action=filterListPelanggaranByTingkat",
       type: "GET",
       data: { tingkatPelanggaran: tingkatPelanggaran },
@@ -27,13 +26,11 @@ $(document).ready(function () {
             "<tr><td colspan='3'>" + response.message + "</td></tr>"
           );
         }
-      },
-      error: function (xhr, status, error) {
-        console.error("Error:", error);
-      },
+      }
     });
   });
 
+  // fungsi untuk filter daftar pelaporan
   function filterPelaporan() {
     let searchNim = $("#searchNim").val();
     let showAll = $("#showAll").is(":checked");
@@ -43,7 +40,6 @@ $(document).ready(function () {
     let endTanggal = $("#endTanggalPelaporan").val();
 
     $.ajax({
-      // url: "../app/controllers/FilterDaftarPelaporan.php",
       url: "../app/controllers/handlerGet.php?action=filterDaftarPelaporan",
       type: "GET",
       data: {
@@ -58,21 +54,6 @@ $(document).ready(function () {
         if (response.status === "success") {
           if (showAll) {
             window.location.href = window.location.pathname;
-            // $(".table-content tbody").empty();
-            // $.each(response.data, function (index, record) {
-            //   const row = `
-            //         <tr>
-            //             <td>${record.nim}</td>
-            //             <td class="text-left truncate">${record.nama}</td>
-            //             <td>${record.tanggal}</td>
-            //             <td class="text-left truncate">${record.judulmasalah}</td>
-            //             <td>${record.tingkat}</td>
-            //             <td>${record.badge}</td>
-            //             <td><a href="detail-pelaporan-admin.php?id=${record.id}">Detail</a></td>
-            //         </tr>
-            //     `;
-            //   $(".table-content tbody").append(row);
-            // });
           } else {
             window.location.href = "daftar-pelaporan.php?page=1";
           }
@@ -81,15 +62,11 @@ $(document).ready(function () {
             "<tr><td colspan='7'>Data Not Found</td></tr>"
           );
         }
-      },
-      error: function (xhr, status, error) {
-        console.error("Error:", error);
-        console.error("Response Text:", xhr.responseText);
-        alert("An error occurred. Please check the console for details.");
-      },
+      }
     });
   }
 
+  // fungsi untuk reset filter
   function resetFilterPelaporan() {
     let searchNim = "";
     let tingkat = "";
@@ -99,7 +76,6 @@ $(document).ready(function () {
     let endTanggal = "";
 
     $.ajax({
-      // url: "../app/controllers/FilterDaftarPelaporan.php",
       url: "../app/controllers/handlerGet.php?action=filterDaftarPelaporan",
       type: "GET",
       data: {
@@ -114,21 +90,6 @@ $(document).ready(function () {
         if (response.status === "success") {
           if (showAll) {
             window.location.href = window.location.pathname;
-            // $(".table-content tbody").empty();
-            // $.each(response.data, function (index, record) {
-            //   const row = `
-            //           <tr>
-            //               <td>${record.nim}</td>
-            //               <td class="text-left truncate">${record.nama}</td>
-            //               <td>${record.tanggal}</td>
-            //               <td class="text-left truncate">${record.judulmasalah}</td>
-            //               <td>${record.tingkat}</td>
-            //               <td>${record.badge}</td>
-            //               <td><a href="detail-pelaporan-admin.php?id=${record.id}">Detail</a></td>
-            //           </tr>
-            //       `;
-            //   $(".table-content tbody").append(row);
-            // });
           } else {
             window.location.href = "daftar-pelaporan.php?page=1";
           }
@@ -137,15 +98,11 @@ $(document).ready(function () {
             "<tr><td colspan='7'>Data Not Found</td></tr>"
           );
         }
-      },
-      error: function (xhr, status, error) {
-        console.error("Error:", error);
-        console.error("Response Text:", xhr.responseText);
-        alert("An error occurred. Please check the console for details.");
-      },
+      }
     });
   }
 
+  // untuk mengaktifkan filter pada tingkatPelaporan, statusPelaporan dan searchByNIM
   $("#tingkatPelaporan, #statusPelaporan, #filterTab").on(
     "change submit",
     function (e) {
@@ -154,6 +111,7 @@ $(document).ready(function () {
     }
   );
 
+  // handle ketika check show all
   $("#showAll").change(function () {
     if ($(this).is(":checked")) {
       window.location.href = window.location.pathname;
@@ -165,6 +123,7 @@ $(document).ready(function () {
     }
   });
 
+  // handle ketika filter by tanggal awal
   $("#startTanggalPelaporan").on("change", function (e) {
     e.preventDefault();
     let startDate = $(this).val();
@@ -172,6 +131,7 @@ $(document).ready(function () {
     filterPelaporan();
   });
 
+  // handle ketika filter by tanggal akhir
   $("#endTanggalPelaporan").on("change", function (e) {
     e.preventDefault();
     let endDate = $(this).val();

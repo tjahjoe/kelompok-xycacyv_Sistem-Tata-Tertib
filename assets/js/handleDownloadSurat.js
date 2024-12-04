@@ -11,13 +11,12 @@ $(document).ready(function () {
       formData.append('nim', nim);
       formData.append('tanggal', tanggal);
 
-      // Make AJAX request
       $.ajax({
           url: '../app/controllers/handlerPost.php?action=suratPeringatan',
           type: 'POST',
           data: formData,
-          processData: false, // Penting untuk FormData
-          contentType: false, // Penting untuk FormData
+          processData: false,
+          contentType: false,
           xhrFields: {
               responseType: 'blob'
           },

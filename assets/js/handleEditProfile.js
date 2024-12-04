@@ -22,28 +22,25 @@ $(document).ready(function () {
       }
     });
   };
+
+  // handle change photo
   $("#change-photo").on("change", function (e) {
     e.preventDefault();
 
-    // Mendapatkan file yang dipilih
     const fileInput = document.getElementById("change-photo");
-    const file = fileInput.files[0]; // Ambil file dari input
+    const file = fileInput.files[0];
 
-    // Periksa apakah ada file yang dipilih
     if (!file) {
       $("#hasil").css("display", "block").html("Please select a file!");
       return;
     }
 
-    // Membuat objek FormData untuk mengirim data file
     const formData = new FormData();
     formData.append("photo", file);
 
     const alertId = "alert-success-update-photo";
 
-    // Kirim data ke server PHP
     $.ajax({
-      // url: "../app/controllers/updateFoto.php",
       url: "../app/controllers/handlerPost.php?action=updatePhotoProfil",
       type: "POST",
       data: formData,
@@ -62,6 +59,7 @@ $(document).ready(function () {
     });
   });
 
+  // handle delete photo
   $("#delete-photo").on("click", function (e) {
     e.preventDefault();
 
@@ -72,7 +70,7 @@ $(document).ready(function () {
       $.ajax({
         url: "../app/controllers/handlerPost.php?action=deletePhotoProfil",
         type: "POST",
-        contentType: false, // Biarkan jQuery menetapkan header ini secara otomatis
+        contentType: false,
         processData: false,
         dataType: "json",
         success: function (response) {
@@ -87,18 +85,17 @@ $(document).ready(function () {
     });
   });
 
+  // handle edit profile (inputan)
   $("#form-editprofile").submit(function (e) {
     e.preventDefault();
 
     $("input[name='nama']").val($.trim($("input[name='nama']").val()));
     $("input[name='notelp']").val($.trim($("input[name='notelp']").val()));
 
-    // Mendapatkan data form
     const formData = $(this).serialize();
 
     const alertId = "alert-success-update-infoprofil";
 
-    // Kirim data ke server PHP
     $.ajax({
       url: "../app/controllers/handlerPost.php?action=updateDataUser",
       type: "POST",

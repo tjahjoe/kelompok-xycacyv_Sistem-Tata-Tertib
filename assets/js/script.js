@@ -1,3 +1,4 @@
+// UNTUK SHOW PASSWORD
 const eventTogglePassword = () => {
   const togglePassword = document.querySelector(".toggle-password-icon");
   const passwordInput = document.getElementById("password");
@@ -15,34 +16,34 @@ const eventTogglePassword = () => {
   }
 };
 
+// UNTUK NAVBAR KETIKA DISCROLL
 const eventNavbarScroll = () => {
   const navbar = document.getElementById("navbar");
-  const hamburger = document.getElementById("hamburger");
-  const menu = document.getElementById("menu");
 
   if (navbar) {
     let lastScrollTop = 0;
 
     window.addEventListener("scroll", () => {
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      navbar.classList.toggle("hidden", scrollTop > lastScrollTop);
-      navbar.classList.toggle("scrolled", scrollTop > 0);
-      lastScrollTop = Math.max(0, scrollTop);
+      const scrollTop = window.scrollY; // untuk mendapatkan jarak scroll vertikal dari bagian atas halaman.
+      navbar.classList.toggle("hidden", scrollTop > lastScrollTop); //jika user scroll
+      navbar.classList.toggle("scrolled", scrollTop > 0); // jika user sudah mulai scroll
+      lastScrollTop = scrollTop;
     });
   }
+};
+
+// UNTUK MENAMPILKAN MENU PADA SAAT DIKLIK
+const toggleNavigationMenu = () => {
+  const hamburger = document.getElementById("hamburger");
+  const menu = document.getElementById("menu");
 
   if (hamburger && menu) {
     const toggleMenu = () => {
       if (menu.classList.contains("active")) {
-        setTimeout(() => {
-          menu.classList.remove("active");
-        }, 10);
+        menu.classList.remove("active");
       } else {
         menu.style.display = "flex";
-        setTimeout(() => {
-          menu.classList.add("active");
-        }, 10);
+        menu.classList.add("active");
       }
     };
 
@@ -50,11 +51,12 @@ const eventNavbarScroll = () => {
   }
 };
 
+// UNTUK SWITCH TAB SIDEBAR
 const switchTab = () => {
   const tabLink = document.querySelectorAll(".tab-link");
   const logoutBtn = document.querySelector(".logout-btn");
   const tabContent = document.querySelectorAll(".tab-content");
-  const profileForm = document.getElementById('edit-profile');
+  const profileForm = document.getElementById("edit-profile");
 
   if (tabLink && tabContent && logoutBtn && profileForm) {
     tabLink.forEach((link) => {
@@ -76,30 +78,30 @@ const switchTab = () => {
   }
 };
 
+// UNTUK SWITCH TAB SUB MENU 
 const switchTabSubMenu = () => {
   const tabSubMenu = document.querySelectorAll(".tab-sublink");
   const tabSubContent = document.querySelectorAll(".tab-subcontent");
 
-  if(tabSubMenu){
+  if (tabSubMenu) {
     tabSubMenu.forEach((link) => {
-      link.addEventListener("click", function(event){
+      link.addEventListener("click", function (event) {
         event.preventDefault();
 
         tabSubMenu.forEach((tab) => tab.classList.remove("active"));
         tabSubContent.forEach((content) => content.classList.remove("active"));
-        
+
         this.classList.add("active");
 
         document
           .querySelector(this.getAttribute("href"))
           .classList.add("active");
       });
-    })
+    });
   }
-}
+};
 
 const updateBadge = () => {
-
   const getBadgeClass = (forValue) => {
     switch (forValue) {
       case "status-pending":
@@ -142,45 +144,45 @@ const updateBadge = () => {
   });
 };
 
+// MENAMPILKAN POPUP ALERT
 const showAlert = () => {
   const alertOverlay = document.querySelector(".overlay");
 
   alertOverlay.classList.add("alert-active");
 };
 
+// MENGHILANGKAN POPUP ALERT
 const closeAlert = () => {
   const alertOverlay = document.querySelector(".overlay");
 
   alertOverlay.classList.remove("alert-active");
 };
 
-if(document.querySelector('.lampiran_bukti')){
-  const lampiran = document.querySelectorAll('.lampiran_bukti');
-  const lampiranFull = document.querySelector('.lampiran_bukti_full');
+// UNTUK MENAMPILKAN BUKTI LAMPIRAN KETIKA DI KLIK
+const showLampiran = () => {
+  const lampiran = document.querySelectorAll(".lampiran_bukti");
+  const lampiranFull = document.querySelector(".lampiran_bukti_full");
+  const overlay = document.querySelector(".overlay");
+  const alertCloseButton = document.querySelector(".alert-close-button");
 
-  lampiran.forEach((bukti) => {
-    bukti.addEventListener("click", () => {
-
-      const srcValue = bukti.getAttribute("src");
-      lampiranFull.setAttribute("src", srcValue);
-
-      showAlert();   
+  if (lampiran.length > 0 && lampiranFull) {
+    lampiran.forEach((bukti) => {
+      bukti.addEventListener("click", () => {
+        const srcValue = bukti.getAttribute("src");
+        lampiranFull.setAttribute("src", srcValue);
+        showAlert();
+      });
     });
-  });
+  }
 
-  document.querySelector(".overlay").addEventListener("click", closeAlert);
-}
+  if (overlay && alertCloseButton) {
+    overlay.addEventListener("click", closeAlert);
+    alertCloseButton.addEventListener("click", closeAlert);
+  }
+};
 
-if (
-  document.querySelector(".overlay") &&
-  document.querySelector(".alert-close-button")
-) {
-  document.querySelector(".overlay").addEventListener("click", closeAlert);
-  document
-    .querySelector(".alert-close-button")
-    .addEventListener("click", closeAlert);
-}
 
+// UNTUK MENAMPILKAN FILE APA SAJA YANG DIUPLOAD
 const uploadFile = () => {
   const fileInput = document.getElementById("lampiran");
   const fileCountDisplay = document.getElementById("file-count");
@@ -189,12 +191,13 @@ const uploadFile = () => {
   if (fileInput && fileCountDisplay && fileListDisplay) {
     fileInput.addEventListener("change", () => {
       const files = fileInput.files;
-      
-      if(files.length > 1) fileCountDisplay.textContent = `${files.length} file(s) uploaded`;
+
+      if (files.length > 1)
+        fileCountDisplay.textContent = `${files.length} file(s) uploaded`;
       else fileCountDisplay.textContent = "file uploaded";
 
       fileListDisplay.innerHTML = "";
-      
+
       for (let i = 0; i < files.length; i++) {
         const listItem = document.createElement("li");
         listItem.textContent = files[i].name;
@@ -204,42 +207,43 @@ const uploadFile = () => {
   }
 };
 
+// UNTUK MENAMPILKAN PREVIEW PAGE YANG TELAH DIUPLOAD
 const changePhoto = () => {
-  const fileInput = document.getElementById('change-photo');
-  const profileImage = document.getElementById('profile-image');
-  const deletePhoto = document.getElementById('delete-photo');
+  const fileInput = document.getElementById("change-photo");
+  const profileImage = document.getElementById("profile-image");
+  const deletePhoto = document.getElementById("delete-photo");
 
   if (fileInput && profileImage && deletePhoto) {
-
-  fileInput.addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      console.log(imageUrl)
-      profileImage.src = imageUrl;
-    }
-  });
+    fileInput.addEventListener("change", function (event) {
+      const file = event.target.files[0];
+      if (file) {
+        const imageUrl = URL.createObjectURL(file);
+        console.log(imageUrl);
+        profileImage.src = imageUrl;
+      }
+    });
   }
-}
+};
 
+// UNTUK MENGGANTI TAB PROFILE(INFO PROFILE & EDIT PROFILE)
 const switchProfile = () => {
-  const profile = document.getElementById('profile-user');
-  const profileForm = document.getElementById('edit-profile');
-  const btnToEdit = document.getElementById('btn-edit-profile');
-  const btnBack = document.getElementById('back-to-profile');
+  const profile = document.getElementById("profile-user");
+  const profileForm = document.getElementById("edit-profile");
+  const btnToEdit = document.getElementById("btn-edit-profile");
+  const btnBack = document.getElementById("back-to-profile");
 
   if (profile && profileForm && btnBack) {
-    btnToEdit.addEventListener('click', () => {
-      profileForm.classList.add('active');
-      profile.classList.remove('active');
+    btnToEdit.addEventListener("click", () => {
+      profileForm.classList.add("active");
+      profile.classList.remove("active");
     });
 
-    btnBack.addEventListener('click', () => {
-      profile.classList.add('active');
-      profileForm.classList.remove('active');
+    btnBack.addEventListener("click", () => {
+      profile.classList.add("active");
+      profileForm.classList.remove("active");
     });
   }
-}
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   eventTogglePassword();
@@ -250,4 +254,5 @@ document.addEventListener("DOMContentLoaded", () => {
   updateBadge();
   uploadFile();
   changePhoto();
+  toggleNavigationMenu();
 });

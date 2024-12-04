@@ -49,7 +49,7 @@ require_once '../app/controllers/getData.php';
       $bukti = $data['Bukti'];
 
       $roleUser = $_SESSION['user']['role'];
-      $hakAksesDpa = $roleUser == 'dpa' && !in_array($tingkatPelanggaran, ['V', 'IV', "III"]);
+      $notHakAksesDpa = $roleUser == 'dpa' && !in_array($tingkatPelanggaran, ['V', 'IV', "III"]);
 
     ?>
       <form id="updatePelaporan" method="post">
@@ -60,13 +60,13 @@ require_once '../app/controllers/getData.php';
             <p><strong>ID pelapor:</strong> <?php echo $idPelapor ?></p>
           </div>
 
-          <?php if ($hakAksesDpa) {
+          <?php if ($notHakAksesDpa) {
             echo '<p style="color: red;">Pemberitahuan: DPA tidak bisa memproses pelanggaran diatas tingkat III</p>';
           }
           ?>
 
           <div class="flex-row m-0">
-            <?php if ($hakAksesDpa) {
+            <?php if ($notHakAksesDpa) {
               echo '';
             } else {
               echo '<button class="btn btn-primary" type="submit">Simpan</button>';
@@ -96,7 +96,7 @@ require_once '../app/controllers/getData.php';
             <?php
             if ($status != 'reject') {
             ?>
-              <select id="tingkatSanksiAdmin" name="tingkatSanksiAdmin" required <?php echo $tingkatSanksi || $hakAksesDpa ? 'class="no-dropdown" disabled' : ''; ?>>
+              <select id="tingkatSanksiAdmin" name="tingkatSanksiAdmin" required <?php echo $tingkatSanksi || $notHakAksesDpa ? 'class="no-dropdown" disabled' : ''; ?>>
                 <?php
                 if ($tingkatSanksi) {
                   echo "<option value='$tingkatSanksi' selected>$tingkatSanksi</option>";
@@ -129,11 +129,10 @@ require_once '../app/controllers/getData.php';
           </div>
           <div class="detail-item">
             <label for="catatan">Catatan</label>
-            <?php if ($hakAksesDpa) {
-              echo '<textarea name="catatan" rows="10" id="catatan" disabled>' . $catatan . '</textarea>';
-            } else {
-              echo '<textarea name="catatan" rows="10" id="catatan">' . $catatan . '</textarea>';
-            } ?>
+           <textarea name="catatan" rows="10" id="catatan" <?php echo $notHakAksesDpa ? 'disabled' : ''; ?>>
+              <?php echo $catatan; ?>
+          </textarea>
+
           </div>
           <div class="detail-item">
             <label for="bukti">Lampiran</label>
@@ -162,7 +161,7 @@ require_once '../app/controllers/getData.php';
             <label for="sanksi">Sanksi</label>
             <input type="text" name="sanksi" value="<?php echo $sanksi ?>" id="sanksi" disabled>
           </div>
-          <div class="detail-item" <?php echo $hakAksesDpa ? 'style="pointer-events: none;"' : ''; ?> >
+          <div class="detail-item" <?php echo $notHakAksesDpa ? 'style="pointer-events: none;"' : ''; ?> >
             <label for="">Status</label>
             <div class="badge-contain">
               <input type="radio" name="status" id="status-pending" value="baru" <?php echo $status == 'baru' ? 'checked' : '';?>>

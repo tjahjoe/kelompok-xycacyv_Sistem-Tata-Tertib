@@ -24,26 +24,21 @@ $(document).ready(function () {
     });
   };
 
+  // handle submit form pelaporan (pelaporan page)
   $("#form-pelaporan").submit(function (e) {
     e.preventDefault();
-
-    // Membuat FormData dari form secara otomatis
     const form = this;
     const formData = new FormData(form);
 
-    // Mengubah nilai tertentu di FormData
-    const nim = $.trim(formData.get("nim")); // Hapus whitespace pada nim
-    const deskripsiLaporan = $.trim(formData.get("deskripsiLaporan")); // Hapus whitespace pada deskripsi laporan
+    const nim = $.trim(formData.get("nim"));
+    const deskripsiLaporan = $.trim(formData.get("deskripsiLaporan"));
 
-    // Set nilai yang sudah dimodifikasi kembali ke FormData
     formData.set("nim", nim);
     formData.set("deskripsiLaporan", deskripsiLaporan);
 
     const alertId = "alert-pelaporan-success";
 
-    // Kirim data ke server PHP
     $.ajax({
-      // url: "../app/controllers/uploadData.php",
       url: "../app/controllers/handlerPost.php?action=uploadPelanggaran",
       type: "POST",
       data: formData,
@@ -68,14 +63,11 @@ $(document).ready(function () {
 
     $("textarea[name='catatan']").val($.trim($("textarea[name='catatan']").val()));
 
-    // Mendapatkan data form
     const formData = $(this).serialize();
 
     const alertId = "alert-detail-pelaporan-success";
 
-    // Kirim data ke server PHP
     $.ajax({
-      // url: "../app/controllers/uploadTingkat.php",
       url: "../app/controllers/handlerPost.php?action=updatePelanggaran",
       type: "POST",
       data: formData,
@@ -92,7 +84,7 @@ $(document).ready(function () {
     });
   });
 
-  // generate sanksi by tingkat pelanggaran
+  // generate sanksi by tingkat pelanggaran (detail pelaporan admin)
   $("#tingkatSanksiAdmin").on("change", function () {
     let tingkatSanksi = $(this).val();
 
@@ -107,19 +99,15 @@ $(document).ready(function () {
         } else {
           $("#sanksi").val("Data tidak ditemukan");
         }
-      },
-      error: function (xhr, status, error) {
-        console.error("Error:", error);
-      },
+      }
     });
   });
 
-  // filter jenis pelanggaran by tingkat
+  // filter jenis pelanggaran by tingkat (pelaporan page)
   $("#tingkatPelanggaran").on("change", function () {
     let tingkatPelanggaran = $(this).val();
 
     $.ajax({
-      // url: "../app/controllers/FilterTataTertib.php",
       url: "../app/controllers/handlerGet.php?action=filterListPelanggaranByTingkat",
       type: "GET",
       data: { tingkatPelanggaran: tingkatPelanggaran },
@@ -127,7 +115,7 @@ $(document).ready(function () {
       success: function (response) {
         if (response.status === "success") {
           $("#jenisPelanggaran").empty();
-          $.each(response.data, function (_, record) { // Tambahkan parameter index
+          $.each(response.data, function (_, record) {
             const row = `
               <option value="${record.nama_jenis_pelanggaran}">
                 ${record.nama_jenis_pelanggaran}
@@ -140,10 +128,7 @@ $(document).ready(function () {
             `<option value='${response.message}'>${response.message}</option>`
           );
         }
-      },      
-      error: function (xhr, status, error) {
-        console.error("Error:", error);
-      },
+      }
     });
   });
 });
