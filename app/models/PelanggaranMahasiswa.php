@@ -41,51 +41,6 @@ class PelanggaranMahasiswa
         return $this->getPelanggaran($query, $nim);
     }
 
-    public function getDataPelanggaranByDpa($nip)
-    {
-        $query = "SELECT
-        p.id_pelanggaran_mhs 'id',
-		p.nim 'NIM',
-		m.nama_mahasiswa 'NAMA',
-        p.tgl_pelanggaran 'TANGGAL', 
-        l.nama_jenis_pelanggaran 'JUDUL MASALAH', 
-        l.tingkat_pelanggaran 'TINGKAT', 
-        p.status 'STATUS'
-        FROM " . $this->table . " p
-        JOIN ListPelanggaran l
-        ON p.id_list_pelanggaran = l.id_list_pelanggaran
-		JOIN Mahasiswa m
-		ON m.nim = p.nim
-        WHERE m.nip = ? 
-        ORDER BY 
-        tgl_pelanggaran DESC, id_pelanggaran_mhs DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
-        return $this->getPelanggaran($query, $nip);
-    }
-
-    public function getAllDataPelanggaran()
-    {
-        $query = "SELECT 
-        p.id_pelanggaran_mhs 'id',
-		p.nim 'NIM',
-		m.nama_mahasiswa 'NAMA',
-        p.tgl_pelanggaran 'TANGGAL', 
-        l.nama_jenis_pelanggaran 'JUDUL MASALAH', 
-        l.tingkat_pelanggaran 'TINGKAT', 
-        p.status 'STATUS'
-        FROM " . $this->table . " p
-        JOIN ListPelanggaran l
-        ON p.id_list_pelanggaran = l.id_list_pelanggaran
-		JOIN Mahasiswa m
-        ON m.nim = p.nim
-        ORDER BY 
-        tgl_pelanggaran DESC, id_pelanggaran_mhs DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $results ? $results : false;
-    }
-
     public function getDataPelanggaranByPelapor($nip)
     {
         $query = "SELECT
@@ -296,6 +251,7 @@ class PelanggaranMahasiswa
     {
         $conditions = [];
         $params = [];
+        $tingkatPelanggaranByDpa = "";
 
         if ($nim) {
             $conditions[] = "p.nim LIKE ?";
@@ -320,6 +276,8 @@ class PelanggaranMahasiswa
         if ($isDpa) {
             $conditions[] = "m.nip = ?";
             $params[] = $id;
+
+            // $tingkatPelanggaranByDpa = "AND l.tingkat_pelanggaran IN ('V', 'IV', 'III')";
         }
         
         $limit = "";
@@ -344,6 +302,7 @@ class PelanggaranMahasiswa
 		ON m.nim = p.nim
         WHERE 
         $whereClause
+        $tingkatPelanggaranByDpa
         ORDER BY 
         tgl_pelanggaran DESC, id_pelanggaran_mhs DESC
         $limit"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
