@@ -26,7 +26,7 @@ $(document).ready(function () {
     showAlert(alertId);
     $(".alert-confirm-button").on("click", function () {
       $.ajax({
-        url: "./../app/controllers/utils/logout.php",
+        url: "./../app/controllers/handlerPost.php?action=logout",
         type: "POST"
       });
       window.location.href="./login.php"

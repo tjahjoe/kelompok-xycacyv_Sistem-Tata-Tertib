@@ -9,6 +9,8 @@ $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 if ($action == 'login') {//user
     login();
+} else if ($action == 'logout') {//user
+    logoutHandler();
 } else if ($action == 'uploadPelanggaran') {//PelanggaranMahasiswa
     uploadPelanggaran();
 } else if ($action == 'updatePelanggaran') {//pelanggaranMahasiswa
