@@ -69,7 +69,8 @@ require_once '../app/controllers/getData.php';
           <input type="hidden" name="idPelanggaranMhs" value="<?php echo $data['id']; ?>" id="idPelanggaranMhs">
           <div class="detail-item">
             <label for="tingkatPelanggaranAdmin">Tingkat Pelanggaran</label>
-            <input type="text" name="tingkatPelanggaranAdmin" value="<?php echo $tingkatPelanggaran; ?>" id="tingkatPelanggaranAdmin" disabled>
+            <input type="text" value="<?php echo $tingkatPelanggaran; ?>" disabled>
+            <input type="hidden" name="tingkatPelanggaranAdmin" value="<?php echo $tingkatPelanggaran; ?>" id="tingkatPelanggaranAdmin">
           </div>
           <div class="detail-item">
             <label for="tingkatSanksiAdmin">Tingkat Sanksi</label>

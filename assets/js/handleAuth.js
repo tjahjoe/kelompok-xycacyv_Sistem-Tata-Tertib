@@ -3,19 +3,16 @@ $(document).ready(function() {
   $("#formLogin").submit(function(e) {
       e.preventDefault();
 
-      // Mendapatkan data form
-      var formData = $(this).serialize();
+      const formData = $(this).serialize();
 
-      // Kirim data ke server PHP
       $.ajax({
-        //   url: "../app/controllers/AuthLogin.php",
           url: "../app/controllers/handlerPost.php?action=login",
           type: "POST",
           data: formData,
           dataType: "json",
           success: function(response) {
               if (response.status === 'success') {
-                  window.location.href = './'; // Redirect ke halaman utama
+                  window.location.href = './';
               } else {
                 $("#hasil").css("display", "block");
                   $("#hasil").html(response.message);
