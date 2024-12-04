@@ -48,7 +48,8 @@ require_once __DIR__ . "../../controllers/getData.php";
               <span>Search</span>
             </div>
             <div class="filter-item filter-checkbox">
-              <input type="checkbox" id="showAll" name="showAll" <?php echo $isShowAll ?> />
+              <input type="checkbox" id="showAll" name="showAll" 
+              <?php echo $isShowAll ?> />
               <label for="showAll">Perlihatkan Semua</label>
             </div>
             <div class="filter-item filter-select">
@@ -61,12 +62,18 @@ require_once __DIR__ . "../../controllers/getData.php";
                 <select id="tingkatPelaporan" class="tingkatPelaporan" name="tingkatPelaporan">
                   <option disabled selected hidden>Tingkat</option>
                   <option value="">All</option>
-                  <option value="I" <?php echo $filterTingkat == 'I' ? 'selected' : ''; ?>>I</option>
-                  <option value="I/II" <?php echo $filterTingkat == 'I/II' ? 'selected' : ''; ?>>I/II</option>
-                  <option value="II" <?php echo $filterTingkat == 'II' ? 'selected' : ''; ?>>II</option>
-                  <option value="III" <?php echo $filterTingkat == 'III' ? 'selected' : ''; ?>>III</option>
-                  <option value="IV" <?php echo $filterTingkat == 'IV' ? 'selected' : ''; ?>>IV</option>
-                  <option value="V" <?php echo $filterTingkat == 'V' ? 'selected' : ''; ?>>V</option>
+                  <option value="I" <?php echo $filterTingkat == 'I' ? 
+                  'selected' : ''; ?>>I</option>
+                  <option value="I/II" <?php echo $filterTingkat == 'I/II' ? 
+                  'selected' : ''; ?>>I/II</option>
+                  <option value="II" <?php echo $filterTingkat == 'II' ? 
+                  'selected' : ''; ?>>II</option>
+                  <option value="III" <?php echo $filterTingkat == 'III' ? 
+                  'selected' : ''; ?>>III</option>
+                  <option value="IV" <?php echo $filterTingkat == 'IV' ? 
+                  'selected' : ''; ?>>IV</option>
+                  <option value="V" <?php echo $filterTingkat == 'V' ? 
+                  'selected' : ''; ?>>V</option>
                 </select>
               </div>
             </div>
@@ -75,10 +82,14 @@ require_once __DIR__ . "../../controllers/getData.php";
                 <select id="statusPelaporan" class="statusPelaporan" name="statusPelaporan">
                   <option disabled selected hidden>Status</option>
                   <option value="">All</option>
-                  <option value="baru" <?php echo $filterStatus == 'baru' ? 'selected' : ''; ?>>Pending</option>
-                  <option value="aktif" <?php echo $filterStatus == 'aktif' ? 'selected' : ''; ?>>Processing</option>
-                  <option value="nonaktif" <?php echo $filterStatus == 'nonaktif' ? 'selected' : ''; ?>>Completed</option>
-                  <option value="reject" <?php echo $filterStatus == 'reject' ? 'selected' : ''; ?>>Rejected</option>
+                  <option value="baru" <?php echo $filterStatus == 'baru' ? 
+                  'selected' : ''; ?>>Pending</option>
+                  <option value="aktif" <?php echo $filterStatus == 'aktif' ? 
+                  'selected' : ''; ?>>Processing</option>
+                  <option value="nonaktif" <?php echo $filterStatus == 'nonaktif' ? 
+                  'selected' : ''; ?>>Completed</option>
+                  <option value="reject" <?php echo $filterStatus == 'reject' ? 
+                  'selected' : ''; ?>>Rejected</option>
                 </select>
               </div>
             </div>
@@ -91,16 +102,29 @@ require_once __DIR__ . "../../controllers/getData.php";
       <div class="date-input">
         <span class="flex-col">
           <label for="">Start Date</label>
-          <input type="date" name="startTanggalPelaporan" id="startTanggalPelaporan" class="custom-date" value="<?php echo $filterTanggalAwal; ?>" max="<?php echo $filterTanggalAkhir; ?>">
+          <input type="date" name="startTanggalPelaporan" 
+          id="startTanggalPelaporan" class="custom-date" 
+          value="<?php echo $filterTanggalAwal; ?>" 
+          max="<?php echo $filterTanggalAkhir; ?>">
         </span>
         <span class="flex-col">
           <label for="">End Date</label>
-          <input type="date" name="endTanggalPelaporan" id="endTanggalPelaporan" class="custom-date" value="<?php echo $filterTanggalAkhir; ?>" min="<?php echo $filterTanggalAwal; ?>">
+          <input type="date" 
+          name="endTanggalPelaporan" 
+          id="endTanggalPelaporan" 
+          class="custom-date" 
+          value="<?php echo $filterTanggalAkhir; ?>" 
+          min="<?php echo $filterTanggalAwal; ?>">
         </span>
       </div>
       <div class="search-input-container">
-        <input type="text" class="search-text" placeholder="Tulis NIM yang ingin dicari..." name="searchNim" id="searchNim" value="<?php echo $searchByNIM ?>">
-        <button class="btn btn-gray" type="submit"><img src="../assets/images/send.svg" alt=""></button>
+        <input type="text" class="search-text" 
+        placeholder="Tulis NIM yang ingin dicari..." 
+        name="searchNim" id="searchNim" 
+        value="<?php echo $searchByNIM ?>">
+        <button class="btn btn-gray" 
+        type="submit"><img src="../assets/images/send.svg" 
+        alt=""></button>
       </div>
       </form>
     </div>

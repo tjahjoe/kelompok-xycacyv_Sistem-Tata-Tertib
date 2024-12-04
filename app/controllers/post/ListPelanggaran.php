@@ -6,11 +6,6 @@ function uploadListPelanggaran()
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $listPelanggaranModel = new ListPelanggaran();
 
-        // $response = [
-        //     'status' => 'error',
-        //     'message' => 'process failed',
-        // ];
-
         $tingkat = $_POST['tingkatPelanggaran'];
         $nama = $_POST['namaPelanggaran'];
 
@@ -18,9 +13,9 @@ function uploadListPelanggaran()
         $message = "";
 
         if (!$nama) {
-            $message = "Gagal: Nama pelanggaran harus diisi";
+            $message = "Gagal: Nama pelanggaran harus diisi!";
         } else if (!$tingkat) {
-            $message = "Gagal: Tingkat pelanggaran harus diisi";
+            $message = "Gagal: Tingkat pelanggaran harus diisi!";
         }
 
         if ($nama && $tingkat) {
@@ -29,7 +24,7 @@ function uploadListPelanggaran()
             echo $result ?
                 json_encode(['status' => 'success', 'message' => 'upload success'])
                 :
-                json_encode(['status' => 'error', 'message' => 'Gagal: Nama pelanggaran tidak boleh sama']);
+                json_encode(['status' => 'error', 'message' => 'Gagal: Nama pelanggaran tidak boleh sama!']);
             exit;
         } else {
             echo json_encode(['status' => 'error', 'message' => $message]);
@@ -55,15 +50,12 @@ function updateListPelanggaran()
             echo $result ?
                 json_encode(['status' => 'success', 'message' => 'upload success'])
                 :
-                json_encode(['status' => 'error', 'message' => 'Gagal: Nama pelanggaran tidak boleh sama']);
+                json_encode(['status' => 'error', 'message' => 'Gagal: Nama pelanggaran tidak boleh sama!']);
             exit;
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Gagal: Nama pelanggaran harus diisi']);
+            echo json_encode(['status' => 'error', 'message' => 'Gagal: Nama pelanggaran harus diisi!']);
             exit;
         }
-
-        // echo $result ? json_encode(['status' => 'success', 'message' => 'update success']) : json_encode($response);
-        // exit;
     }
 }
 function deleteListPelanggaran()
@@ -73,7 +65,7 @@ function deleteListPelanggaran()
 
         $response = [
             'status' => 'error',
-            'message' => 'process failed',
+            'message' => 'process failed!',
         ];
 
         $id = $_POST['id'];

@@ -61,7 +61,7 @@ require_once '../app/controllers/getData.php';
           </div>
 
           <?php if ($notHakAksesDpa) {
-            echo '<p style="color: red;">Pemberitahuan: DPA tidak bisa memproses pelanggaran diatas tingkat III</p>';
+            echo '<p style="color: red;">Pemberitahuan: DPA tidak bisa memproses pelanggaran diatas tingkat III!</p>';
           }
           ?>
 

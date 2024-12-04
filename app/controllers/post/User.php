@@ -12,7 +12,7 @@ function login()
 
         $response = [
             'status' => 'error',
-            'message' => 'Email or Password is incorrect!',
+            'message' => 'Gagal: Email atau kata sandi salah!',
         ];
 
         $id = $_POST['idAnggota'];
@@ -35,6 +35,7 @@ function logoutHandler()
 {
     logout();
     header("Location: ../../../public/login.php");
+    exit;
 }
 
 function updateDataUser()
