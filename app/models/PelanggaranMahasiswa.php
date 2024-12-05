@@ -400,7 +400,7 @@ class PelanggaranMahasiswa
             } else if ($status == 'baru' && $result['status'] == 'aktif') {
                 return "Gagal: Pemrosesan harus bertahap!";
             } else if (in_array($result['status'], ['nonaktif', 'reject'])) {
-                return "Gagal: Data Tidak bisa diubah!";
+                return "Gagal: Data tidak bisa diubah!";
             } else if ($result['status'] == $status) {
                 return "Gagal: Ubah status!";
             } else if ($status != 'reject' && $idTingkat == '') {

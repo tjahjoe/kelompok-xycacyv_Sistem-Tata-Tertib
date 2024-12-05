@@ -62,9 +62,12 @@ require_once '../app/controllers/getData.php';
           </div>
 
           <?php if ($notHakAksesDpa) {
-            echo '<p style="color: red;">Pemberitahuan: DPA tidak bisa memproses pelanggaran diatas tingkat III!</p>';
+            echo '<p style="color: red;">Gagal: DPA tidak bisa memproses pelanggaran diatas tingkat III!</p>';
           }
           ?>
+
+        <!-- error message -->
+        <div id="hasil" style="color: red; display:none"></div>
 
           <div class="flex-row m-0">
             <?php if ($notHakAksesDpa) {
@@ -75,9 +78,8 @@ require_once '../app/controllers/getData.php';
             <a href="daftar-pelaporan.php?page=1" class="btn btn-gray">Kembali</a>
           </div>
         </div>
+        
         <div class="detail-container">
-          <!-- error message -->
-          <div id="hasil" style="color: red; display:none"></div>
 
           <!-- id pelanggaran mhs -->
           <input type="hidden" name="idPelanggaranMhs" value="<?php echo $data['id']; ?>" id="idPelanggaranMhs">

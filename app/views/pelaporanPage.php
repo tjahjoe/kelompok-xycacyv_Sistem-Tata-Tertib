@@ -36,7 +36,7 @@ require_once '../app/controllers/getData.php';
     <form class="form-container" id="form-pelaporan" enctype="multipart/form-data">
       <input type="text" placeholder="Masukkan NIM Pelanggar *" name="nim" class="input-field" required>
       <select id="tingkatPelanggaran" class="tingkatPelanggaran input-field" name="tingkatPelanggaran" required>
-        <option disabled selected hidden>PIlih Tingkat Pelanggaran *</option>
+        <option disabled selected hidden value="">PIlih Tingkat Pelanggaran *</option>
         <option value="">All</option>
         <option value="I">I</option>
         <option value="I/II">I/II</option>

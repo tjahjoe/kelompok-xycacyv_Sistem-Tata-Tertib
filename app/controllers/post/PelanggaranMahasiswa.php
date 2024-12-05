@@ -15,9 +15,9 @@ function uploadPelanggaran()
             'message' => 'Gagal: data tidak valid!',
         ];
 
-        $nim = $_POST['nim'];
+        $nim = trim($_POST['nim']);
         $jenis = $_POST['jenisPelanggaran'];
-        $catatan = $_POST['deskripsiLaporan'];
+        $catatan = trim($_POST['deskripsiLaporan']);
         $tanggal = date('Y-m-d');
         $pelapor = $_SESSION['user']['id_users'];
         $isEmptyImg = empty($_FILES['lampiran']['name'][0]);
@@ -86,7 +86,7 @@ function updatePelanggaran()
         $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
 
         $idPelanggaran = $_POST['idPelanggaranMhs'];
-        $catatan = $_POST['catatan'];
+        $catatan = trim($_POST['catatan']);
         $status = $_POST['status'];
         $idTigkat = isset($_POST['tingkatSanksiAdmin']) ? $_POST['tingkatSanksiAdmin'] : null;
         $nip = $_SESSION['user']['id_users'];

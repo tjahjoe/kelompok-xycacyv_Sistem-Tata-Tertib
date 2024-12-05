@@ -45,9 +45,9 @@ function updateDataUser()
         $dosenModel = new Dosen();
         $mahasiswaModel = new Mahasiswa();
 
-        $nama = $_POST['nama'];
-        $notelp = $_POST['notelp'];
+        $nama = trim($_POST['nama']);
         $id = $_SESSION['user']['id_users'];
+        $notelp = trim($_POST['notelp']);
         $role = $_SESSION['user']['role'];
 
         $message = "";

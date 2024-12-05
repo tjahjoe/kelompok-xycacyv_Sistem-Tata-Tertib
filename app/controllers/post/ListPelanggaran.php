@@ -7,7 +7,7 @@ function uploadListPelanggaran()
         $listPelanggaranModel = new ListPelanggaran();
 
         $tingkat = $_POST['tingkatPelanggaran'];
-        $nama = $_POST['namaPelanggaran'];
+        $nama = trim($_POST['namaPelanggaran']);
 
         $result = false;
         $message = "";
@@ -39,7 +39,7 @@ function updateListPelanggaran()
         $listPelanggaranModel = new ListPelanggaran();
 
         $id = $_POST['idPelanggaran'];
-        $nama = $_POST['namaPelanggaran'];
+        $nama = trim($_POST['namaPelanggaran']);
         $tingkat = $_POST['tingkatPelanggaran'];
 
         $result = false;
