@@ -57,7 +57,7 @@ function InfoProfile($data)
 <?php
   }
   else{
-    echo "<p style='margin:20px auto; '>Data is not available</p>";
+    echo "<p style='margin:20px auto; '>Data tidak ditemukan!</p>";
   }
 }
 ?>

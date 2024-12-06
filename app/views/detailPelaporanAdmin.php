@@ -30,6 +30,7 @@ require_once '../app/controllers/getData.php';
   $data = detailPelaporan($_GET['id'], true); //data detail pelaporan
 
   $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']);
+  var_dump($dataTingkatPelanggaran);
   ?>
 
   <div class="container pt-5">
@@ -51,7 +52,6 @@ require_once '../app/controllers/getData.php';
 
       $roleUser = $_SESSION['user']['role'];
       $notHakAksesDpa = $roleUser == 'dpa' && !in_array($tingkatPelanggaran, ['V', 'IV', "III"]);
-
     ?>
       <form id="updatePelaporan" method="post">
         <div class="flex-between items-end">
@@ -184,7 +184,7 @@ require_once '../app/controllers/getData.php';
       </form>
     <?php
     } else {
-      echo "<p style='margin:20px auto;'>Data is not available</p>";
+      echo "<p style='margin:20px;'>Data tidak ditemukan!</p>";
     }
     ?>
 

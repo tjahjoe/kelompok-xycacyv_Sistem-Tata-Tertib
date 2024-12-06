@@ -67,9 +67,12 @@ const switchTab = () => {
 
         profileForm.classList.remove("active");
         event.preventDefault();
+        // reset semua tablink/tab content agar tidak memiliki class active
         tabLink.forEach((tab) => tab.classList.remove("active"));
         tabContent.forEach((content) => content.classList.remove("active"));
-        this.classList.add("active");
+        this.classList.add("active"); // tab link diberi class active
+
+        // menambahkan class active pada id tab contentnya
         document
           .querySelector(this.getAttribute("href"))
           .classList.add("active");
@@ -88,11 +91,13 @@ const switchTabSubMenu = () => {
       link.addEventListener("click", function (event) {
         event.preventDefault();
 
+        // reset semua tab sublink/tab subcontent agar tidak memiliki class active
         tabSubMenu.forEach((tab) => tab.classList.remove("active"));
         tabSubContent.forEach((content) => content.classList.remove("active"));
 
-        this.classList.add("active");
+        this.classList.add("active");// tab sublink diberi class active
 
+        // menambahkan class active pada id tab subcontentnya
         document
           .querySelector(this.getAttribute("href"))
           .classList.add("active");
@@ -122,6 +127,7 @@ const updateBadge = () => {
     '.badge-contain input[type="radio"]'
   );
 
+  // Untuk memastikan badge yang terkait dengan radio button yang dipilih mendapatkan class yang sesuai.
   radios.forEach((radio, index) => {
     if (radio.checked) {
       const forValue = badges[index].getAttribute("for");
@@ -205,7 +211,7 @@ const uploadFile = () => {
   }
 };
 
-// UNTUK MENAMPILKAN PREVIEW PAGE YANG TELAH DIUPLOAD
+// UNTUK MENAMPILKAN PREVIEW IMAGE YANG TELAH DIUPLOAD
 const changePhoto = () => {
   const fileInput = document.getElementById("change-photo");
   const profileImage = document.getElementById("profile-image");

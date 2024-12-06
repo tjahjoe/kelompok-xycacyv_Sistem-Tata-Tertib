@@ -39,7 +39,7 @@ require_once '../app/controllers/getData.php';
   <?php
     DetailSection($data);
     } else {
-      echo "<p style='margin:20px auto;'>Data is not available</p>";
+      echo "<p style='margin:20px;'>Data tidak ditemukan!</p>";
     }
   ?>
 

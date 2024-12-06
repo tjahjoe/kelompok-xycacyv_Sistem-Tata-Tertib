@@ -59,7 +59,7 @@ $(document).ready(function () {
           }
         } else {
           $(".table-content tbody").html(
-            "<tr><td colspan='7'>Data Not Found</td></tr>"
+            "<tr><td colspan='7'>Data tidak ditemukan!</td></tr>"
           );
         }
       }
@@ -95,7 +95,7 @@ $(document).ready(function () {
           }
         } else {
           $(".table-content tbody").html(
-            "<tr><td colspan='7'>Data Not Found</td></tr>"
+            "<tr><td colspan='7'>Data tidak ditemukan!</td></tr>"
           );
         }
       }

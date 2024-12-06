@@ -83,6 +83,7 @@ require_once '../app/controllers/getData.php';
         <div class="menu">
           <a href="#kelola-peraturan-tatib" class="tab-sublink active">Kelola Peraturan Tata Tertib </a>
           <a href="#kelola-surat-pernyataan" class="tab-sublink">Kelola Surat Pernyataan</a>
+          <a href="#kelola-pengguna" class="tab-sublink">Kelola Pengguna</a>
         </div>
 
         <!-- KELOLA TATIB -->
@@ -103,6 +104,25 @@ require_once '../app/controllers/getData.php';
           
           <?php KelolaTemplateSurat()?>
         </div>
+
+        <!-- KELOLA USER -->
+        <div class="tab-subcontent" id="kelola-pengguna">
+          <div class="head-tab-content">
+            <h3>Kelola Pengguna</h3>
+          </div>
+
+          <div id="error-kelolaUser" style="color: red; display:none"></div>
+          
+          <?php
+          var_dump($user_data);
+          // if($user_data){
+          //   TableContent($user_data, 'detail-user');
+          // }else{
+          //   echo "<p>Data Kosong</p>";
+          // }
+          ?>
+          <p>Data Kosong</p>
+        </div>
       </div>
 
       <!-- RIWAYAT PELAPORAN -->
@@ -111,6 +131,7 @@ require_once '../app/controllers/getData.php';
           <h2>Riwayat Pelaporan</h2>
         </div>
         <?php
+          var_dump($dataPelaporan);
         if ($dataPelaporan) {
           TableContent($dataPelaporan, 'detail-pelaporan');
         } else {

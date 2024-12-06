@@ -3,8 +3,7 @@ require_once 'badge.php';
 require_once 'buktiBox.php';
 
 function DetailSection($data)
-{
-  if (!empty($data)) { ?>
+{ ?>
     <div class="detail-container">
       <?php 
       foreach ($data as $kolom => $nilai) {
@@ -46,9 +45,6 @@ function DetailSection($data)
     </div>
     
     <?php BuktiBox(); ?>
-  <?php 
-  } else {
-    echo "<p style='margin:20px auto;'>Data is not available</p>";
-  }
+  <?php
 }
 ?>

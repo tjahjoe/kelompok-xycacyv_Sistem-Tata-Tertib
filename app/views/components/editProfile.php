@@ -54,7 +54,7 @@ function EditProfile($data)
 
     </form>
   <?php } else {
-    echo "<p>Data is not available</p>";
+    echo "<p>Data tidak ditemukan!</p>";
   } ?>
 
 <?php } ?>
