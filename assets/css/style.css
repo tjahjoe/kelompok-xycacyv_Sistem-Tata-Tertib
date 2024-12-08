@@ -927,6 +927,7 @@ span.update-tatib{
 .detail-item h4, .detail-item p, .detail-item label:not([class]), .detail-item input, .detail-item select, .detail-item textarea{
   font-family: "Inter", sans-serif;
   padding: 13px;
+  font-size: 1em;
 }
 
 .detail-item h4, .detail-item label:not([class]){

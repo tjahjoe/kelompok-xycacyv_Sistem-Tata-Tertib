@@ -109,7 +109,10 @@ require_once '../app/controllers/getData.php';
         <!-- KELOLA USER -->
         <div class="tab-subcontent" id="kelola-pengguna">
           <div class="head-tab-content">
-            <h3>Kelola Pengguna</h3>
+            <div class="flex-between m-0">
+              <h3>Kelola Pengguna</h3>
+              <a class="btn btn-primary" href="./tambah-user.php">Tambah Pengguna</a>
+            </div>
           </div>
           <form id="search-user-nim" class="search-input-container">
             <input type="text" class="search-nim"
@@ -170,7 +173,6 @@ require_once '../app/controllers/getData.php';
           <h2>Riwayat Pelaporan</h2>
         </div>
         <?php
-        var_dump($dataPelaporan);
         if ($dataPelaporan) {
           TableContent($dataPelaporan, 'detail-pelaporan');
         } else {

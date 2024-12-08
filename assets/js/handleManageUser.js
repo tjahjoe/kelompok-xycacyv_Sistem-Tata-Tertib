@@ -46,4 +46,26 @@ $(document).ready(function () {
       searchUser();
     }
   );
+
+  $("#add-role").on("change", function (e) {
+    e.preventDefault();
+    let role = $(this).val();
+  
+    if (role === 'mahasiswa') {
+      // Cek apakah elemen sudah ada sebelumnya
+        $("#form-add-user .detail-container").append(`
+          <div class="detail-item" id="select-dpa">
+            <label for="dpa">DPA</label>
+            <select name="dpa" id="dpa">
+              <option value="1">1</option>
+            </select>
+          </div>
+        `);
+    } else {
+      // Sembunyikan elemen jika bukan mahasiswa
+      $("#select-dpa").empty();
+      $("#select-dpa").prop("disabled", true);
+    }
+  });
+  
 });

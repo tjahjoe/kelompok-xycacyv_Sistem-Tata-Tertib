@@ -10,7 +10,7 @@ require_once '../app/controllers/getData.php';
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Detail User | SiTatib</title>
+  <title>Tambah User | SiTatib</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,18 +24,9 @@ require_once '../app/controllers/getData.php';
   <?php Navbar(true); ?>
 
   <div class="container pt-5 mt-2">
-    <?php
-    $idUser = $_GET['id'];
-    $roleUser = $_GET['role'];
-    $user_data = dataUserByAdmin($idUser, $roleUser);
-    if (!empty($user_data)) {
-      FormUser($user_data, 'edit-user');
-    } else {
-      echo "<p style='margin:20px;'>Data tidak ditemukan!</p>";
-    }
-    ?>
-
+    <?php  FormUser(null, 'add-user'); ?>
   </div>
+  
   <script src="../assets/js/handleManageUser.js"></script>
   <script src="../assets/js/script.js"></script>
 </body>
