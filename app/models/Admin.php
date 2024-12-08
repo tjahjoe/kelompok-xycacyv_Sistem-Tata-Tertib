@@ -18,7 +18,8 @@ class Admin
         a.nama_admin as nama, 
         a.email, 
         u.role, 
-        u.foto_diri 
+        u.foto_diri,
+        a.status 
         FROM " . $this->table . " a
         JOIN Users u
         ON u.id_users = a.nip

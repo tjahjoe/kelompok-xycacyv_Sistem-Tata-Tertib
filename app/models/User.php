@@ -1,18 +1,21 @@
 <?php
 require_once __DIR__ . "/../../config/database.php";
-class User{
+class User
+{
     private $conn;
     private $table = "Users";
 
-    public function __construct(){
+    public function __construct()
+    {
         $database = new Database();
         $this->conn = $database->getConneection();
     }
 
-    public function login($username, $password){
-        
+    public function login($username, $password)
+    {
+
         $query = "SELECT * FROM " . $this->table . " WHERE id_users = ? AND password = ?";
-        $this -> conn -> beginTransaction();
+        $this->conn->beginTransaction();
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $username);
         $stmt->bindParam(2, $password);
@@ -36,13 +39,48 @@ class User{
         $stmt->execute();
 
         $isValue = $stmt->fetch(PDO::FETCH_ASSOC);
-        $this -> conn ->commit();
+        $this->conn->commit();
         return $isValue ? $result : false;
     }
 
-    public function checkPhotoName($id){
+    public function getDataUsers()
+    {
+        $query = "SELECT 
+        m.nim 'ID', 
+        m.nama_mahasiswa 'NAMA', 
+        m.email 'EMAIL', 
+        u.role 'PEKERJAAN', 
+        m.notelp 'TELEPON' 
+        FROM Mahasiswa m
+        JOIN Users u on u.id_users = m.nim
+        UNION
+        SELECT 
+        d.nip,
+        d.nama_dosen,
+        d.email,
+        u.role,
+        d.notelp
+        FROM Dosen d
+        JOIN Users u on u.id_users = d.nip
+        UNION
+        SELECT 
+        a.nip,
+        a.nama_admin,
+        a.email,
+        u.role,
+        a.notelp
+        FROM Admin a
+        JOIN Users u on u.id_users = a.nip";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results ? $results : false;
+    }
+
+    public function checkPhotoName($id)
+    {
         $query = "SELECT foto_diri FROM " . $this->table . " WHERE id_users = ?";
-        $this -> conn -> beginTransaction();
+        $this->conn->beginTransaction();
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $id);
         $stmt->execute();
@@ -50,8 +88,9 @@ class User{
         return $result ? $result : false;
     }
 
-    public function changePhoto($id, $foto){
-        $query = "UPDATE ". $this->table ."
+    public function changePhoto($id, $foto)
+    {
+        $query = "UPDATE " . $this->table . "
         SET foto_diri = ? 
         WHERE id_users = ?";
 

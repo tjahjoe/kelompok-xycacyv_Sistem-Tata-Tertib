@@ -15,7 +15,8 @@ class Dosen{
         d.nama_dosen as nama, 
         d.email, 
         u.role, 
-        u.foto_diri 
+        u.foto_diri,
+        d.status
         FROM " . $this->table . " d
         JOIN Users u
         ON u.id_users = d.nip 

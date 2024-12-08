@@ -3,6 +3,7 @@ require_once __DIR__ . "/../models/ListPelanggaran.php";
 require_once __DIR__ . "/../models/Mahasiswa.php";
 require_once __DIR__ . "/../models/Dosen.php";
 require_once __DIR__ . "/../models/Admin.php";
+require_once __DIR__ . "/../models/User.php";
 require_once __DIR__ . "/../models/PelanggaranMahasiswa.php";
 require_once __DIR__ . "/utils/setData.php";
 require_once __DIR__ . "/utils/check.php";
@@ -14,6 +15,42 @@ function ListPelanggaran()
     return $listPelanggaran;
 }
 
+function dataUsers(){
+    if (isLogin()) {
+        $role = $_SESSION['user']['role'];
+        if ($role == 'admin') {
+            $userModel = new User();
+            $datas = $userModel->getDataUsers();
+            return $datas;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+function dataUserByAdmin($id , $role){
+    if (isLogin()) {
+        if ($role == 'mahasiswa') {
+            $mahasiswaModel = new Mahasiswa();
+            $dataMahasiwa = $mahasiswaModel->getDataMahasiswa($id);
+            return $dataMahasiwa;
+        } else if (in_array($role, ['dpa', 'sekjur', 'dosen', 'kps'])) {
+            $dosenModel = new Dosen();
+            $dataDosen = $dosenModel->getDataDosen($id);
+            return $dataDosen;
+        } else if ($role == 'admin') {
+            $adminModel = new Admin();
+            $dataAdmin = $adminModel->getDataAdmin($id);
+            return $dataAdmin;
+        } else{
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
 
 //pengaturan akun
 function dataUser()
