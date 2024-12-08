@@ -68,7 +68,7 @@ function KelolaTatib($data) {
               </tr>
           <?php }
           } else {
-            echo "<tr><td colspan='4'>No data available</td></tr>";
+            echo "<tr><td colspan='4'>Data tidak tersedia!</td></tr>";
           } ?>
         </tbody>
       </table>

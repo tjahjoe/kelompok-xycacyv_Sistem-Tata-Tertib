@@ -827,6 +827,10 @@ span.btn-edit-profile{
   max-width: 350px;
 }
 
+.table-content .max-text{
+  max-width: 170px;
+}
+
 .table-content td.text-left{
   text-align:left;
 }
@@ -1178,6 +1182,18 @@ img.lampiran_bukti_full{
   outline: none;
   box-sizing: border-box;
   border-bottom-left-radius: 10px;
+}
+
+.search-nim{
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  color: #666;
+  outline: none;
+  box-sizing: border-box;
 }
 
 .search-text::placeholder {

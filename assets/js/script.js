@@ -219,8 +219,9 @@ const changePhoto = () => {
 
   if (fileInput && profileImage && deletePhoto) {
     fileInput.addEventListener("change", function (event) {
-      const file = event.target.files[0];
+      const file = event.target.files[0]; //
       if (file) {
+        // Membuat URL sementara untuk file yang dipilih
         const imageUrl = URL.createObjectURL(file);
         console.log(imageUrl);
         profileImage.src = imageUrl;

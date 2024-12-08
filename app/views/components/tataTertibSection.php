@@ -39,7 +39,7 @@ function TataTertibSection($data)
               </tr>
           <?php }
           } else {
-            echo "<tr><td colspan='3'>No data available</td></tr>";
+            echo "<tr><td colspan='3'>Data tidak tersedia!</td></tr>";
           } ?>
         </tbody>
       </table>

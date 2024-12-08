@@ -39,7 +39,7 @@ function TableContent($data, $linkDetail)
     </div>
 <?php
   } else {
-    echo "<p>No data available.</p>";
+    echo "<p>Data tidak tersedia!</p>";
   }
 }
 ?>

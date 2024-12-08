@@ -30,10 +30,11 @@ require_once '../app/controllers/getData.php';
 <body>
   <!-- DATA -->
   <?php
-    $user_data = dataUser(); // data user
-    $dataPelanggaran = dataPelanggaran(); //data pelanggaran user
-    $dataListPelanggaran = ListPelanggaran(); //data list tatib
-    $dataPelaporan = dataPelapor(); //data pelaporan dari user
+  $user_data = dataUser(); // data user
+  $usersData = dataUsers(); // data user
+  $dataPelanggaran = dataPelanggaran(); //data pelanggaran user
+  $dataListPelanggaran = ListPelanggaran(); //data list tatib
+  $dataPelaporan = dataPelapor(); //data pelaporan dari user
   ?>
 
   <!-- NAVBAR -->
@@ -49,7 +50,7 @@ require_once '../app/controllers/getData.php';
         <div class="head-tab-content">
           <h2>Profil Saya</h2>
         </div>
-        <?php InfoProfile($user_data);?>
+        <?php InfoProfile($user_data); ?>
       </div>
 
       <!-- EDIT PROFILE -->
@@ -101,8 +102,8 @@ require_once '../app/controllers/getData.php';
           </div>
 
           <div id="error-updateSurat" style="color: red; display:none"></div>
-          
-          <?php KelolaTemplateSurat()?>
+
+          <?php KelolaTemplateSurat() ?>
         </div>
 
         <!-- KELOLA USER -->
@@ -110,18 +111,56 @@ require_once '../app/controllers/getData.php';
           <div class="head-tab-content">
             <h3>Kelola Pengguna</h3>
           </div>
+          <div class="search-input-container">
+            <input type="text" class="search-nim"
+              placeholder="Tulis NIM yang ingin dicari..."
+              name="searchNim" id="searchNim"
+              value="">
+            <button class="btn btn-gray"
+              type="submit"><img src="../assets/images/send.svg"
+                alt=""></button>
+          </div>
 
           <div id="error-kelolaUser" style="color: red; display:none"></div>
-          
-          <?php
-          var_dump($user_data);
-          // if($user_data){
-          //   TableContent($user_data, 'detail-user');
-          // }else{
-          //   echo "<p>Data Kosong</p>";
-          // }
+
+          <div class="table-container">
+      <table class="table-content">
+        <thead>
+          <tr>
+            <th>NO</th>
+            <th>ID</th>
+            <th>NAMA</th>
+            <th>EMAIL</th>
+            <th>PEKERJAAN</th>
+            <th>TELEPON</th>
+            <th>STATUS</th>
+            <th>AKSI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php if (!empty($usersData)) {
+            $index = 0;
           ?>
-          <p>Data Kosong</p>
+            <?php foreach ($usersData as $record) {
+              $index++;
+            ?>
+              <tr>
+                <td><?php echo $index ?></td>
+                <td class="text-left normal-white-space"><?php echo $record['ID'] ?></td>
+                <td class="text-left max-text truncate capitalize-text"><?php echo $record['NAMA'] ?></td>
+                <td><?php echo $record['EMAIL'] ?></td>
+                <td class="capitalize-text"><?php echo $record['PEKERJAAN'] ?></td>
+                <td><?php echo $record['TELEPON'] ?></td>
+                <td class="capitalize-text"><?php echo $record['STATUS'] ?></td>
+                <td><a href="detail-user.php?id=<?php echo $record['ID'] ?>&role=<?php echo $record['PEKERJAAN'] ?>">Detail</a></td>
+              </tr>
+          <?php }
+          } else {
+            echo "<tr><td colspan='8'>Data tidak tersedia!</td></tr>";
+          } ?>
+        </tbody>
+      </table>
+    </div>
         </div>
       </div>
 
@@ -131,7 +170,7 @@ require_once '../app/controllers/getData.php';
           <h2>Riwayat Pelaporan</h2>
         </div>
         <?php
-          var_dump($dataPelaporan);
+        var_dump($dataPelaporan);
         if ($dataPelaporan) {
           TableContent($dataPelaporan, 'detail-pelaporan');
         } else {
@@ -139,7 +178,7 @@ require_once '../app/controllers/getData.php';
         }
         ?>
       </div>
-      
+
       <!-- ALERT -->
       <?php
       // ALERT LOGOUT
