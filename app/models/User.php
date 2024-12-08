@@ -50,7 +50,8 @@ class User
         m.nama_mahasiswa 'NAMA', 
         m.email 'EMAIL', 
         u.role 'PEKERJAAN', 
-        m.notelp 'TELEPON' 
+        m.notelp 'TELEPON',
+        m.status 'STATUS' 
         FROM Mahasiswa m
         JOIN Users u on u.id_users = m.nim
         UNION
@@ -59,7 +60,8 @@ class User
         d.nama_dosen,
         d.email,
         u.role,
-        d.notelp
+        d.notelp,
+        d.status
         FROM Dosen d
         JOIN Users u on u.id_users = d.nip
         UNION
@@ -68,7 +70,8 @@ class User
         a.nama_admin,
         a.email,
         u.role,
-        a.notelp
+        a.notelp,
+        a.status
         FROM Admin a
         JOIN Users u on u.id_users = a.nip";
         $stmt = $this->conn->prepare($query);
