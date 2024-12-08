@@ -80,6 +80,64 @@ class User
         return $results ? $results : false;
     }
 
+    public function getDataUsersByFilter($id){
+        $conditionMhs = '';
+        $conditionDsn = '';
+        $conditionAdm = '';
+        $param = '';
+        if ($id) {
+            $conditionMhs = 'WHERE m.nim LIKE ?';
+            $conditionDsn = 'WHERE d.nip LIKE ?';
+            $conditionAdm = 'WHERE a.nip LIKE ?';
+            $param = '%' . $id . '%';
+        }
+        $query = "SELECT 
+        m.nim 'ID', 
+        m.nama_mahasiswa 'NAMA', 
+        m.email 'EMAIL', 
+        u.role 'PEKERJAAN', 
+        m.notelp 'TELEPON',
+        m.status 'STATUS' 
+        FROM Mahasiswa m
+        JOIN Users u on u.id_users = m.nim
+        $conditionMhs
+        UNION
+        SELECT 
+        d.nip,
+        d.nama_dosen,
+        d.email,
+        u.role,
+        d.notelp,
+        d.status
+        FROM Dosen d
+        JOIN Users u on u.id_users = d.nip
+        $conditionDsn
+        UNION
+        SELECT 
+        a.nip,
+        a.nama_admin,
+        a.email,
+        u.role,
+        a.notelp,
+        a.status
+        FROM Admin a
+        JOIN Users u on u.id_users = a.nip
+        $conditionAdm";
+        $stmt = $this->conn->prepare($query);
+        if ($id) {
+            $stmt->bindParam(1, $param);
+            $stmt->bindParam(2, $param);
+            $stmt->bindParam(3, $param);
+        }
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results ? $results : false;
+    }
+
+    public function uploadUser(){
+        
+    }
+
     public function checkPhotoName($id)
     {
         $query = "SELECT foto_diri FROM " . $this->table . " WHERE id_users = ?";

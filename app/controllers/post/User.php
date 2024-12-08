@@ -38,6 +38,24 @@ function logoutHandler()
     exit;
 }
 
+function uploadUser(){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+       
+    }
+}
+
+function updateUser(){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        
+    }
+}
+
+function DeleteUser(){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        
+    }
+}
+
 function updateDataUser()
 {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

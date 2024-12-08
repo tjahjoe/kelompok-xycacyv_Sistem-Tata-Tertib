@@ -11,6 +11,12 @@ if ($action == 'login') {//user
     login();
 } else if ($action == 'logout') {//user
     logoutHandler();
+} else if ($action == 'uploadUser') {//user
+    uploadUser();
+} else if ($action == 'updateUser') {//user
+    updateUser();
+} else if ($action == 'deleteUser') {//user
+    DeleteUser();
 } else if ($action == 'uploadPelanggaran') {//PelanggaranMahasiswa
     uploadPelanggaran();
 } else if ($action == 'updatePelanggaran') {//pelanggaranMahasiswa
