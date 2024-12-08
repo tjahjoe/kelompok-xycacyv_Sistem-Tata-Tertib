@@ -59,7 +59,7 @@ a{
 }
 
 .mt-2{
-  margin-top: 20px;
+  margin-top: 20px!important;
 }
 
 /* LOGIN PAGE */
@@ -701,7 +701,7 @@ section#footerLapor {
   font-weight: 600;
 }
 
-.input-editprofile input{
+.input-editprofile input, .input-editprofile select{
   font-family: "Inter", sans-serif;
   font-size: 1em;
   padding: 15px;

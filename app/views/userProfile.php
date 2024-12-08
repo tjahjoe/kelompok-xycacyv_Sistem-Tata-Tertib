@@ -111,7 +111,7 @@ require_once '../app/controllers/getData.php';
           <div class="head-tab-content">
             <h3>Kelola Pengguna</h3>
           </div>
-          <div class="search-input-container">
+          <form id="search-user-nim" class="search-input-container">
             <input type="text" class="search-nim"
               placeholder="Tulis NIM yang ingin dicari..."
               name="searchNim" id="searchNim"
@@ -119,48 +119,48 @@ require_once '../app/controllers/getData.php';
             <button class="btn btn-gray"
               type="submit"><img src="../assets/images/send.svg"
                 alt=""></button>
-          </div>
+          </form>
 
           <div id="error-kelolaUser" style="color: red; display:none"></div>
 
           <div class="table-container">
-      <table class="table-content">
-        <thead>
-          <tr>
-            <th>NO</th>
-            <th>ID</th>
-            <th>NAMA</th>
-            <th>EMAIL</th>
-            <th>PEKERJAAN</th>
-            <th>TELEPON</th>
-            <th>STATUS</th>
-            <th>AKSI</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php if (!empty($usersData)) {
-            $index = 0;
-          ?>
-            <?php foreach ($usersData as $record) {
-              $index++;
-            ?>
-              <tr>
-                <td><?php echo $index ?></td>
-                <td class="text-left normal-white-space"><?php echo $record['ID'] ?></td>
-                <td class="text-left max-text truncate capitalize-text"><?php echo $record['NAMA'] ?></td>
-                <td><?php echo $record['EMAIL'] ?></td>
-                <td class="capitalize-text"><?php echo $record['PEKERJAAN'] ?></td>
-                <td><?php echo $record['TELEPON'] ?></td>
-                <td class="capitalize-text"><?php echo $record['STATUS'] ?></td>
-                <td><a href="detail-user.php?id=<?php echo $record['ID'] ?>&role=<?php echo $record['PEKERJAAN'] ?>">Detail</a></td>
-              </tr>
-          <?php }
-          } else {
-            echo "<tr><td colspan='8'>Data tidak tersedia!</td></tr>";
-          } ?>
-        </tbody>
-      </table>
-    </div>
+            <table class="table-content">
+              <thead>
+                <tr>
+                  <th>NO</th>
+                  <th>ID</th>
+                  <th>NAMA</th>
+                  <th>EMAIL</th>
+                  <th>PEKERJAAN</th>
+                  <th>TELEPON</th>
+                  <th>STATUS</th>
+                  <th>AKSI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php if (!empty($usersData)) {
+                  $index = 0;
+                ?>
+                  <?php foreach ($usersData as $record) {
+                    $index++;
+                  ?>
+                    <tr>
+                      <td><?php echo $index ?></td>
+                      <td class="text-left normal-white-space"><?php echo $record['ID'] ?></td>
+                      <td class="text-left max-text truncate capitalize-text"><?php echo $record['NAMA'] ?></td>
+                      <td><?php echo $record['EMAIL'] ?></td>
+                      <td class="capitalize-text"><?php echo $record['PEKERJAAN'] ?></td>
+                      <td><?php echo $record['TELEPON'] ?></td>
+                      <td class="capitalize-text"><?php echo $record['STATUS'] ?></td>
+                      <td><a href="detail-user.php?id=<?php echo $record['ID'] ?>&role=<?php echo $record['PEKERJAAN'] ?>">Detail</a></td>
+                    </tr>
+                <?php }
+                } else {
+                  echo "<tr><td colspan='8'>Data tidak tersedia!</td></tr>";
+                } ?>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -209,6 +209,7 @@ require_once '../app/controllers/getData.php';
     </div>
   </div>
   </div>
+  <script src="../assets/js/handleManageUser.js"></script>
   <script src="../assets/js/handleTataTertib.js"></script>
   <script src="../assets/js/handleUpdateSurat.js"></script>
   <script src="../assets/js/handleEditProfile.js"></script>

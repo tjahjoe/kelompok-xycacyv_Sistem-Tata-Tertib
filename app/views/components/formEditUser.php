@@ -4,9 +4,8 @@ function FormEditUser( $data)
 ?>
   <?php
   if (!empty($data)) {
-    var_dump($data)
   ?>
-    <form class="form-container" id="form-edit" enctype="multipart/form-data">
+    <form class="form-container" id="form-edit<?= $data['role']?>" enctype="multipart/form-data">
       <div class="flex-between m-0">
         <div class="flex-row m-0">
           <?php
@@ -24,7 +23,7 @@ function FormEditUser( $data)
 
         <div class="flex-row m-0">
           <button class="btn btn-primary" type="submit">Simpan</button>
-          <button type="button" class="btn btn-gray" id="back-to-profile">Kembali</button>
+          <a href="profile-user.php" class="btn btn-gray">Kembali</a>
         </div>
       </div>
 
@@ -54,11 +53,29 @@ function FormEditUser( $data)
       </div>
       <div class="input-editprofile">
         <label for="role">Pekerjaan</label>
+        <?php if($data['role'] == 'mahasiswa'){?>
         <input type="text" name="role" value="<?php echo $data['role'] ?>" class="capitalize-text" id="role" disabled>
+        <?php }else{?>
+        <select name="role" class="capitalize-text" id="role" >
+          <option value="admin" <?php echo ($data['role'] === 'admin') ? 'selected' : ''; ?>>Admin</option>
+          <option value="dosen" <?php echo ($data['role'] === 'dosen') ? 'selected' : ''; ?>>Dosen</option>
+          <option value="dpa" <?php echo ($data['role'] === 'dpa') ? 'selected' : ''; ?>>DPA</option>
+          <option value="kps" <?php echo ($data['role'] === 'kps') ? 'selected' : ''; ?>>KPS</option>
+          <option value="sekjur" <?php echo ($data['role'] === 'sekjur') ? 'selected' : ''; ?>>Sekjur</option>
+        </select>
+        <?php }?>
       </div>
+      <?php if($data['role'] == 'mahasiswa'){?>
+      <div class="input-editprofile">
+        <label for="dpa">DPA</label>
+        <select name="dpa" id="dpa">
+          <option value="1" <?php //echo ($data['dpa'] === 'aktif') ? 'selected' : ''; ?>>1</option>
+        </select>
+      </div>
+      <?php }?>
       <div class="input-editprofile">
         <label for="status">Status</label>
-        <select name="status" class="capitalize-text" id="status" disabled>
+        <select name="status" class="capitalize-text" id="status">
           <option value="aktif" <?php echo ($data['status'] === 'aktif') ? 'selected' : ''; ?>>Aktif</option>
           <option value="nonaktif" <?php echo ($data['status'] === 'nonaktif') ? 'selected' : ''; ?>>Nonaktif</option>
         </select>

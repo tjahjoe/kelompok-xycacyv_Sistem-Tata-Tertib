@@ -23,9 +23,11 @@ require_once '../app/controllers/getData.php';
   <!-- NAVBAR -->
   <?php Navbar(true); ?>
 
-  <div class="container pt-5">
+  <div class="container pt-5 mt-2">
     <?php
-    $user_data = dataUser();
+    $idUser = $_GET['id'];
+    $roleUser = $_GET['role'];
+    $user_data = dataUserByAdmin($idUser, $roleUser);
     if (!empty($user_data)) {
       FormEditUser($user_data);
     } else {
