@@ -5,6 +5,7 @@ function FormUser($data, $type)
   <?php
   if ($type == 'edit-user') {
     if(!empty($data)){
+      var_dump($data);
   ?>
     <form class="form-container" id="form-edit<?= $data['role'] ?>" enctype="multipart/form-data">
       <div class="flex-between m-0">
@@ -75,6 +76,14 @@ function FormUser($data, $type)
                                 ?>>1</option>
             </select>
           </div>
+          <div class="detail-item">
+          <label for="notelpOrtu">Nomor Telepon Orang Tua</label>
+          <input type="text" name="notelpOrtu" value="<?php // echo $data['notelpOrtu']; ?>" id="notelpOrtu">
+        </div>
+          <div class="detail-item">
+          <label for="namaOrtu">Nama Orang Tua</label>
+          <input type="text" name="namaOrtu" value="<?php // echo $data['namaOrtu']; ?>" id="namaOrtu">
+        </div>
         <?php } ?>
         <div class="detail-item">
           <label for="status">Status</label>
@@ -154,10 +163,14 @@ function FormUser($data, $type)
             <option value="sekjur">Sekjur</option>
           </select>
         </div>
+        <!-- <div class="detail-item">
+          <label for="namaOrtu">Nama Orang Tua</label>
+          <input type="text" name="namaOrtu" value="" id="namaOrtu" placeholder="Masukkan nomor telepon"/>
+        </div>
         <div class="detail-item">
           <label for="notelpOrtu">Nomor Telepon Orang Tua</label>
           <input type="text" name="notelpOrtu" value="" id="notelpOrtu" placeholder="Masukkan nomor telepon"/>
-        </div>
+        </div> -->
           <!-- <div class="detail-item">
             <label for="dpa">DPA</label>
             <select name="dpa" id="dpa">
