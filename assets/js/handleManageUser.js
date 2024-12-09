@@ -51,32 +51,32 @@ $(document).ready(function () {
   $("#add-role").on("change", function (e) {
     e.preventDefault();
     let role = $(this).val();
-
+  
     if (role === "mahasiswa") {
-      // Cek apakah elemen sudah ada sebelumnya
-      $("#form-add-user .detail-container").append(`
-          <div class="detail-item" id="namaOrtu">
-          <label for="namaOrtu">Nama Orang Tua</label>
-          <input type="text" name="namaOrtu" value="" id="namaOrtu" placeholder="Masukkan nomor telepon"/>
-        </div>
-        <div class="detail-item" id="nnotelpOrtu">
-          <label for="notelpOrtu">Nomor Telepon Orang Tua</label>
-          <input type="text" name="notelpOrtu" value="" id="notelpOrtu" placeholder="Masukkan nomor telepon"/>
-        </div>
+      if (!$("#namaOrtu").length) {
+        $("#form-add-user .detail-container").append(`
+          <div class="detail-item" id="namaOrtu-container">
+            <label for="namaOrtu">Nama Orang Tua</label>
+            <input type="text" name="namaOrtu" value="" id="namaOrtu" placeholder="Masukkan nama orang tua"/>
+          </div>
+          <div class="detail-item" id="notelpOrtu-container">
+            <label for="notelpOrtu">Nomor Telepon Orang Tua</label>
+            <input type="text" name="notelpOrtu" value="" id="notelpOrtu" placeholder="Masukkan nomor telepon"/>
+          </div>
         `);
-        $("#select-dpa").show();
-        $("#select-dpa select").prop("disabled", false);
+      }
+  
+      $("#select-dpa").show();
+      $("#select-dpa select").prop("disabled", false);
     } else {
-      // Sembunyikan elemen jika bukan mahasiswa
-      $("#select-dpa").empty();
+      $("#namaOrtu-container").remove();
+      $("#notelpOrtu-container").remove();
+
+      $("#select-dpa").hide();
       $("#select-dpa select").prop("disabled", true);
-      $("#notelpOrtu").empty();
-      $("#notelpOrtu").prop("disabled", true);
-      $("#namaOrtu").empty();
-      $("#namaOrtu").prop("disabled", true);
     }
   });
-
+  
   $("#form-add-user").on("submit", function (e) {
     e.preventDefault();
 
