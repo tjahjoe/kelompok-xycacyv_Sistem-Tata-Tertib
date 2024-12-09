@@ -12,11 +12,14 @@ class Mahasiswa
 
     public function getDataMahasiswa($nim)
     {
+        // nama orang tua dan nomor telepon
         $query = "SELECT 
         m.nim, 
         m.notelp, 
         m.nama_mahasiswa as nama,
         m.email,
+        m.nama_ortu, 
+        m.notelp_ortu,
         u.role,
         u.foto_diri,
         m.status
