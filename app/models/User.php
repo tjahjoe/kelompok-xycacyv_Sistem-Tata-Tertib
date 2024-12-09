@@ -150,12 +150,11 @@ class User
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    private function isValidForUpdate($nimAwal, $nimAkhir, $notelp, $email)
+    private function isValidForUpdate($nim, $notelp, $email)
     {
         // $this->conn->beginTransaction();
 
         $conditions = [
-            ['nim', 'nip', 'nip', $nimAkhir, "Gagal: NIM tidak valid!"],
             ['notelp', 'notelp', 'notelp', $notelp, "Gagal: Nomor telepon tidak valid!"],
             ['email', 'email', 'email', $email, "Gagal: Email tidak valid!"]
         ];
@@ -163,18 +162,17 @@ class User
         foreach ($conditions as [$column1, $column2, $column3, $param, $errorMessage]) {
             $result = $this->checkConditionUniqKey([$column1, $column2, $column3], $param);
             if ($result) {
-                if ($result['id'] != $nimAwal) {
+                if ($result['id'] != $nim) {
                     $this->conn->rollBack();
                     return $errorMessage;
                 }
             }
         }
-
-        // $this->conn->commit();
         return "berhasil";
     }
 
-    private function isValidForUpload($id, $notelp, $email){
+    private function isValidForUpload($id, $notelp, $email)
+    {
         $conditions = [
             ['nim', 'nip', 'nip', $id, "Gagal: NIM tidak valid!"],
             ['notelp', 'notelp', 'notelp', $notelp, "Gagal: Nomor telepon tidak valid!"],
@@ -191,8 +189,9 @@ class User
         return "berhasil";
     }
 
-    private function uploadUser($id, $role){
-        $query = "INSERT INTO ". $this->table ." VALUES (?, ?, ?, ?)";
+    private function uploadUser($id, $role)
+    {
+        $query = "INSERT INTO " . $this->table . " VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $id);
         $stmt->bindParam(2, $id);
@@ -201,7 +200,8 @@ class User
         $stmt->execute();
     }
 
-    public function uploadMahasiswa($nim, $notelp, $nama, $email, $namaOrtu, $notelpOrtu, $nip, $role){
+    public function uploadMahasiswa($nim, $notelp, $nama, $email, $namaOrtu, $notelpOrtu, $nip, $role)
+    {
         $this->conn->beginTransaction();
         $result = $this->isValidForUpload($nim, $notelp, $email);
         if ($result != "berhasil") {
@@ -223,7 +223,8 @@ class User
         return "berhasil";
     }
 
-    public function uploadDosen($nip, $notelp, $nama, $email, $role ){
+    public function uploadDosen($nip, $notelp, $nama, $email, $role)
+    {
         $this->conn->beginTransaction();
         $result = $this->isValidForUpload($nip, $notelp, $email);
         if ($result != "berhasil") {
@@ -242,7 +243,8 @@ class User
         return "berhasil";
     }
 
-    public function uploadAdmin($nip, $notelp, $nama, $email, $role){
+    public function uploadAdmin($nip, $notelp, $nama, $email, $role)
+    {
         $this->conn->beginTransaction();
         $result = $this->isValidForUpload($nip, $notelp, $email);
         if ($result != "berhasil") {
@@ -261,27 +263,180 @@ class User
         return "berhasil";
     }
 
-    public function updateMahasiswa($nim, $nimAkhir, $notelp, $nama, $email, $namaOrtu, $notelpOrtu, $status, $nip){
+    public function updateMahasiswa($nim, $notelp, $nama, $email, $namaOrtu, $notelpOrtu, $status, $nip)
+    {
         $this->conn->beginTransaction();
-        $result = $this->isValidForUpdate($nim, $nimAkhir, $notelp, $email);
+        $result = $this->isValidForUpdate($nim, $notelp, $email);
         if ($result != 'berhasil') {
             return $result;
         }
-        
+        $query = "UPDATE Mahasiswa SET 
+        notelp = ?,
+        nama_mahasiswa = ?,
+        email = ?,
+        nama_ortu = ?,
+        notelp_ortu = ?,
+        status = ?,
+        nip = ?
+        WHERE nim = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $notelp);
+        $stmt->bindParam(2, $nama);
+        $stmt->bindParam(3, $email);
+        $stmt->bindParam(4, $namaOrtu);
+        $stmt->bindParam(5, $notelpOrtu);
+        $stmt->bindParam(6, $status);
+        $stmt->bindParam(7, $nip);
+        $stmt->bindParam(8, $nim);
         $this->conn->commit();
         return "berhasil";
     }
 
-    public function updateDosen(){
+    public function updateDosen($nip, $email, $notelp, $status, $nama, $role)
+    {
+        $this->conn->beginTransaction();
+        $result = $this->isValidForUpdate($nip, $notelp, $email);
+        if ($result != 'berhasil') {
+            return $result;
+        }
 
+        $query = "UPDATE Users SET 
+        role = ?,
+        WHERE id_users = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $role);
+        $stmt->bindParam(2, $nip);
+        $stmt->execute();
+
+        $query = "UPDATE Dosen SET 
+        email =?, 
+        notelp = ?, 
+        status = ?, 
+        nama_dosen = ?
+        WHERE nip = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $email);
+        $stmt->bindParam(2, $notelp);
+        $stmt->bindParam(3, $status);
+        $stmt->bindParam(4, $nama);
+        $stmt->bindParam(5, $nip);
+        $stmt->execute();
+        $this->conn->commit();
+        return "berhasil";
     }
 
-    public function updateAdminToDosen(){
+    public function updateAdmin($nip, $email, $notelp, $status, $nama, $role)
+    {
+        $this->conn->beginTransaction();
+        $result = $this->isValidForUpdate($nip, $notelp, $email);
+        if ($result != 'berhasil') {
+            return $result;
+        }
 
+        $query = "UPDATE Users SET 
+        role = ?,
+        WHERE id_users = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $role);
+        $stmt->bindParam(2, $nip);
+        $stmt->execute();
+
+        $query = "UPDATE Admin SET 
+        email =?, 
+        notelp = ?, 
+        status = ?, 
+        nama_admin = ?
+        WHERE nip = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $email);
+        $stmt->bindParam(2, $notelp);
+        $stmt->bindParam(3, $status);
+        $stmt->bindParam(4, $nama);
+        $stmt->bindParam(5, $nip);
+        $stmt->execute();
+        $this->conn->commit();
+        return "berhasil";
     }
 
-    public function updateDosenToAdmin(){
 
+    public function updateAdminToDosen($nip, $email, $notelp, $status, $nama, $role)
+    {
+        $this->conn->beginTransaction();
+        $result = $this->isValidForUpdate($nip, $notelp, $email);
+        if ($result != 'berhasil') {
+            return $result;
+        }
+
+        $query = "UPDATE Users SET 
+        role = ?,
+        WHERE id_users = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $role);
+        $stmt->bindParam(2, $_SESSION);
+        $stmt->execute();
+
+        $query = "UPDATE Admin SET 
+        email =?, 
+        notelp = ?, 
+        status = ?, 
+        nama_admin = ?
+        WHERE nip = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $email);
+        $stmt->bindParam(2, $notelp);
+        $stmt->bindParam(3, $status);
+        $stmt->bindParam(4, $nama);
+        $stmt->bindParam(5, $nip);
+        $stmt->execute();
+
+        $query = "INSERT INTO Dosen SELECT * FROM Admin WHERE nip = ?
+        GO
+        DELETE Admin WHERE nip = ?";
+        $stmt->bindParam(1, $nip);
+        $stmt->bindParam(2, $nip);
+        $stmt->execute();
+        $this->conn->commit();
+        return "berhasil";
+    }
+
+    public function updateDosenToAdmin($nip, $email, $notelp, $status, $nama, $role)
+    {
+        $this->conn->beginTransaction();
+        $result = $this->isValidForUpdate($nip, $notelp, $email);
+        if ($result != 'berhasil') {
+            return $result;
+        }
+
+        $query = "UPDATE Users SET 
+        role = ?,
+        WHERE id_users = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $role);
+        $stmt->bindParam(2, $_SESSION);
+        $stmt->execute();
+
+        $query = "UPDATE Dosen SET 
+        email =?, 
+        notelp = ?, 
+        status = ?, 
+        nama_dosen = ?
+        WHERE nip = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $email);
+        $stmt->bindParam(2, $notelp);
+        $stmt->bindParam(3, $status);
+        $stmt->bindParam(4, $nama);
+        $stmt->bindParam(5, $nip);
+        $stmt->execute();
+
+        $query = "INSERT INTO Admin SELECT * FROM Dosen WHERE nip = ?
+        GO
+        DELETE Dosen WHERE nip = ?";
+        $stmt->bindParam(1, $nip);
+        $stmt->bindParam(2, $nip);
+        $stmt->execute();
+        $this->conn->commit();
+        return "berhasil";
     }
 
 

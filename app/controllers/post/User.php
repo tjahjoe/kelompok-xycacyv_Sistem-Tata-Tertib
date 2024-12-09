@@ -82,6 +82,46 @@ function uploadUser()
 function updateUser()
 {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $userModel = new User();
+
+        $id = $_POST['id'];
+        $email = $_POST['email'];
+        $notelp = $_POST['notelp'];
+        $nama = $_POST['nama'];
+        $roleAwal = $_POST['roleAwal'];
+        $roleAkhir = $_POST['roleAkhir'];
+        $status = $_POST['status'];
+
+        $result = '';
+
+        if ($roleAwal == 'mahasiswa' && $roleAkhir == 'mahasiswa') {
+            $namaOrtu = $_POST['namaOrtu'];
+            $notelpOrtu = $_POST['notelpOrtu'];
+            $dpa = $_POST['dpa'];
+
+            $result = $userModel->updateMahasiswa(
+                $id, 
+                $notelp, 
+                $nama, 
+                $email, 
+                $namaOrtu, 
+                $notelpOrtu, 
+                $status, 
+                $dpa);
+        } else if ($roleAwal == 'admin' && $roleAkhir == 'admin') {
+            $result = $userModel->updateAdmin($id,$email, $notelp, $status, $nama, $roleAkhir);
+        } else if (in_array($roleAwal, ['sekjur', 'kps', 'dpa', 'dosen']) && in_array($roleAkhir, ['sekjur', 'kps', 'dpa', 'dosen'])) {
+            $result = $userModel->updateDosen($id,$email, $notelp, $status, $nama, $roleAkhir);
+        } else if (in_array($roleAwal, ['sekjur', 'kps', 'dpa', 'dosen']) && $roleAkhir == 'admin') {
+            $result = $userModel->updateDosenToAdmin($id,$email, $notelp, $status, $nama, $roleAkhir);
+        } else if ($roleAwal == 'admin' && in_array($roleAkhir, ['sekjur', 'kps', 'dpa', 'dosen'])) {
+            $result = $userModel->updateAdminToDosen($id,$email, $notelp, $status, $nama, $roleAkhir);
+        }
+
+        echo $result == 'berhasil' ?
+            json_encode(['status' => 'success', 'message' => 'upload success'])
+            :
+            json_encode(['status' => 'error', 'message' => $result]);
 
     }
 }
