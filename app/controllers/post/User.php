@@ -112,7 +112,14 @@ function updateUser()
         } else if ($roleAwal == 'admin' && $roleAkhir == 'admin') {
             $result = $userModel->updateAdmin($id,$email, $notelp, $status, $nama, $roleAkhir);
         } else if (in_array($roleAwal, ['sekjur', 'kps', 'dpa', 'dosen']) && in_array($roleAkhir, ['sekjur', 'kps', 'dpa', 'dosen'])) {
-            $result = $userModel->updateDosen($id,$email, $notelp, $status, $nama, $roleAkhir);
+            $result = $userModel->updateDosen(
+                $id,
+                $email, 
+                $notelp, 
+                $status, 
+                $nama, 
+                $roleAwal, 
+                $roleAkhir);
         } else if (in_array($roleAwal, ['sekjur', 'kps', 'dpa', 'dosen']) && $roleAkhir == 'admin') {
             $result = $userModel->updateDosenToAdmin($id,$email, $notelp, $status, $nama, $roleAkhir);
         } else if ($roleAwal == 'admin' && in_array($roleAkhir, ['sekjur', 'kps', 'dpa', 'dosen'])) {

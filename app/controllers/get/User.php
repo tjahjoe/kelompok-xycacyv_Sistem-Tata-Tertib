@@ -11,8 +11,9 @@ function filterUserById(){
         ];
     
         $id = isset($_GET['searchNim']) ? $_GET['searchNim'] : '';
+        $idUser = $_SESSION['user']['id_users'];
     
-        $result = $userModel->getDataUsersByFilter($id);
+        $result = $userModel->getDataUsersByFilter($id, $idUser);
     
         echo $result ? json_encode(['status' => 'success', 'data' => $result]) : json_encode($response);
         exit;

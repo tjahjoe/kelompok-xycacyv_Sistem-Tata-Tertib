@@ -43,7 +43,7 @@ class User
         return $isValue ? $result : false;
     }
 
-    public function getDataUsers()
+    public function getDataUsers($id)
     {
         $query = "SELECT 
         m.nim 'ID', 
@@ -54,6 +54,7 @@ class User
         m.status 'STATUS' 
         FROM Mahasiswa m
         JOIN Users u on u.id_users = m.nim
+        WHERE id_users <> ?
         UNION
         SELECT 
         d.nip,
@@ -64,6 +65,7 @@ class User
         d.status
         FROM Dosen d
         JOIN Users u on u.id_users = d.nip
+        WHERE id_users <> ?
         UNION
         SELECT 
         a.nip,
@@ -73,23 +75,27 @@ class User
         a.notelp,
         a.status
         FROM Admin a
-        JOIN Users u on u.id_users = a.nip";
+        JOIN Users u on u.id_users = a.nip
+        WHERE id_users <> ?";
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $id);
+        $stmt->bindParam(2, $id);
+        $stmt->bindParam(3, $id);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $results ? $results : false;
     }
 
-    public function getDataUsersByFilter($id)
+    public function getDataUsersByFilter($id, $idUser)
     {
         $conditionMhs = '';
         $conditionDsn = '';
         $conditionAdm = '';
         $param = '';
         if ($id) {
-            $conditionMhs = 'WHERE m.nim LIKE ?';
-            $conditionDsn = 'WHERE d.nip LIKE ?';
-            $conditionAdm = 'WHERE a.nip LIKE ?';
+            $conditionMhs = 'AND m.nim LIKE ?';
+            $conditionDsn = 'AND d.nip LIKE ?';
+            $conditionAdm = 'AND a.nip LIKE ?';
             $param = '%' . $id . '%';
         }
         $query = "SELECT 
@@ -101,6 +107,7 @@ class User
         m.status 'STATUS' 
         FROM Mahasiswa m
         JOIN Users u on u.id_users = m.nim
+        WHERE u.id_users <> ?
         $conditionMhs
         UNION
         SELECT 
@@ -112,6 +119,7 @@ class User
         d.status
         FROM Dosen d
         JOIN Users u on u.id_users = d.nip
+        WHERE u.id_users <> ?
         $conditionDsn
         UNION
         SELECT 
@@ -123,12 +131,20 @@ class User
         a.status
         FROM Admin a
         JOIN Users u on u.id_users = a.nip
+        WHERE u.id_users <> ?
         $conditionAdm";
         $stmt = $this->conn->prepare($query);
         if ($id) {
-            $stmt->bindParam(1, $param);
+            $stmt->bindParam(1, $idUser);
             $stmt->bindParam(2, $param);
-            $stmt->bindParam(3, $param);
+            $stmt->bindParam(3, $idUser);
+            $stmt->bindParam(4, $param);
+            $stmt->bindParam(5, $idUser);
+            $stmt->bindParam(6, $param);
+        } else {
+            $stmt->bindParam(1, $idUser);
+            $stmt->bindParam(2, $idUser);
+            $stmt->bindParam(3, $idUser);
         }
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -152,8 +168,6 @@ class User
 
     private function isValidForUpdate($nim, $notelp, $email)
     {
-        // $this->conn->beginTransaction();
-
         $conditions = [
             ['notelp', 'notelp', 'notelp', $notelp, "Gagal: Nomor telepon tidak valid!"],
             ['email', 'email', 'email', $email, "Gagal: Email tidak valid!"]
@@ -293,7 +307,7 @@ class User
         return "berhasil";
     }
 
-    public function updateDosen($nip, $email, $notelp, $status, $nama, $role)
+    public function updateDosen($nip, $email, $notelp, $status, $nama, $roleAwal, $roleAkhir)
     {
         $this->conn->beginTransaction();
         $result = $this->isValidForUpdate($nip, $notelp, $email);
@@ -301,11 +315,18 @@ class User
             return $result;
         }
 
+        if ($roleAwal == 'dpa') {
+            $query = "UPDATE Mahasiswa SET nip = NULL WHERE nip = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $nip);
+            $stmt->execute();
+        }
+
         $query = "UPDATE Users SET 
-        role = ?,
+        role = ?
         WHERE id_users = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $role);
+        $stmt->bindParam(1, $roleAkhir);
         $stmt->bindParam(2, $nip);
         $stmt->execute();
 
@@ -335,7 +356,7 @@ class User
         }
 
         $query = "UPDATE Users SET 
-        role = ?,
+        role = ?
         WHERE id_users = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $role);
@@ -369,11 +390,11 @@ class User
         }
 
         $query = "UPDATE Users SET 
-        role = ?,
+        role = ?
         WHERE id_users = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $role);
-        $stmt->bindParam(2, $_SESSION);
+        $stmt->bindParam(2, $nip);
         $stmt->execute();
 
         $query = "UPDATE Admin SET 
@@ -409,11 +430,11 @@ class User
         }
 
         $query = "UPDATE Users SET 
-        role = ?,
+        role = ?
         WHERE id_users = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $role);
-        $stmt->bindParam(2, $_SESSION);
+        $stmt->bindParam(2, $nip);
         $stmt->execute();
 
         $query = "UPDATE Dosen SET 

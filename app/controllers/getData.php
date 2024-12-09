@@ -17,10 +17,12 @@ function ListPelanggaran()
 
 function dataUsers(){
     if (isLogin()) {
+        $id = $_SESSION['user']['id_users'];
         $role = $_SESSION['user']['role'];
+
         if ($role == 'admin') {
             $userModel = new User();
-            $datas = $userModel->getDataUsers();
+            $datas = $userModel->getDataUsers($id);
             return $datas;
         } else {
             return false;
