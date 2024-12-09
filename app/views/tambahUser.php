@@ -23,8 +23,9 @@ require_once '../app/controllers/getData.php';
   <!-- NAVBAR -->
   <?php Navbar(true); ?>
 
-  <div class="container pt-5 mt-2">
-    <?php  FormUser(null, 'add-user'); ?>
+  <div class="container pt-5">
+    <h1 class="title">Tambah Pengguna</h1>
+    <?php FormUser(null, 'add-user'); ?>
   </div>
   
   <script src="../assets/js/handleManageUser.js"></script>

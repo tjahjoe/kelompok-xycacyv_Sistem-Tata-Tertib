@@ -54,7 +54,7 @@ function uploadUser()
         if ($role == 'mahasiswa') {
             $namaOrtu = $_POST['namaOrtu'];
             $notelpOrtu = $_POST['notelpOrtu'];
-            $nip = $_POST['nip'];
+            $dpa = $_POST['dpa'];
 
             $result = $userModel->uploadMahasiswa(
                 $id,
@@ -63,7 +63,7 @@ function uploadUser()
                 $email,
                 $namaOrtu,
                 $notelpOrtu,
-                $nip,
+                $dpa,
                 $role
             );
         } else if ($role == 'admin') {

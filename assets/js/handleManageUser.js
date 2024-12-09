@@ -63,21 +63,47 @@ $(document).ready(function () {
           <label for="notelpOrtu">Nomor Telepon Orang Tua</label>
           <input type="text" name="notelpOrtu" value="" id="notelpOrtu" placeholder="Masukkan nomor telepon"/>
         </div>
-          <div class="detail-item" id="select-dpa">
-            <label for="dpa">DPA</label>
-            <select name="dpa" id="dpa">
-              <option value="1">1</option>
-            </select>
-          </div>
         `);
+        $("#select-dpa").show();
+        $("#select-dpa select").prop("disabled", false);
     } else {
       // Sembunyikan elemen jika bukan mahasiswa
       $("#select-dpa").empty();
-      $("#select-dpa").prop("disabled", true);
+      $("#select-dpa select").prop("disabled", true);
       $("#notelpOrtu").empty();
       $("#notelpOrtu").prop("disabled", true);
       $("#namaOrtu").empty();
       $("#namaOrtu").prop("disabled", true);
     }
   });
+
+  $("#form-add-user").on("submit", function (e) {
+    e.preventDefault();
+
+    const formData = $(this).serialize();
+
+    // const alertId = "alert-detail-pelaporan-success";
+
+    $.ajax({
+      url: "../app/controllers/handlerPost.php?action=uploadUser",
+      type: "POST",
+      data: formData,
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          window.location.href = "./profile-user.php";
+          // console.log(response);
+          // showAlert(alertId);
+          // closingAlertWithReload(true);
+        } else {
+          $("#hasil").css("display", "block");
+          $("#hasil").html(response.message);
+        }
+      },
+    });
+  })
+
+  $("").on("change", function(e){
+
+  })
 });
