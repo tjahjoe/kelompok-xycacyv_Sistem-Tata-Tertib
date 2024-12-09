@@ -22,7 +22,8 @@ class Mahasiswa
         m.notelp_ortu,
         u.role,
         u.foto_diri,
-        m.status
+        m.status,
+        m.nip
         FROM " . $this->table . " m
         JOIN Users u ON 
         m.nim = u.id_users WHERE nim = ?";

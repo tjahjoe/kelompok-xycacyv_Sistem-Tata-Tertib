@@ -8,6 +8,7 @@ function FormUser($data, $type)
   <?php
   if ($type == 'edit-user') {
     if (!empty($data)) {
+      var_dump($data);
   ?>
       <form class="form-container" id="form-edit-user" enctype="multipart/form-data">
         <div class="flex-between m-0">
@@ -18,10 +19,7 @@ function FormUser($data, $type)
 
             <img src="<?php echo $photoProfile ?>" alt="Profile Picture" class="profile-image border-image" id="profile-image" width="100px" height="100px" />
             <div class="flex-row m-0">
-              <input type="file" name="photo" id="change-photo" style="display: none;" accept="image/*" />
-
-              <label for="change-photo" class="btn btn-white btn-small">Unggah foto baru</label>
-              <label for="" id="delete-photo" class="btn btn-gray btn-small" <?php echo  $data['foto_diri'] ? '' : 'style="display: none;"' ?>>Hapus Foto</label>
+              <label for="" id="delete-photo" class="btn btn-gray btn-small" <?php echo $data['foto_diri'] ? 'style="display: none;"' : '' ?>>Hapus Foto</label>
             </div>
           </div>
 
@@ -61,9 +59,9 @@ function FormUser($data, $type)
             <label for="role">Pekerjaan</label>
             <?php if ($data['role'] == 'mahasiswa') { ?>
               <input type="text" name="roleDis" value="<?php echo $data['role'] ?>" class="capitalize-text" id="role" disabled>
-              <input type="hidden" name="role" value="<?php echo $data['role']?>">
+              <input type="hidden" name="role" value="<?php echo $data['role'] ?>">
             <?php } else { ?>
-              <input type="hidden" name="roleAwal" value="<?php echo $data['role']?>">
+              <input type="hidden" name="roleAwal" value="<?php echo $data['role'] ?>">
               <select name="roleAkhir" class="capitalize-text" id="role">
                 <option value="admin" <?php echo ($data['role'] === 'admin') ? 'selected' : ''; ?>>Admin</option>
                 <option value="dosen" <?php echo ($data['role'] === 'dosen') ? 'selected' : ''; ?>>Dosen</option>
@@ -79,12 +77,19 @@ function FormUser($data, $type)
               <select name="dpa" id="dpa" class="capitalize-text">
                 <?php
                 if (!empty($dataDpa)) {
+                  $isDpaExist = false;
                   foreach ($dataDpa as $dpa) {
-                    $selected = ($data['dpa'] == $dpa['nip']) ? 'selected' : '';
+                    $selected = ($data['nip'] == $dpa['nip']) ? 'selected' : '';
                     echo "<option value='{$dpa['nip']}' $selected>{$dpa['nip']} - {$dpa['nama_dosen']}</option>";
+                    if($selected){
+                      $isDpaExist = true;
+                    }
+                  }
+                  if(!$isDpaExist){
+                    echo "<option disabled selected hidden>Pilih DPA</option>";
                   }
                 } else {
-                  echo "<option disabled>Tidak ada data DPA</option>";
+                  echo "<option disabled selected hidden>Tidak ada DPA!</option>";
                 }
                 ?>
               </select>
@@ -95,7 +100,7 @@ function FormUser($data, $type)
             </div>
             <div class="detail-item">
               <label for="namaOrtu">Nama Orang Tua</label>
-              <input type="text" name="namaOrtu" value="<?php echo $data['nama_ortu'];?>" id="namaOrtu">
+              <input type="text" name="namaOrtu" value="<?php echo $data['nama_ortu']; ?>" id="namaOrtu">
             </div>
           <?php } ?>
           <div class="detail-item">
