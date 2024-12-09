@@ -9,7 +9,7 @@ function FormUser($data, $type)
   if ($type == 'edit-user') {
     if (!empty($data)) {
   ?>
-      <form class="form-container" id="form-edit<?= $data['role'] ?>" enctype="multipart/form-data">
+      <form class="form-container" id="form-edit-user" enctype="multipart/form-data">
         <div class="flex-between m-0">
           <div class="flex-row m-0">
             <?php
@@ -46,7 +46,8 @@ function FormUser($data, $type)
           ?>
           <div class="detail-item uppercase-text">
             <label for="id"><?php echo $kolomIdUser; ?></label>
-            <input type="text" name="id" value="<?php echo $idUser; ?>" id="id">
+            <input type="hidden" name="id" value="<?php echo $idUser; ?>">
+            <input type="text" name="id-user" value="<?php echo $idUser; ?>" id="id-user" disabled>
           </div>
           <div class="detail-item">
             <label for="notelp">Nomor Telepon</label>
@@ -59,9 +60,11 @@ function FormUser($data, $type)
           <div class="detail-item">
             <label for="role">Pekerjaan</label>
             <?php if ($data['role'] == 'mahasiswa') { ?>
-              <input type="text" name="role" value="<?php echo $data['role'] ?>" class="capitalize-text" id="role" disabled>
+              <input type="text" name="roleDis" value="<?php echo $data['role'] ?>" class="capitalize-text" id="role" disabled>
+              <input type="hidden" name="role" value="<?php echo $data['role']?>">
             <?php } else { ?>
-              <select name="role" class="capitalize-text" id="role">
+              <input type="hidden" name="roleAwal" value="<?php echo $data['role']?>">
+              <select name="roleAkhir" class="capitalize-text" id="role">
                 <option value="admin" <?php echo ($data['role'] === 'admin') ? 'selected' : ''; ?>>Admin</option>
                 <option value="dosen" <?php echo ($data['role'] === 'dosen') ? 'selected' : ''; ?>>Dosen</option>
                 <option value="dpa" <?php echo ($data['role'] === 'dpa') ? 'selected' : ''; ?>>DPA</option>

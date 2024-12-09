@@ -102,8 +102,32 @@ $(document).ready(function () {
       },
     });
   })
+  
+  $("#form-edit-user").on("submit", function (e) {
+    e.preventDefault();
 
-  $("").on("change", function(e){
+    const formData = $(this).serialize();
 
+    // const alertId = "alert-detail-pelaporan-success";
+
+    $.ajax({
+      url: "../app/controllers/handlerPost.php?action=updateUser",
+      type: "POST",
+      data: formData,
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          window.location.href = "./profile-user.php";
+          console.log(response);
+          // showAlert(alertId);
+          // closingAlertWithReload(true);
+        } else {
+          $("#hasil").css("display", "block");
+          $("#hasil").html(response.message);
+        }
+      },
+    });
   })
+
+  
 });

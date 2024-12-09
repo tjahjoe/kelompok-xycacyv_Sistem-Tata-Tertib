@@ -88,9 +88,9 @@ function updateUser()
         $email = $_POST['email'];
         $notelp = $_POST['notelp'];
         $nama = $_POST['nama'];
-        $roleAwal = isset($_POST['roleAwal']) ? $_POST['roleAwal'] : '';
-        $roleAkhir = isset($_POST['roleAkhir']) ? $_POST['roleAwal'] : '';
-        $role = isset($_POST['roleAkhir']) ? $_POST['roleAkhir'] : '' ;
+        $roleAwal = $_POST['roleAwal'] ?? '';
+        $roleAkhir = $_POST['roleAkhir'] ?? '';
+        $role = $_POST['role'] ?? '' ;
         $status = $_POST['status'];
 
         $result = '';

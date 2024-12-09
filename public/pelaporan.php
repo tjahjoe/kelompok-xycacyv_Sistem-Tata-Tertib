@@ -1,10 +1,8 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-}
+// if (isset($_SESSION['user'])) {
+//   include '../app/views/pelaporanPage.php';
+//   exit();
+// }
 
-if (!isset($_SESSION['user'])) {
-  header('Location: ./login.php');
-  exit();
-}
+// header('Location: ./login.php');
 include '../app/views/pelaporanPage.php';
