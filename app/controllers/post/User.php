@@ -38,21 +38,58 @@ function logoutHandler()
     exit;
 }
 
-function uploadUser(){
+function uploadUser()
+{
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-       
+        $userModel = new User();
+
+        $id = $_POST['id'];
+        $email = $_POST['email'];
+        $notelp = $_POST['notelp'];
+        $nama = $_POST['nama'];
+        $role = $_POST['role'];
+
+        $result = '';
+
+        if ($role == 'mahasiswa') {
+            $namaOrtu = $_POST['namaOrtu'];
+            $notelpOrtu = $_POST['notelpOrtu'];
+            $nip = $_POST['nip'];
+
+            $result = $userModel->uploadMahasiswa(
+                $id,
+                $notelp,
+                $nama,
+                $email,
+                $namaOrtu,
+                $notelpOrtu,
+                $nip,
+                $role
+            );
+        } else if ($role == 'admin') {
+            $result = $userModel->uploadAdmin($id, $notelp, $nama, $email, $role);
+        } else if (in_array($role, ['sekjur', 'kps', 'dpa', 'dosen'])) {
+            $result = $userModel->uploadDosen($id, $notelp, $nama, $email, $role);
+        }
+
+        echo $result == 'berhasil' ?
+            json_encode(['status' => 'success', 'message' => 'upload success'])
+            :
+            json_encode(['status' => 'error', 'message' => $result]);
     }
 }
 
-function updateUser(){
+function updateUser()
+{
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        
+
     }
 }
 
-function DeleteUser(){
+function DeleteUser()
+{
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        
+
     }
 }
 

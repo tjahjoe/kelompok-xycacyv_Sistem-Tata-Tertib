@@ -28,6 +28,16 @@ class Dosen{
         return $result ? $result : false;
     }
 
+    public function getAllDpa(){
+        $query = "SELECT d.nip, nama_dosen FROM ". $this->table ." d
+        JOIN Users u ON u.id_users = d.nip
+        WHERE u.role = 'dpa' AND status = 'aktif'";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results ? $results : false;
+    }
+
     public function changeData($nama, $nip, $notlp)
     {
         $query = "SELECT nim as id FROM Mahasiswa WHERE notelp = ?

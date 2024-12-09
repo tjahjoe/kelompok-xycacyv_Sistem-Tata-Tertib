@@ -81,6 +81,15 @@ function dataUser()
     }
 }
 
+function dataDpa(){
+    if (isLogin()) {
+        $dosenModel = new Dosen();
+        $dataDpa = $dosenModel->getAllDpa();
+        return $dataDpa;
+    } else {
+        return false;
+    }
+}
 
 //riwayat pelanggaran
 function dataPelanggaran()
