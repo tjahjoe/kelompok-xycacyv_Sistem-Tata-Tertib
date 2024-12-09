@@ -227,7 +227,8 @@ function deletePhotoProfil()
             'message' => 'process failed',
         ];
 
-        $id = $_SESSION['user']['id_users'];
+        // $id = $_SESSION['user']['id_users'];
+        $id = $_POST['id'];
 
         $lastFileName = $userModel->checkPhotoName($id);
 
