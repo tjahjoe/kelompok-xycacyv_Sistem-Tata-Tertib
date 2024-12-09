@@ -88,13 +88,14 @@ function updateUser()
         $email = $_POST['email'];
         $notelp = $_POST['notelp'];
         $nama = $_POST['nama'];
-        $roleAwal = $_POST['roleAwal'];
-        $roleAkhir = $_POST['roleAkhir'];
+        $roleAwal = isset($_POST['roleAwal']) ? $_POST['roleAwal'] : '';
+        $roleAkhir = isset($_POST['roleAkhir']) ? $_POST['roleAwal'] : '';
+        $role = isset($_POST['roleAkhir']) ? $_POST['roleAkhir'] : '' ;
         $status = $_POST['status'];
 
         $result = '';
 
-        if ($roleAwal == 'mahasiswa' && $roleAkhir == 'mahasiswa') {
+        if ($role == 'mahasiswa' && $role == 'mahasiswa') {
             $namaOrtu = $_POST['namaOrtu'];
             $notelpOrtu = $_POST['notelpOrtu'];
             $dpa = $_POST['dpa'];
