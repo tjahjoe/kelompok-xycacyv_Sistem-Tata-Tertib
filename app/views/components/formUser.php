@@ -8,7 +8,6 @@ function FormUser($data, $type)
   <?php
   if ($type == 'edit-user') {
     if (!empty($data)) {
-      var_dump($data);
   ?>
       <form class="form-container" id="form-edit-user" enctype="multipart/form-data">
         <div class="flex-between m-0">
@@ -19,7 +18,7 @@ function FormUser($data, $type)
 
             <img src="<?php echo $photoProfile ?>" alt="Profile Picture" class="profile-image border-image" id="profile-image" width="100px" height="100px" />
             <div class="flex-row m-0">
-              <label for="" id="delete-photo" class="btn btn-gray btn-small" <?php echo $data['foto_diri'] ? 'style="display: none;"' : '' ?>>Hapus Foto</label>
+              <label for="" id="delete-photo" class="btn btn-gray btn-small" <?php echo $data['foto_diri'] ? '' : 'style="display: none;"' ?>>Hapus Foto</label>
             </div>
           </div>
 

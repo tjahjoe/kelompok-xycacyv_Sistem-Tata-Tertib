@@ -63,15 +63,18 @@ $(document).ready(function () {
   $("#delete-photo").on("click", function (e) {
     e.preventDefault();
 
+    const id = $("#id-user").val();
+
     const alertId = "alert-delete-photo";
     showAlert(alertId);
+
+    console.log(id);
 
     $(".alert-confirm-button").on("click", function () {
       $.ajax({
         url: "../app/controllers/handlerPost.php?action=deletePhotoProfil",
         type: "POST",
-        contentType: false,
-        processData: false,
+        data: {id: id},
         dataType: "json",
         success: function (response) {
           if (response.status === "success") {

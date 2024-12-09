@@ -5,9 +5,9 @@ function TataTertibSection($data)
   <section id="tataTertib">
     <h1 class="title">Tata Tertib Mahasiswa<br> Jurusan Teknik Informatika</h1>
     <div class="filter-tingkat-pelanggaran">
-      <h4>Filter by tingkat:</h4>
+      <h4>Filter berdasarkan tingkat:</h4>
       <select id="tingkatPelanggaran" class="tingkatPelanggaran" name="tingkatPelanggaran">
-        <option value="">All</option>
+        <option value="">Semua Tingkat</option>
         <option value="I">Tingkat I</option>
         <option value="I/II">Tingkat I/II</option>
         <option value="II">Tingkat II</option>

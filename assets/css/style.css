@@ -650,6 +650,7 @@ section#footerLapor {
 }
 
 .tab-subcontent.active{
+  /* max-width: 1030px; */
   width: 100%;
   flex: 1;
   display: flex;

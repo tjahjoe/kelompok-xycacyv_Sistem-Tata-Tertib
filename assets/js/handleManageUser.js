@@ -129,5 +129,31 @@ $(document).ready(function () {
     });
   })
 
+  $("#delete-photo").on("click", function (e) {
+    e.preventDefault();
+
+    const id = $("#id-user").val();
+
+    // const alertId = "alert-detail-pelaporan-success";
+
+    $.ajax({
+      url: "../app/controllers/handlerPost.php?action=deletePhotoProfil",
+      type: "POST",
+      data: {id: id},
+      dataType: "json",
+      success: function (response) {
+        if (response.status === "success") {
+          window.location.href = "./profile-user.php";
+          console.log(response);
+          // showAlert(alertId);
+          // closingAlertWithReload(true);
+        } else {
+          $("#hasil").css("display", "block");
+          $("#hasil").html(response.message);
+        }
+      },
+    });
+  })
+
   
 });
