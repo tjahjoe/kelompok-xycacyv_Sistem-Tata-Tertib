@@ -288,6 +288,7 @@ class User
         $stmt->bindParam(6, $status);
         $stmt->bindParam(7, $nip);
         $stmt->bindParam(8, $nim);
+        $stmt->execute();
         $this->conn->commit();
         return "berhasil";
     }
