@@ -24,7 +24,7 @@ function FormUser($data, $type)
 
           <div class="flex-row m-0">
             <button class="btn btn-primary" type="submit">Simpan</button>
-            <a href="profile-user.php" class="btn btn-gray">Kembali</a>
+            <a href="profile-user.php#pengaturan-lanjutan" class="btn btn-gray">Kembali</a>
           </div>
         </div>
 
@@ -123,7 +123,7 @@ function FormUser($data, $type)
     <form class="form-container" id="form-add-user" enctype="multipart/form-data">
       <div class="flex-between mt-2">
         <button class="btn btn-primary" type="submit">Simpan</button>
-        <a href="profile-user.php" class="btn btn-gray">Kembali</a>
+        <a href="profile-user.php#pengaturan-lanjutan" class="btn btn-gray">Kembali</a>
       </div>
 
       <!-- Pesan Error -->

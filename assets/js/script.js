@@ -54,32 +54,57 @@ const toggleNavigationMenu = () => {
 // UNTUK SWITCH TAB SIDEBAR
 const switchTab = () => {
   const tabLink = document.querySelectorAll(".tab-link");
-  const logoutBtn = document.querySelector(".logout-btn");
   const tabContent = document.querySelectorAll(".tab-content");
+  const logoutBtn = document.querySelector(".logout-btn");
   const profileForm = document.getElementById("edit-profile");
 
-  if (tabLink && tabContent && logoutBtn && profileForm) {
+  if (tabLink && tabContent && profileForm && logoutBtn) {
+    // Saat halaman dimuat, cek hash pada URL
+    const currentHash = window.location.hash;
+    console.log(currentHash);
+
+    if (currentHash) {
+      // Temukan tab link yang sesuai dengan hash
+      const activeTabLink = document.querySelector(`.tab-link[href="${currentHash}"]`);
+      const activeTabContent = document.querySelector(currentHash);
+
+      if (activeTabLink && activeTabContent) {
+        // Reset semua tab link/tab content agar tidak memiliki class active
+        tabLink.forEach((tab) => tab.classList.remove("active"));
+        tabContent.forEach((content) => content.classList.remove("active"));
+
+        // Tambahkan class active pada tab link dan tab content yang sesuai
+        activeTabLink.classList.add("active");
+        activeTabContent.classList.add("active");
+      }
+    }
+
+    // Tambahkan event listener untuk setiap tab link
     tabLink.forEach((link) => {
       link.addEventListener("click", function (event) {
+        event.preventDefault();
+
         if (this === logoutBtn) {
           return;
         }
 
         profileForm.classList.remove("active");
-        event.preventDefault();
-        // reset semua tablink/tab content agar tidak memiliki class active
+
+        // Reset semua tab link/tab content
         tabLink.forEach((tab) => tab.classList.remove("active"));
         tabContent.forEach((content) => content.classList.remove("active"));
-        this.classList.add("active"); // tab link diberi class active
 
-        // menambahkan class active pada id tab contentnya
-        document
-          .querySelector(this.getAttribute("href"))
-          .classList.add("active");
+        // Tambahkan class active pada tab link dan tab content yang diklik
+        this.classList.add("active");
+        document.querySelector(this.getAttribute("href")).classList.add("active");
+
+        // Ubah hash di URL tanpa reload halaman
+        window.history.pushState(null, null, this.getAttribute("href"));
       });
     });
   }
 };
+
 
 // UNTUK SWITCH TAB SUB MENU 
 const switchTabSubMenu = () => {

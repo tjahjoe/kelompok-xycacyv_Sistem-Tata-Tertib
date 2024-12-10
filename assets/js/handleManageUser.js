@@ -3,22 +3,24 @@ $(document).ready(function () {
     $(`#${alertId}`).addClass("alert-active");
   };
 
-  const closeAlert = (alertId, reload = false) => {
+  const closeAlert = (alertId, reload = false, directLink) => {
     $(`#${alertId}`).removeClass("alert-active");
     if (reload) {
       window.location.reload();
+    }else if(directLink){
+      window.location.href = directLink;
     }
   };
 
-  const closingAlertWithReload = (isReload) => {
+  const closingAlertWithReload = (isReload, directLink) => {
     $(".alert-close-button, .overlay").on("click", function () {
       const alertId = $(this).data("alert-id");
       const overlayId = $(this).attr("id");
 
       if (overlayId) {
-        closeAlert(overlayId, isReload);
+        closeAlert(overlayId, isReload, directLink);
       } else if (alertId) {
-        closeAlert(alertId, isReload);
+        closeAlert(alertId, isReload, directLink);
       }
     });
   };
@@ -116,7 +118,7 @@ $(document).ready(function () {
       success: function (response) {
         if (response.status === "success") {
           showAlert(alertId);
-          closingAlertWithReload(true);
+          closingAlertWithReload(false, "./profile-user.php#pengaturan-lanjutan");
         } else {
           $("#hasil").css("display", "block");
           $("#hasil").html(response.message);
@@ -140,7 +142,7 @@ $(document).ready(function () {
       success: function (response) {
         if (response.status === "success") {
           showAlert(alertId);
-          closingAlertWithReload(true);
+          closingAlertWithReload(false, "./profile-user.php#pengaturan-lanjutan");
         } else {
           $("#hasil").css("display", "block");
           $("#hasil").html(response.message);

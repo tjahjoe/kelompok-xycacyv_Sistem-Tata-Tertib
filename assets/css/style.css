@@ -16,6 +16,7 @@ html {
   --orange-color: #fb923c;
   --red-color: #ea0234;
   --green-color: #00b69b;
+  --darkgray-color: #1A1A1A;
   --gray-color: #8A8383;
   --lightgray-color: #f2f2f2;
   --blue-color: #007BFF;
@@ -1144,6 +1145,13 @@ img.lampiran_bukti_full{
   padding: 20px 30px;
   border-right: 1px solid #ddd; 
   width: max-content;
+  font-family: "Inter", sans-serif;
+  color: var(--darkgray-color);
+}
+
+.filter-item.filter-select .dropdown select{
+  color: var(--darkgray-color);
+  font-family: "Inter", sans-serif;
 }
 
 .filter-item.filter-checkbox{

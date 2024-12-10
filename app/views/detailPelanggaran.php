@@ -35,7 +35,7 @@ require_once '../app/controllers/getData.php';
         ?>
           <p><strong>ID Pelanggaran:</strong> <?php echo $data['id']; ?></p>
       </div>
-      <a href="profile-user.php" class="btn btn-gray">Kembali</a>
+      <a href="profile-user.php#riwayat-pelanggaran" class="btn btn-gray">Kembali</a>
     </div>
 
     <?php if ($data['Status'] != 'reject') {?>

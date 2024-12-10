@@ -33,7 +33,7 @@ require_once '../app/controllers/getData.php';
         ?>
           <p><strong>ID Laporan:</strong> <?php echo $data['id'] ?></p>
       </div>
-      <a href="profile-user.php" class="btn btn-gray">Kembali</a>
+      <a href="profile-user.php#riwayat-pelaporan" class="btn btn-gray">Kembali</a>
     </div>
 
   <?php
