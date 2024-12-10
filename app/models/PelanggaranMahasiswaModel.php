@@ -1,13 +1,12 @@
 <?php
 require_once __DIR__ . "/../../config/database.php";
-class PelanggaranMahasiswa
+
+class PelanggaranMahasiswaModel extends Database
 {
-    private $conn;
-    private $table = "PelanggaranMahasiswa";
     public function __construct()
     {
-        $database = new Database();
-        $this->conn = $database->getConneection();
+        $this->conn = $this->getConneection();
+        $this->table = "PelanggaranMahasiswa";
     }
 
     private function getPelanggaran($query, $nim)

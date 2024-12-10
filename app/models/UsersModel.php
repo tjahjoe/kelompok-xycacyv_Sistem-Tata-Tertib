@@ -1,14 +1,11 @@
 <?php
 require_once __DIR__ . "/../../config/database.php";
-class User
+class UsersModel extends Database
 {
-    private $conn;
-    private $table = "Users";
-
     public function __construct()
     {
-        $database = new Database();
-        $this->conn = $database->getConneection();
+        $this->conn = $this->getConneection();
+        $this->table = "Users";
     }
 
     public function login($username, $password)
@@ -411,12 +408,15 @@ class User
         $stmt->bindParam(5, $nip);
         $stmt->execute();
 
-        $query = "INSERT INTO Dosen SELECT * FROM Admin WHERE nip = ?
-        GO
-        DELETE Admin WHERE nip = ?";
+        $query = "INSERT INTO Dosen SELECT * FROM Admin WHERE nip = ?";
+        $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $nip);
-        $stmt->bindParam(2, $nip);
         $stmt->execute();
+        $query = "DELETE Admin WHERE nip = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $nip);
+        $stmt->execute();
+
         $this->conn->commit();
         return "berhasil";
     }
@@ -438,7 +438,7 @@ class User
         $stmt->execute();
 
         $query = "UPDATE Dosen SET 
-        email =?, 
+        email = ?, 
         notelp = ?, 
         status = ?, 
         nama_dosen = ?
@@ -451,11 +451,13 @@ class User
         $stmt->bindParam(5, $nip);
         $stmt->execute();
 
-        $query = "INSERT INTO Admin SELECT * FROM Dosen WHERE nip = ?
-        GO
-        DELETE Dosen WHERE nip = ?";
+        $query = "INSERT INTO Admin SELECT * FROM Dosen WHERE nip = ?";
+        $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $nip);
-        $stmt->bindParam(2, $nip);
+        $stmt->execute();
+        $query = "DELETE Dosen WHERE nip = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $nip);
         $stmt->execute();
         $this->conn->commit();
         return "berhasil";

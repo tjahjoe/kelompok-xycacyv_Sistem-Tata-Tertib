@@ -1,11 +1,9 @@
 <?php
 require_once __DIR__ . "/../../config/database.php";
-class Dosen{
-    private $conn;
-    private $table = "Dosen";
+class DosenModel extends Database {
     public function __construct(){
-        $database = new Database();
-        $this->conn = $database->getConneection();
+        $this->conn = $this->getConneection();
+        $this->table = "Dosen";
     }
 
     public function getDataDosen($nip){

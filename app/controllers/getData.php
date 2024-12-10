@@ -1,16 +1,16 @@
 <?php
-require_once __DIR__ . "/../models/ListPelanggaran.php";
-require_once __DIR__ . "/../models/Mahasiswa.php";
-require_once __DIR__ . "/../models/Dosen.php";
-require_once __DIR__ . "/../models/Admin.php";
-require_once __DIR__ . "/../models/User.php";
-require_once __DIR__ . "/../models/PelanggaranMahasiswa.php";
+require_once __DIR__ . "/../models/ListPelanggaranModel.php";
+require_once __DIR__ . "/../models/MahasiswaModel.php";
+require_once __DIR__ . "/../models/DosenModel.php";
+require_once __DIR__ . "/../models/AdminModel.php";
+require_once __DIR__ . "/../models/UsersModel.php";
+require_once __DIR__ . "/../models/PelanggaranMahasiswaModel.php";
 require_once __DIR__ . "/utils/setData.php";
 require_once __DIR__ . "/utils/check.php";
 
 function ListPelanggaran()
 {
-    $listPelanggaranModel = new ListPelanggaran();
+    $listPelanggaranModel = new ListPelanggaranModel();
     $listPelanggaran = $listPelanggaranModel->getAllListPelanggaran();
     return $listPelanggaran;
 }
@@ -21,7 +21,7 @@ function dataUsers(){
         $role = $_SESSION['user']['role'];
 
         if ($role == 'admin') {
-            $userModel = new User();
+            $userModel = new UsersModel();
             $datas = $userModel->getDataUsers($id);
             return $datas;
         } else {
@@ -35,15 +35,15 @@ function dataUsers(){
 function dataUserByAdmin($id , $role){
     if (isLogin()) {
         if ($role == 'mahasiswa') {
-            $mahasiswaModel = new Mahasiswa();
+            $mahasiswaModel = new MahasiswaModel();
             $dataMahasiwa = $mahasiswaModel->getDataMahasiswa($id);
             return $dataMahasiwa;
         } else if (in_array($role, ['dpa', 'sekjur', 'dosen', 'kps'])) {
-            $dosenModel = new Dosen();
+            $dosenModel = new DosenModel();
             $dataDosen = $dosenModel->getDataDosen($id);
             return $dataDosen;
         } else if ($role == 'admin') {
-            $adminModel = new Admin();
+            $adminModel = new AdminModel();
             $dataAdmin = $adminModel->getDataAdmin($id);
             return $dataAdmin;
         } else{
@@ -61,17 +61,17 @@ function dataUser()
         $id = $_SESSION['user']['id_users'];
         $role = $_SESSION['user']['role'];
         if ($role == 'mahasiswa') {
-            $mahasiswaModel = new Mahasiswa();
+            $mahasiswaModel = new MahasiswaModel();
             $dataMahasiwa = $mahasiswaModel->getDataMahasiswa($id);
             $dataMahasiwa = $dataMahasiwa ? setFirstnameAndLastname($dataMahasiwa) : false;
             return $dataMahasiwa;
         } else if (in_array($role, ['dpa', 'sekjur', 'dosen', 'kps'])) {
-            $dosenModel = new Dosen();
+            $dosenModel = new DosenModel();
             $dataDosen = $dosenModel->getDataDosen($id);
             $dataDosen = $dataDosen ? setFirstnameAndLastname($dataDosen) : false;
             return $dataDosen;
         } else if ($role == 'admin') {
-            $adminModel = new Admin();
+            $adminModel = new AdminModel();
             $dataAdmin = $adminModel->getDataAdmin($id);
             $dataAdmin = $dataAdmin ? setFirstnameAndLastname($dataAdmin) : false;
             return $dataAdmin;
@@ -85,7 +85,7 @@ function dataUser()
 
 function dataDpa(){
     if (isLogin()) {
-        $dosenModel = new Dosen();
+        $dosenModel = new DosenModel();
         $dataDpa = $dosenModel->getAllDpa();
         return $dataDpa;
     } else {
@@ -97,7 +97,7 @@ function dataDpa(){
 function dataPelanggaran()
 {
     if (isLogin()) {
-        $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
+        $pelanggaranMahasiswaModel = new PelanggaranMahasiswaModel();
 
         $id = $_SESSION['user']['id_users'];
         $dataPelanggaran = $pelanggaranMahasiswaModel->getDataPelanggaranByPelanggar($id);
@@ -112,7 +112,7 @@ function dataPelanggaran()
 function dataPelapor()
 {
     if (isLogin()) {
-        $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
+        $pelanggaranMahasiswaModel = new PelanggaranMahasiswaModel();
 
         $id = $_SESSION['user']['id_users'];
         $role = $_SESSION['user']['role'];
@@ -132,7 +132,7 @@ function dataPelapor()
 function detailPelaporan($id, $condition = false)
 {
     if (isLogin()) {
-        $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
+        $pelanggaranMahasiswaModel = new PelanggaranMahasiswaModel();
 
         $idUser = $_SESSION['user']['id_users'];
         $role = $_SESSION['user']['role'];
@@ -159,7 +159,7 @@ function detailPelanggaran($id)
 {
     if (isLogin()) {
 
-        $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
+        $pelanggaranMahasiswaModel = new PelanggaranMahasiswaModel();
 
         $nim = $_SESSION['user']['id_users'];
 
@@ -174,7 +174,7 @@ function detailPelanggaran($id)
 function tingkatPelanggaran($id)
 {
     if (isLogin()) {
-        $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
+        $pelanggaranMahasiswaModel = new PelanggaranMahasiswaModel();
         // tingkat by sanksi
         $tingkat = $pelanggaranMahasiswaModel->getTingkatPelanggaranForDetailDaftarPelanggaran($id);
         $tingkat = $tingkat ? setTingkatPelanggaranToSanksi($tingkat) : false;
@@ -185,7 +185,7 @@ function tingkatPelanggaran($id)
 function dataPelanggaranPagination($num)
 {
     if (isLogin()) {
-        $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
+        $pelanggaranMahasiswaModel = new PelanggaranMahasiswaModel();
 
         if ($num != '') {
             $num = $num - 1 >= 0 ? ($num - 1) * 10 : 0;
@@ -235,7 +235,7 @@ function dataPelanggaranPagination($num)
 function dataPelanggaranWithoutPagination()
 {
     if (isLogin()) {
-        $pelanggaranMahasiswaModel = new PelanggaranMahasiswa();
+        $pelanggaranMahasiswaModel = new PelanggaranMahasiswaModel();
 
         $nim = isset($_SESSION['filter']['nim']) ? $_SESSION['filter']['nim'] : '';
         $tanggalAwal = isset($_SESSION['filter']['tanggalAwal']) ? $_SESSION['filter']['tanggalAwal'] : '';

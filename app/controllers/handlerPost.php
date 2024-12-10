@@ -1,41 +1,45 @@
 <?php
-require_once __DIR__ . "/post/User.php";
-require_once __DIR__ . "/post/PelanggaranMahasiswa.php";
-require_once __DIR__ . "/post/ListPelanggaran.php";
-require_once __DIR__ . "/post/Tamplate.php";
-require_once __DIR__ . "/post/WordGenerator.php";
+require_once __DIR__ . "/actions/UsersController.php";
+require_once __DIR__ . "/actions/ListPelanggaranController.php";
+require_once __DIR__ . "/actions/PelanggaranMahasiswaController.php";
+require_once __DIR__ . "/actions/TemplateController.php";
+require_once __DIR__ . "/actions/WordGeneratorController.php";
+
+$usersController = new UsersController();
+$listPelanggaranController = new ListPelanggaranController();
+$pelanggaranMahasiswaController = new PelanggaranMahasiswaController();
+$templateController = new TemplateController();
+$wordGeneratorController = new WordGeneratorController();
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 if ($action == 'login') {//user
-    login();
+    $usersController->login();
 } else if ($action == 'logout') {//user
-    logoutHandler();
+    $usersController->logoutHandler();
 } else if ($action == 'uploadUser') {//user
-    uploadUser();
+    $usersController->uploadUser();
 } else if ($action == 'updateUser') {//user
-    updateUser();
-} else if ($action == 'deleteUser') {//user
-    DeleteUser();
+    $usersController->updateUser();
 } else if ($action == 'uploadPelanggaran') {//PelanggaranMahasiswa
-    uploadPelanggaran();
+    $pelanggaranMahasiswaController->uploadPelanggaran();
 } else if ($action == 'updatePelanggaran') {//pelanggaranMahasiswa
-    updatePelanggaran();
+    $pelanggaranMahasiswaController->updatePelanggaran();
 } else if ($action == 'uploadListPelanggaran') {//listpelanggaran
-    uploadListPelanggaran();
+    $listPelanggaranController->uploadListPelanggaran();
 } else if ($action == 'updateListPelanggaran') {//listpelanggaran
-    updateListPelanggaran();
+    $listPelanggaranController->updateListPelanggaran();
 } else if ($action == 'deleteListPelanggaran') {//listpelanggaran
-    deleteListPelanggaran();
+    $listPelanggaranController->deleteListPelanggaran();
 } else if ($action == 'updateDataUser') {//user
-    updateDataUser();
+    $usersController->updateDataUser();
 } else if ($action == 'updatePhotoProfil') {//user
-    updatePhotoProfil();
+    $usersController->updatePhotoProfil();
 } else if ($action == 'deletePhotoProfil') {//user
-    deletePhotoProfil();
+    $usersController->deletePhotoProfil();
 } else if ($action == 'updateSuratPeringatan') {//tamplate
-    updateSuratPeringatan();
+    $templateController->updateSuratPeringatan();
 } else if ($action == 'suratPeringatan') {//wordgenerator
-    generateWordFromTemplate();
+    $wordGeneratorController->generateWordFromTemplate();
 }
 ?>

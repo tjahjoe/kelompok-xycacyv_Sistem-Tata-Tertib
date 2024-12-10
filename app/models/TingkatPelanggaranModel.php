@@ -1,13 +1,11 @@
 <?php
 require_once __DIR__ . "/../../config/database.php";
-class TingkatPelanggaran
+class TingkatPelanggaranModel extends Database
 {
-    private $conn;
-    private $table = "TingkatPelanggaran";
     public function __construct()
     {
-        $database = new Database();
-        $this->conn = $database->getConneection();
+        $this->conn = $this->getConneection();
+        $this->table = "TingkatPelanggaran";
     }
 
     public function getSanksiByTingkat($tingkat)

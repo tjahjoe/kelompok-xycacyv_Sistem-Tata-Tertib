@@ -1,12 +1,10 @@
 <?php
 require_once __DIR__ . "/../../config/database.php";
-class ListPelanggaran{
-    private $conn;
-    private $table = "ListPelanggaran";
+class ListPelanggaranModel extends Database {
 
     public function __construct() {
-        $database = new Database();
-        $this->conn = $database->getConneection();
+        $this->conn = $this->getConneection();
+        $this->table = "ListPelanggaran";
     }
 
     public function getAllListPelanggaran(){

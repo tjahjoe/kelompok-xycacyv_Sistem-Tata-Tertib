@@ -1,13 +1,12 @@
 <?php
 require_once __DIR__ . "/../../config/database.php";
-class Admin
+
+class AdminModel extends Database
 {
-    private $conn;
-    private $table = "Admin";
     public function __construct()
     {
-        $database = new Database();
-        $this->conn = $database->getConneection();
+        $this->conn = $this->getConneection();
+        $this->table = "Admin";
     }
 
     public function getDataAdmin($nip)
