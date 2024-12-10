@@ -1,5 +1,6 @@
 <?php
 include 'components/navbar.php';
+include 'components/alert.php';
 include 'components/formUser.php';
 require_once '../app/controllers/getData.php';
 ?>
@@ -36,6 +37,11 @@ require_once '../app/controllers/getData.php';
     ?>
 
   </div>
+
+  <?php 
+  Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil mengubah data user!', false, 'alert-success-update-user'); 
+  Alert('alert-delete-icon.svg', 'Hapus Photo', 'Apakah Anda yakin ingin menghapus photo?', true, 'alert-delete-photo');?>
+
   <script src="../assets/js/handleManageUser.js"></script>
   <script src="../assets/js/script.js"></script>
 </body>

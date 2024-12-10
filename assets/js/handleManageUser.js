@@ -1,4 +1,28 @@
 $(document).ready(function () {
+  const showAlert = (alertId) => {
+    $(`#${alertId}`).addClass("alert-active");
+  };
+
+  const closeAlert = (alertId, reload = false) => {
+    $(`#${alertId}`).removeClass("alert-active");
+    if (reload) {
+      window.location.reload();
+    }
+  };
+
+  const closingAlertWithReload = (isReload) => {
+    $(".alert-close-button, .overlay").on("click", function () {
+      const alertId = $(this).data("alert-id");
+      const overlayId = $(this).attr("id");
+
+      if (overlayId) {
+        closeAlert(overlayId, isReload);
+      } else if (alertId) {
+        closeAlert(alertId, isReload);
+      }
+    });
+  };
+
   // fungsi untuk search by nim
   function searchUser() {
     let searchNim = $.trim($("#searchNim").val());
@@ -82,7 +106,7 @@ $(document).ready(function () {
 
     const formData = $(this).serialize();
 
-    // const alertId = "alert-detail-pelaporan-success";
+    const alertId = "alert-success-add-user";
 
     $.ajax({
       url: "../app/controllers/handlerPost.php?action=uploadUser",
@@ -91,10 +115,8 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          window.location.href = "./profile-user.php";
-          // console.log(response);
-          // showAlert(alertId);
-          // closingAlertWithReload(true);
+          showAlert(alertId);
+          closingAlertWithReload(true);
         } else {
           $("#hasil").css("display", "block");
           $("#hasil").html(response.message);
@@ -108,7 +130,7 @@ $(document).ready(function () {
 
     const formData = $(this).serialize();
 
-    // const alertId = "alert-detail-pelaporan-success";
+    const alertId = "alert-success-update-user";
 
     $.ajax({
       url: "../app/controllers/handlerPost.php?action=updateUser",
@@ -117,10 +139,8 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          window.location.href = "./profile-user.php";
-          console.log(response);
-          // showAlert(alertId);
-          // closingAlertWithReload(true);
+          showAlert(alertId);
+          closingAlertWithReload(true);
         } else {
           $("#hasil").css("display", "block");
           $("#hasil").html(response.message);
@@ -134,8 +154,10 @@ $(document).ready(function () {
 
     const id = $("#id-user").val();
 
-    // const alertId = "alert-detail-pelaporan-success";
+    const alertId = "alert-delete-photo";
+    showAlert(alertId);
 
+    $(".alert-confirm-button").on("click", function () {
     $.ajax({
       url: "../app/controllers/handlerPost.php?action=deletePhotoProfil",
       type: "POST",
@@ -143,16 +165,15 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response.status === "success") {
-          window.location.href = "./profile-user.php";
-          console.log(response);
-          // showAlert(alertId);
-          // closingAlertWithReload(true);
+          closeAlert(alertId, true);
         } else {
           $("#hasil").css("display", "block");
           $("#hasil").html(response.message);
         }
       },
     });
+    });
+    closingAlertWithReload(false);
   })
 
   

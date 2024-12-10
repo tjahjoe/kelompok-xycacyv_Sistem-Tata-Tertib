@@ -1,6 +1,7 @@
 <?php
 include 'components/navbar.php';
 include 'components/formUser.php';
+include 'components/alert.php';
 require_once '../app/controllers/getData.php';
 ?>
 
@@ -28,6 +29,10 @@ require_once '../app/controllers/getData.php';
     <?php FormUser(null, 'add-user'); ?>
   </div>
   
+  <?php 
+  Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil menambahkan user!', false, 'alert-success-add-user');
+  ?>
+
   <script src="../assets/js/handleManageUser.js"></script>
   <script src="../assets/js/script.js"></script>
 </body>

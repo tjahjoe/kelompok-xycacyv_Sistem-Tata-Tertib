@@ -1,8 +1,7 @@
 <?php
-// if (isset($_SESSION['user'])) {
-//   include '../app/views/pelaporanPage.php';
-//   exit();
-// }
+require_once '../app/authMiddleware.php';
+authMiddleware();
 
-// header('Location: ./login.php');
+roleMiddleware(['dosen, kps, dpa, sekjur, admin']);
+
 include '../app/views/pelaporanPage.php';

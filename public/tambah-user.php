@@ -1,9 +1,7 @@
 <?php
+require_once '../app/authMiddleware.php';
+authMiddleware();
 
-// if (isset($_SESSION['user'])) {
-//   include '../app/views/tambahUser.php';
-//   exit();
-// }
+roleMiddleware(['admin']);
 
-// header('Location: ./login.php');
 include '../app/views/tambahUser.php';

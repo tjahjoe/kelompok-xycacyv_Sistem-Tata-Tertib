@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 include 'components/navbar.php';
+include 'components/footerSection.php';
 include 'components/headerSection.php';
 include 'components/tataTertibSection.php';
 require_once '../app/controllers/getData.php';
@@ -28,7 +29,7 @@ require_once '../app/controllers/getData.php';
 
   <div class="container">
     <?php TataTertibSection($data) ?>
-    <?php include 'components/footerSection.php'; ?>
+    <?php FooterSection() ?>
   </div>
 
   <script src="../assets/js/script.js"></script>

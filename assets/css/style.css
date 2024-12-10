@@ -334,7 +334,13 @@ a{
   object-fit: cover;
 }
 
+.container-overflow{
+  width: 100%;
+  overflow: auto;
+}
+
 .menu {
+  width: max-content;
   display: flex;
   gap: 1.5rem;
 }
@@ -829,7 +835,7 @@ span.btn-edit-profile{
 }
 
 .table-content .max-text{
-  max-width: 170px;
+  max-width: 150px;
 }
 
 .table-content td.text-left{

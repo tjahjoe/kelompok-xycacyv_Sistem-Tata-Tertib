@@ -1,3 +1,6 @@
+<?php
+function FooterSection(){
+?>
 <section id="footerLapor">
   <div class="box-footer">
     <a href="./" class="logo">
@@ -32,3 +35,5 @@
     </div>
   </div>
 </section>
+
+<?php } ?>
