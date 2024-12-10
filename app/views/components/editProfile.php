@@ -4,14 +4,15 @@ function EditProfile($data)
 ?>
   <?php
   if (!empty($data)) {
+    $nama = $data['nama'];
+    $role = $data['role'];
+    $notelp = $data['notelp'];
+
+    $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/'.$data['foto_diri'] : "../assets/images/foto.webp";
   ?>
     <form class="form-container" id="form-editprofile" enctype="multipart/form-data">
       <div class="flex-between m-0">
         <div class="flex-row m-0">
-          <?php 
-          $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/' . $data['foto_diri'] : "../assets/images/foto.webp"; 
-          ?>
-
           <img src="<?php echo $photoProfile ?>" alt="Profile Picture" class="profile-image border-image" id="profile-image" width="100px" height="100px" />
           <div class="flex-row m-0">
             <input type="file" name="photo" id="change-photo" style="display: none;" accept="image/*" />
@@ -32,7 +33,7 @@ function EditProfile($data)
 
       <div class="input-editprofile mt-2">
         <label for="nama">Nama</label>
-        <input type="text" name="nama" value="<?php echo $data['nama'] ?>" id="nama">
+        <input type="text" name="nama" value="<?php echo $nama ?>" id="nama">
       </div>
 
       <?php
@@ -45,11 +46,11 @@ function EditProfile($data)
       </div>
       <div class="input-editprofile">
         <label for="notelp">Nomor Telepon</label>
-        <input type="text" name="notelp" value="<?php echo $data['notelp']; ?>" id="notelp">
+        <input type="text" name="notelp" value="<?php echo $notelp; ?>" id="notelp">
       </div>
       <div class="input-editprofile">
         <label for="role">Pekerjaan</label>
-        <input type="text" name="role" value="<?php echo $data['role'] ?>" class="capitalize-text" id="role" disabled>
+        <input type="text" name="role" value="<?php echo $role ?>" class="capitalize-text" id="role" disabled>
       </div>
 
     </form>

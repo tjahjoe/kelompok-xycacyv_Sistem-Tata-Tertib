@@ -2,16 +2,23 @@
 function InfoProfile($data)
 {
 ?>
-  <?php if (!empty($data)) { ?>
+  <?php if (!empty($data)) { 
+    $nama = $data['nama'];
+    $nama_awal = $data['nama_awal'];
+    $nama_akhir = $data['nama_akhir'];
+    $role = $data['role'];
+    $notelp = $data['notelp'];
+    $email = $data['email'];
+
+    $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/'.$data['foto_diri'] : "../assets/images/foto.webp";
+
+    ?>
     <div class="box-profile">
       <div class="info-user">
-      <?php 
-      $photoProfile =  $data['foto_diri'] ? '../assets/uploads/photo/'.$data['foto_diri'] : "../assets/images/foto.webp";
-      ?>
         <img src="<?php echo $photoProfile; ?>" alt="Profile Picture" class="profile-image" width="80px" height="80px"/>
         <span>
-          <h2 class="capitalize-text"><?php echo $data['nama'] ?></h2>
-          <p class="capitalize-text"><?php echo $data['role'] ?></p>
+          <h2 class="capitalize-text"><?php echo $nama ?></h2>
+          <p class="capitalize-text"><?php echo $role ?></p>
         </span>
       </div>
     </div>
@@ -21,11 +28,11 @@ function InfoProfile($data)
         <div class="info-grid">
           <span class="capitalize-text">
             <p>Nama Awal</p>
-            <p><?php echo $data['nama_awal']; ?></p>
+            <p><?php echo $nama_awal; ?></p>
           </span>
           <span class="capitalize-text">
             <p>Nama Akhir</p>
-            <p><?php echo $data['nama_akhir']; ?></p>
+            <p><?php echo $nama_akhir; ?></p>
           </span>
           <span>
             <?php
@@ -37,15 +44,15 @@ function InfoProfile($data)
           </span>
           <span>
             <p class="capitalize-text">Nomor Telepon</p>
-            <p><?php echo $data['notelp']; ?></p>
+            <p><?php echo $notelp; ?></p>
           </span>
           <span>
             <p class="capitalize-text">Email</p>
-            <p><?php echo $data['email']; ?></p>
+            <p><?php echo $email; ?></p>
           </span>
           <span class="capitalize-text">
             <p>Pekerjaan</p>
-            <p><?php echo $data['role']; ?></p>
+            <p><?php echo $role; ?></p>
           </span>
         </div>
       </div>

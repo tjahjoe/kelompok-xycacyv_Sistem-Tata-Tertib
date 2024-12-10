@@ -31,7 +31,7 @@ require_once '../app/controllers/getData.php';
   <!-- DATA -->
   <?php
   $user_data = dataUser(); // data user
-  $usersData = dataUsers(); // data user
+  $usersData = dataUsers(); // data semua user
   $dataPelanggaran = dataPelanggaran(); //data pelanggaran user
   $dataListPelanggaran = ListPelanggaran(); //data list tatib
   $dataPelaporan = dataPelapor(); //data pelaporan dari user

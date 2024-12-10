@@ -68,12 +68,13 @@ $(document).ready(function () {
     });
   }
 
-  // untuk mengaktifkan filter pada tingkatPelaporan, statusPelaporan dan searchByNIM
+  // untuk searchByNIM
   $("#search-user-nim").on("submit", function (e) {
     e.preventDefault();
     searchUser();
   });
 
+  // handle ketika role mahasiswa akan menambah kolom baru
   $("#add-role").on("change", function (e) {
     e.preventDefault();
     let role = $(this).val();
@@ -103,6 +104,7 @@ $(document).ready(function () {
     }
   });
   
+  // add new user
   $("#form-add-user").on("submit", function (e) {
     e.preventDefault();
 
@@ -127,6 +129,7 @@ $(document).ready(function () {
     });
   })
   
+  // edit detail user
   $("#form-edit-user").on("submit", function (e) {
     e.preventDefault();
 
@@ -151,6 +154,7 @@ $(document).ready(function () {
     });
   })
 
+  // delete photo user
   $("#delete-photo").on("click", function (e) {
     e.preventDefault();
 
