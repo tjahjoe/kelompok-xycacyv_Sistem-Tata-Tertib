@@ -56,9 +56,8 @@ const switchTab = () => {
   const tabLink = document.querySelectorAll(".tab-link");
   const tabContent = document.querySelectorAll(".tab-content");
   const logoutBtn = document.querySelector(".logout-btn");
-  const profileForm = document.getElementById("edit-profile");
 
-  if (tabLink && tabContent && profileForm && logoutBtn) {
+  if (tabLink && tabContent && logoutBtn) {
     const currentHash = window.location.hash;
 
     if (currentHash) {
@@ -84,8 +83,6 @@ const switchTab = () => {
         if (this === logoutBtn) {
           return;
         }
-
-        profileForm.classList.remove("active");
 
         // Reset semua tab link/tab content
         tabLink.forEach((tab) => tab.classList.remove("active"));
@@ -128,6 +125,7 @@ const switchTabSubMenu = () => {
   }
 };
 
+// event untuk ganti warna pada saat memilih badge pada detail pelaporan admin
 const updateBadge = () => {
   const getBadgeClass = (forValue) => {
     switch (forValue) {
@@ -144,20 +142,24 @@ const updateBadge = () => {
     }
   };
 
-  const badges = document.querySelectorAll(".badge-contain .badge");
+  const badges = document.querySelectorAll(".badge-contain .badge"); // mendapatkan semua badge
   const radios = document.querySelectorAll(
     '.badge-contain input[type="radio"]'
-  );
+  ); // mendapatkan semua inputan radio
 
-  // Untuk memastikan badge yang terkait dengan radio button yang dipilih mendapatkan class yang sesuai.
+  // mengubah warna badge sesuai radio yang tercheck
+  // checked karena jika status dari data bernilai sama dengan radio inputan
+  // melakukan loop setiap inputan radio
   radios.forEach((radio, index) => {
     if (radio.checked) {
       const forValue = badges[index].getAttribute("for");
+      // Mengakses elemen badge yang terkait dengan radio berdasarkan indeksnya.
       badges[index].classList.add(getBadgeClass(forValue));
       badges[index].classList.remove("badge-gray");
     }
   });
 
+  // melakukan loop setiap badge yang ada
   badges.forEach((badge) => {
     badge.addEventListener("click", () => {
       badges.forEach((b) => {
@@ -227,7 +229,7 @@ const uploadFile = () => {
       for (let i = 0; i < files.length; i++) {
         const listItem = document.createElement("li");
         listItem.textContent = files[i].name;
-        fileListDisplay.appendChild(listItem);
+        fileListDisplay.append(listItem);
       }
     });
   }

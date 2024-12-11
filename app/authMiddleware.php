@@ -3,6 +3,7 @@
 // untuk memastikan bahwa user sudah login sebelum mengakses halaman tertentu
 function authMiddleware()
 {
+  // jika session belum di start
   if (session_status() === PHP_SESSION_NONE) {
     session_start();
   }
