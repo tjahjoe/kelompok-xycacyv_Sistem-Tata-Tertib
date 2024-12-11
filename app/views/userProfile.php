@@ -54,7 +54,7 @@ require_once '../app/controllers/getData.php';
       </div>
 
       <!-- EDIT PROFILE -->
-      <div id="edit-profile" class=" content-edit-profile">
+      <div id="edit-profile" class="content-edit-profile">
         <div class="head-tab-content">
           <h2>Profil Saya / Edit Informasi Pribadi</h2>
           <p class="text-gray">Di sini Anda dapat mengubah informasi pribadi Anda. Setelah selesai, tekan tombol 'Simpan'.</p>

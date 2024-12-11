@@ -59,9 +59,7 @@ const switchTab = () => {
   const profileForm = document.getElementById("edit-profile");
 
   if (tabLink && tabContent && profileForm && logoutBtn) {
-    // Saat halaman dimuat, cek hash pada URL
     const currentHash = window.location.hash;
-    console.log(currentHash);
 
     if (currentHash) {
       // Temukan tab link yang sesuai dengan hash
@@ -79,7 +77,6 @@ const switchTab = () => {
       }
     }
 
-    // Tambahkan event listener untuk setiap tab link
     tabLink.forEach((link) => {
       link.addEventListener("click", function (event) {
         event.preventDefault();
@@ -244,7 +241,7 @@ const changePhoto = () => {
 
   if (fileInput && profileImage && deletePhoto) {
     fileInput.addEventListener("change", function (event) {
-      const file = event.target.files[0]; //
+      const file = event.target.files[0]; // Mengambil file yang dipilih
       if (file) {
         // Membuat URL sementara untuk file yang dipilih
         const imageUrl = URL.createObjectURL(file);
