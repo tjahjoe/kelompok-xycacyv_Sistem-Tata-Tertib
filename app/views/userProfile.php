@@ -76,17 +76,18 @@ require_once '../app/controllers/getData.php';
         ?>
       </div>
 
+      <?php if($user_data['role'] == 'admin'){?>
       <!-- Pengaturan Lanjutan -->
       <div class="tab-content" id="pengaturan-lanjutan">
         <div class="head-tab-content">
           <h2>Pengaturan Lanjutan</h2>
         </div>
         <div class="container-overflow">
-        <div class="menu">
-          <a href="#kelola-peraturan-tatib" class="tab-sublink active">Kelola Peraturan Tata Tertib </a>
-          <a href="#kelola-surat-pernyataan" class="tab-sublink">Kelola Surat Pernyataan</a>
-          <a href="#kelola-pengguna" class="tab-sublink">Kelola Pengguna</a>
-        </div>
+          <div class="menu">
+            <a href="#kelola-peraturan-tatib" class="tab-sublink active">Kelola Peraturan Tata Tertib </a>
+            <a href="#kelola-surat-pernyataan" class="tab-sublink">Kelola Surat Pernyataan</a>
+            <a href="#kelola-pengguna" class="tab-sublink">Kelola Pengguna</a>
+          </div>
         </div>
 
         <!-- KELOLA TATIB -->
@@ -168,6 +169,7 @@ require_once '../app/controllers/getData.php';
           </div>
         </div>
       </div>
+      <?php }?>
 
       <!-- RIWAYAT PELAPORAN -->
       <div class="tab-content" id="riwayat-pelaporan">

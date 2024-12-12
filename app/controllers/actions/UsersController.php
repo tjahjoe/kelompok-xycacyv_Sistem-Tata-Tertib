@@ -46,7 +46,7 @@ class UsersController
 
             $response = [
                 'status' => 'error',
-                'message' => 'Gagal: Email atau kata sandi salah!',
+                'message' => 'Gagal: ID atau kata sandi salah!',
             ];
 
             $id = $_POST['idAnggota'];

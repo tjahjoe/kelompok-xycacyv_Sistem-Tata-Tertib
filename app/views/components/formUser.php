@@ -136,24 +136,24 @@ function FormUser($data, $type)
       <div class="detail-container">
         <div class="detail-item">
           <label for="nama">Nama</label>
-          <input type="text" name="nama" value="" id="nama" placeholder="Masukkan nama" />
+          <input type="text" name="nama" value="" id="nama" placeholder="Masukkan nama" required/>
         </div>
 
         <div class="detail-item uppercase-text">
           <label for="id">ID</label>
-          <input type="text" name="id" value="" id="id" placeholder="Masukkan id" />
+          <input type="text" name="id" value="" id="id" placeholder="Masukkan id" required/>
         </div>
         <div class="detail-item">
           <label for="notelp">Nomor Telepon</label>
-          <input type="text" name="notelp" value="" id="notelp" placeholder="Masukkan nomor telepon" />
+          <input type="text" name="notelp" value="" id="notelp" placeholder="Masukkan nomor telepon" required/>
         </div>
         <div class="detail-item">
           <label for="email">Email</label>
-          <input type="text" name="email" value="" id="email" placeholder="Masukkan email" />
+          <input type="text" name="email" value="" id="email" placeholder="Masukkan email" required/>
         </div>
         <div class="detail-item">
           <label for="role">Pekerjaan</label>
-          <select name="role" class="capitalize-text" id="add-role">
+          <select name="role" class="capitalize-text" id="add-role" required>
             <option disabled selected hidden>Pilih Role</option>
             <option value="admin">Admin</option>
             <option value="mahasiswa">Mahasiswa</option>
@@ -165,15 +165,12 @@ function FormUser($data, $type)
         </div>
         <div class="detail-item" id="select-dpa" style="display:none">
           <label for="dpa">DPA</label>
-          <?php ?>
-          <select name="dpa" id="dpa" class="capitalize-text">
+          <select name="dpa" id="dpa" class="capitalize-text" required>
             <option disabled selected hidden>Pilih DPA</option>
             <?php
             if (!empty($dataDpa)) {
               foreach ($dataDpa as $dpa) {
-                $selected = ($data['dpa'] == $dpa['nip']) ? 'selected' : '';
-
-                echo "<option value='{$dpa['nip']}' $selected>{$dpa['nip']} - {$dpa['nama_dosen']}</option>";
+                echo "<option value='{$dpa['nip']}'>{$dpa['nip']} - {$dpa['nama_dosen']}</option>";
               }
             } else {
               echo "<option disabled>Tidak ada data DPA</option>";

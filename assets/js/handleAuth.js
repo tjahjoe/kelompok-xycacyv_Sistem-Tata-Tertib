@@ -15,7 +15,7 @@ $(document).ready(function() {
                   window.location.href = './';
               } else {
                 $("#hasil").css("display", "block");
-                  $("#hasil").html(response.message);
+                $("#hasil").html(response.message);
               }
           }
       });

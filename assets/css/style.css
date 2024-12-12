@@ -254,44 +254,21 @@ a{
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0);
 }
 
-.navbar.navbar-other {
+.navbar.navbar-other, .navbar.scrolled {
   background-color: #fff;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.5s ease-in-out;
 }
 
-.navbar.navbar-other .menu a{
+.navbar.navbar-other .menu a, .navbar.navbar-other .logo, .navbar.scrolled .menu a, .navbar.scrolled .logo{
   color: var(--primary-color);
 }
 
-.navbar.navbar-other .logo {
-  color: var(--primary-color);
-}
-
-.navbar.navbar-other .hamburger div {
+.navbar.navbar-other .hamburger div, .navbar.scrolled .hamburger div {
   background-color: var(--primary-color);
 }
 
-.navbar.navbar-other .profile span.profile-text {
-  color: var(--dark-color);
-}
-
-.navbar.scrolled {
-  background-color: #fff;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
-  transition: all 0.5s ease-in-out;
-}
-
-.navbar.scrolled .menu a,
-.navbar.scrolled .logo {
-  color: var(--primary-color);
-}
-
-.navbar.scrolled .hamburger div {
-  background-color: var(--primary-color);
-}
-
-.navbar.scrolled .profile span.profile-text {
+.navbar.navbar-other .profile span.profile-text, .navbar.scrolled .profile span.profile-text {
   color: var(--dark-color);
 }
 

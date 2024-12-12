@@ -27,14 +27,14 @@
             <p>SiTatib</p>
           </div>
           <h2>Login Anggota</h2>
-          <div id="hasil" style="color: red; display:none"></div>
           <div class="info-box m-0">
             <h4>Informasi</h3>
             <ul>
-              <li>Bagi Mahasiswa: Gunakan akun siakad</li>
-              <li>Bagi DPA/Admin: Gunakan akun portal polinema</li>
+              <li>Bagi Mahasiswa: Gunakan NIM</li>
+              <li>Bagi DPA/Admin: Gunakan ID/NIP</li>
             </ul>
           </div>
+          <div id="hasil" style="color: red; display:none"></div>
           <form method="post" class="login-form" id="formLogin">
             <label for="idAnggota">ID Anggota</label>
             <input
