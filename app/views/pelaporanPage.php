@@ -58,7 +58,7 @@ require_once '../app/controllers/getData.php';
       <div class="footer-modal">
         <label class="upload-section" for="lampiran">
           <span class="upload-icon"><img src="../assets/images/upload-image-icon.svg" width="30px" alt=""></span>
-          <p>Upload Lampiran (Max: 2MB)</p>
+          <p>Upload Lampiran (Max: 3MB)</p>
         </label>
         <input type="file" name="lampiran[]" id="lampiran" accept="image/*" hidden multiple>
         <button type="submit" class="btn btn-red">Laporkan!</button>

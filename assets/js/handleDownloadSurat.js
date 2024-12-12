@@ -15,7 +15,8 @@ $(document).ready(function () {
           url: '../app/controllers/handlerPost.php?action=suratPeringatan',
           type: 'POST',
           data: formData,
-          processData: false,
+          // mencegah jquery mengubah format data yg dikirim
+          processData: false, 
           contentType: false,
           xhrFields: {
               responseType: 'blob'

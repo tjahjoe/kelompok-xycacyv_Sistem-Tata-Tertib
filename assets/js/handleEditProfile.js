@@ -30,11 +30,6 @@ $(document).ready(function () {
     const fileInput = document.getElementById("change-photo");
     const file = fileInput.files[0];
 
-    if (!file) {
-      $("#hasil").css("display", "block").html("Please select a file!");
-      return;
-    }
-
     const formData = new FormData();
     formData.append("photo", file);
 
