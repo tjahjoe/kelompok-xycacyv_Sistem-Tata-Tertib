@@ -285,4 +285,28 @@ document.addEventListener("DOMContentLoaded", () => {
   changePhoto();
   showLampiran();
   toggleNavigationMenu();
+
+  const kelolaPengguna = document.getElementById("kelola-pengguna");
+  const riwayatPelanggaran = document.getElementById("riwayat-pelanggaran");
+  const riwayatPelaporan = document.getElementById("riwayat-pelaporan");
+
+  const sidebar = document.querySelector(".sidebar");
+
+  function checkClassActive(element){
+    return element.classList.contains("active");
+  }
+
+  function checkScreenSize() {
+    if(checkClassActive(kelolaPengguna) && checkClassActive(riwayatPelanggaran) || checkClassActive(riwayatPelaporan)){
+    if (window.matchMedia("(max-width: 1365px)").matches) {
+      kelolaPengguna.classList.add("scrolled-tab-content");
+    } else {
+      kelolaPengguna.classList.remove("scrolled-tab-content");
+    }
+  }
+  }
+
+  checkScreenSize();
+  window.addEventListener("resize", checkScreenSize);
+
 });

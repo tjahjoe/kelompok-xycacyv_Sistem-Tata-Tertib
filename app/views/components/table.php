@@ -26,6 +26,14 @@ function TableContent($data, $linkDetail)
                 if ($kolom == 'id') continue;
 
                 $addedClass = ($kolom == 'JUDUL MASALAH' || $kolom == 'NAMA') ? 'class="text-left truncate"' : '';
+
+                if($kolom == 'TANGGAL'){
+                  $timestamp = strtotime($record[$kolom]);
+
+                  $formattedDate = date("d M Y", $timestamp);
+
+                  $record[$kolom] = $formattedDate;
+                }
               ?>
                 <td <?php echo $addedClass; ?>>
                   <?php echo isset($record[$kolom]) && $kolom == 'STATUS' ? Badge(strtolower($record[$kolom])) : $record[$kolom]; ?>
