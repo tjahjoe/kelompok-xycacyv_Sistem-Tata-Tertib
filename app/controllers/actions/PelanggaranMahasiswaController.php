@@ -53,7 +53,7 @@ class PelanggaranMahasiswaController
 
     private function uploadFile($inputName, $idPelanggaran)
     {
-        $targetDir = __DIR__ . "/../../assets/pernyataan/";
+        $targetDir = __DIR__ . "/../../../assets/pernyataan/";
 
         $fileName = basename($_FILES[$inputName]["name"]);
         $fileType = mime_content_type($_FILES[$inputName]["tmp_name"]);
@@ -76,7 +76,7 @@ class PelanggaranMahasiswaController
         echo $targetFilePath;
 
         if (move_uploaded_file($_FILES[$inputName]["tmp_name"], $targetFilePath)) {
-            return "assets/pernyataan/" . $newFileName;
+            return $newFileName;
         }
 
         return false;
