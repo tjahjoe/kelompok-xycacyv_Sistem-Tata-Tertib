@@ -13,33 +13,34 @@ $wordGeneratorController = new WordGeneratorController();
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
-if ($action == 'login') {//user
+if ($action == 'login') { //user
     $usersController->login();
-} else if ($action == 'logout') {//user
+} else if ($action == 'logout') { //user
     $usersController->logoutHandler();
-} else if ($action == 'uploadUser') {//user
+} else if ($action == 'uploadUser') { //user
     $usersController->uploadUser();
-} else if ($action == 'updateUser') {//user
+} else if ($action == 'updateUser') { //user
     $usersController->updateUser();
-} else if ($action == 'uploadPelanggaran') {//PelanggaranMahasiswa
+} else if ($action == 'uploadPelanggaran') { //PelanggaranMahasiswa
     $pelanggaranMahasiswaController->uploadPelanggaran();
-} else if ($action == 'updatePelanggaran') {//pelanggaranMahasiswa
+} else if ($action == 'updatePelanggaran') { //pelanggaranMahasiswa
     $pelanggaranMahasiswaController->updatePelanggaran();
-} else if ($action == 'uploadListPelanggaran') {//listpelanggaran
+} else if ($action == 'uploadListPelanggaran') { //listpelanggaran
     $listPelanggaranController->uploadListPelanggaran();
-} else if ($action == 'updateListPelanggaran') {//listpelanggaran
+} else if ($action == 'updateListPelanggaran') { //listpelanggaran
     $listPelanggaranController->updateListPelanggaran();
-} else if ($action == 'deleteListPelanggaran') {//listpelanggaran
+} else if ($action == 'deleteListPelanggaran') { //listpelanggaran
     $listPelanggaranController->deleteListPelanggaran();
-} else if ($action == 'updateDataUser') {//user
+} else if ($action == 'updateDataUser') { //user
     $usersController->updateDataUser();
-} else if ($action == 'updatePhotoProfil') {//user
+} else if ($action == 'updatePhotoProfil') { //user
     $usersController->updatePhotoProfil();
-} else if ($action == 'deletePhotoProfil') {//user
+} else if ($action == 'deletePhotoProfil') { //user
     $usersController->deletePhotoProfil();
-} else if ($action == 'updateSuratPeringatan') {//tamplate
+} else if ($action == 'updateSuratPeringatan') { //tamplate
     $templateController->updateSuratPeringatan();
-} else if ($action == 'suratPeringatan') {//wordgenerator
+} else if ($action == 'suratPeringatan') { //wordgenerator
     $wordGeneratorController->generateWordFromTemplate();
+} else if ($action == 'uploadSuratPernyataan') {
+    $pelanggaranMahasiswaController->uploadSuratPernyataan();
 }
-?>
