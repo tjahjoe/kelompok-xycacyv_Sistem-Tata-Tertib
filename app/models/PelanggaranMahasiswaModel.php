@@ -24,9 +24,9 @@ class PelanggaranMahasiswaModel extends Database
         $query = "SELECT
         p.id_pelanggaran_mhs 'id',
 		p.nim 'NIM',
-        p.tgl_pelanggaran 'TANGGAL', 
-        l.nama_jenis_pelanggaran 'JUDUL MASALAH', 
-        l.tingkat_pelanggaran 'TINGKAT', 
+        p.tgl_pelanggaran 'TANGGAL',
+        l.nama_jenis_pelanggaran 'JUDUL MASALAH',
+        l.tingkat_pelanggaran 'TINGKAT',
         p.status 'STATUS'
         FROM " . $this->table . " p
         JOIN ListPelanggaran l
@@ -35,7 +35,7 @@ class PelanggaranMahasiswaModel extends Database
 		ON m.nim = p.nim
         WHERE m.nim = ?
         AND p.status IN ('aktif', 'nonaktif', 'reject')
-        ORDER BY 
+        ORDER BY
         tgl_pelanggaran DESC, id_pelanggaran_mhs DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
         return $this->getPelanggaran($query, $nim);
     }
@@ -45,14 +45,14 @@ class PelanggaranMahasiswaModel extends Database
         $query = "SELECT
         p.id_pelanggaran_mhs 'id',
         p.nim 'NIM',
-        p.tgl_pelanggaran 'TANGGAL', 
-        l.nama_jenis_pelanggaran 'JUDUL MASALAH', 
-        l.tingkat_pelanggaran 'TINGKAT', 
+        p.tgl_pelanggaran 'TANGGAL',
+        l.nama_jenis_pelanggaran 'JUDUL MASALAH',
+        l.tingkat_pelanggaran 'TINGKAT',
         p.status 'STATUS'
         FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON p.id_list_pelanggaran = l.id_list_pelanggaran
-        WHERE pelapor = ? 
+        WHERE pelapor = ?
         ORDER BY
         tgl_pelanggaran DESC, id_pelanggaran_mhs DESC"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
         return $this->getPelanggaran($query, $nip);
@@ -90,7 +90,7 @@ class PelanggaranMahasiswaModel extends Database
 
     private function queryDetailDataPelanggaran($sanksi, $joinTable)
     {
-        return "SELECT 
+        return "SELECT
         p.id_pelanggaran_mhs 'id',
         l.tingkat_pelanggaran 'Tingkat Pelanggaran',
         p.tgl_pelanggaran 'Tanggal Pelanggaran',
@@ -104,14 +104,14 @@ class PelanggaranMahasiswaModel extends Database
         JOIN ListPelanggaran l
         ON l.id_list_pelanggaran = p.id_list_pelanggaran
         $joinTable
-        WHERE p.id_pelanggaran_mhs = ? 
+        WHERE p.id_pelanggaran_mhs = ?
         AND p.nim=?
         AND p.status IN ('aktif', 'nonaktif', 'reject')";
     }
 
     public function getDetailDaftarPelanggaran($id, $condition, $idUser, $isDpa = false)
     {
-        $query = "SELECT 
+        $query = "SELECT
         role
         FROM " . $this->table . " p
         JOIN Users u
@@ -203,7 +203,7 @@ class PelanggaranMahasiswaModel extends Database
 
     private function queryDetailDaftarPelanggaran($selectedColumns, $sanksi, $tableJoin, $tableJoinMahasiswa, $tableJoinTingkatPelanggaran, $addNip, $addPelapor)
     {
-        return "SELECT 
+        return "SELECT
         p.id_pelanggaran_mhs 'id',
         $selectedColumns
         l.tingkat_pelanggaran 'Tingkat Pelanggaran',
@@ -217,7 +217,7 @@ class PelanggaranMahasiswaModel extends Database
         FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON l.id_list_pelanggaran = p.id_list_pelanggaran
-        $tableJoin 
+        $tableJoin
         $tableJoinMahasiswa
         $tableJoinTingkatPelanggaran
         WHERE p.id_pelanggaran_mhs = ?
@@ -227,8 +227,8 @@ class PelanggaranMahasiswaModel extends Database
 
     public function getTingkatPelanggaranForDetailDaftarPelanggaran($id)
     {
-        $query = "SELECT 
-        l.tingkat_pelanggaran 
+        $query = "SELECT
+        l.tingkat_pelanggaran
         FROM PelanggaranMahasiswa p
         JOIN ListPelanggaran l
         ON l.id_list_pelanggaran = p.id_list_pelanggaran
@@ -275,7 +275,7 @@ class PelanggaranMahasiswaModel extends Database
             $conditions[] = "m.nip = ?";
             $params[] = $id;
         }
-        
+
         $limit = "";
         if (is_numeric($num)) {
             $limit = "OFFSET ? ROWS FETCH NEXT 10 ROWS ONLY";
@@ -287,18 +287,18 @@ class PelanggaranMahasiswaModel extends Database
         p.id_pelanggaran_mhs 'id',
 		p.nim 'nim',
 		m.nama_mahasiswa 'nama',
-        p.tgl_pelanggaran 'tanggal', 
-        l.nama_jenis_pelanggaran 'judulmasalah', 
-        l.tingkat_pelanggaran 'tingkat', 
+        p.tgl_pelanggaran 'tanggal',
+        l.nama_jenis_pelanggaran 'judulmasalah',
+        l.tingkat_pelanggaran 'tingkat',
         p.status 'status'
         FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON p.id_list_pelanggaran = l.id_list_pelanggaran
 		JOIN Mahasiswa m
 		ON m.nim = p.nim
-        WHERE 
+        WHERE
         $whereClause
-        ORDER BY 
+        ORDER BY
         tgl_pelanggaran DESC, id_pelanggaran_mhs DESC
         $limit"; //tambah id mahasiswa desc id_pelanggaran_mhs DESC
 
@@ -308,7 +308,7 @@ class PelanggaranMahasiswaModel extends Database
             $stmt->bindValue($index + 1, $param);
         }
         if (is_numeric($num)) {
-            $stmt->bindValue(count($params) + 1, $num, PDO::PARAM_INT);   
+            $stmt->bindValue(count($params) + 1, $num, PDO::PARAM_INT);
         }
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -318,17 +318,17 @@ class PelanggaranMahasiswaModel extends Database
 
     public function uploadPelanggaran($nim, $tanggal, $catatan, $pelapor, $jenis, $isEmptyImg)
     {
-        $query = "INSERT INTO " . $this->table . " 
-        (id_list_pelanggaran,  
+        $query = "INSERT INTO " . $this->table . "
+        (id_list_pelanggaran,
         nim,
         status,
         tgl_pelanggaran,
         catatan,
         pelapor)
-        SELECT 
+        SELECT
         id_list_pelanggaran, ?, ?, ?, ?, ?
-        FROM ListPelanggaran 
-        WHERE 
+        FROM ListPelanggaran
+        WHERE
         nama_jenis_pelanggaran = ?";
         $this->conn->beginTransaction();
         $stmt = $this->conn->prepare($query);
@@ -344,11 +344,11 @@ class PelanggaranMahasiswaModel extends Database
             $this->conn->commit();
             return false;
         } else {
-            $query = "SELECT 
-            TOP 1 
+            $query = "SELECT
+            TOP 1
             id_pelanggaran_mhs
-            FROM PelanggaranMahasiswa 
-            WHERE pelapor = ? 
+            FROM PelanggaranMahasiswa
+            WHERE pelapor = ?
             ORDER BY id_pelanggaran_mhs DESC";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(1, $pelapor);
@@ -360,17 +360,17 @@ class PelanggaranMahasiswaModel extends Database
 
     public function uploadImages($files, $id)
     {
-        $query = "UPDATE " . $this->table . " 
-        SET bukti_laporan = ? 
+        $query = "UPDATE " . $this->table . "
+        SET bukti_laporan = ?
         WHERE id_pelanggaran_mhs = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $files);
         $stmt->bindParam(2, $id);
         $stmt->execute();
 
-        $query = "SELECT 
-        * 
-        FROM " . $this->table . " 
+        $query = "SELECT
+        *
+        FROM " . $this->table . "
         WHERE id_pelanggaran_mhs = ?";
 
         $stmt = $this->conn->prepare($query);
@@ -408,7 +408,7 @@ class PelanggaranMahasiswaModel extends Database
 
             // mengubah status akan tetapi tidak bisa mengembalikan ke proses sebelumnya
             if (!in_array($result['status'], ['nonaktif', 'reject']) and $status != 'baru') {
-                $query = "UPDATE " . $this->table . " SET 
+                $query = "UPDATE " . $this->table . " SET
                 status = ?,
                 catatan = ?,
                 id_tingkat_pelanggaran = ?
@@ -444,15 +444,15 @@ class PelanggaranMahasiswaModel extends Database
         FROM " . $this->table . "
         WHERE id_list_pelanggaran =
         (SELECT id_list_pelanggaran
-        FROM " . $this->table . " 
+        FROM " . $this->table . "
         WHERE id_pelanggaran_mhs = ?)
-        AND nim = 
-        (SELECT nim 
-        FROM " . $this->table . " 
+        AND nim =
+        (SELECT nim
+        FROM " . $this->table . "
         WHERE id_pelanggaran_mhs = ?)
-        AND id_tingkat_pelanggaran = 
-        (SELECT id_tingkat_pelanggaran 
-        FROM " . $this->table . " 
+        AND id_tingkat_pelanggaran =
+        (SELECT id_tingkat_pelanggaran
+        FROM " . $this->table . "
         WHERE id_pelanggaran_mhs = ?)
         AND status IN ('aktif', 'nonaktif')";
 
@@ -468,19 +468,19 @@ class PelanggaranMahasiswaModel extends Database
 
     private function updateStatusMultipleOfThree($idPelanggaran)
     {
-        $query = "UPDATE " . $this->table . " 
+        $query = "UPDATE " . $this->table . "
                 SET status = 'nonaktif'
-                WHERE id_list_pelanggaran = 
-                (SELECT id_list_pelanggaran 
-                FROM " . $this->table . " 
-                WHERE id_pelanggaran_mhs = ?) 
-                AND nim = 
-                (SELECT nim 
-                FROM " . $this->table . " 
+                WHERE id_list_pelanggaran =
+                (SELECT id_list_pelanggaran
+                FROM " . $this->table . "
                 WHERE id_pelanggaran_mhs = ?)
-                AND id_tingkat_pelanggaran = 
-                (SELECT id_tingkat_pelanggaran 
-                FROM " . $this->table . " 
+                AND nim =
+                (SELECT nim
+                FROM " . $this->table . "
+                WHERE id_pelanggaran_mhs = ?)
+                AND id_tingkat_pelanggaran =
+                (SELECT id_tingkat_pelanggaran
+                FROM " . $this->table . "
                 WHERE id_pelanggaran_mhs = ?)
                 AND status = 'aktif'";
 
@@ -493,29 +493,60 @@ class PelanggaranMahasiswaModel extends Database
 
     private function uploadPelanggaranMultipleOfThree($idPelanggaran, $akumulasi, $nip, $result, $tanggal)
     {
-            $query = "INSERT INTO " . $this->table . " 
-            (id_list_pelanggaran, 
-            id_tingkat_pelanggaran, 
-            nim, 
-            status, 
-            catatan, 
+        $query = "INSERT INTO " . $this->table . "
+            (id_list_pelanggaran,
+            id_tingkat_pelanggaran,
+            nim,
+            status,
+            catatan,
             pelapor,
             tgl_pelanggaran)
-            select 
-            id_list_pelanggaran, 
-            ?, 
-            nim, 
-            'aktif', 
+            select
+            id_list_pelanggaran,
+            ?,
+            nim,
+            'aktif',
             'melangggar pelanggaran yang sama " . $result['jumlah'] . "x',
             ?,
-            ? 
+            ?
             FROM PelanggaranMahasiswa
             WHERE id_pelanggaran_mhs = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $akumulasi);
+        $stmt->bindParam(2, $nip);
+        $stmt->bindParam(3, $tanggal);
+        $stmt->bindParam(4, $idPelanggaran);
+        $stmt->execute();
+    }
+
+    public function uploadSuratPernyataan($idPelanggaran, $file)
+    {
+        try {
+            $this->conn->beginTransaction();
+
+            $query = "UPDATE " . $this->table . " SET surat_pernyataan = ? WHERE id_pelanggaran_mhs = ?";
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(1, $akumulasi);
-            $stmt->bindParam(2, $nip);
-            $stmt->bindParam(3, $tanggal);
-            $stmt->bindParam(4, $idPelanggaran);
+
+            $stmt->bindParam(1, $file);
+            $stmt->bindParam(2, $idPelanggaran);
+
             $stmt->execute();
+
+            $affectedRows = $stmt->rowCount();
+
+            if ($affectedRows > 0) {
+                $this->conn->commit();
+                return true;
+            } else {
+                $this->conn->rollBack();
+                return false;
+            }
+
+        } catch (Exception $e) {
+            $this->conn->rollBack();
+
+            error_log($e->getMessage());
+            return false;
+        }
     }
 }
