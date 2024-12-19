@@ -10,6 +10,11 @@ function DetailSection($data)
     foreach ($data as $kolom => $nilai) {
       if ($kolom == 'id') continue;
       if ($kolom == 'Surat' && $role != 'mahasiswa') continue;
+
+      if($kolom == 'Tanggal Pelanggaran'){
+        $timestamp = strtotime($nilai);$formattedDate = date("d M Y", $timestamp);
+        $nilai = $formattedDate;
+      }
     ?>
 
       <div class="detail-item">

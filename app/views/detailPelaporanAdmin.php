@@ -44,6 +44,9 @@ require_once '../app/controllers/getData.php';
       $sanksi = $data['sanksi'] ?? null;
       $tingkatPelanggaran = $data['Tingkat Pelanggaran'];
       $tanggalPelanggaran = $data['Tanggal Pelanggaran'];
+      $timestamp = strtotime($tanggalPelanggaran);$formattedDate = date("d M Y", $timestamp);
+      $tanggalPelanggaran = $formattedDate;
+
       $nimPelanggar = $data['NIM Pelanggar'];
       $namaPelanggaran = $data['Nama Pelanggaran'];
       $catatan = $data['Catatan'];
