@@ -26,7 +26,7 @@ require_once '../app/controllers/getData.php';
   <div class="container pt-5">
     <div class="flex-between">
       <div class="flex-col">
-        <h1 class="title">Detail Pelaporan</h1>
+        <h1 class="title">Detail Laporan</h1>
         <?php
         $data = detailPelaporan($_GET['id']);
         if (!empty($data)) {
