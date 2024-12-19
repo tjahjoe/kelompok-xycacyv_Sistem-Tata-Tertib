@@ -43,7 +43,7 @@ function DetailSection($data)
         } else if ($kolom == 'Surat') {
           $suratPath = "../assets/pernyataan/$nilai";
           if (!empty($nilai) && file_exists($suratPath)) {
-            echo '<embed src="$suratPath" type="application/pdf">';
+            echo '<embed src="'.$suratPath.'" type="application/pdf">';
           } else {
             echo '<p>File tidak ditemukan!</p>';
           }
