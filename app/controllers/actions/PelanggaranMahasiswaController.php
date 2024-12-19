@@ -37,7 +37,6 @@ class PelanggaranMahasiswaController
             $idPelanggaran = $_POST['idPelanggaranMhs'];
 
             $filePath = $this->uploadFile('suratPernyataan', $idPelanggaran);
-            echo $filePath;
 
             if ($filePath) {
                 $result = $this->pelanggaranMahasiswaModel->uploadSuratPernyataan($idPelanggaran, $filePath);
