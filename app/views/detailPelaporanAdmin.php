@@ -30,7 +30,6 @@ require_once '../app/controllers/getData.php';
   $data = detailPelaporan($_GET['id'], true); //data detail pelaporan
 
   $dataTingkatPelanggaran = tingkatPelanggaran($_GET['id']);
-  var_dump($dataTingkatPelanggaran);
   ?>
 
   <div class="container pt-5">
@@ -49,6 +48,7 @@ require_once '../app/controllers/getData.php';
       $namaPelanggaran = $data['Nama Pelanggaran'];
       $catatan = $data['Catatan'];
       $bukti = $data['Bukti'];
+      $surat = $data['Surat'];
 
       $roleUser = $_SESSION['user']['role'];
       $notHakAksesDpa = $roleUser == 'dpa' && !in_array($tingkatPelanggaran, ['V', 'IV', "III"]);
@@ -132,9 +132,7 @@ require_once '../app/controllers/getData.php';
           </div>
           <div class="detail-item">
             <label for="catatan">Catatan</label>
-           <textarea name="catatan" rows="10" id="catatan" <?php echo $notHakAksesDpa ? 'disabled' : ''; ?>>
-              <?php echo $catatan; ?>
-          </textarea>
+           <textarea name="catatan" rows="10" id="catatan" <?php echo $notHakAksesDpa ? 'disabled' : ''; ?>><?php echo $catatan; ?></textarea>
 
           </div>
           <div class="detail-item">
@@ -164,6 +162,17 @@ require_once '../app/controllers/getData.php';
             <label for="sanksi">Sanksi</label>
             <input type="text" name="sanksi" value="<?php echo $sanksi ?>" id="sanksi" disabled>
           </div>
+
+          <?php 
+              $filePath = "../assets/pernyataan/$surat";
+            if(!empty($surat) && file_exists($filePath)){
+          ?>
+          <div class="detail-item">
+            <label for="surat">Surat Pernyataan</label>
+            <embed src="<?php echo $filePath?>" type="application/pdf">
+          </div>
+          <?php }?>
+
           <div class="detail-item" <?php echo $notHakAksesDpa ? 'style="pointer-events: none;"' : ''; ?> >
             <label for="">Status</label>
             <div class="badge-contain">

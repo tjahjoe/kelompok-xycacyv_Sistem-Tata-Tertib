@@ -1,4 +1,5 @@
 <?php
+include 'components/alert.php';
 include 'components/emptyState.php';
 include 'components/detailSection.php';
 require_once '../app/controllers/getData.php';
@@ -69,11 +70,11 @@ require_once '../app/controllers/getData.php';
                 </div>
                 <form id="uploadSuratPernyataan" class="flex-row-full m-0" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="idPelanggaranMhs" value="<?php echo $data['id']; ?>" id="idPelanggaranMhs">
-                    <label class="upload-section" for="suratPernyataan">
+                    <label class="upload-section" for="lampiran">
                         <span class="upload-icon"><img src="../assets/images/upload-surat-icon.svg" width="30px" alt=""></span>
                         <p>Upload Surat Pernyataan</p>
                     </label>
-                    <input type="file" name="suratPernyataan" id="suratPernyataan" required hidden accept=".pdf">
+                    <input type="file" name="suratPernyataan" id="lampiran" required hidden accept=".pdf">
                     <button class="btn btn-primary" type="submit">Simpan</button>
                 </form>
                 <div class="list-file-uploaded">
@@ -85,6 +86,11 @@ require_once '../app/controllers/getData.php';
             }
         } ?>
     </div>
+
+    <!-- ALERT SUCCESS UPLOAD SURAT -->
+    <?php
+     Alert('alert-success-icon.svg', 'Berhasil', 'Berhasil mengunggah surat pernyataan', false, 'alert-success-upload-surat');
+    ?>
 
     <script src="../assets/js/handleSuratPernyataan.js"></script>
     <script src="../assets/js/handleDownloadSurat.js"></script>

@@ -41,7 +41,6 @@ class PelanggaranMahasiswaController
 
             if ($filePath) {
                 $result = $this->pelanggaranMahasiswaModel->uploadSuratPernyataan($idPelanggaran, $filePath);
-                echo $result;
 
                 echo $result ? json_encode(['status' => 'success', 'message' => 'Upload success']) : json_encode(['status' => 'error', 'message' => 'Upload failed']);
             } else {
