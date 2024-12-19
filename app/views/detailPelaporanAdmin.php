@@ -123,7 +123,7 @@ require_once '../app/controllers/getData.php';
           </div>
           <div class="detail-item">
             <label for="tanggalPelanggaran">Tanggal Pelanggaran</label>
-            <input type="date" name="tanggalPelanggaran" id="tanggalPelanggaran" class="custom-date" value="<?php echo $tanggalPelanggaran ?>" disabled>
+            <input type="text" name="tanggalPelanggaran" id="tanggalPelanggaran" value="<?php echo $tanggalPelanggaran ?>" disabled>
           </div>
           <div class="detail-item">
             <label for="nimPelanggar">NIM Pelanggar</label>
