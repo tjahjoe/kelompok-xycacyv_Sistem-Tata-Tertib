@@ -99,7 +99,8 @@ class PelanggaranMahasiswaModel extends Database
         p.catatan 'Catatan',
         $sanksi
         p.status 'Status',
-        p.bukti_laporan 'Bukti'
+        p.bukti_laporan 'Bukti',
+        p.surat_pernyataan 'Surat'
         FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON l.id_list_pelanggaran = p.id_list_pelanggaran
@@ -213,7 +214,8 @@ class PelanggaranMahasiswaModel extends Database
         p.catatan 'Catatan',
         $sanksi
         p.status 'Status',
-        p.bukti_laporan 'Bukti'
+        p.bukti_laporan 'Bukti',
+        p.surat_pernyataan 'Surat'
         FROM " . $this->table . " p
         JOIN ListPelanggaran l
         ON l.id_list_pelanggaran = p.id_list_pelanggaran

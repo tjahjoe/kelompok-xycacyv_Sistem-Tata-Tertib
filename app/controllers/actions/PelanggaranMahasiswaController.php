@@ -70,7 +70,7 @@ class PelanggaranMahasiswaController
             return false;
         }
 
-        $newFileName = $idPelanggaran . "_" . time() . "_" . uniqid() . "." . pathinfo($fileName, PATHINFO_EXTENSION);
+        $newFileName = $idPelanggaran . "." . pathinfo($fileName, PATHINFO_EXTENSION);
         $targetFilePath = $targetDir . $newFileName;
 
         echo $targetFilePath;
