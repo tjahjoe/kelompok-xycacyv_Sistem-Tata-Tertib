@@ -71,8 +71,6 @@ class PelanggaranMahasiswaController
         $newFileName = $idPelanggaran . "." . pathinfo($fileName, PATHINFO_EXTENSION);
         $targetFilePath = $targetDir . $newFileName;
 
-        echo $targetFilePath;
-
         if (move_uploaded_file($_FILES[$inputName]["tmp_name"], $targetFilePath)) {
             return $newFileName;
         }
